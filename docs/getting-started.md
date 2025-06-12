@@ -1,8 +1,8 @@
 ---
 hide:
-  - footer
-  - navigation
-  - toc
+    - footer
+    - navigation
+    - toc
 ---
 
 <style>
@@ -254,54 +254,64 @@ hide:
 
 <div class="grid cards" markdown>
 
--   :fontawesome-brands-docker:{ .twemoji } 
-    
+-   :fontawesome-brands-docker:{ .twemoji }
+
     **Docker 单容器部署**
-    
-    ---
-    
-    使用Docker镜像快速部署New API，适合个人使用或小规模应用场景
-    
+
+    ***
+
+    使用 Docker 镜像快速部署 New API，适合个人使用或小规模应用场景
+
     [了解更多 →](installation/docker-installation.md){ .more-link }
 
--   :fontawesome-brands-docker:{ .twemoji } 
-    
-    **Docker Compose部署**
-    
-    ---
-    
-    使用Docker Compose编排多个服务，适合生产环境或需要MySQL、Redis等依赖的场景
-    
+-   :fontawesome-brands-docker:{ .twemoji }
+
+    **Docker Compose 部署**
+
+    ***
+
+    使用 Docker Compose 编排多个服务，适合生产环境或需要 MySQL、Redis 等依赖的场景
+
     [了解更多 →](installation/docker-compose-installation.md){ .more-link }
 
--   :material-server:{ .twemoji } 
-    
+-   :material-server:{ .twemoji }
+
     **宝塔面板部署**
-    
-    ---
-    
+
+    ***
+
     通过宝塔面板图形化界面快速部署，适合不熟悉命令行的用户
-    
+
     [了解更多 →](installation/bt-docker-installation.md){ .more-link }
 
--   :material-server-network:{ .twemoji } 
-    
+-   :material-server:{ .twemoji }
+
+    **小皮面板部署**
+
+    ***
+
+    通过小皮面板进行可视化的一键部署，适合不熟悉命令行的用户
+
+    [了解更多 →](installation/xp-panel-installation.md){ .more-link }
+
+-   :material-server-network:{ .twemoji }
+
     **集群部署模式**
-    
-    ---
-    
+
+    ***
+
     多节点分布式部署，实现高可用、负载均衡和水平扩展，适合大规模应用和企业级场景
-    
+
     [了解更多 →](installation/cluster-deployment.md){ .more-link }
 
--   :material-code-braces:{ .twemoji } 
-    
+-   :material-code-braces:{ .twemoji }
+
     **本地开发部署**
-    
-    ---
-    
+
+    ***
+
     适合开发者进行代码贡献和二次开发，提供完整的本地开发环境设置指南
-    
+
     [了解更多 →](installation/local-development.md){ .more-link }
 
 </div>
@@ -310,45 +320,46 @@ hide:
 
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-book:{ .twemoji } 
-    
+-   :fontawesome-solid-book:{ .twemoji }
+
     **维基百科**
-    
-    ---
-    
+
+    ***
+
     了解项目介绍、特性说明、技术架构和路线图
-    
+
     [了解更多 →](wiki/index.md){ .more-link }
 
--   :fontawesome-solid-user:{ .twemoji } 
-    
+-   :fontawesome-solid-user:{ .twemoji }
+
     **用户指南**
-    
-    ---
-    
+
+    ***
+
     详细的使用说明和最佳实践
-    
+
     <!-- [了解更多 →](user-guide/i18n.md){ .more-link } -->
+
     [敬请期待](){ .more-link }
 
--   :fontawesome-solid-code:{ .twemoji } 
-    
+-   :fontawesome-solid-code:{ .twemoji }
+
     **接口文档**
-    
-    ---
-    
-    全面的API接口说明和调用示例
-    
+
+    ***
+
+    全面的 API 接口说明和调用示例
+
     [了解更多 →](api/index.md){ .more-link }
 
--   :fontawesome-solid-headset:{ .twemoji } 
-    
+-   :fontawesome-solid-headset:{ .twemoji }
+
     **帮助支持**
-    
-    ---
-    
+
+    ***
+
     常见问题解答和社区交流
-    
+
     [了解更多 →](support/index.md){ .more-link }
 
 </div>
