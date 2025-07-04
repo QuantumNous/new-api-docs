@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Development server script for New API Docs
 # This script builds both Chinese and English versions and serves them together
