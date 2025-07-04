@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Multi-language build script for New API Docs
 
