@@ -1,0 +1,186 @@
+site_name: New API Docs
+site_url: https://docs.newapi.pro/en/
+site_author: QuantumNous
+site_description: Next Generation AI Model Gateway and Asset Management System
+
+docs_dir: docs_en
+
+# Repository
+repo_name: QuantumNous/new-api
+repo_url: https://github.com/QuantumNous/new-api
+
+theme:
+  name: material
+  language: en
+  custom_dir: newapi/overrides
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate 
+    - content.code.copy
+    - content.code.select
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.path
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - navigation.expand
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)" 
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system theme
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.ico
+  logo: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  alternate:
+    - name: 中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/QuantumNous/new-api
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/calciumion/new-api
+  analytics:
+    provider: google
+    property: G-VHJ4VGJB6N
+  consent:
+    title: Cookie Consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they are looking for.
+    cookies:
+      analytics: Google Analytics
+  generator: false
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Wiki:
+    - Wiki: wiki/index.md
+    - Basic Concepts:
+      - Project Introduction: wiki/project-introduction.md
+      - Feature Overview: wiki/features-introduction.md
+      - Technical Architecture: wiki/technical-architecture.md
+    - Project Records:
+      - Changelog: wiki/changelog.md
+      - Special Thanks: wiki/special-thanks.md
+  - Installation Guide:
+    - Installation Overview: installation/index.md
+    - Deployment Methods:
+      - Docker Installation: installation/docker-installation.md
+      - Docker Compose Installation: installation/docker-compose-installation.md
+      - BT Panel Installation: installation/bt-docker-installation.md
+      - Cluster Deployment: installation/cluster-deployment.md
+      - Local Development: installation/local-development.md
+    - Configuration & Maintenance:
+      - System Update: installation/system-update.md
+      - Environment Variables: installation/environment-variables.md
+      - Docker Compose Configuration: installation/docker-compose-yml.md
+  - API Reference:
+    - Overview: api/index.md
+    - Chat APIs:
+      - OpenAI Chat Completions: api/openai-chat.md
+      - OpenAI Responses: api/openai-responses.md
+      - Anthropic Chat Messages: api/anthropic-chat.md
+      - Deepseek Reasoning Chat: api/deepseek-reasoning-chat.md
+      - Google Gemini Chat: api/google-gemini-chat.md
+    - Embeddings:
+      - OpenAI Embedding: api/openai-embedding.md
+    - Rerank:
+      - Jina AI Rerank: api/jinaai-rerank.md
+      - Cohere Rerank: api/cohere-rerank.md
+      - Xinference Rerank: api/xinference-rerank.md
+    - Realtime:
+      - OpenAI Realtime: api/openai-realtime.md
+    - Image:
+      - OpenAI Image: api/openai-image.md
+      - Midjourney Proxy Image: api/midjourney-proxy-image.md
+    - Audio:
+      - OpenAI Audio: api/openai-audio.md
+    - Music:
+      - Suno Music: api/suno-music.md
+    - Coming Soon: coming-soon.md
+  - Support:
+    - Support Home: support/index.md
+    - Community: support/community-interaction.md
+    - Feedback & Issues: support/feedback-issues.md
+    - FAQ: support/faq.md
+    - Buy Us a Coffee: support/buy-us-a-coffee.md
+
+plugins:
+  - blog
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - tags
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+copyright: Copyright &copy; 2025 Quantum Nous. All Rights Reserved. 
