@@ -10,7 +10,7 @@ We offer two ways to join the QQ group:
 
 ### Method 2: Click the Link
 
-[Click here to join the QQ group directly](https://qm.qq.com/q/ahzeuWwjq8)
+[Click here to join the QQ group directly](https://qm.qq.com/q/Y79glR8raU)
 
 ## 📜 Group Rules
 

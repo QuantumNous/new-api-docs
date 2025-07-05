@@ -6,11 +6,11 @@
 
 ### 方式一：扫描二维码
 
-![QQ群二维码](../assets/qq_2.jpg)
+![QQ群二维码](../assets/qq_3.jpg)
 
 ### 方式二：点击链接
 
-[点击这里直接加入QQ群](https://qm.qq.com/q/ahzeuWwjq8)
+[点击这里直接加入QQ群](https://qm.qq.com/q/Y79glR8raU)
 
 ## 📜 群规则
 
