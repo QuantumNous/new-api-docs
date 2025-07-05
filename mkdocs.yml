@@ -143,7 +143,6 @@ plugins:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - tags
   - i18n:
-      default_language: zh
       languages:
         - locale: zh
           name: 中文
