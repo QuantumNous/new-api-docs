@@ -9,7 +9,11 @@ services:
     volumes:
       - .:/docs
     working_dir: /docs
-    command: /bin/sh -c "pip install --no-cache-dir mkdocs-static-i18n[material] && ./dev-server.sh"
+    entrypoint: ["/bin/sh", "-c"]
+    command: >-
+      set -e && \
+      pip install --no-cache-dir mkdocs-static-i18n[material] && \
+      exec ./dev-server.sh
     environment:
       - TZ=Asia/Shanghai
     networks:
