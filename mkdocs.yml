@@ -145,8 +145,10 @@ plugins:
   - i18n:
       default_language: zh
       languages:
-        zh: 中文
-        en: English
+        - locale: zh
+          name: 中文
+        - locale: en
+          name: English
       reconfigure_material: true
 
 markdown_extensions:
