@@ -10,7 +10,7 @@ services:
       - .:/docs
     working_dir: /docs
     entrypoint: ["/bin/sh", "-c"]
-    command: "./dev-server.sh"
+    command: "pip install --no-cache-dir mkdocs-static-i18n[material] && ./dev-server.sh"
     environment:
       - TZ=Asia/Shanghai
     networks:

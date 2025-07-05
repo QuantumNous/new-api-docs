@@ -64,9 +64,6 @@ extra:
     - name: 中文
       link: /
       lang: zh
-    - name: English
-      link: /en/
-      lang: en
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/QuantumNous/new-api
@@ -145,6 +142,12 @@ plugins:
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - tags
+  - i18n:
+      default_language: zh
+      languages:
+        zh: 中文
+        en: English
+      reconfigure_material: true
 
 markdown_extensions:
   - abbr
