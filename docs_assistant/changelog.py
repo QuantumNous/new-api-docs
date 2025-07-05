@@ -183,7 +183,7 @@ def update_changelog_file(is_english=False):
         releases_markdown = format_releases_markdown(releases_data, is_english)
         
         # 更新到文件
-        file_path = 'docs_en/wiki/changelog.md' if is_english else 'docs/wiki/changelog.md'
+        file_path = 'docs/en/wiki/changelog.md' if is_english else 'docs/wiki/changelog.md'
         changelog_file = os.path.join(DOCS_DIR, file_path)
         return update_markdown_file(changelog_file, releases_markdown)
     

@@ -264,10 +264,22 @@ def _format_sponsor_card(name, avatar, amount, medal_text, is_english=False):
     """格式化单个赞助商卡片"""
     amount_text = "Total Sponsored" if is_english else "累计赞助"
     
-    markdown = f'<div class="sponsor-card {medal_text.lower()}-sponsor">\n'
+    # 根据显示文本映射 CSS 分类前缀，确保中英文均能应用正确样式
+    level_map = {
+        '金牌': 'gold',
+        '银牌': 'silver',
+        '铜牌': 'bronze',
+        'Gold': 'gold',
+        'Silver': 'silver',
+        'Bronze': 'bronze'
+    }
+
+    class_prefix = level_map.get(medal_text, medal_text).lower()
+
+    markdown = f'<div class="sponsor-card {class_prefix}-sponsor">\n'
     markdown += f'  <div class="sponsor-avatar-container">\n'
     markdown += f'    <img src="{avatar}" alt="{name}" class="sponsor-avatar" />\n'
-    markdown += f'    <span class="sponsor-medal {medal_text.lower()}-badge">{medal_text}</span>\n'
+    markdown += f'    <span class="sponsor-medal {class_prefix}-badge">{medal_text}</span>\n'
     markdown += f'  </div>\n'
     markdown += f'  <div class="sponsor-details">\n'
     markdown += f'    <span class="sponsor-name">{name}</span>\n'
@@ -511,7 +523,7 @@ Below is a list of all developers who have contributed to the project. We thank 
         full_content = base_content + sponsors_content + developers_content
         
         # 更新文件
-        thanks_file = os.path.join(DOCS_DIR, 'docs_en/wiki/special-thanks.md')
+        thanks_file = os.path.join(DOCS_DIR, 'docs/en/wiki/special-thanks.md')
         return update_markdown_file(thanks_file, full_content)
     
     except Exception as e:
