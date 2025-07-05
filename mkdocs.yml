@@ -147,8 +147,11 @@ plugins:
       languages:
         - locale: zh
           name: 中文
+          build: true
+          default: true
         - locale: en
           name: English
+          build: true
       reconfigure_material: true
 
 markdown_extensions:
