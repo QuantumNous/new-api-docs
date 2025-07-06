@@ -16,22 +16,19 @@ API 地址：NewAPI 站点地址
 
 ### 图文指引
 
-1. 添加提供商
-![添加供应商](../assets/cherry_studio/add_provider.png)
-
-2. 在 NewAPI 中复制 API key
+1. 在 NewAPI 中复制 API key
 ![复制 API 密钥](../assets/cherry_studio/copy_api_key.png)
 
-3. 填入 API 信息
-![填入渠道信息](../assets/cherry_studio/fill_api_info.png)
+2. 添加提供商
+![添加供应商](../assets/cherry_studio/add_provider.png)
 
-4. 添加模型
+3. 添加模型
 ![添加模型](../assets/cherry_studio/add_models.png)
 
-5. 返回聊天页面
+4. 返回聊天页面
 ![切换聊天页面](../assets/cherry_studio/back_to_chat.png)
 
-6. 切换 NewAPI 模型
+5. 切换 NewAPI 模型
 ![切换模型](../assets/cherry_studio/switch_model.png)
 
 ## 在 Cherry Studio 中画图

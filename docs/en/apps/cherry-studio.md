@@ -16,22 +16,19 @@ API Host: NewAPI site address
 
 ### Step-by-Step Guide
 
-1. Add Provider
-![Add Provider](../assets/cherry_studio/add_provider.png)
-
-2. Copy API key from NewAPI
+1. Copy API key from NewAPI
 ![Copy API Key](../assets/cherry_studio/copy_api_key.png)
 
-3. Fill in API Information
-![Fill Channel Information](../assets/cherry_studio/fill_api_info.jpg)
+2. Add Provider
+![Add Provider](../assets/cherry_studio/add_provider.png)
 
-4. Add Models
+3. Add Models
 ![Add Models](../assets/cherry_studio/add_models.png)
 
-5. Return to Chat Page
+4. Return to Chat Page
 ![Switch to Chat Page](../assets/cherry_studio/back_to_chat.png)
 
-6. Switch to NewAPI Model
+5. Switch to NewAPI Model
 ![Switch Model](../assets/cherry_studio/switch_model.png)
 
 ## Drawing in Cherry Studio
