@@ -25,3 +25,10 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# 忽略 python venv
+bin/
+pyvenv.cfg
+
+# 忽略 .DS_Store 文件
+.DS_Store
