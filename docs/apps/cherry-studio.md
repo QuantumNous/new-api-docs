@@ -33,3 +33,9 @@ API 地址：NewAPI 站点地址
 
 6. 切换 NewAPI 模型
 ![切换模型](../assets/cherry_studio/switch_model.png)
+
+## 在 Cherry Studio 中画图
+
+*首先需要配置支持画图的 API 提供商*
+
+![画图](../assets/cherry_studio/paint.png)
