@@ -133,6 +133,8 @@ nav:
         - Suno API 格式: api/suno-music.md
     - 前端接口:
       - 敬请期待: coming-soon.md
+  - AI应用:
+    - 🍒 Cherry Studio - 桌面 AI 客户端: apps/cherry-studio.md
   - 帮助支持:
     - 🏠 帮助支持: support/index.md
     - 🌐 社区交流: support/community-interaction.md
@@ -208,6 +210,8 @@ plugins:
             Suno API 格式: "Suno Music"
             前端接口: "Frontend APIs"
             敬请期待: "Coming Soon"
+            AI应用: "AI Applications"
+            "🍒 Cherry Studio - 桌面 AI 客户端": "🍒 Cherry Studio - Desktop AI Client"
             帮助支持: Support
             "🏠 帮助支持": "Support Home"
             "🌐 社区交流": Community
