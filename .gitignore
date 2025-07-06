@@ -25,3 +25,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# 忽略 python venv
+bin/
+pyvenv.cfg
