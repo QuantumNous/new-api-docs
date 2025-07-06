@@ -5,7 +5,7 @@ This file was automatically generated - do not edit
   {% for layer in [
   { "depth": 8, "position": "70%", "image": "1-quantumnous" },
   ] %}
-  {% set image = "assets/images/layers/" ~ layer["image"] %}
+  {% set image = "/assets/images/layers/" ~ layer["image"] %}
   {% set style = "style=\"" ~ [
   "--md-parallax-depth: " ~ layer["depth"],
   "--md-image-position: " ~ layer["position"]
@@ -30,40 +30,59 @@ This file was automatically generated - do not edit
             <h1 class="tx-hero__title">
               <span id="typewriter"></span><span class="cursor"></span>
             </h1>
-            <span class="tx-badge">新一代大模型网关与 AI 资产管理系统</span>
+            <span class="tx-badge">
+              {% if "en/" in page.file.src_uri %}
+              Next-Gen LLM Gateway & AI Asset Platform
+              {% else %}
+              新一代大模型网关与 AI 资产管理系统
+              {% endif %}
+            </span>
             <div class="tx-hero__stats">
               <div class="tx-stat">
                 <span class="tx-stat__number">30+</span>
-                <span class="tx-stat__label">AI 服务商</span>
+                <span class="tx-stat__label">
+                  {% if "en/" in page.file.src_uri %}AI Providers{% else %}AI 服务商{% endif %}
+                </span>
               </div>
               <div class="tx-stat">
                 <span class="tx-stat__number">100%</span>
-                <span class="tx-stat__label">OpenAI 兼容</span>
+                <span class="tx-stat__label">
+                  {% if "en/" in page.file.src_uri %}OpenAI Compatible{% else %}OpenAI 兼容{% endif %}
+                </span>
               </div>
               <div class="tx-stat">
                 <span class="tx-stat__number">99.9%</span>
-                <span class="tx-stat__label">服务可用性</span>
+                <span class="tx-stat__label">
+                  {% if "en/" in page.file.src_uri %}Availability{% else %}服务可用性{% endif %}
+                </span>
               </div>
             </div>
             <div class="tx-hero__meta">
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">🚀</span>
-                <span class="tx-hero__meta-text">一键部署，快速接入</span>
+                <span class="tx-hero__meta-text">
+                  {% if "en/" in page.file.src_uri %}One-click deployment, rapid integration{% else %}一键部署，快速接入{% endif
+                  %}
+                </span>
               </div>
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">💰</span>
-                <span class="tx-hero__meta-text">灵活计费，成本可控</span>
+                <span class="tx-hero__meta-text">
+                  {% if "en/" in page.file.src_uri %}Flexible pricing, cost-effective{% else %}灵活计费，成本可控{% endif %}
+                </span>
               </div>
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">🛡️</span>
-                <span class="tx-hero__meta-text">安全稳定，高可用性</span>
+                <span class="tx-hero__meta-text">
+                  {% if "en/" in page.file.src_uri %}Secure & highly available{% else %}安全稳定，高可用性{% endif %}
+                </span>
               </div>
             </div>
             <a href="getting-started/" class="md-button">
-              开始使用
+              {% if "en/" in page.file.src_uri %}Get Started{% else %}开始使用{% endif %}
             </a>
             <a href="api/" class="md-button md-button--secondary">
-              接口文档
+              {% if "en/" in page.file.src_uri %}API Docs{% else %}接口文档{% endif %}
             </a>
             <a href="#" class="mdx-hero__attribution" tabindex="-1">
               <strong>© QuantumNous</strong>
@@ -77,3 +96,24 @@ This file was automatically generated - do not edit
     </div>
   </div>
 </section>
+{% if "en/" in page.file.src_uri %}
+<script>
+  window.typewriterTexts = [
+    "Build your AI foundation",
+    "LLM-powered Docs",
+    "Smart app backbone",
+    "Connect vast models",
+    "Streamline AI dev"
+  ];
+</script>
+{% else %}
+<script>
+  window.typewriterTexts = [
+    "构筑下一代 AI 应用基座",
+    "New API Docs 由大语言模型驱动",
+    "打造智能应用新基础",
+    "连接海量模型资源",
+    "简化 AI 开发流程"
+  ];
+</script>
+{% endif %}
