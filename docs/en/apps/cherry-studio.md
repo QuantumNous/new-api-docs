@@ -35,4 +35,8 @@ API Host: NewAPI site address
 
 *First, you need to configure an API provider that supports drawing*
 
+1. First, add models that support drawing
+![Drawing Models](../assets/cherry_studio/add_paint_models.png)
+
+2. Drawing
 ![Drawing](../assets/cherry_studio/paint.png) 

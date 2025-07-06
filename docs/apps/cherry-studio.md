@@ -33,6 +33,8 @@ API 地址：NewAPI 站点地址
 
 ## 在 Cherry Studio 中画图
 
-*首先需要配置支持画图的 API 提供商*
+1. 首先添加支持画图的模型
+![画图模型](../assets/cherry_studio/add_paint_models.png)
 
+2. 画图
 ![画图](../assets/cherry_studio/paint.png)
