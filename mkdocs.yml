@@ -141,6 +141,7 @@ nav:
     - 🐛 反馈问题: support/feedback-issues.md
     - ❓ 常见问题: support/faq.md
     - ☕ 请我们喝咖啡: support/buy-us-a-coffee.md
+  - 商务合作: business-cooperation.md
 
 plugins:
   - search:
@@ -217,6 +218,7 @@ plugins:
             "🐛 反馈问题": "Feedback & Issues"
             "❓ 常见问题": FAQ
             "☕ 请我们喝咖啡": "Buy Us a Coffee"
+            "商务合作": "Contact Us"
 
 markdown_extensions:
   - abbr
