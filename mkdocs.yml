@@ -1,5 +1,5 @@
 site_name: New API
-site_url: https://www.newapi.pro
+site_url: https://docs.newapi.pro
 site_author: QuantumNous
 site_description: 新一代大模型网关与AI资产管理系统
 
@@ -95,6 +95,36 @@ nav:
     - 📝 项目记录:
       - 更新日志: wiki/changelog.md
       - 特别鸣谢: wiki/special-thanks.md
+  - 使用指南:
+    - 使用指南: guide/index.md
+    - 🏠 首页: guide/home.md
+    - 🎯 控制台:
+      - 🎮 操练场: guide/console/playground.md
+      - 💬 聊天: guide/console/chat.md
+      - 📊 数据看板: guide/console/dashboard.md
+      - 🔑 API令牌: guide/console/api-token.md
+      - 📝 使用日志: guide/console/usage-log.md
+      - 🎨 绘图日志: guide/console/drawing-log.md
+      - 📝 任务日志: guide/console/task-log.md
+      - 💰 钱包: guide/console/wallet.md
+      - 🔧 个人设置: guide/console/profile.md
+      - 📦 渠道管理: guide/console/channel-management.md
+      - 🎫 兑换码管理: guide/console/redeem-code-management.md
+      - 🧑 用户管理: guide/console/user-management.md
+      - 🔧 系统设置:
+        - 运营设置: guide/console/settings/operation-settings.md
+        - 仪表盘设置: guide/console/settings/dashboard-settings.md
+        - 聊天设置: guide/console/settings/chat-settings.md
+        - 绘图设置: guide/console/settings/drawing-settings.md
+        - 支付设置: guide/console/settings/payment-settings.md
+        - 倍率设置: guide/console/settings/rate-settings.md
+        - 速率限制设置: guide/console/settings/rate-limit-settings.md
+        - 模型相关设置: guide/console/settings/model-settings.md
+        - 系统设置: guide/console/settings/system-settings.md
+        - 其他设置: guide/console/settings/other-settings.md
+    - 💰 定价: guide/pricing.md
+    - 📖 文档: guide/document.md
+    - 📝 关于: guide/about.md
   - 安装指南:
     - 🏠 安装指南: installation/index.md
     - 🔧 部署方式:
