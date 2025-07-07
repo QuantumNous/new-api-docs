@@ -249,6 +249,35 @@ plugins:
             "❓ 常见问题": FAQ
             "☕ 请我们喝咖啡": "Buy Us a Coffee"
             "商务合作": "Contact Us"
+            "使用指南": Guide
+            "🏠 首页": Home
+            "🎯 控制台": Console
+            "🎮 操练场": Playground
+            "💬 聊天": Chat
+            "📊 数据看板": Dashboard
+            "🔑 API令牌": API Token
+            "📝 使用日志": Usage Log
+            "🎨 绘图日志": Drawing Log
+            "📝 任务日志": Task Log
+            "💰 钱包": Wallet
+            "🔧 个人设置": Profile
+            "📦 渠道管理": Channel Management
+            "🎫 兑换码管理": Redeem Code Management
+            "🧑 用户管理": User Management
+            "🔧 系统设置": System Settings
+            "运营设置": Operation Settings
+            "仪表盘设置": Dashboard Settings
+            "聊天设置": Chat Settings
+            "绘图设置": Drawing Settings
+            "支付设置": Payment Settings
+            "倍率设置": Rate Settings
+            "速率限制设置": Rate Limit Settings
+            "模型相关设置": Model Settings
+            "系统设置": System Settings
+            "其他设置": Other Settings
+            "💰 定价": Pricing
+            "📖 文档": Documentation
+            "📝 关于": About
 
 markdown_extensions:
   - abbr
