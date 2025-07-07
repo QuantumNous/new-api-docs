@@ -143,7 +143,6 @@ nav:
     - ☕ 请我们喝咖啡: support/buy-us-a-coffee.md
 
 plugins:
-  - blog
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - tags
