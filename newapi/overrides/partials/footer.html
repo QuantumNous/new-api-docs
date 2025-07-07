@@ -1,0 +1,103 @@
+{% block footer %}
+{% set is_en = (page is defined) and page and ("en/" in page.file.src_uri) %}
+<footer class="neo-footer">
+  <!-- 背景装饰元素 -->
+  <div class="neo-footer-bg">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
+    <div class="bg-blur"></div>
+  </div>
+
+  <div class="neo-footer-container">
+    <!-- 顶部LOGO部分 -->
+    <div class="neo-footer-logo">
+      <div class="logo-glow"></div>
+      <h2>New API</h2>
+      <p>
+        {% if is_en %}
+        🍥Next-Gen LLM Gateway & AI Asset Platform
+        {% else %}
+        🍥新一代大模型网关与AI资产管理系统
+        {% endif %}
+      </p>
+    </div>
+
+    <!-- 中间链接部分 -->
+    <div class="neo-footer-links">
+      <!-- 关于我们 -->
+      <div class="neo-footer-section">
+        <h3>{% if is_en %}About Us{% else %}关于我们{% endif %}</h3>
+        <ul>
+          <li><a href="{{ 'wiki/project-introduction/' | url }}"><span>{% if is_en %}About Project{% else %}关于项目{% endif
+                %}</span></a></li>
+          <li><a href="{{ 'support/community-interaction/' | url }}"><span>{% if is_en %}Contact Us{% else %}联系我们{%
+                endif %}</span></a></li>
+          <li><a href="{{ 'wiki/features-introduction/' | url }}"><span>{% if is_en %}Features{% else %}功能特性{% endif
+                %}</span></a></li>
+        </ul>
+      </div>
+
+      <!-- 文档 -->
+      <div class="neo-footer-section">
+        <h3>{% if is_en %}Docs{% else %}文档{% endif %}</h3>
+        <ul>
+          <li><a href="{{ 'getting-started/' | url }}"><span>{% if is_en %}Quick Start{% else %}快速开始{% endif
+                %}</span></a></li>
+          <li><a href="{{ 'installation/' | url }}"><span>{% if is_en %}Installation Guide{% else %}安装指南{% endif
+                %}</span></a></li>
+          <li><a href="{{ 'api/' | url }}"><span>{% if is_en %}API Docs{% else %}API 文档{% endif %}</span></a></li>
+        </ul>
+      </div>
+
+      <!-- 相关项目 -->
+      <div class="neo-footer-section">
+        <h3>{% if is_en %}Related Projects{% else %}相关项目{% endif %}</h3>
+        <ul>
+          <li><a href="https://github.com/songquanpeng/one-api" target="_blank"><span>One API</span></a></li>
+          <li><a href="https://github.com/novicezk/midjourney-proxy" target="_blank"><span>Midjourney-Proxy</span></a>
+          </li>
+          <li><a href="https://github.com/Deeptrain-Community/chatnio" target="_blank"><span>chatnio</span></a></li>
+          <li><a href="https://github.com/Calcium-Ion/neko-api-key-tool"
+              target="_blank"><span>neko-api-key-tool</span></a></li>
+        </ul>
+      </div>
+
+      <!-- 基于New API的项目 -->
+      <div class="neo-footer-section">
+        <h3>{% if is_en %}Projects Powered by New API{% else %}基于New API的项目{% endif %}</h3>
+        <ul>
+          <li><a href="https://github.com/Calcium-Ion/new-api-horizon" target="_blank"><span>new-api-horizon</span></a>
+          </li>
+          <!-- <li><a href="https://github.com/VoAPI/VoAPI" target="_blank"><span>VoAPI</span></a></li> -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- 底部社交和版权部分 -->
+    <div class="neo-footer-bottom">
+      <div class="neo-social-icons">
+        <a href="https://github.com/QuantumNous/new-api" target="_blank" class="social-icon github" aria-label="GitHub">
+          {% include ".icons/fontawesome/brands/github.svg" %}
+        </a>
+        <a href="https://qm.qq.com/q/Y79glR8raU" target="_blank" class="social-icon qq" aria-label="QQ Group">
+          {% include ".icons/fontawesome/brands/qq.svg" %}
+        </a>
+      </div>
+
+      <div class="neo-copyright">
+        {% if config.copyright %}
+        <div class="copyright-text">{{ config.copyright }}</div>
+        {% endif %}
+        <div class="beian-info">
+          <a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备2025052930号</a>
+        </div>
+        <div class="powered-by">
+          Made with <span class="heart">❤</span> by
+          <a href="https://github.com/QuantumNous/new-api" target="_blank">Quantum Nous</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
