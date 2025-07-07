@@ -51,9 +51,9 @@ theme:
       toggle:
         icon: material/toggle-switch-off
         name: 切换到系统主题
-  font:
-    text: Roboto
-    code: Roboto Mono
+  font: false
+    # text: Roboto
+    # code: Roboto Mono
   favicon: assets/favicon.ico
   logo: assets/logo.png
   icon:
