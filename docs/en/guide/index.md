@@ -87,58 +87,58 @@ hide:
   }
 </style>
 
-# 使用指南 <small>根据导航和侧边栏的页面顺序进行分类</small>
+# Guide <small>Classified according to the navigation and sidebar order</small>
 
 <div class="grid cards" markdown>
 
 -   :material-home:{ .twemoji }
 
-    **首页**
+    **Home**
 
     ---
 
-    New API 系统首页介绍
+    Introduction to the New API System homepage
     
-    [了解详情 →](home.md)
+    [Learn more →](home.md)
 
 -   :material-view-dashboard:{ .twemoji }
 
-    **控制台界面**
+    **Console Interface**
 
     ---
 
-    New API 系统的控制台介绍
+    Introduction to the New API System console
     
-    [了解详情 →](console/dashboard.md)
+    [Learn more →](console/dashboard.md)
 
 -   :material-crown:{ .twemoji }
 
-    **定价界面**
+    **Pricing Interface**
 
     ---
 
-    New API 系统定价界面介绍
+    Introduction to the New API System pricing interface
     
-    [了解详情 →](pricing.md)
+    [Learn more →](pricing.md)
 
 -   :material-book-open-page-variant:{ .twemoji }
 
-    **文档界面**
+    **Documentation Interface**
 
     ---
 
-     New API 系统导航栏的文档介绍
+    Introduction to the documentation in the New API System navigation bar
     
-    [了解详情 →](document.md)
+    [Learn more →](document.md)
 
 -   :material-information-outline:{ .twemoji }
 
-    **关于界面**
+    **About Interface**
 
     ---
 
-     New API 系统的关于界面介绍
+    Introduction to the New API System about interface
     
-    [了解详情 →](about.md)
+    [Learn more →](about.md)
 
-</div>
+</div> 
