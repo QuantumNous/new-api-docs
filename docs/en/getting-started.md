@@ -129,6 +129,16 @@ hide:
   .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(5) {
     background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
   }
+
+  /* AI Applications card */
+  .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(6) {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  }
+
+  /* Business Cooperation card */
+  .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(7) {
+    background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+  }
   
   /* 卡片纹理背景优化 */
   .md-typeset .grid.cards > ul > li {
@@ -349,5 +359,35 @@ hide:
     FAQs and community discussion.
     
     [Learn more →](support/index.md){ .more-link }
+
+-   :fontawesome-solid-list:{ .twemoji } 
+    
+    **Quick Start Guide**
+    
+    ---
+    
+    Quick start instructions and step-by-step walkthrough.
+    
+    [Learn more →](guide/index.md){ .more-link }
+
+-   :fontawesome-solid-robot:{ .twemoji } 
+    
+    **AI Applications**
+    
+    ---
+    
+    Explore various AI application examples built with New API.
+    
+    [Learn more →](apps/cherry-studio.md){ .more-link }
+
+-   :fontawesome-solid-handshake:{ .twemoji } 
+    
+    **Business Cooperation**
+    
+    ---
+    
+    Partner with us to expand the AI ecosystem and business opportunities.
+    
+    [Learn more →](business-cooperation.md){ .more-link }
 
 </div>

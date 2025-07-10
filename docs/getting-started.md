@@ -129,6 +129,16 @@ hide:
   .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(5) {
     background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
   }
+
+  /* AI应用卡片 */
+  .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(6) {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  }
+
+  /* 商务合作卡片 */
+  .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(7) {
+    background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+  }
   
   /* 卡片纹理背景优化 */
   .md-typeset .grid.cards > ul > li {
@@ -350,5 +360,35 @@ hide:
     常见问题解答和社区交流
     
     [了解更多 →](support/index.md){ .more-link }
+
+-   :fontawesome-solid-list:{ .twemoji }
+    
+    **使用指南**
+    
+    ---
+    
+    快速上手指南和详细步骤说明
+    
+    [了解更多 →](guide/index.md){ .more-link }
+
+-   :fontawesome-solid-robot:{ .twemoji }
+    
+    **AI应用**
+    
+    ---
+    
+    探索基于New API开发的各类AI应用示例
+    
+    [了解更多 →](apps/cherry-studio.md){ .more-link }
+
+-   :fontawesome-solid-handshake:{ .twemoji }
+    
+    **商务合作**
+    
+    ---
+    
+    与我们合作，共同开拓AI生态与商业机会
+    
+    [了解更多 →](business-cooperation.md){ .more-link }
 
 </div>
