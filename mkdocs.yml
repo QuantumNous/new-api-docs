@@ -165,6 +165,7 @@ nav:
       - 敬请期待: coming-soon.md
   - AI应用:
     - 🍒 Cherry Studio - 桌面 AI 客户端: apps/cherry-studio.md
+    - 📦 LangBot - 即时通信机器人开发平台: apps/langbot.md
   - 帮助支持:
     - 🏠 帮助支持: support/index.md
     - 🌐 社区交流: support/community-interaction.md
@@ -242,6 +243,7 @@ plugins:
             敬请期待: "Coming Soon"
             AI应用: "AI Applications"
             "🍒 Cherry Studio - 桌面 AI 客户端": "🍒 Cherry Studio - Desktop AI Client"
+            "📦 LangBot - 即时通信机器人开发平台": "📦 LangBot - IM Bot Development Platform"
             帮助支持: Support
             "🏠 帮助支持": "Support Home"
             "🌐 社区交流": Community
