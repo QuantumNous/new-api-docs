@@ -6,6 +6,7 @@ site_description: 新一代大模型网关与AI资产管理系统
 # Repository
 repo_name: QuantumNous/new-api
 repo_url: https://github.com/QuantumNous/new-api
+edit_uri: https://github.com/QuantumNous/new-api-docs/blob/main/docs/
 
 theme:
   name: material
