@@ -162,6 +162,9 @@ nav:
         - OpenAI 格式: api/openai-audio.md
       - 🎵 音乐（Music）:
         - Suno API 格式: api/suno-music.md
+      - 🎥 视频（Video）:
+        - 生成视频: api/generate-video.md
+        - 查询视频: api/query-video.md
     - 前端接口:
       - 敬请期待: coming-soon.md
   - AI应用:
@@ -240,6 +243,9 @@ plugins:
             "🔊 音频（Audio）": Audio
             "🎵 音乐（Music）": Music
             Suno API 格式: "Suno Music"
+            "🎥 视频（Video）": Video
+            "生成视频": "Generate Video"
+            "查询视频": "Query Video"
             前端接口: "Frontend APIs"
             敬请期待: "Coming Soon"
             AI应用: "AI Applications"

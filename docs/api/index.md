@@ -180,6 +180,17 @@ hide:
     
     [Suno API →](suno-music.md)
 
+-   :material-video:{ .twemoji }
+
+    **视频（Video）**
+
+    ---
+
+    AI 视频生成和查询服务：
+    
+    [生成视频 →](generate-video.md)
+    [查询视频 →](query-video.md)
+
 </div>
 
 ## 🖥️ 前端接口

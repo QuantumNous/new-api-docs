@@ -180,6 +180,17 @@ hide:
     
     [Suno API →](suno-music.md)
 
+-   :material-video:{ .twemoji }
+
+    **Video**
+
+    ---
+
+    AI video generation and query services:
+    
+    [Generate Video →](generate-video.md)
+    [Query Video →](query-video.md)
+
 </div>
 
 ## 🖥️ Frontend Interfaces
