@@ -64,9 +64,58 @@ docker compose up -d
 
 ## 📋 查看日志
 
-```shell
-# 查看服务日志
+- **全部服务实时日志**
+
+```bash
 docker compose logs -f
+```
+
+- **指定服务日志**（示例：`new-api`、`mysql`、`redis`）
+
+```bash
+docker compose logs -f new-api
+docker compose logs -f mysql
+docker compose logs -f redis
+```
+
+- **仅查看最近 N 行**
+
+```bash
+docker compose logs --tail=100 new-api
+```
+
+- **查看最近一段时间内的日志**
+
+```bash
+docker compose logs --since=10m new-api
+```
+
+- **显示时间戳**
+
+```bash
+docker compose logs -f -t new-api
+```
+
+- **前台模式调试（随启动实时输出日志）**
+
+```bash
+docker compose up
+# 或仅启动并跟随某个服务
+docker compose up new-api
+```
+
+按 Ctrl+C 退出前台模式（会停止相应服务）。后台运行请使用 `-d`。
+
+- **查看服务列表/状态**
+
+```bash
+docker compose ps
+```
+
+- **使用容器名查看日志**（当 `container_name` 已设置，如配置里的 `new-api`）
+
+```bash
+docker logs -f new-api
 ```
 
 ## 🛑 停止服务

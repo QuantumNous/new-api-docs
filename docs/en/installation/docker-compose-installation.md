@@ -64,9 +64,58 @@ This command will automatically pull the required images and start services in t
 
 ## 📋 Viewing Logs
 
-```shell
-# View service logs
+- **All services (follow)**
+
+```bash
 docker compose logs -f
+```
+
+- **Logs of a specific service** (examples: `new-api`, `mysql`, `redis`)
+
+```bash
+docker compose logs -f new-api
+docker compose logs -f mysql
+docker compose logs -f redis
+```
+
+- **Show only the latest N lines**
+
+```bash
+docker compose logs --tail=100 new-api
+```
+
+- **Show logs since a time window**
+
+```bash
+docker compose logs --since=10m new-api
+```
+
+- **Include timestamps**
+
+```bash
+docker compose logs -f -t new-api
+```
+
+- **Foreground mode debugging (stream logs while starting)**
+
+```bash
+docker compose up
+# Or start and follow a single service
+docker compose up new-api
+```
+
+Press Ctrl+C to exit foreground mode (the service will stop). Use `-d` for background mode.
+
+- **List services/status**
+
+```bash
+docker compose ps
+```
+
+- **Using container name to view logs** (when `container_name` is set, e.g., `new-api`)
+
+```bash
+docker logs -f new-api
 ```
 
 ## 🛑 Stopping Services
