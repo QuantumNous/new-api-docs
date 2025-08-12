@@ -1,15 +1,15 @@
-# 🐙 Docker Compose Installation Guide
+# Docker Compose Installation Guide
 
 This document provides detailed steps for deploying New API using Docker Compose.
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Docker and Docker Compose installed
 - Recommended system: Linux (Ubuntu/CentOS/Debian, etc.)
 
-## 🔄 Deploying with Docker Compose
+## Deploying with Docker Compose
 
-### 📂 Method 1: Using Git Clone (Recommended)
+### Method 1: Using Git Clone (Recommended)
 
 If you can access GitHub normally, this method is recommended:
 
@@ -21,7 +21,7 @@ git clone https://github.com/Calcium-Ion/new-api.git
 cd new-api
 ```
 
-### ✍️ Method 2: Manually Creating Configuration Files
+### Method 2: Manually Creating Configuration Files
 
 If you cannot access GitHub or clone the repository, you can manually create configuration files:
 
@@ -51,7 +51,7 @@ vim docker-compose.yml
 
 Copy the selected configuration content to this file and customize it as needed.
 
-## 🚀 Starting Services
+## Starting Services
 
 After the configuration file is ready, whether you cloned via Git or created manually, you can use the following command to start services:
 
@@ -62,7 +62,7 @@ docker compose up -d
 
 This command will automatically pull the required images and start services in the background.
 
-## 📋 Viewing Logs
+## Viewing Logs
 
 - **All services (follow)**
 
@@ -118,13 +118,13 @@ docker compose ps
 docker logs -f new-api
 ```
 
-## 🛑 Stopping Services
+## Stopping Services
 
 ```shell
 # Stop services
 docker compose down
 ```
 
-## 🌐 Accessing the System
+## Accessing the System
 
 After services start successfully, visit `http://server-IP:3000`. You will be guided to the initialization page to create the admin account and password (only required on first installation). After initialization, log in with the credentials you created.

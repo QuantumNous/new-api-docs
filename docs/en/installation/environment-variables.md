@@ -1,18 +1,18 @@
-# 🔧 Environment Variables Configuration Guide
+# Environment Variables Configuration Guide
 
 This document provides all environment variables supported by New API and their configuration instructions. You can customize the system behavior by setting these environment variables.
 
 !!! tip "Tip"
     New API supports reading environment variables from a `.env` file. Please refer to the `.env.example` file and rename it to `.env` when using.
 
-## 🔄 Basic Configuration
+## Basic Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
 | `PORT` | Service listening port | `3000` | `PORT=8080` |
 | `TZ` | Timezone setting | `Asia/Shanghai` | `TZ=America/New_York` |
 
-## 💾 Database Configuration
+## Database Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -23,7 +23,7 @@ This document provides all environment variables supported by New API and their 
 | `LOG_SQL_DSN` | Separate database connection string for logs | - | `LOG_SQL_DSN=root:123456@tcp(localhost:3306)/oneapi_logs` |
 | `SQLITE_BUSY_TIMEOUT` | SQLite lock wait timeout (ms) | `3000` | `SQLITE_BUSY_TIMEOUT=5000` |
 
-## 📦 Cache Configuration
+## Cache Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -35,7 +35,7 @@ This document provides all environment variables supported by New API and their 
 | `BATCH_UPDATE_ENABLED` | Enable database batch update aggregation | `false` | `BATCH_UPDATE_ENABLED=true` |
 | `BATCH_UPDATE_INTERVAL` | Batch update aggregation interval (seconds) | `5` | `BATCH_UPDATE_INTERVAL=10` |
 
-## 🌐 Multi-Node & Security Configuration
+## Multi-Node & Security Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -50,7 +50,7 @@ This document provides all environment variables supported by New API and their 
 !!! info "Cluster Deployment"
     For how to use these environment variables to build a complete cluster deployment, please refer to the [Cluster Deployment Guide](cluster-deployment.md).
 
-## 👤 User & Token Configuration
+## User & Token Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -60,7 +60,7 @@ This document provides all environment variables supported by New API and their 
 | `NOTIFICATION_LIMIT_DURATION_MINUTE` | Notification limit duration (minutes) | `10` | `NOTIFICATION_LIMIT_DURATION_MINUTE=15` |
 | `NOTIFY_LIMIT_COUNT` | Max notifications in specified duration | `2` | `NOTIFY_LIMIT_COUNT=3` |
 
-## 🚦 Request Limiting Configuration
+## Request Limiting Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -78,7 +78,7 @@ This document provides all environment variables supported by New API and their 
     - Causes billing desynchronization, which may lead to system loss
     - It is recommended not to set unless you know what you are doing
 
-## 📡 Channel Management Configuration
+## Channel Management Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -97,7 +97,7 @@ This document provides all environment variables supported by New API and their 
 | `RELAY_PROXY` | Proxy for relay requests | - | `RELAY_PROXY=http://127.0.0.1:7890` |
 | `USER_CONTENT_REQUEST_PROXY` | Proxy for user content requests | - | `USER_CONTENT_REQUEST_PROXY=http://127.0.0.1:7890` | -->
 
-## 🤖 Model & Request Handling Configuration
+## Model & Request Handling Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -129,7 +129,7 @@ This document provides all environment variables supported by New API and their 
     
     Tiktoken is the tokenizer used by OpenAI to calculate the number of tokens in text. By caching these files locally, you can avoid downloading from the network every time the system starts, improving stability and performance, especially in network-restricted environments.
 
-## 🔎 Specific Model Configuration
+## Specific Model Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -139,7 +139,7 @@ This document provides all environment variables supported by New API and their 
 | `GEMINI_VERSION` | Gemini version | `v1` | `GEMINI_VERSION=v1beta` |
 | `DIFY_DEBUG` | Output workflow and node info for Dify channel | `true` | `DIFY_DEBUG=false` |
 
-## 📨 Other Configuration
+## Other Configuration
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
@@ -148,7 +148,7 @@ This document provides all environment variables supported by New API and their 
 | `EMAIL_PASSWORD` | Email server password | - | `EMAIL_PASSWORD=yourpassword` |
 | `ERROR_LOG_ENABLE` | Record and display error logs on frontend | false | `ERROR_LOG_ENABLED=true` |
 
-## ⚠️ Deprecated Environment Variables
+## Deprecated Environment Variables
 
 The following environment variables are deprecated. Please use the corresponding options in the system settings interface:
 
@@ -157,11 +157,11 @@ The following environment variables are deprecated. Please use the corresponding
 | `GEMINI_MODEL_MAP` | Please set in System Settings - Model Related Settings |
 | `GEMINI_SAFETY_SETTING` | Please set in System Settings - Model Related Settings |
 
-## 🌍 Multi-Node Deployment Example
+## Multi-Node Deployment Example
 
 In multi-node deployment scenarios, you must set the following environment variables:
 
-### 👑 Master Node Configuration
+### Master Node Configuration
 
 ```env
 # Database configuration - use remote database
@@ -175,7 +175,7 @@ CRYPTO_SECRET=your_unique_crypto_secret
 REDIS_CONN_STRING=redis://default:password@redis-server:6379
 ```
 
-### 👥 Slave Node Configuration
+### Slave Node Configuration
 
 ```env
 # Database configuration - use the same remote database
@@ -201,7 +201,7 @@ SYNC_FREQUENCY=60
 !!! tip "Full Cluster Configuration"
     This is just a basic multi-node configuration example. For full cluster deployment configuration, architecture explanation, and best practices, please refer to the [Cluster Deployment Guide](cluster-deployment.md).
 
-## 🐳 Environment Variables Example in Docker Compose
+## Environment Variables Example in Docker Compose
 
 Below is a brief example of setting environment variables in a Docker Compose configuration file:
 

@@ -1,28 +1,28 @@
-# 🛠️ BT Panel Docker Installation Guide
+# BT Panel Docker Installation Guide
 
 This document provides a step-by-step tutorial with screenshots for deploying New API using BT Panel's Docker functionality.
 
-## 📋 Prerequisites
+## Prerequisites
 
 - BT Panel version 9.2.0 or higher installed
 - Recommended systems: CentOS 7+, Ubuntu 18.04+, Debian 10+
 - Server configuration: At least 1 core, 2GB RAM
 
-## 🔧 Installing BT Panel
+## Installing BT Panel
 
 1. Visit the [BT Panel official website](https://www.bt.cn/new/download.html) to download the installation script suitable for your system
 2. Run the installation script to install BT Panel
 3. After installation, use the provided address, username, and password to log into BT Panel
 
-## 🐳 Installing Docker
+## Installing Docker
 
 1. After logging into BT Panel, find and click **Docker** in the left menu bar
 2. On first entry, you'll be prompted to install Docker service, click **Install Now**
 3. Follow the prompts to complete the Docker service installation
 
-## 🚀 Installing New API
+## Installing New API
 
-### 📦 Method 1: Using BT App Store (Recommended)
+### Method 1: Using BT App Store (Recommended)
 
 1. In BT Panel's Docker functionality, click **App Store**
 2. Search for and find **New-API**
@@ -34,7 +34,7 @@ This document provides a step-by-step tutorial with screenshots for deploying Ne
    - Directory mapping: Ensure the `/data` directory is mapped to a host directory
 5. Click **Submit** to complete installation
 
-### 🔄 Method 2: Using Custom Image
+### Method 2: Using Custom Image
 
 1. In BT Panel's Docker functionality, click **Image Management**
 2. Click **Get Image** -> **Pull Image**
@@ -49,7 +49,7 @@ This document provides a step-by-step tutorial with screenshots for deploying Ne
    - Environment variables: Add as needed (e.g., TZ=Asia/Shanghai, etc.)
 7. Click **Submit** to complete installation
 
-## ⚙️ Configuration and Access
+## Configuration and Access
 
 After installation, you can access New API at the following address:
 
@@ -59,7 +59,7 @@ http://server-IP:3000
 
 On first access, you will be guided to the initialization page to create the admin account and password (only required on first installation). After initialization, log in with the credentials you created.
 
-## ❓ Common Issues
+## Common Issues
 
 ### 1. Cannot Access New API Interface
 

@@ -89,7 +89,7 @@ hide:
 
 # Installation Guide
 
-## 🚀 Deployment Methods
+## Deployment Methods
 
 <div class="grid cards" markdown>
 
@@ -145,7 +145,7 @@ hide:
 
 </div>
 
-## ⚙️ Configuration & Maintenance
+## Configuration & Maintenance
 
 <div class="grid cards" markdown>
 
@@ -181,7 +181,7 @@ hide:
 
 </div>
 
-## 📖 Deployment Notes
+## Deployment Notes
 
 !!! tip "Recommended Choices"
     - For personal users, Docker or Docker Compose deployment is recommended

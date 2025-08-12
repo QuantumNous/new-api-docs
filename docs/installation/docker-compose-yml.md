@@ -1,12 +1,12 @@
-# 📄 Docker Compose 配置说明
+# Docker Compose 配置说明
 
 本文档详细介绍了New API的Docker Compose配置选项，可用于多种部署场景。
 
-## 🧱 基本配置结构
+## 基本配置结构
 
 Docker Compose配置文件 `docker-compose.yml` 定义了New API服务及其依赖服务（如MySQL、Redis）的部署方式。
 
-## 🏭 标准配置（推荐生产环境）
+## 标准配置（推荐生产环境）
 
 下面是标准的Docker Compose配置，适合大多数生产环境：
 
@@ -61,7 +61,7 @@ volumes:
   mysql_data:
 ```
 
-## 🧪 简化配置（适合测试环境）
+## 简化配置（适合测试环境）
 
 如果只是测试使用，可以采用以下简化版本，仅包含New API服务本身：
 
@@ -79,9 +79,9 @@ services:
       - ./data:/data
 ```
 
-## ⚙️ 配置说明
+## 配置说明
 
-### 🔧 New API服务配置
+### New API服务配置
 
 | 参数 | 说明 |
 |------|------|
@@ -95,7 +95,7 @@ services:
 | `depends_on` | 依赖服务，确保按正确顺序启动 |
 | `healthcheck` | 健康检查配置，用于监控服务状态 |
 
-### 🔍 环境变量说明
+### 环境变量说明
 
 New API支持多种环境变量配置，以下是常用的几个：
 
@@ -110,11 +110,11 @@ New API支持多种环境变量配置，以下是常用的几个：
 
 更完整的环境变量列表请参考[环境变量配置指南](environment-variables.md)。
 
-## 🌐 多节点部署配置
+## 多节点部署配置
 
 对于多节点部署场景，主节点和从节点的配置略有不同：
 
-### 👑 主节点配置
+### 主节点配置
 
 ```yaml
 services:
@@ -134,7 +134,7 @@ services:
       - ./data:/data
 ```
 
-### 👥 从节点配置
+### 从节点配置
 
 ```yaml
 services:
@@ -156,9 +156,9 @@ services:
       - ./data-slave:/data
 ```
 
-## 📝 使用方法
+## 使用方法
 
-### ⬇️ 安装
+### 安装
 
 将配置保存为`docker-compose.yml`文件，然后在同一目录下运行：
 
@@ -166,13 +166,13 @@ services:
 docker compose up -d
 ```
 
-### 📋 查看日志
+### 查看日志
 
 ```bash
 docker compose logs -f
 ```
 
-### 🛑 停止服务
+### 停止服务
 
 ```bash
 docker compose down

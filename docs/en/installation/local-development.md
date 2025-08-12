@@ -1,8 +1,8 @@
-# 🚀 Local Development Deployment Guide
+# Local Development Deployment Guide
 
 This document provides detailed steps for setting up and developing the New API project in a local environment, suitable for developers who want to participate in project development or perform secondary development.
 
-## 📋 Development Environment Requirements
+## Development Environment Requirements
 
 Before starting local development, please ensure your system has the following software installed:
 
@@ -17,7 +17,7 @@ Before starting local development, please ensure your system has the following s
 !!! info "About Bun"
     Bun is an ultra-fast JavaScript package manager, test runner, and bundler. Compared to traditional npm or yarn, Bun's installation speed is 25x faster, making it the most recommended JavaScript package management tool in 2024.
 
-## 🛠️ Clone the Project
+## Clone the Project
 
 First, clone the New API repository from GitHub to your local machine:
 
@@ -26,7 +26,7 @@ git clone https://github.com/Calcium-Ion/new-api.git
 cd new-api
 ```
 
-## 🔧 Backend Development Setup
+## Backend Development Setup
 
 ### Install Go Dependencies
 
@@ -66,7 +66,7 @@ go build -o new-api
 
 The service runs on `http://localhost:3000` by default
 
-## 🎨 Frontend Development Setup
+## Frontend Development Setup
 
 The frontend code of New API is located in the `web` directory, developed using React and [Semi Design component library](https://semi.design/zh-CN).
 
@@ -117,7 +117,7 @@ The built files will be generated in the `web/dist` directory, and the backend s
 
 7. **Create Pull Request**: Create a PR on GitHub describing your changes
 
-## 🔍 Debugging Tips
+## Debugging Tips
 
 ### Backend Debugging
 
@@ -142,7 +142,7 @@ The built files will be generated in the `web/dist` directory, and the backend s
    - Install React Developer Tools extension in Chrome
    - Use it to inspect component structure and state
 
-## 📝 Project Structure
+## Project Structure
 
 The directory structure of the New API project:
 

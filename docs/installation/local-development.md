@@ -1,8 +1,8 @@
-# 🚀 本地开发部署指南
+# 本地开发部署指南
 
 本文档提供了在本地环境中设置和开发 New API 项目的详细步骤，适合希望参与项目开发或进行二次开发的开发者。
 
-## 📋 开发环境要求
+## 开发环境要求
 
 在开始本地开发之前，请确保您的系统已安装以下软件：
 
@@ -17,7 +17,7 @@
 !!! info "关于 Bun"
     Bun是一个超快的JavaScript包管理器、测试运行器和bundler。相比传统的npm或yarn，Bun的安装速度快25倍，是2024年最推荐的JavaScript包管理工具。
 
-## 🛠️ 克隆项目
+## 克隆项目
 
 首先，从 GitHub 克隆 New API 仓库到本地：
 
@@ -26,7 +26,7 @@ git clone https://github.com/Calcium-Ion/new-api.git
 cd new-api
 ```
 
-## 🔧 后端开发设置
+## 后端开发设置
 
 ### 安装 Go 依赖
 
@@ -66,7 +66,7 @@ go build -o new-api
 
 服务默认运行在 `http://localhost:3000`
 
-## 🎨 前端开发设置
+## 前端开发设置
 
 New API 的前端代码位于 `web` 目录中，使用 React 和 [semi design 组件库](https://semi.design/zh-CN) 开发。
 
@@ -117,7 +117,7 @@ bun run build   # 使用 bun 构建前端资源
 
 7. **创建拉取请求**：在 GitHub 上创建 PR，描述您的更改
 
-## 🔍 调试技巧
+## 调试技巧
 
 ### 后端调试
 
@@ -142,7 +142,7 @@ bun run build   # 使用 bun 构建前端资源
    - 在 Chrome 中安装 React Developer Tools 扩展
    - 使用它检查组件结构和状态
 
-## 📝 项目结构
+## 项目结构
 
 New API 项目的目录结构：
 

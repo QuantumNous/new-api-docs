@@ -1,8 +1,8 @@
-# 🌐 Cluster Deployment Guide
+# Cluster Deployment Guide
 
 This document provides detailed configuration steps and best practices for New API cluster deployment, helping you build a high-availability, load-balanced distributed system.
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Multiple servers (at least two, master-slave architecture)
 - Docker and Docker Compose installed
@@ -10,7 +10,7 @@ This document provides detailed configuration steps and best practices for New A
 - Shared Redis service (for data synchronization and caching between nodes)
 - Optional: Load balancer (such as Nginx, HAProxy, or cloud provider's load balancing service)
 
-## 🏛️ Cluster Architecture Overview
+## Cluster Architecture Overview
 
 New API cluster adopts a master-slave architecture design:
 
@@ -19,7 +19,7 @@ New API cluster adopts a master-slave architecture design:
 
 ![Cluster Architecture](../assets/cluster-architecture.svg)
 
-## 🔑 Key Configuration for Cluster Deployment
+## Key Configuration for Cluster Deployment
 
 The key to cluster deployment is that all nodes must:
 
@@ -28,7 +28,7 @@ The key to cluster deployment is that all nodes must:
 3. **Use the same secrets**: `SESSION_SECRET` and `CRYPTO_SECRET` must be identical on all nodes
 4. **Configure node types correctly**: Master node as `master`, slave nodes as `slave`
 
-## 🛠️ Deployment Steps
+## Deployment Steps
 
 ### Step 1: Prepare Shared Database and Redis
 
@@ -148,7 +148,7 @@ server {
 
 This configuration sets the master node weight to 3 and slave node weights to 5, meaning slave nodes will handle more requests. You can adjust these weights based on your actual needs.
 
-## ⚙️ Advanced Configuration Options
+## Advanced Configuration Options
 
 ### Data Synchronization Settings
 
@@ -182,7 +182,7 @@ environment:
   - CRYPTO_SECRET=your_unique_crypto_secret    # Must be same on all nodes
 ```
 
-## 📈 Monitoring and Maintenance
+## Monitoring and Maintenance
 
 ### Health Checks
 
@@ -205,7 +205,7 @@ environment:
   - LOG_SQL_DSN=root:password@tcp(log-db-host:3306)/new_api_logs  # Independent log database
 ```
 
-## 🚀 Scaling Guide
+## Scaling Guide
 
 As your business grows, you may need to expand the cluster scale. Scaling steps are as follows:
 
@@ -214,7 +214,7 @@ As your business grows, you may need to expand the cluster scale. Scaling steps 
 3. **Update load balancer configuration**: Add new nodes to the load balancer configuration
 4. **Test new nodes**: Ensure new nodes work properly and participate in load balancing
 
-## 💡 Best Practices
+## Best Practices
 
 1. **Regular database backups**: Even in cluster environments, regularly backup the database
 2. **Monitor resource usage**: Closely monitor CPU, memory, and disk usage
@@ -222,7 +222,7 @@ As your business grows, you may need to expand the cluster scale. Scaling steps 
 4. **Configure alert system**: Monitor node status and notify administrators promptly when issues occur
 5. **Geographic distribution deployment**: If possible, deploy nodes in different geographic locations to improve availability
 
-## ❓ Troubleshooting
+## Troubleshooting
 
 ### Nodes Cannot Sync Data
 
@@ -242,7 +242,7 @@ As your business grows, you may need to expand the cluster scale. Scaling steps 
 - Verify Redis configuration is correct and accessible
 - Check if clients handle cookies correctly
 
-## 📚 Related Documentation
+## Related Documentation
 
 - [Environment Variables Configuration Guide](environment-variables.md) - Contains all relevant environment variables for multi-node deployment
 - [System Update Guide](system-update.md) - System update strategy in multi-node environment

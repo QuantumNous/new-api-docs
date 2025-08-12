@@ -89,7 +89,7 @@ hide:
 
 # 安装指南
 
-## 🚀 部署方式
+## 部署方式
 
 <div class="grid cards" markdown>
 
@@ -145,7 +145,7 @@ hide:
 
 </div>
 
-## ⚙️ 配置与维护
+## 配置与维护
 
 <div class="grid cards" markdown>
 
@@ -181,7 +181,7 @@ hide:
 
 </div>
 
-## 📖 部署说明
+## 部署说明
 
 !!! tip "选择建议"
     - 个人用户建议使用 Docker 或 Docker Compose 部署

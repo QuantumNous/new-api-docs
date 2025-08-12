@@ -1,15 +1,15 @@
-# 🐙 Docker Compose 安装指南
+# Docker Compose 安装指南
 
 本文档提供了使用Docker Compose部署New API的详细步骤。
 
-## 📋 前置要求
+## 前置要求
 
 - 已安装Docker和Docker Compose
 - 推荐系统: Linux (Ubuntu/CentOS/Debian等)
 
-## 🔄 使用Docker Compose部署
+## 使用Docker Compose部署
 
-### 📂 方法一：使用Git克隆项目（推荐）
+### 方法一：使用Git克隆项目（推荐）
 
 如果您能够正常访问GitHub，推荐使用此方法：
 
@@ -21,7 +21,7 @@ git clone https://github.com/Calcium-Ion/new-api.git
 cd new-api
 ```
 
-### ✍️ 方法二：手动创建配置文件
+### 方法二：手动创建配置文件
 
 如果无法访问GitHub或克隆仓库，可以手动创建配置文件：
 
@@ -51,7 +51,7 @@ vim docker-compose.yml
 
 将选择的配置内容复制到该文件中，并根据需要进行自定义修改。
 
-## 🚀 启动服务
+## 启动服务
 
 配置文件准备好后，无论您是通过Git克隆还是手动创建，都可以使用以下命令启动服务：
 
@@ -62,7 +62,7 @@ docker compose up -d
 
 该命令会自动拉取所需镜像并在后台启动服务。
 
-## 📋 查看日志
+## 查看日志
 
 - **全部服务实时日志**
 
@@ -118,13 +118,13 @@ docker compose ps
 docker logs -f new-api
 ```
 
-## 🛑 停止服务
+## 停止服务
 
 ```shell
 # 停止服务
 docker compose down
 ```
 
-## 🌐 访问系统
+## 访问系统
 
 服务启动成功后，访问`http://服务器IP:3000`将自动引导到初始化页面。按照页面指引手动设置管理员账号和密码（仅首次安装需要）。完成初始化后即可使用所设置的管理员账号登录系统。
