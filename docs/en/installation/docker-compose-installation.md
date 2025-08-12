@@ -127,10 +127,4 @@ docker compose down
 
 ## 🌐 Accessing the System
 
-After services start successfully, visit `http://server-IP:3000` to enter the system.
-
-Default admin username: `root`  
-Default admin password: `123456`
-
-!!! danger "Important"
-    It is recommended to change the default password immediately after first login. 
+After services start successfully, visit `http://server-IP:3000`. You will be guided to the initialization page to create the admin account and password (only required on first installation). After initialization, log in with the credentials you created.
