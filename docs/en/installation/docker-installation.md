@@ -39,10 +39,4 @@ docker run --name new-api -d --restart always \
 
 ## 🌐 Accessing the System
 
-After deployment, visit `http://server-IP:3000` to access the system.
-
-Default admin username: `root`  
-Default admin password: `123456`
-
-!!! danger "Important"
-    It is recommended to change the default password immediately after first login. 
+After deployment, visit `http://server-IP:3000`. You will be guided to the initialization page to create the admin account and password (only required on first installation). After initialization, log in with the credentials you created.

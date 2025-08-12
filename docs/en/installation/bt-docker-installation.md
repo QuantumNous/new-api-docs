@@ -57,11 +57,7 @@ After installation, you can access New API at the following address:
 http://server-IP:3000
 ```
 
-Default admin username: `root`  
-Default admin password: `123456`
-
-!!! danger "Important"
-    It is recommended to change the default password immediately after first login.
+On first access, you will be guided to the initialization page to create the admin account and password (only required on first installation). After initialization, log in with the credentials you created.
 
 ## ❓ Common Issues
 
