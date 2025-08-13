@@ -8,7 +8,7 @@
     ```
 
 !!! info
-    🌊 FluentRead is a revolutionary open-source browser translation plugin based on the Open Immersive Translate project, enabling everyone to have a native-like reading experience.
+    🌊 FluentRead is a revolutionary open-source browser translation plugin, enabling everyone to have a native-like reading experience.
 
     - Project Address: <https://github.com/Bistutu/FluentRead>
 
