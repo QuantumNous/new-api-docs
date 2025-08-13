@@ -170,6 +170,7 @@ nav:
   - AI应用:
     - 🍒 Cherry Studio - 桌面 AI 客户端: apps/cherry-studio.md
     - 📦 LangBot - 即时通信机器人开发平台: apps/langbot.md
+    - 📖 FluentRead - 开源翻译插件: apps/fluent-read.md
   - 帮助支持:
     - 🏠 帮助支持: support/index.md
     - 🌐 社区交流: support/community-interaction.md
@@ -251,6 +252,7 @@ plugins:
             AI应用: "AI Applications"
             "🍒 Cherry Studio - 桌面 AI 客户端": "🍒 Cherry Studio - Desktop AI Client"
             "📦 LangBot - 即时通信机器人开发平台": "📦 LangBot - IM Bot Development Platform"
+            "📖 FluentRead - 开源翻译插件": "📖 FluentRead - Open Source Translation Plugin"
             帮助支持: Support
             "🏠 帮助支持": "Support Home"
             "🌐 社区交流": Community
