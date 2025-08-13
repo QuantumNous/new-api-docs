@@ -1,5 +1,12 @@
 # FluentRead - Open Source Translation Plugin
 
+!!! tip "Chat settings option"
+    In the New API Console under System Settings -> Chat settings, you can add the following quick option to enable one-click fill to FluentRead from the API Keys page:
+
+    ```json
+    { "FluentRead": "fluentread" }
+    ```
+
 [FluentRead](https://github.com/Bistutu/FluentRead) is a revolutionary open-source browser translation plugin based on the Open Immersive Translate project, enabling everyone to have a native-like reading experience.
 
 ## 🌟 Core Features

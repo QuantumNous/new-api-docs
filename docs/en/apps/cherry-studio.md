@@ -1,4 +1,10 @@
 # Cherry Studio - Desktop AI Client
+!!! tip "Chat settings option"
+    In the New API Console under System Settings -> Chat settings, you can add the following quick option to enable one-click fill to Cherry Studio from the API Keys page:
+
+    ```json
+    { "Cherry Studio": "cherrystudio://providers/api-keys?v=1&data={cherryConfig}" }
+    ```
 !!! info
     🍒 Cherry Studio is a powerful desktop AI client designed for professional users, integrating 30+ industry-specific AI assistants to meet various work scenario requirements and significantly improve work efficiency.
 

@@ -1,4 +1,10 @@
 # Cherry Studio - 桌面 AI 客户端
+!!! tip "聊天设置选项"
+    在 New API 控制台的系统设置->聊天设置中，可添加如下快捷选项，便于在令牌管理页一键填充到 Cherry Studio：
+
+    ```json
+    { "Cherry Studio": "cherrystudio://providers/api-keys?v=1&data={cherryConfig}" }
+    ```
 !!! info
     🍒 Cherry Studio 是一款功能强大的桌面 AI 客户端，专为专业用户设计，集成了 30+ 行业智能助手，能够满足各种工作场景的需求，显著提升工作效率。
 
