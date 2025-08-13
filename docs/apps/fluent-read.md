@@ -7,7 +7,10 @@
     { "流畅阅读": "fluentread" }
     ```
 
-[流畅阅读](https://github.com/Bistutu/FluentRead) 是一款革命性的开源浏览器翻译插件，基于 Open Immersive Translate 项目开发，让所有人都能够拥有母语般的阅读体验。
+!!! info
+    🌊 流畅阅读（FluentRead）是一款开源浏览器翻译插件，基于 Open Immersive Translate 项目开发，致力于提供母语般的阅读体验。
+
+    - 项目地址：<https://github.com/Bistutu/FluentRead>
 
 ## 🌟 核心特性
 
