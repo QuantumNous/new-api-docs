@@ -44,7 +44,7 @@ curl -X GET https://你的newapi服务器地址/api/usage/token \
     "total_available": 987655,
     "unlimited_quota": false,
     "model_limits": {
-      "gpt-4o-mini": 500000
+      "gpt-4o-mini": true
     },
     "model_limits_enabled": false,
     "expires_at": 0
