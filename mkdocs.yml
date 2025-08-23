@@ -31,7 +31,6 @@ theme:
     - search.share
     - search.suggest
     - toc.follow
-    - navigation.expand
     - content.tabs.link
   palette:
     - media: "(prefers-color-scheme)"
