@@ -165,6 +165,8 @@ nav:
       - 🎥 视频（Video）:
         - 生成视频: api/generate-video.md
         - 查询视频: api/query-video.md
+    - 查询接口:
+      - 令牌用量查询: api/token-usage.md
     - 前端接口:
       - 敬请期待: coming-soon.md
   - AI应用:
@@ -247,6 +249,8 @@ plugins:
             "🎥 视频（Video）": Video
             "生成视频": "Generate Video"
             "查询视频": "Query Video"
+            查询接口: "Query APIs"
+            令牌用量查询: "Token Usage"
             前端接口: "Frontend APIs"
             敬请期待: "Coming Soon"
             AI应用: "AI Applications"
