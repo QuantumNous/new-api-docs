@@ -89,7 +89,7 @@ curl -X GET https://your-newapi-server-address/api/usage/token \
 - `total_used`: Used quota
 - `total_available`: Remaining available quota
 - `unlimited_quota`: Whether the token has unlimited quota
-- `model_limits`: Per-model quota limits map
+- `model_limits`: Allowed model list
 - `model_limits_enabled`: Whether model-specific limits are enabled
 - `expires_at`: Expiration Unix timestamp in seconds. `0` means never expires (backend normalizes `-1` → `0`).
 

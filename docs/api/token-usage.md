@@ -89,7 +89,7 @@ curl -X GET https://你的newapi服务器地址/api/usage/token \
 - `total_used`: 已使用额度
 - `total_available`: 可用剩余额度
 - `unlimited_quota`: 是否为无限额度
-- `model_limits`: 针对不同模型的次数/额度限制映射
+- `model_limits`: 允许使用的模型列表
 - `model_limits_enabled`: 是否启用模型限额
 - `expires_at`: 到期时间的 Unix 时间戳（秒）。若永不过期返回 `0`（由后端将 `-1` 归一化为 `0`）
 
