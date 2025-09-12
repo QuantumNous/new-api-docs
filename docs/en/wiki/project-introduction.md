@@ -11,48 +11,26 @@
 
 New API is a next-generation large model gateway and AI asset management system, based on [One API](https://github.com/songquanpeng/one-api) for secondary development. The project aims to provide a unified interface for managing and using various AI model services, including but not limited to OpenAI, Anthropic, Midjourney, and more.
 
-## 🖼️ Interface Preview
+## 🤝 Our Trusted Partners
 
-<div class="grid cards" markdown>
-
--   :material-view-dashboard: __Dashboard__
-
-    ---
-
-    A brand new statistics dashboard, visually displaying system status
-
-    ![Dashboard Interface](../assets/example_1.png)
-
--   :material-server: __Channel Management__
-
-    ---
-
-    Unified management of various AI model interfaces, supporting load balancing
-
-    ![Channel Management Interface](../assets/example_2.png)
-
--   :material-play-circle: __Playground__
-
-    ---
-    
-    Flexible playground for testing various models
-
-    ![Playground Interface](../assets/example_3.png)
-
--   :material-clipboard-text-clock: __Log Records__
-
-    ---
-
-    Detailed log records and analysis, ready to record user activities
-
-    ![Log Records Interface](../assets/example_4.png)
-
-</div>
-
-## 📊 Project Statistics
+<p align="center"><strong>Listed in no particular order</strong></p>
 
 <div class="text-center" markdown>
-![Star History Chart](../assets/star-history-2025223.png)
+  <a href="https://www.cherry-ai.com/" target="_blank">
+    <img src="/assets/partner/cherry-studio.png" alt="Cherry Studio" height="120"/>
+  </a>
+  <a href="https://bda.pku.edu.cn/" target="_blank">
+    <img src="/assets/partner/pku.png" alt="Peking University" height="120"/>
+  </a>
+  <a href="https://www.compshare.cn/?ytag=GPU_yy_gh_newapi" target="_blank">
+    <img src="/assets/partner/ucloud.png" alt="UCloud" height="120"/>
+  </a>
+  <a href="https://www.aliyun.com/" target="_blank">
+    <img src="/assets/partner/aliyun.png" alt="Alibaba Cloud" height="120"/>
+  </a>
+  <a href="https://io.net/" target="_blank">
+    <img src="/assets/partner/io-net.png" alt="IO.NET" height="120"/>
+  </a>
 </div>
 
 ## 📜 License

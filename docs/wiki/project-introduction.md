@@ -11,48 +11,26 @@
 
 New API 是一个新一代大模型网关与 AI 资产管理系统，基于 [One API](https://github.com/songquanpeng/one-api) 进行二次开发。该项目旨在提供一个统一的接口来管理和使用各种 AI 模型服务，包括但不限于 OpenAI、Anthropic、Midjourney 等。
 
-## 📸 界面预览
+## 🤝 我们信任的合作伙伴
 
-<div class="grid cards" markdown>
-
--   :material-view-dashboard: __控制台__
-
-    ---
-
-    全新设计的数据统计看板，直观展示系统运行状态
-
-    ![控制台界面](../assets/example_1.png)
-
--   :material-server: __渠道管理__
-
-    ---
-
-    统一管理各类AI模型接口，支持负载均衡
-
-    ![渠道管理界面](../assets/example_2.png)
-
--   :material-play-circle: __游乐场__
-
-    ---
-    
-    灵活的游乐场，可以测试各种模型
-
-    ![游乐场界面](../assets/example_3.png)
-
--   :material-clipboard-text-clock: __日志记录__
-
-    ---
-
-    详细的日志记录和分析，准备记录用户使用情况
-
-    ![日志记录界面](../assets/example_4.png)
-
-</div>
-
-## 📊 项目统计
+<p align="center"><strong>排名不分先后</strong></p>
 
 <div class="text-center" markdown>
-![Star History Chart](../assets/star-history-2025223.png)
+  <a href="https://www.cherry-ai.com/" target="_blank">
+    <img src="/assets/partner/cherry-studio.png" alt="Cherry Studio" height="120"/>
+  </a>
+  <a href="https://bda.pku.edu.cn/" target="_blank">
+    <img src="/assets/partner/pku.png" alt="北京大学" height="120"/>
+  </a>
+  <a href="https://www.compshare.cn/?ytag=GPU_yy_gh_newapi" target="_blank">
+    <img src="/assets/partner/ucloud.png" alt="UCloud 优刻得" height="120"/>
+  </a>
+  <a href="https://www.aliyun.com/" target="_blank">
+    <img src="/assets/partner/aliyun.png" alt="阿里云" height="120"/>
+  </a>
+  <a href="https://io.net/" target="_blank">
+    <img src="/assets/partner/io-net.png" alt="IO.NET" height="120"/>
+  </a>
 </div>
 
 ## 📜 许可证
