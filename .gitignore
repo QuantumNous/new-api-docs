@@ -32,3 +32,5 @@ pyvenv.cfg
 
 # 忽略 .DS_Store 文件
 .DS_Store
+
+.idea/
