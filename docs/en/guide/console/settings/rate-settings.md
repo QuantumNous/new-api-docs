@@ -65,7 +65,7 @@ Completion rates are used for additional billing adjustments on output tokens, m
 ### Configuration Notes
 
 - Completion rates mainly affect output token billing
-- Setting to 1 means equal billing for input and output tokens
+- Setting to 1 means output token billing is the same as input token billing
 - Greater than 1 means higher output token billing, less than 1 means lower output token billing
 
 ## Group Rate Settings
