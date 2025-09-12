@@ -61,3 +61,32 @@ Configure "Recharge Methods" using the following structure:
   - See controller `controller/topup.go` for details: [controller/topup.go](https://github.com/QuantumNous/new-api/blob/main/controller/topup.go).
 - min_topup: Minimum allowed amount for this method. If the input amount is below it, the UI shows a tooltip and blocks payment; the backend validates as well.
 - Order: Methods render left‑to‑right in the array order.
+
+## Recharge amount configuration
+
+### Custom recharge amount options
+
+Set user selectable recharge amount options, for example:
+
+```json
+[10, 20, 50, 100, 200, 500]
+```
+
+These values will be displayed in the "Select Top-up Denomination" area, allowing users to directly click and select the corresponding recharge amount.
+
+### Recharge amount discount configuration
+
+Set discounts corresponding to different recharge amounts, where the key is the recharge amount and the value is the discount rate, for example:
+
+```json
+{
+  "100": 0.95,
+  "200": 0.9,
+  "500": 0.85
+}
+```
+
+- Key: Recharge amount (string format)
+- Value: Discount rate (decimal between 0-1, e.g., 0.95 means 95% price, i.e., 5% discount)
+- The system automatically calculates actual payment amount and savings based on the configuration
+- See backend controller [controller/topup.go](https://github.com/QuantumNous/new-api/blob/main/controller/topup.go) for implementation details
