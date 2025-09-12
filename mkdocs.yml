@@ -284,7 +284,7 @@ plugins:
             "聊天设置": Chat Settings
             "绘图设置": Drawing Settings
             "支付设置": Payment Settings
-            "倍率设置": Rate Settings
+            "倍率设置（价格设置）": Rate Settings
             "速率限制设置": Rate Limit Settings
             "模型相关设置": Model Settings
             "系统设置": System Settings

@@ -15,6 +15,7 @@ NewAPI uses a three-tier rate system to calculate user quota consumption:
 In the New API system, rates are key parameters for calculating quota consumption. Quota is the internal billing unit of the system, and all API calls are ultimately converted to quota points for deduction.
 
 Quota Unit Conversion:
+
 - 1 USD = 500,000 quota points
 - Quota points are the basic unit for internal system billing
 - User balances and consumption records are based on quota points
@@ -22,16 +23,19 @@ Quota Unit Conversion:
 ### Quota Calculation Formulas
 
 #### Pay-per-use Models (Based on Token Consumption)
+
 ```
 Quota Consumption = (Input Tokens + Output Tokens × Completion Rate) × Model Rate × Group Rate
 ```
 
 #### Pay-per-request Models (Fixed Price)
+
 ```
 Quota Consumption = Model Fixed Price × Group Rate × Quota Unit (500,000)
 ```
 
 #### Audio Models (Special Handling, Automatically Processed by New-API)
+
 ```
 Quota Consumption = (Text Input Tokens + Text Output Tokens × Completion Rate + Audio Input Tokens × Audio Rate + Audio Output Tokens × Audio Rate × Audio Completion Rate) × Model Rate × Group Rate
 ```
@@ -64,6 +68,7 @@ Model rates define the base billing multipliers for different AI models, with sy
 | o1 | 7.5 | 4 | $15/1M Tokens | $60/1M Tokens |
 
 Rate Meaning Explanation:
+
 - Model Rate: Multiplier relative to the base billing unit, reflecting model cost differences
 - Completion Rate: Billing multiplier for output tokens relative to input tokens, reflecting output cost differences
 - Higher rates consume more quota; lower rates consume less quota
@@ -153,15 +158,19 @@ The system supports automatic rate synchronization from upstream channels:
 ## Frequently Asked Questions
 
 ### Q: How to set rates for new models?
+
 A: You can add new models through the visual editor or directly add them to JSON configuration. It's recommended to start with conservative rates and adjust based on actual usage.
 
 ### Q: How do group rates take effect?
+
 A: Group rates multiply with model rates, ultimately affecting user quota consumption calculation. User's actual rate = Model Rate × Group Rate.
 
 ### Q: What is the purpose of completion rates?
+
 A: Completion rates are mainly used to balance the cost differences between input and output tokens. Some models have much higher output costs than input costs, requiring adjustment through completion rates.
 
 ### Q: How to batch set rates for similar models?
+
 A: You can use the visual editor for batch operations, or directly add rate settings for similar models in JSON configuration.
 
 ## Quota Calculation Examples
@@ -169,6 +178,7 @@ A: You can use the visual editor for batch operations, or directly add rate sett
 ### Example 1: GPT-4 Standard User Conversation
 
 Scenario Parameters:
+
 - Input tokens: 1,000
 - Output tokens: 500
 - Model rate: 15
@@ -188,6 +198,7 @@ Equivalent USD Cost: 30,000 ÷ 500,000 = $0.06
 ### Example 2: GPT-3.5 VIP User Conversation
 
 Scenario Parameters:
+
 - Input tokens: 2,000
 - Output tokens: 1,000
 - Model rate: 0.25
@@ -207,6 +218,7 @@ Equivalent USD Cost: 416.25 ÷ 500,000 = $0.00083
 ### Example 3: Pay-per-request Model (e.g., Midjourney)
 
 Scenario Parameters:
+
 - Model fixed price: $0.02
 - Group rate: 1.0 (standard user)
 - Quota unit: 500,000
