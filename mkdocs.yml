@@ -167,7 +167,25 @@ nav:
     - 查询接口:
       - 令牌用量查询: api/token-usage.md
     - 前端接口:
-      - 敬请期待: coming-soon.md
+        - 鉴权体系说明（Auth）: api/auth-system-description.md
+        - 获取可用模型列表（Model）: api/get-available-models-list.md
+        - 接口模块使用指南（Api）:
+            - 系统初始化模块: api/fei-system-initialization.md
+            - 公告信息模块: api/fei-announcement-info.md
+            - 邮箱身份验证模块: api/fei-email-authentication.md
+            - OAuth 第三方登录模块: api/fei-oauth-third-party-login.md
+            - 用户模块: api/fei-user.md
+            - 站点配置模块: api/fei-site-configuration.md
+            - 模型倍率同步模块: api/fei-model-rate-sync.md
+            - 渠道管理模块: api/fei-channel-management.md
+            - Token 管理模块: api/fei-token-management.md
+            - 兑换码管理模块: api/fei-redemption-code-management.md
+            - 日志模块: api/fei-log.md
+            - 数据统计模块: api/fei-data-statistics.md
+            - 分组模块: api/fei-group.md
+            - Midjourney 任务模块: api/fei-midjourney-task.md
+            - 任务中心模块: api/fei-task-center.md
+            - 账户计费面板模块: api/fei-account-billing-panel.md
   - AI应用:
     - 🍒 Cherry Studio - 桌面 AI 客户端: apps/cherry-studio.md
     - 📦 LangBot - 即时通信机器人开发平台: apps/langbot.md
