@@ -19,7 +19,7 @@
 💡 请求示例：
 
 ```
-const response = await fetch('/api/log/token?key=sk-1234567890abcdef', {  
+const response = await fetch('/api/log/token?key=<TOKEN_PLACEHOLDER>', {  
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json'  

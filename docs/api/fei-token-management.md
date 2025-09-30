@@ -39,7 +39,7 @@ const data = await response.json();
       {  
         "id": 1,  
         "name": "API Token",  
-        "key": "sk-1234567890abcdef",  
+        "key": "<YOUR_API_KEY>",  
         "status": 1,  
         "remain_quota": 1000000,  
         "unlimited_quota": false,  
@@ -104,7 +104,7 @@ const data = await response.json();
     {  
       "id": 1,  
       "name": "API Token",  
-      "key": "sk-1234567890abcdef",  
+      "key": "sk-your-token-placeholder",  
       "status": 1,  
       "remain_quota": 1000000  
     }  
@@ -156,7 +156,7 @@ const data = await response.json();
   "data": {  
     "id": 123,  
     "name": "API Token",  
-    "key": "sk-1234567890abcdef",  
+    "key": "sk-your-token-placeholder",  
     "status": 1,  
     "remain_quota": 1000000,  
     "unlimited_quota": false,  

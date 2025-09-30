@@ -618,7 +618,7 @@ const data = await response.json();
 {  
   "success": true,  
   "message": "",  
-  "data": "sk-1234567890abcdef"  
+  "data": "<YOUR_API_KEY>"  
 }
 ```
 

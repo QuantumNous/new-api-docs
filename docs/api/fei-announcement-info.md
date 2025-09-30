@@ -210,7 +210,7 @@ const response = await fetch('/api/pricing', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_token' _// 可选，登录用户可获得更详细信息  _
+    'Authorization': 'Bearer your_token' // 可选，登录用户可获得更详细信息
   }  
 });  
 const data = await response.json();

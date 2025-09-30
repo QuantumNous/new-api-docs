@@ -531,7 +531,7 @@ const response = await fetch('/api/channel/', {
     channel: {  
       name: "OpenAI渠道",  
       type: 1,  
-      key: "sk-1234567890abcdef",  
+      key: "<YOUR_API_KEY>",  
       base_url: "https://api.openai.com",  
       models: ["gpt-3.5-turbo", "gpt-4"],  
       groups: ["default"],  
@@ -1030,7 +1030,7 @@ const response = await fetch('/api/channel/fetch_models', {
   body: JSON.stringify({  
     base_url: "https://api.openai.com",  
     type: 1,  
-    key: "sk-1234567890abcdef"  
+    key: "<YOUR_API_KEY>"  
   })  
 });  
 const data = await response.json();

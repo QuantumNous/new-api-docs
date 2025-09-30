@@ -85,18 +85,35 @@ const data = await response.json();
 ✅ 成功响应示例：
 
 ```
-
+{  
+  "object": "billing_subscription",  
+  "has_payment_method": true,  
+  "soft_limit_usd": 100.0,  
+  "hard_limit_usd": 100.0,  
+  "system_hard_limit_usd": 100.0,  
+  "access_until": 1640995200  
+}
 ```
 
 ❗ 失败响应示例：
 
 ```
-
+{  
+  "error": {  
+    "message": "获取配额失败",  
+    "type": "upstream_error"  
+  }  
+}
 ```
 
 🧾 字段说明：
 
-响应格式与字段说明： 与 `/dashboard/billing/subscription` 接口完全相同
+- `object` （字符串）: 固定值"billing_subscription"
+- `has_payment_method` （布尔型）: 是否有支付方式，固定为 true
+- `soft_limit_usd` （数字）: 软限制额度（美元）
+- `hard_limit_usd` （数字）: 硬限制额度（美元）
+- `system_hard_limit_usd` （数字）: 系统硬限制额度（美元）
+- `access_until` （数字）: 访问有效期时间戳，Token 过期时间
 
 ### 获取使用量信息
 
@@ -168,16 +185,25 @@ const data = await response.json();
 ✅ 成功响应示例：
 
 ```
-
+{  
+  "object": "list",  
+  "total_usage": 2500.0  
+}
 ```
 
 ❗ 失败响应示例：
 
 ```
-
+{  
+  "error": {  
+    "message": "获取使用量失败",  
+    "type": "new_api_error"  
+  }  
+}
 ```
 
 🧾 字段说明：
 
-响应格式与字段说明： 与 `/dashboard/billing/usage` 接口完全相同
+- `object` （字符串）: 固定值"list"
+- `total_usage` （数字）: 总使用量，单位为 0.01 美元 
 

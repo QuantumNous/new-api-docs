@@ -309,10 +309,10 @@ const params = {
   auth_date: 1640995200,  
   hash: "telegram_hash"  
 };  
-const response = await fetch('/api/oauth/telegram/login', {  
-  method: 'GET',  
-  params: params  
-});  
+const query = new URLSearchParams(params).toString();
+const response = await fetch(`/api/oauth/telegram/login?${query}`, {
+  method: 'GET'
+});
 const data = await response.json();
 ```
 
@@ -363,8 +363,8 @@ const data = await response.json();
 💡 请求示例：
 
 ```
-_// 通过TelegramLoginButton组件自动处理参数  _
-_// 参数格式与Telegram登录相同  _
+// 通过TelegramLoginButton组件自动处理参数  
+// 参数格式与Telegram登录相同  
 const response = await fetch('/api/oauth/telegram/bind', {  
   method: 'GET',  
   params: telegram_auth_params  

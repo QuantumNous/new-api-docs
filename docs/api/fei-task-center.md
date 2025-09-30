@@ -98,6 +98,9 @@ const data = await response.json();
 - `progress` （字符串）: 进度百分比 
 - `properties` （对象）: 任务属性 
 - `data` （对象）: 任务结果数据 
+- `total` （数字）: 符合条件的任务总记录数
+- `page` （数字）: 当前返回的页码
+- `page_size` （数字）: 每页展示的任务记录数
 
 ## 🔐 管理员鉴权
 
