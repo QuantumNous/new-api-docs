@@ -1,7 +1,9 @@
 # 获取可用模型列表（Model）
 
 !!! info "说明"
-    接口前缀统一为 https://`<your-domain>`
+    接口前缀统一为 http(s)://`<your-domain>`
+
+    生产环境应使用 HTTPS 以保证认证令牌。 HTTP 仅建议用于开发环境。
 
 - **接口名称**：获取前端可用模型列表
 - **HTTP 方法**：GET

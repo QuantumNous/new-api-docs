@@ -199,13 +199,19 @@ hide:
 
 -   :material-rocket-launch:{ .twemoji }
 
-    **即将推出**
+    **API 参考文档**
 
     ---
 
-    前端接口文档正在码字中，敬请期待！
-    
-    [了解更多 →](../coming-soon.md)
+    系统采用四级鉴权机制：公开、用户、管理员、Root
+
+    接口前缀统一为 http(s)://`<your-domain>`
+
+    ( 生产环境应使用 HTTPS 以保证认证令牌。 HTTP 仅建议用于开发环境。 )
+
+    [鉴权体系说明 →](auth-system-description.md)
+    [获取可用模型列表 →](get-available-models-list.md)
+    [接口模块使用指南 →](fei-system-initialization.md)
 
 </div>
 
