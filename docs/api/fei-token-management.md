@@ -1,7 +1,7 @@
 # Token 管理模块
 
 !!! info "功能说明"
-    接口前缀统一为 https://`<your-domain>`
+    接口前缀统一为 http(s)://`<your-domain>`
 
     用户 API Token 的完整管理系统 。支持 Token 创建、更新、删除、批量操作等功能。包含模型限制、IP 限制、配额管理、过期时间等精细化控制。前端 Token 页面的核心数据来源。
 

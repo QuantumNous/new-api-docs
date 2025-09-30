@@ -1,7 +1,7 @@
 # 账户计费面板模块
 
 !!! info "功能说明"
-    接口前缀统一为 https://`<your-domain>`
+    接口前缀统一为 http(s)://`<your-domain>`
 
     OpenAI SDK 兼容的计费查询接口 。使用 Token 认证，提供订阅信息和使用量查询。主要用于第三方应用和 SDK 集成，确保与 OpenAI API 的完全兼容性。
 

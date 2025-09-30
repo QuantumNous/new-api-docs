@@ -1,7 +1,7 @@
 # 系统初始化模块
 
 !!! info "功能说明"
-    功能接口前缀统一为 https://`<your-domain>`
+    功能接口前缀统一为 http(s)://`<your-domain>`
 
     系统初始化模块负责首次部署配置和运行状态监控 。支持 SQLite、MySQL、PostgreSQL 数据库，包含 Root 用户创建和系统参数初始化。状态接口提供实时系统信息，包括 OAuth 配置、功能开关等 。
 
