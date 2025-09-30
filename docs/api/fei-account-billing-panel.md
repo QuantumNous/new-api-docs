@@ -3,6 +3,8 @@
 !!! info "功能说明"
     接口前缀统一为 http(s)://`<your-domain>`
 
+    生产环境应使用 HTTPS 以保证认证令牌。 HTTP 仅建议用于开发环境。
+
     OpenAI SDK 兼容的计费查询接口 。使用 Token 认证，提供订阅信息和使用量查询。主要用于第三方应用和 SDK 集成，确保与 OpenAI API 的完全兼容性。
 
 ## 🔐 用户鉴权

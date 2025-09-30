@@ -3,6 +3,8 @@
 !!! info "功能说明"
     接口前缀统一为 http(s)://`<your-domain>`
 
+    生产环境应使用 HTTPS 以保证认证令牌。 HTTP 仅建议用于开发环境。
+
     支持 GitHub、OIDC、LinuxDO、微信、Telegram 等多种 OAuth 登录方式 。实现 CSRF 防护和会话管理，支持账户绑定和自动注册。前端通过重定向方式处理 OAuth 流程。
 
 ## 🔐 无需鉴权
