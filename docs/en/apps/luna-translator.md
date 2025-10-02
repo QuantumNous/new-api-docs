@@ -4,7 +4,7 @@
     In the New API dashboard, under `System Settings` -> `Chat Settings`, you can add the following shortcut option. This allows you to easily configure LunaTranslator with a single click from the Token Management page:
 
     ```json
-    { "LunaTranslator": "lunatranslator://llmapi/base64?data={cheryconfig}" }
+    { "LunaTranslator": "lunatranslator://llmapi/base64?data={cheryConfig}" }
     ```
 
 !!! info
@@ -38,6 +38,28 @@ Please download and install from the official documentation: [LunaTranslator Doc
 
 LunaTranslator supports integration with locally deployed NewAPI instances and third-party services built on NewAPI.
 
+### One-Click Configuration
+
+1.  In the New API dashboard, go to `System Settings` -> `Chat Settings` and add the following shortcut option:
+    ```json
+    { "LunaTranslator": "lunatranslator://llmapi/base64?data={cheryConfig}" }
+    ```
+    ![add_config.png](../assets/luna_translator/add_config.png)
+
+2.  In the **`NewAPI`** -> `Dashboard` -> `Token Management` tab, select the token you want to use in LunaTranslator. Click the dropdown option next to the chat button and select `LunaTranslator`. This will redirect you to the LunaTranslator application and automatically configure the API Address and API Key.
+    ![Redirect to LunaTranslator](../assets/luna_translator/jump_to_app.png)
+
+3.  In **`LunaTranslator`** -> `Settings` -> `Translation Settings` -> `Large Language Model`, a new API configuration will be automatically added. Click the edit button to proceed.
+    ![api_setting.png](../assets/luna_translator/api_setting.png)
+
+4.  Click the refresh button next to the **model** dropdown to fetch the list of models from the NewAPI platform. Select or enter a model name, then click OK to save.
+    ![setting_model.png](../assets/luna_translator/setting_model.png)
+
+5.  Check the toggle switch next to the **new_api** large model configuration. If it's off, turn it on to start using the API.
+    ![open_config.png](../assets/luna_translator/open_config.png)
+
+### Manual Configuration
+
 1.  In **`NewAPI`** -> `CONSOLE` -> `Token Management` tab to get your API Key.
 
     ![Get API Key](../assets/luna_translator/copy_api_key.png)
@@ -55,7 +77,7 @@ LunaTranslator supports integration with locally deployed NewAPI instances and t
     ![Set API 1](../assets/luna_translator/setting_api.png)
     ![Set API 2](../assets/luna_translator/setting_api2.png)
 
-5.  Click the refresh button next to the model dropdown to fetch the list of models from the NewAPI platform. Select or enter a model name, then click OK to save.
+5.  Click the refresh button next to the **model** dropdown to fetch the list of models from the NewAPI platform. Select or enter a model name, then click OK to save.
 
     ![Set API 3](../assets/luna_translator/setting_api3.png)
 
