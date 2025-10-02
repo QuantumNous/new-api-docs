@@ -12,6 +12,7 @@
 
     - Project Repository: <https://github.com/HIllya51/LunaTranslator>
     - Documentation：<https://docs.lunatranslator.org/zh/README.html>
+
 ## Features
 
 - **HOOK** Primarily uses HOOK to extract game text, compatible with almost all common and niche GalGames.
@@ -45,6 +46,7 @@ LunaTranslator supports integration with locally deployed NewAPI instances and t
     ```json
     { "LunaTranslator": "lunatranslator://llmapi/base64?data={cheryConfig}" }
     ```
+    
     ![add_config](../assets/luna_translator/add_config.png)
 
 2.  In the **`NewAPI`** -> `Dashboard` -> `Token Management` tab, select the token you want to use in LunaTranslator. Click the dropdown option next to the chat button and select `LunaTranslator`. This will redirect you to the LunaTranslator application and automatically configure the API Address and API Key.

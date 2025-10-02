@@ -44,6 +44,7 @@ LunaTranslator 支持接入本地部署的 NewAPI 和第三方使用 NewAPI 搭�
    ```json
     { "LunaTranslator": "lunatranslator://llmapi/base64?data={cheryConfig}" }
     ```
+   
     ![add_config](../assets/luna_translator/add_config.png)
 
 2. 在 **`NewAPI`** -> `控制台` -> `令牌管理` 选项卡中选择要使用在 LunaTranslator 的令牌，点击聊天按钮旁的下拉选项，选择 `LunaTranslator`,将会跳转到 LunaTranslator 并自动配置 API 地址与 API Key
