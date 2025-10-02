@@ -16,7 +16,7 @@ This document provides all environment variables supported by New API and their 
 
 | Environment Variable | Description | Default | Example |
 |---------------------|-------------|---------|---------|
-| `SQL_DSN` | Database connection string | SQLite (data/one-api.db) | `SQL_DSN=root:123456@tcp(localhost:3306)/oneapi` |
+| `SQL_DSN` | Database connection string | SQLite (data/one-api.db) | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
 | `SQL_MAX_IDLE_CONNS` | Max idle connections in pool | `100` | `SQL_MAX_IDLE_CONNS=50` |
 | `SQL_MAX_OPEN_CONNS` | Max open connections in pool | `1000` | `SQL_MAX_OPEN_CONNS=500` |
 | `SQL_CONN_MAX_LIFETIME` | Max connection lifetime (minutes) | `60` | `SQL_CONN_MAX_LIFETIME=120` |
