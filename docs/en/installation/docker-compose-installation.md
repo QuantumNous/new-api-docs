@@ -11,15 +11,24 @@ This document provides detailed steps for deploying New API using Docker Compose
 
 ### Method 1: Using Git Clone (Recommended)
 
-If you can access GitHub normally, this method is recommended:
+If you can access GitHub normally, this method is recommended. The project includes a complete `docker-compose.yml` configuration file:
 
 ```shell
 # Download project source code
-git clone https://github.com/Calcium-Ion/new-api.git
+git clone https://github.com/QuantumNous/new-api.git
 
 # Enter project directory
 cd new-api
+
+# Edit docker-compose.yml as needed
+# Using nano editor
+nano docker-compose.yml
+# Or using vim editor
+# vim docker-compose.yml
 ```
+
+!!! tip "Tip"
+    The project's built-in `docker-compose.yml` file is already configured with all necessary services (including MySQL and Redis). You only need to modify parameters such as ports and passwords according to your needs.
 
 ### Method 2: Manually Creating Configuration Files
 
@@ -32,14 +41,14 @@ mkdir new-api
 cd new-api
 ```
 
-2. Create a `docker-compose.yml` file in this directory
+1. Create a `docker-compose.yml` file in this directory
 
    You can refer to the configuration examples in the [Docker Compose Configuration Guide](docker-compose-yml.md) document and choose based on your needs:
    
    - Production environment: Recommended to use complete configuration (including MySQL and Redis)
    - Testing environment: Can use simplified configuration
 
-3. Create the file using a text editor:
+1. Create the file using a text editor:
 
 ```shell
 # Using nano editor

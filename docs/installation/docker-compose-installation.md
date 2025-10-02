@@ -11,15 +11,24 @@
 
 ### 方法一：使用Git克隆项目（推荐）
 
-如果您能够正常访问GitHub，推荐使用此方法：
+如果您能够正常访问GitHub，推荐使用此方法。项目中已包含完整的 `docker-compose.yml` 配置文件：
 
 ```shell
 # 下载项目源码
-git clone https://github.com/Calcium-Ion/new-api.git
+git clone https://github.com/QuantumNous/new-api.git
 
 # 进入项目目录
 cd new-api
+
+# 根据需要编辑 docker-compose.yml 文件
+# 使用nano编辑器
+nano docker-compose.yml
+# 或使用vim编辑器
+# vim docker-compose.yml
 ```
+
+!!! tip "提示"
+    项目自带的 `docker-compose.yml` 文件已经配置好了所有必要的服务（包括 MySQL 和 Redis），您只需根据实际情况修改端口、密码等参数即可使用。
 
 ### 方法二：手动创建配置文件
 
@@ -32,14 +41,14 @@ mkdir new-api
 cd new-api
 ```
 
-2. 在该目录中创建`docker-compose.yml`文件
+1. 在该目录中创建`docker-compose.yml`文件
 
    您可以参考[Docker Compose配置说明](docker-compose-yml.md)文档中的配置示例，根据您的需求选择：
    
    - 生产环境推荐使用完整配置（包含MySQL和Redis）
    - 测试环境可以使用简化配置
 
-3. 使用文本编辑器创建文件：
+1. 使用文本编辑器创建文件：
 
 ```shell
 # 使用nano编辑器

@@ -11,6 +11,22 @@ Docker Compose配置文件 `docker-compose.yml` 定义了New API服务及其依�
 下面是标准的Docker Compose配置，适合大多数生产环境：
 
 ```yaml
+# New-API Docker Compose Configuration
+# 
+# Quick Start:
+#   1. docker-compose up -d
+#   2. Access at http://localhost:3000
+#
+# Using MySQL instead of PostgreSQL:
+#   1. Comment out the postgres service and SQL_DSN line 15
+#   2. Uncomment the mysql service and SQL_DSN line 16
+#   3. Uncomment mysql in depends_on (line 28)
+#   4. Uncomment mysql_data in volumes section (line 64)
+#
+# ⚠️  IMPORTANT: Change all default passwords before deploying to production!
+
+version: '3.4' # For compatibility with older Docker versions
+
 services:
   new-api:
     image: calciumion/new-api:latest
@@ -23,19 +39,22 @@ services:
       - ./data:/data
       - ./logs:/app/logs
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # 指向mysql服务
+      - SQL_DSN=postgresql://root:123456@postgres:5432/new-api # ⚠️ IMPORTANT: Change the password in production!
+#      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service, uncomment if using MySQL
       - REDIS_CONN_STRING=redis://redis
       - TZ=Asia/Shanghai
-    #      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！！！！！！
-    #      - NODE_TYPE=slave  # 多机部署的从节点取消注释
-    #      - SYNC_FREQUENCY=60  # 如需定期同步数据库，取消注释
-    #      - FRONTEND_BASE_URL=https://your-domain.com  # 多机部署带前端URL时取消注释
+      - ERROR_LOG_ENABLED=true # 是否启用错误日志记录
+      - BATCH_UPDATE_ENABLED=true  # 是否启用批量更新 batch update enabled
+#      - STREAMING_TIMEOUT=300  # 流模式无响应超时时间，单位秒，默认120秒，如果出现空补全可以尝试改为更大值 Streaming timeout in seconds, default is 120s. Increase if experiencing empty completions
+#      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！ multi-node deployment, set this to a random string!!!!!!!
+#      - SYNC_FREQUENCY=60  # Uncomment if regular database syncing is needed
 
     depends_on:
       - redis
-      - mysql
+      - postgres
+#      - mysql  # Uncomment if using MySQL
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' | awk -F: '{print $$2}'"]
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -45,20 +64,35 @@ services:
     container_name: redis
     restart: always
 
-  mysql:
-    image: mysql:8.2
-    container_name: mysql
+  postgres:
+    image: postgres:15
+    container_name: postgres
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456  # 确保与SQL_DSN中的密码一致
-      MYSQL_DATABASE: new-api
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
+      POSTGRES_DB: new-api
     volumes:
-      - mysql_data:/var/lib/mysql
-    # ports:
-    #   - "3306:3306"  # 如需从Docker外部访问MySQL，取消注释
+      - pg_data:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"  # Uncomment if you need to access PostgreSQL from outside Docker
+
+#  mysql:
+#    image: mysql:8.2
+#    container_name: mysql
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
+#      MYSQL_DATABASE: new-api
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#    ports:
+#      - "3306:3306"  # Uncomment if you need to access MySQL from outside Docker
 
 volumes:
-  mysql_data:
+  pg_data:
+#  mysql_data:
+
 ```
 
 ## 简化配置（适合测试环境）

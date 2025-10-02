@@ -2,15 +2,17 @@
 
 This document provides detailed steps for deploying New API using Docker.
 
+!!! warning "Strongly Recommended"
+    We strongly recommend using the [Docker Compose installation method](docker-compose-installation.md) instead of manually starting Docker containers. Docker Compose provides better configuration management, service orchestration, and deployment experience.
+
 ## Basic Requirements
 
 - Docker environment installed
-- Recommended system: Linux (Ubuntu/CentOS/Debian, etc.)
 - Port: Default is 3000
 
 ## Deploy Directly Using Docker Image
 
-### Using SQLite Database (Recommended for Beginners)
+### Using SQLite Database (Not Recommended)
 
 ```shell
 docker run --name new-api -d --restart always \

@@ -171,7 +171,7 @@ nav:
         - 获取可用模型列表（Model）: api/get-available-models-list.md
         - 接口模块使用指南（Api）:
             - 系统初始化模块: api/fei-system-initialization.md
-            - 公告信息模块: api/fei-announcement-info.md
+            - 公共信息模块: api/fei-public-info.md
             - 邮箱身份验证模块: api/fei-email-authentication.md
             - OAuth 第三方登录模块: api/fei-oauth-third-party-login.md
             - 用户模块: api/fei-user.md

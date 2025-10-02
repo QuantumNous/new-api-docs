@@ -2,15 +2,17 @@
 
 本文档提供了使用Docker部署New API的详细步骤。
 
+!!! warning "强烈推荐"
+    我们强烈推荐使用 [Docker Compose 安装方式](docker-compose-installation.md) 而不是手动启动Docker容器。Docker Compose方式提供了更好的配置管理、服务编排和部署体验。
+
 ## 基本要求
 
 - 已安装Docker环境
-- 推荐系统: Linux (Ubuntu/CentOS/Debian等)
 - 端口: 默认使用3000端口
 
 ## 直接使用Docker镜像部署
 
-### 使用SQLite数据库（推荐新手）
+### 使用SQLite数据库（不推荐）
 
 ```shell
 docker run --name new-api -d --restart always \

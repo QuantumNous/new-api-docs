@@ -16,7 +16,7 @@
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
-| `SQL_DSN` | 数据库连接字符串 | SQLite (data/one-api.db) | `SQL_DSN=root:123456@tcp(localhost:3306)/oneapi` |
+| `SQL_DSN` | 数据库连接字符串 | SQLite (data/one-api.db) | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
 | `SQL_MAX_IDLE_CONNS` | 空闲连接池最大连接数 | `100` | `SQL_MAX_IDLE_CONNS=50` |
 | `SQL_MAX_OPEN_CONNS` | 连接池最大打开连接数 | `1000` | `SQL_MAX_OPEN_CONNS=500` |
 | `SQL_CONN_MAX_LIFETIME` | 连接最大生命周期(分钟) | `60` | `SQL_CONN_MAX_LIFETIME=120` |
