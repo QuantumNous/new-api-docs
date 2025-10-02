@@ -41,7 +41,7 @@ LunaTranslator 支持接入本地部署的 NewAPI 和第三方使用 NewAPI 搭�
 ### 一键配置
 1. 在 New API 控制台的`系统设置`->`聊天设置`中，添加如下快捷选项：
     
-   ```json
+    ```json
     { "LunaTranslator": "lunatranslator://llmapi/base64?data={cheryConfig}" }
     ```
    
