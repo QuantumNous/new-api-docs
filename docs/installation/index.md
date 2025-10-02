@@ -95,23 +95,23 @@ hide:
 
 -   :material-docker:{ .twemoji }
 
+    **Docker Compose 部署** ⭐推荐
+
+    ---
+
+    推荐的单机部署方式，提供完整配置：
+    
+    [查看教程 →](docker-compose-installation.md)
+
+-   :material-docker:{ .twemoji }
+
     **Docker 部署**
 
     ---
 
-    最简单的单机部署方式：
+    简单快速的单机部署方式：
     
     [查看教程 →](docker-installation.md)
-
--   :material-docker:{ .twemoji }
-
-    **Docker Compose 部署**
-
-    ---
-
-    推荐的单机部署方式：
-    
-    [查看教程 →](docker-compose-installation.md)
 
 -   :material-server:{ .twemoji }
 
@@ -184,7 +184,8 @@ hide:
 ## 部署说明
 
 !!! tip "选择建议"
-    - 个人用户建议使用 Docker 或 Docker Compose 部署
+    - **推荐使用 Docker Compose 部署**，提供更好的配置管理和服务编排
+    - 快速测试可以使用 Docker 部署，但不推荐用于生产环境
     - 熟悉宝塔面板的用户可以选择宝塔面板部署
     - 企业用户建议使用集群部署以获得更好的可扩展性
 

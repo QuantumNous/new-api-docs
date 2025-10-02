@@ -95,23 +95,23 @@ hide:
 
 -   :material-docker:{ .twemoji }
 
+    **Docker Compose Deployment** ⭐Recommended
+
+    ---
+
+    Recommended deployment method with complete configuration:
+    
+    [View Tutorial →](docker-compose-installation.md)
+
+-   :material-docker:{ .twemoji }
+
     **Docker Deployment**
 
     ---
 
-    The simplest single-node deployment method:
+    Simple and quick single-node deployment method:
     
     [View Tutorial →](docker-installation.md)
-
--   :material-docker:{ .twemoji }
-
-    **Docker Compose Deployment**
-
-    ---
-
-    Recommended single-node deployment method:
-    
-    [View Tutorial →](docker-compose-installation.md)
 
 -   :material-server:{ .twemoji }
 
@@ -184,7 +184,8 @@ hide:
 ## Deployment Notes
 
 !!! tip "Recommended Choices"
-    - For personal users, Docker or Docker Compose deployment is recommended
+    - **Docker Compose deployment is strongly recommended** for better configuration management and service orchestration
+    - Docker deployment can be used for quick testing, but not recommended for production environments
     - Users familiar with BT Panel can choose BT Panel deployment
     - For enterprise users, cluster deployment is recommended for better scalability
 
