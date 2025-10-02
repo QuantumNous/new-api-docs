@@ -32,7 +32,7 @@
 
 ## 安装方式 
 
-在 [LunaTranslator 文档- 下载 & 启动 & 更新 ](https://docs.lunatranslator.org/zh/README.html) 进行下载安装
+在 [LunaTranslator 文档- 下载 & 启动 & 更新](https://docs.lunatranslator.org/zh/README.html) 进行下载安装
 
 ## 在 LunaTranslator 接入 NewAPI
 
