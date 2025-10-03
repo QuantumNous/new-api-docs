@@ -41,7 +41,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install openai==1.54.3
+          pip install openai>=1.55.0
           pip install pyyaml
       
       - name: Get files to translate
