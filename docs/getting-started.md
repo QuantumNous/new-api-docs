@@ -79,14 +79,14 @@ hide:
   }
   
   /* 部署方式卡片颜色设置 */
-  /* Docker卡片 */
+  /* Docker Compose卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(1) {
-    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
+    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
   }
   
-  /* Docker Compose卡片 */
+  /* Docker卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(2) {
-    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
+    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
   }
   
   /* 宝塔面板卡片 */
@@ -266,6 +266,16 @@ hide:
 
 -   :fontawesome-brands-docker:{ .twemoji } 
     
+    **Docker Compose部署** ⭐推荐
+    
+    ---
+    
+    使用Docker Compose编排多个服务，适合生产环境或需要MySQL、Redis等依赖的场景
+    
+    [了解更多 →](installation/docker-compose-installation.md){ .more-link }
+
+-   :fontawesome-brands-docker:{ .twemoji } 
+    
     **Docker 单容器部署**
     
     ---
@@ -273,16 +283,6 @@ hide:
     使用Docker镜像快速部署New API，适合个人使用或小规模应用场景
     
     [了解更多 →](installation/docker-installation.md){ .more-link }
-
--   :fontawesome-brands-docker:{ .twemoji } 
-    
-    **Docker Compose部署**
-    
-    ---
-    
-    使用Docker Compose编排多个服务，适合生产环境或需要MySQL、Redis等依赖的场景
-    
-    [了解更多 →](installation/docker-compose-installation.md){ .more-link }
 
 -   :material-server:{ .twemoji } 
     

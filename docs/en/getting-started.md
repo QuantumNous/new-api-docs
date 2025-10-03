@@ -79,14 +79,14 @@ hide:
   }
   
   /* 部署方式卡片颜色设置 */
-  /* Docker卡片 */
+  /* Docker Compose card */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(1) {
-    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
+    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
   }
   
-  /* Docker Compose卡片 */
+  /* Docker card */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(2) {
-    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
+    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
   }
   
   /* 宝塔面板卡片 */
@@ -266,6 +266,16 @@ hide:
 
 -   :fontawesome-brands-docker:{ .twemoji } 
     
+    **Docker Compose Deployment** ⭐Recommended
+    
+    ---
+    
+    Orchestrate multiple services with Docker Compose – ideal for production or setups requiring MySQL, Redis, etc.
+    
+    [Learn more →](installation/docker-compose-installation.md){ .more-link }
+
+-   :fontawesome-brands-docker:{ .twemoji } 
+    
     **Docker Single-Container Deployment**
     
     ---
@@ -273,16 +283,6 @@ hide:
     Deploy New API quickly with a single Docker image – perfect for personal or small-scale scenarios.
     
     [Learn more →](installation/docker-installation.md){ .more-link }
-
--   :fontawesome-brands-docker:{ .twemoji } 
-    
-    **Docker Compose Deployment**
-    
-    ---
-    
-    Orchestrate multiple services with Docker Compose – ideal for production or setups requiring MySQL, Redis, etc.
-    
-    [Learn more →](installation/docker-compose-installation.md){ .more-link }
 
 -   :material-server:{ .twemoji } 
     

@@ -79,14 +79,14 @@ hide:
   }
   
   /* 導入方法カードの色の設定 */
-  /* Dockerカード */
+  /* Docker Composeカード */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(1) {
-    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
+    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
   }
   
-  /* Docker Composeカード */
+  /* Dockerカード */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(2) {
-    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
+    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
   }
   
   /* 宝塔パネルカード */
@@ -266,6 +266,16 @@ hide:
 
 -   :fontawesome-brands-docker:{ .twemoji } 
     
+    **Docker Composeによる導入** ⭐推奨
+    
+    ---
+    
+    Docker Composeを使用して複数のサービスをオーケストレーションします。本番環境やMySQL、Redisなどの依存関係が必要なシナリオに適しています。
+    
+    [詳細はこちら →](installation/docker-compose-installation.md){ .more-link }
+
+-   :fontawesome-brands-docker:{ .twemoji } 
+    
     **Docker シングルコンテナ導入**
     
     ---
@@ -273,16 +283,6 @@ hide:
     Dockerイメージを使用してNew APIを迅速に導入します。個人利用や小規模なアプリケーションシナリオに適しています。
     
     [詳細はこちら →](installation/docker-installation.md){ .more-link }
-
--   :fontawesome-brands-docker:{ .twemoji } 
-    
-    **Docker Composeによる導入**
-    
-    ---
-    
-    Docker Composeを使用して複数のサービスをオーケストレーションします。本番環境やMySQL、Redisなどの依存関係が必要なシナリオに適しています。
-    
-    [詳細はこちら →](installation/docker-compose-installation.md){ .more-link }
 
 -   :material-server:{ .twemoji } 
     
