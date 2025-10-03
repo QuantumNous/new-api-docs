@@ -2,7 +2,7 @@
 This file was automatically generated - do not edit
 -#}
 {#- Load translations based on current language -#}
-{% if "en/" in page.file.src_uri %}
+{% if page and page.file and "en/" in page.file.src_uri %}
   {% set translations = {
     "subtitle": "Next-Gen LLM Gateway & AI Asset Platform",
     "stats": {
@@ -20,7 +20,7 @@ This file was automatically generated - do not edit
       "api_docs": "API Docs"
     }
   } %}
-{% elif "ja/" in page.file.src_uri %}
+{% elif page and page.file and "ja/" in page.file.src_uri %}
   {% set translations = {
     "subtitle": "次世代LLMゲートウェイ & AI資産管理プラットフォーム",
     "stats": {

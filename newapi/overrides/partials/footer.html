@@ -1,5 +1,90 @@
 {% block footer %}
-{% set is_en = (page is defined) and page and ("en/" in page.file.src_uri) %}
+{#- Load translations based on current language -#}
+{% if page and page.file and "en/" in page.file.src_uri %}
+  {% set translations = {
+    "slogan": "🍥Next-Gen LLM Gateway & AI Asset Platform",
+    "sections": {
+      "about": {
+        "title": "About Us",
+        "links": {
+          "project": "About Project",
+          "contact": "Contact Us",
+          "features": "Features"
+        }
+      },
+      "docs": {
+        "title": "Docs",
+        "links": {
+          "quickstart": "Quick Start",
+          "installation": "Installation Guide",
+          "api": "API Docs"
+        }
+      },
+      "related": {
+        "title": "Related Projects"
+      },
+      "friendship": {
+        "title": "Friendship Links"
+      }
+    }
+  } %}
+{% elif page and page.file and "ja/" in page.file.src_uri %}
+  {% set translations = {
+    "slogan": "🍥次世代LLMゲートウェイ & AI資産管理プラットフォーム",
+    "sections": {
+      "about": {
+        "title": "私たちについて",
+        "links": {
+          "project": "プロジェクトについて",
+          "contact": "お問い合わせ",
+          "features": "機能"
+        }
+      },
+      "docs": {
+        "title": "ドキュメント",
+        "links": {
+          "quickstart": "クイックスタート",
+          "installation": "インストールガイド",
+          "api": "APIドキュメント"
+        }
+      },
+      "related": {
+        "title": "関連プロジェクト"
+      },
+      "friendship": {
+        "title": "友好リンク"
+      }
+    }
+  } %}
+{% else %}
+  {% set translations = {
+    "slogan": "🍥新一代大模型网关与AI资产管理系统",
+    "sections": {
+      "about": {
+        "title": "关于我们",
+        "links": {
+          "project": "关于项目",
+          "contact": "联系我们",
+          "features": "功能特性"
+        }
+      },
+      "docs": {
+        "title": "文档",
+        "links": {
+          "quickstart": "快速开始",
+          "installation": "安装指南",
+          "api": "API 文档"
+        }
+      },
+      "related": {
+        "title": "相关项目"
+      },
+      "friendship": {
+        "title": "友情链接"
+      }
+    }
+  } %}
+{% endif %}
 <footer class="neo-footer">
   <!-- 背景装饰元素 -->
   <div class="neo-footer-bg">
@@ -15,11 +100,7 @@
       <div class="logo-glow"></div>
       <h2>New API</h2>
       <p>
-        {% if is_en %}
-        🍥Next-Gen LLM Gateway & AI Asset Platform
-        {% else %}
-        🍥新一代大模型网关与AI资产管理系统
-        {% endif %}
+        {{ translations.slogan }}
       </p>
     </div>
 
@@ -27,32 +108,27 @@
     <div class="neo-footer-links">
       <!-- 关于我们 -->
       <div class="neo-footer-section">
-        <h3>{% if is_en %}About Us{% else %}关于我们{% endif %}</h3>
+        <h3>{{ translations.sections.about.title }}</h3>
         <ul>
-          <li><a href="{{ 'wiki/project-introduction/' | url }}"><span>{% if is_en %}About Project{% else %}关于项目{% endif
-                %}</span></a></li>
-          <li><a href="{{ 'support/community-interaction/' | url }}"><span>{% if is_en %}Contact Us{% else %}联系我们{%
-                endif %}</span></a></li>
-          <li><a href="{{ 'wiki/features-introduction/' | url }}"><span>{% if is_en %}Features{% else %}功能特性{% endif
-                %}</span></a></li>
+          <li><a href="{{ 'wiki/project-introduction/' | url }}"><span>{{ translations.sections.about.links.project }}</span></a></li>
+          <li><a href="{{ 'support/community-interaction/' | url }}"><span>{{ translations.sections.about.links.contact }}</span></a></li>
+          <li><a href="{{ 'wiki/features-introduction/' | url }}"><span>{{ translations.sections.about.links.features }}</span></a></li>
         </ul>
       </div>
 
       <!-- 文档 -->
       <div class="neo-footer-section">
-        <h3>{% if is_en %}Docs{% else %}文档{% endif %}</h3>
+        <h3>{{ translations.sections.docs.title }}</h3>
         <ul>
-          <li><a href="{{ 'getting-started/' | url }}"><span>{% if is_en %}Quick Start{% else %}快速开始{% endif
-                %}</span></a></li>
-          <li><a href="{{ 'installation/' | url }}"><span>{% if is_en %}Installation Guide{% else %}安装指南{% endif
-                %}</span></a></li>
-          <li><a href="{{ 'api/' | url }}"><span>{% if is_en %}API Docs{% else %}API 文档{% endif %}</span></a></li>
+          <li><a href="{{ 'getting-started/' | url }}"><span>{{ translations.sections.docs.links.quickstart }}</span></a></li>
+          <li><a href="{{ 'installation/' | url }}"><span>{{ translations.sections.docs.links.installation }}</span></a></li>
+          <li><a href="{{ 'api/' | url }}"><span>{{ translations.sections.docs.links.api }}</span></a></li>
         </ul>
       </div>
 
       <!-- 相关项目 -->
       <div class="neo-footer-section">
-        <h3>{% if is_en %}Related Projects{% else %}相关项目{% endif %}</h3>
+        <h3>{{ translations.sections.related.title }}</h3>
         <ul>
           <li><a href="https://github.com/songquanpeng/one-api" target="_blank"><span>One API</span></a></li>
           <li><a href="https://github.com/novicezk/midjourney-proxy" target="_blank"><span>Midjourney-Proxy</span></a>
@@ -64,7 +140,7 @@
 
       <!-- 友情链接 -->
       <div class="neo-footer-section">
-        <h3>{% if is_en %}Friendship Links{% else %}友情链接{% endif %}</h3>
+        <h3>{{ translations.sections.friendship.title }}</h3>
         <ul>
           <li><a href="https://github.com/coaidev/coai" target="_blank"><span>CoAI</span></a></li>
           <li><a href="https://github.com/Calcium-Ion/new-api-horizon" target="_blank"><span>new-api-horizon</span></a></li>

@@ -2,43 +2,91 @@
 This file was automatically generated - do not edit
 -#}
 {% extends "base.html" %}
-{% set is_en = (page is defined) and page and ("en/" in page.file.src_uri) %}
+{#- Load translations based on current language -#}
+{% if page and page.file and "en/" in page.file.src_uri %}
+  {% set translations = {
+    "announce": {
+      "follow": "Follow our latest updates on",
+      "github": "GitHub",
+      "or": "or join our",
+      "qq": "QQ",
+      "group": "group chat"
+    },
+    "site": {
+      "name": "New API - Next-Gen LLM Gateway & AI Asset Platform",
+      "description": "Unified management of multiple LLM APIs, supporting OpenAI, Anthropic, Google and more providers, with load balancing, billing management and other features"
+    },
+    "typewriter": [
+      "Build your AI foundation",
+      "LLM-powered Docs",
+      "Smart app backbone",
+      "Connect vast models",
+      "Streamline AI dev"
+    ]
+  } %}
+{% elif page and page.file and "ja/" in page.file.src_uri %}
+  {% set translations = {
+    "announce": {
+      "follow": "最新情報は",
+      "github": "GitHub",
+      "or": "または",
+      "qq": "QQ",
+      "group": "グループチャットにご参加ください"
+    },
+    "site": {
+      "name": "New API - 次世代LLMゲートウェイ & AI資産管理プラットフォーム",
+      "description": "複数のLLM APIを統合管理、OpenAI、Anthropic、Googleなど多くのプロバイダーをサポート、負荷分散、課金管理などの機能を提供"
+    },
+    "typewriter": [
+      "次世代AIアプリケーション基盤を構築",
+      "New API Docsは大規模モデルによって駆動されます",
+      "スマートアプリケーションの新しい基盤を構築",
+      "大量のモデルリソースに接続",
+      "AI開発プロセスを簡素化"
+    ]
+  } %}
+{% else %}
+  {% set translations = {
+    "announce": {
+      "follow": "在",
+      "github": "GitHub",
+      "or": "上关注我们的最新动态或加入我们的",
+      "qq": "QQ",
+      "group": "交流群"
+    },
+    "site": {
+      "name": "New API - 新一代大模型网关与AI资产管理系统",
+      "description": "统一管理多种大模型API，支持OpenAI、Anthropic、Google等多家服务商，提供负载均衡、计费管理等功能"
+    },
+    "typewriter": [
+      "构筑下一代 AI 应用基座",
+      "New API Docs 由大模型驱动",
+      "打造智能应用新基础",
+      "连接海量模型资源",
+      "简化 AI 开发流程"
+    ]
+  } %}
+{% endif %}
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ 'assets/stylesheets/custom.css' | url }}">
 {% endblock %}
 {% block announce %}
-{% if is_en %}
-Follow our latest updates on
+{{ translations.announce.follow }}
 <a href="https://github.com/QuantumNous/new-api" target="_blank">
   <span class="twemoji github">
     {% include ".icons/fontawesome/brands/github.svg" %}
   </span>
-  <strong>GitHub</strong>
+  <strong>{{ translations.announce.github }}</strong>
 </a>
-or join our
+{{ translations.announce.or }}
 <a href="https://qm.qq.com/q/Y79glR8raU" target="_blank">
   <span class="twemoji qq">
     {% include ".icons/fontawesome/brands/qq.svg" %}
   </span>
-  <strong>QQ</strong>
+  <strong>{{ translations.announce.qq }}</strong>
 </a>
-group chat
-{% else %}
-在 <a href="https://github.com/QuantumNous/new-api" target="_blank">
-  <span class="twemoji github">
-    {% include ".icons/fontawesome/brands/github.svg" %}
-  </span>
-  <strong>GitHub</strong>
-</a> 上关注我们的最新动态或加入我们的
-<a href="https://qm.qq.com/q/Y79glR8raU" target="_blank">
-  <span class="twemoji qq">
-    {% include ".icons/fontawesome/brands/qq.svg" %}
-  </span>
-  <strong>QQ</strong>
-</a>
-交流群
-{% endif %}
+{{ translations.announce.group }}
 {% endblock %}
 {% block scripts %}
 {{ super() }}
@@ -48,8 +96,8 @@ group chat
       "@context": "https://schema.org",
       "@type": "WebSite",
       "url": "https://github.com/QuantumNous/new-api",
-      "name": "New API - {% if is_en %}Next-Gen LLM Gateway & AI Asset Platform{% else %}新一代大模型网关与AI资产管理系统{% endif %}",
-      "description": "{% if is_en %}Unified management of multiple LLM APIs, supporting OpenAI, Anthropic, Google and more providers, with load balancing, billing management and other features{% else %}统一管理多种大模型API，支持OpenAI、Anthropic、Google等多家服务商，提供负载均衡、计费管理等功能{% endif %}",
+      "name": "{{ translations.site.name }}",
+      "description": "{{ translations.site.description }}",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -60,25 +108,7 @@ group chat
       }
     }
   </script>
-{% if is_en %}
 <script>
-  window.typewriterTexts = [
-    "Build your AI foundation",
-    "LLM-powered Docs",
-    "Smart app backbone",
-    "Connect vast models",
-    "Streamline AI dev"
-  ];
+  window.typewriterTexts = {{ translations.typewriter | tojson }};
 </script>
-{% else %}
-<script>
-  window.typewriterTexts = [
-    "构筑下一代 AI 应用基座",
-    "New API Docs 由大模型驱动",
-    "打造智能应用新基础",
-    "连接海量模型资源",
-    "简化 AI 开发流程"
-  ];
-</script>
-{% endif %}
 {% endblock %}
