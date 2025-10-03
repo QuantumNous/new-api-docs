@@ -165,11 +165,16 @@ def translate_file(source_file: Path):
     # 翻译到各个目标语言
     for lang_code, lang_info in LANGUAGES.items():
         try:
-            # 翻译内容
-            translated_content = translate_content(content, lang_code)
-            
             # 构建目标文件路径
             target_file = DOCS_DIR / lang_info['dir'] / rel_path
+            
+            # 检查翻译是否已存在
+            if target_file.exists():
+                logger.info(f"⏭️  跳过 {lang_info['native_name']}翻译（已存在）: {target_file}")
+                continue
+            
+            # 翻译内容
+            translated_content = translate_content(content, lang_code)
             
             # 确保目标目录存在
             target_file.parent.mkdir(parents=True, exist_ok=True)
