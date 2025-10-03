@@ -67,6 +67,9 @@ extra:
     - name: English
       link: /en/
       lang: en
+    - name: 日本語
+      link: /ja/
+      lang: ja
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/QuantumNous/new-api
@@ -312,6 +315,104 @@ plugins:
             "💰 定价": Pricing
             "📖 文档": Documentation
             "📝 关于": About
+        - locale: ja
+          name: 日本語
+          build: true
+          site_name: "New API"
+          nav_translations:
+            首页: ホーム
+            开始使用: "はじめに"
+            维基百科: Wiki
+            "📖 维基百科": Wiki
+            "📚 基本概念": "基本概念"
+            项目介绍: "プロジェクト紹介"
+            特性说明: "機能概要"
+            技术架构: "技術アーキテクチャ"
+            "📝 项目记录": "プロジェクト記録"
+            更新日志: 変更履歴
+            特别鸣谢: "スペシャルサンクス"
+            安装指南: "インストールガイド"
+            "🏠 安装指南": "インストールガイド"
+            "🔧 部署方式": "デプロイ方法"
+            "Docker 部署": "Dockerインストール"
+            "Docker Compose 部署": "Docker Composeインストール"
+            "宝塔面板部署": "BTパネルインストール"
+            集群部署: "クラスターデプロイ"
+            本地开发部署: "ローカル開発"
+            "⚙️ 配置与维护": "設定とメンテナンス"
+            系统更新: "システム更新"
+            环境变量配置: "環境変数"
+            "Docker Compose 配置文件": "Docker Compose設定"
+            接口文档: "APIリファレンス"
+            "🏠 接口文档": 概要
+            中继接口: "プロキシAPI"
+            "💬 聊天（Chat）": "チャットAPI"
+            "OpenAI 格式（Chat Completions）": "OpenAI Chat Completions"
+            "OpenAI 格式（Responses）": "OpenAI Responses"
+            "Anthropic 格式（Messages）": "Anthropic Chat Messages"
+            "Deepseek reasoning 格式（Reasoning Content）": "Deepseek Reasoning Chat"
+            "🆕 Google Gemini 格式（Generate Content）": "Google Gemini Chat"
+            "🔤 嵌入（Embeddings）": 埋め込み
+            "OpenAI 格式": "OpenAI"
+            "🔄 重排序（Rerank）": 再ランク付け
+            "Jina AI 格式": "Jina AI Rerank"
+            "Cohere 格式": "Cohere Rerank"
+            "Xinference 格式": "Xinference Rerank"
+            "⚡ 实时对话（Realtime）": リアルタイム
+            "🖼️ 图像（Image）": 画像
+            "OpenAI 格式（Image）": "OpenAI Image"
+            "Midjourney 格式（Midjourney Proxy/Midjourney Proxy Plus）": "Midjourney Proxy Image"
+            "🔊 音频（Audio）": オーディオ
+            "🎵 音乐（Music）": 音楽
+            Suno API 格式: "Suno Music"
+            "🎥 视频（Video）": 動画
+            "生成视频": "動画生成"
+            "查询视频": "動画クエリ"
+            查询接口: "クエリAPI"
+            令牌用量查询: "トークン使用量"
+            前端接口: "フロントエンドAPI"
+            敬请期待: "近日公開"
+            AI应用: "AIアプリケーション"
+            "🍒 Cherry Studio - 桌面 AI 客户端": "🍒 Cherry Studio - デスクトップAIクライアント"
+            "📦 LangBot - 即时通信机器人开发平台": "📦 LangBot - IMボット開発プラットフォーム"
+            "📖 FluentRead - 开源翻译插件": "📖 FluentRead - オープンソース翻訳プラグイン"
+            "💍 LunaTranslator - 开源GalGame翻译器": "💍 LunaTranslator - オープンソースGalGame翻訳機"
+            帮助支持: サポート
+            "🏠 帮助支持": "サポートホーム"
+            "🌐 社区交流": コミュニティ
+            "🐛 反馈问题": "フィードバックと問題"
+            "❓ 常见问题": FAQ
+            "☕ 请我们喝咖啡": "コーヒーをおごる"
+            "商务合作": "お問い合わせ"
+            "使用指南": ガイド
+            "🏠 首页": ホーム
+            "🎯 控制台": コンソール
+            "🎮 操练场": プレイグラウンド
+            "💬 聊天": チャット
+            "📊 数据看板": ダッシュボード
+            "🔑 API令牌": APIトークン
+            "📝 使用日志": 使用ログ
+            "🎨 绘图日志": 描画ログ
+            "📝 任务日志": タスクログ
+            "💰 钱包": ウォレット
+            "🔧 个人设置": プロフィール
+            "📦 渠道管理": チャネル管理
+            "🎫 兑换码管理": 引き換えコード管理
+            "🧑 用户管理": ユーザー管理
+            "🔧 系统设置": システム設定
+            "运营设置": 運営設定
+            "仪表盘设置": ダッシュボード設定
+            "聊天设置": チャット設定
+            "绘图设置": 描画設定
+            "支付设置": 支払い設定
+            "倍率设置": レート設定
+            "速率限制设置": レート制限設定
+            "模型相关设置": モデル設定
+            "系统设置": システム設定
+            "其他设置": その他の設定
+            "💰 定价": 価格
+            "📖 文档": ドキュメント
+            "📝 关于": について
 
 markdown_extensions:
   - abbr
