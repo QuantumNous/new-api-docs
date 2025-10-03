@@ -34,3 +34,5 @@ pyvenv.cfg
 .DS_Store
 
 .idea/
+
+site/

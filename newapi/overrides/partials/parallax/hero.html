@@ -3,11 +3,59 @@ This file was automatically generated - do not edit
 -#}
 {#- Load translations based on current language -#}
 {% if "en/" in page.file.src_uri %}
-  {% include "partials/parallax/locales/hero.en.html" %}
+  {% set translations = {
+    "subtitle": "Next-Gen LLM Gateway & AI Asset Platform",
+    "stats": {
+      "providers": "AI Providers",
+      "compatible": "OpenAI Compatible",
+      "availability": "Availability"
+    },
+    "features": {
+      "deployment": "One-click deployment, rapid integration",
+      "pricing": "Flexible pricing, cost-effective",
+      "security": "Secure & highly available"
+    },
+    "buttons": {
+      "get_started": "Get Started",
+      "api_docs": "API Docs"
+    }
+  } %}
 {% elif "ja/" in page.file.src_uri %}
-  {% include "partials/parallax/locales/hero.ja.html" %}
+  {% set translations = {
+    "subtitle": "次世代LLMゲートウェイ & AI資産管理プラットフォーム",
+    "stats": {
+      "providers": "AIプロバイダー",
+      "compatible": "OpenAI互換",
+      "availability": "可用性"
+    },
+    "features": {
+      "deployment": "ワンクリックデプロイ、迅速な統合",
+      "pricing": "柔軟な価格設定、コスト効率",
+      "security": "安全で高可用性"
+    },
+    "buttons": {
+      "get_started": "はじめに",
+      "api_docs": "APIドキュメント"
+    }
+  } %}
 {% else %}
-  {% include "partials/parallax/locales/hero.zh.html" %}
+  {% set translations = {
+    "subtitle": "新一代大模型网关与 AI 资产管理系统",
+    "stats": {
+      "providers": "AI 服务商",
+      "compatible": "OpenAI 兼容",
+      "availability": "服务可用性"
+    },
+    "features": {
+      "deployment": "一键部署，快速接入",
+      "pricing": "灵活计费，成本可控",
+      "security": "安全稳定，高可用性"
+    },
+    "buttons": {
+      "get_started": "开始使用",
+      "api_docs": "接口文档"
+    }
+  } %}
 {% endif %}
 
 <section class="mdx-parallax__group" data-md-color-scheme="slate">
