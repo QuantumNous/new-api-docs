@@ -9,6 +9,7 @@ import sys
 import logging
 import time
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from openai import OpenAI
 
 # 配置日志
@@ -42,6 +43,9 @@ OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
 MAX_RETRIES = int(os.environ.get('MAX_RETRIES', '3'))  # 最大重试次数
 RETRY_DELAY = int(os.environ.get('RETRY_DELAY', '2'))  # 初始重试延迟（秒）
 RETRY_BACKOFF = float(os.environ.get('RETRY_BACKOFF', '2.0'))  # 退避倍数
+
+# 并发配置
+MAX_WORKERS = int(os.environ.get('MAX_WORKERS', '3'))  # 最大并发数
 
 if not OPENAI_API_KEY:
     logger.error("错误: 未设置 OPENAI_API_KEY 环境变量")
@@ -143,24 +147,28 @@ def translate_content(content: str, target_language: str) -> str:
                 raise last_error
 
 
-def translate_file(source_file: Path):
+def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0):
     """翻译单个文件"""
-    logger.info(f"处理文件: {source_file}")
+    prefix = f"[{file_index}/{total_files}] " if total_files > 0 else ""
+    logger.info(f"{prefix}处理文件: {source_file}")
     
     # 读取源文件
     try:
         with open(source_file, 'r', encoding='utf-8') as f:
             content = f.read()
     except Exception as e:
-        logger.error(f"读取文件失败 {source_file}: {str(e)}")
-        return
+        logger.error(f"{prefix}读取文件失败 {source_file}: {str(e)}")
+        return False
     
     # 计算相对路径
     try:
         rel_path = source_file.relative_to(DOCS_DIR)
     except ValueError:
-        logger.error(f"文件不在 docs 目录中: {source_file}")
-        return
+        logger.error(f"{prefix}文件不在 docs 目录中: {source_file}")
+        return False
+    
+    translated_count = 0
+    skipped_count = 0
     
     # 翻译到各个目标语言
     for lang_code, lang_info in LANGUAGES.items():
@@ -170,7 +178,8 @@ def translate_file(source_file: Path):
             
             # 检查翻译是否已存在
             if target_file.exists():
-                logger.info(f"⏭️  跳过 {lang_info['native_name']}翻译（已存在）: {target_file}")
+                logger.info(f"{prefix}⏭️  跳过 {lang_info['native_name']}翻译（已存在）")
+                skipped_count += 1
                 continue
             
             # 翻译内容
@@ -183,11 +192,17 @@ def translate_file(source_file: Path):
             with open(target_file, 'w', encoding='utf-8') as f:
                 f.write(translated_content)
             
-            logger.info(f"✓ 已保存 {lang_info['native_name']}翻译: {target_file}")
+            logger.info(f"{prefix}✓ 已保存 {lang_info['native_name']}翻译")
+            translated_count += 1
         
         except Exception as e:
-            logger.error(f"处理 {lang_info['native_name']}翻译失败: {str(e)}")
+            logger.error(f"{prefix}处理 {lang_info['native_name']}翻译失败: {str(e)}")
             continue
+    
+    if translated_count > 0:
+        logger.info(f"{prefix}✅ 完成翻译 {translated_count} 个语言")
+    
+    return translated_count > 0 or skipped_count > 0
 
 
 def main():
@@ -225,14 +240,56 @@ def main():
     logger.info(f"API 地址: {OPENAI_BASE_URL}")
     logger.info(f"目标语言: {', '.join([lang['native_name'] for lang in LANGUAGES.values()])}")
     logger.info(f"重试配置: 最大 {MAX_RETRIES} 次, 初始延迟 {RETRY_DELAY}s, 退避倍数 {RETRY_BACKOFF}x")
+    logger.info(f"并发配置: 最大 {MAX_WORKERS} 个并发任务")
     logger.info("-" * 60)
     
-    # 翻译每个文件
-    for idx, file_path in enumerate(files_to_translate, 1):
-        logger.info(f"\n[{idx}/{len(files_to_translate)}] 开始翻译")
-        translate_file(file_path)
-        logger.info("-" * 60)
+    # 使用线程池并发翻译
+    total_files = len(files_to_translate)
+    success_count = 0
+    fail_count = 0
     
+    if MAX_WORKERS == 1:
+        # 单线程模式
+        logger.info("🔄 使用单线程模式\n")
+        for idx, file_path in enumerate(files_to_translate, 1):
+            result = translate_file(file_path, idx, total_files)
+            if result:
+                success_count += 1
+            else:
+                fail_count += 1
+            logger.info("-" * 60)
+    else:
+        # 并发模式
+        logger.info(f"🚀 使用并发模式（{MAX_WORKERS} 个工作线程）\n")
+        
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            # 提交所有任务
+            future_to_file = {
+                executor.submit(translate_file, file_path, idx, total_files): file_path
+                for idx, file_path in enumerate(files_to_translate, 1)
+            }
+            
+            # 等待任务完成
+            for future in as_completed(future_to_file):
+                file_path = future_to_file[future]
+                try:
+                    result = future.result()
+                    if result:
+                        success_count += 1
+                    else:
+                        fail_count += 1
+                except Exception as e:
+                    logger.error(f"❌ 文件翻译异常 {file_path}: {str(e)}")
+                    fail_count += 1
+                
+                logger.info("-" * 60)
+    
+    # 输出统计信息
+    logger.info(f"\n📊 翻译统计:")
+    logger.info(f"   总文件数: {total_files}")
+    logger.info(f"   成功: {success_count}")
+    if fail_count > 0:
+        logger.info(f"   失败: {fail_count}")
     logger.info("\n✅ 所有翻译任务完成！")
 
 
