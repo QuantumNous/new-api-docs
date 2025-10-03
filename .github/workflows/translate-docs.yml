@@ -10,11 +10,15 @@ on:
       - '!docs/ja/**'
   workflow_dispatch:
     inputs:
-      force_translate:
-        description: '强制翻译所有文档'
-        required: false
-        type: boolean
-        default: false
+      mode:
+        description: '翻译模式'
+        required: true
+        type: choice
+        default: 'changed'
+        options:
+          - changed
+          - force_all
+          - missing_only
 
 permissions:
   contents: write
@@ -40,26 +44,48 @@ jobs:
           pip install openai==1.54.3
           pip install pyyaml
       
-      - name: Get changed files
+      - name: Get files to translate
         id: changed-files
         run: |
-          if [ "${{ github.event.inputs.force_translate }}" = "true" ]; then
-            # 强制翻译模式：获取所有文档文件
-            echo "获取所有文档文件..."
+          MODE="${{ github.event.inputs.mode }}"
+          
+          # 如果是 push 触发，默认为 changed 模式
+          if [ -z "$MODE" ]; then
+            MODE="changed"
+          fi
+          
+          echo "翻译模式: $MODE"
+          
+          if [ "$MODE" = "force_all" ]; then
+            # 强制翻译所有文档
+            echo "📚 获取所有文档文件..."
             CHANGED_FILES=$(find docs -name "*.md" -type f ! -path "docs/en/*" ! -path "docs/ja/*" | tr '\n' ' ')
+            
+          elif [ "$MODE" = "missing_only" ]; then
+            # 只翻译缺失的文档
+            echo "🔍 检测缺失的翻译文件..."
+            python docs_assistant/find_missing.py
+            if [ -f /tmp/missing_files.txt ]; then
+              CHANGED_FILES=$(cat /tmp/missing_files.txt | tr '\n' ' ')
+            else
+              CHANGED_FILES=""
+            fi
+            
           else
-            # 正常模式：只获取变更的文件
-            echo "获取变更的文件..."
+            # 正常模式：只翻译变更的文件
+            echo "📝 获取变更的文件..."
             CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^docs/.*\.md$' | grep -v '^docs/en/' | grep -v '^docs/ja/' | tr '\n' ' ')
           fi
           
-          echo "变更的文件: $CHANGED_FILES"
+          echo "待翻译文件: $CHANGED_FILES"
           echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
           
           if [ -z "$CHANGED_FILES" ]; then
-            echo "没有需要翻译的文档文件"
+            echo "✅ 没有需要翻译的文档文件"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
+            FILE_COUNT=$(echo "$CHANGED_FILES" | wc -w | tr -d ' ')
+            echo "📊 共 $FILE_COUNT 个文件需要翻译"
             echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
       
