@@ -74,7 +74,7 @@ def get_translation_prompt(target_language: str, content: str) -> str:
 7. 保持原文的语气和风格
 8. 对于特殊的专有名词（如产品名 "New API"、"Cherry Studio" 等），保持不变
 
-## 核心概念 (Core Concepts)
+词汇表：
 
 | 中文 | English | 说明 | Description |
 |------|---------|------|-------------|
