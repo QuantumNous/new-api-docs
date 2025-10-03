@@ -115,7 +115,7 @@ def translate_content(content: str, target_language: str) -> str:
                     }
                 ],
                 temperature=0.3,  # 较低的温度以获得更一致的翻译
-                timeout=60.0,  # 60秒超时
+                timeout=300.0,  # 300秒超时
             )
             
             translated_content = response.choices[0].message.content.strip()
