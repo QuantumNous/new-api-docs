@@ -1,6 +1,15 @@
 {#-
 This file was automatically generated - do not edit
 -#}
+{#- Load translations based on current language -#}
+{% if "en/" in page.file.src_uri %}
+  {% include "partials/parallax/locales/hero.en.html" %}
+{% elif "ja/" in page.file.src_uri %}
+  {% include "partials/parallax/locales/hero.ja.html" %}
+{% else %}
+  {% include "partials/parallax/locales/hero.zh.html" %}
+{% endif %}
+
 <section class="mdx-parallax__group" data-md-color-scheme="slate">
   {% for layer in [
   { "depth": 8, "position": "70%", "image": "1-quantumnous" },
@@ -31,29 +40,25 @@ This file was automatically generated - do not edit
               <span id="typewriter"></span><span class="cursor"></span>
             </h1>
             <span class="tx-badge">
-              {% if "en/" in page.file.src_uri %}
-              Next-Gen LLM Gateway & AI Asset Platform
-              {% else %}
-              新一代大模型网关与 AI 资产管理系统
-              {% endif %}
+              {{ translations.subtitle }}
             </span>
             <div class="tx-hero__stats">
               <div class="tx-stat">
                 <span class="tx-stat__number">30+</span>
                 <span class="tx-stat__label">
-                  {% if "en/" in page.file.src_uri %}AI Providers{% else %}AI 服务商{% endif %}
+                  {{ translations.stats.providers }}
                 </span>
               </div>
               <div class="tx-stat">
                 <span class="tx-stat__number">100%</span>
                 <span class="tx-stat__label">
-                  {% if "en/" in page.file.src_uri %}OpenAI Compatible{% else %}OpenAI 兼容{% endif %}
+                  {{ translations.stats.compatible }}
                 </span>
               </div>
               <div class="tx-stat">
                 <span class="tx-stat__number">99.9%</span>
                 <span class="tx-stat__label">
-                  {% if "en/" in page.file.src_uri %}Availability{% else %}服务可用性{% endif %}
+                  {{ translations.stats.availability }}
                 </span>
               </div>
             </div>
@@ -61,28 +66,27 @@ This file was automatically generated - do not edit
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">🚀</span>
                 <span class="tx-hero__meta-text">
-                  {% if "en/" in page.file.src_uri %}One-click deployment, rapid integration{% else %}一键部署，快速接入{% endif
-                  %}
+                  {{ translations.features.deployment }}
                 </span>
               </div>
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">💰</span>
                 <span class="tx-hero__meta-text">
-                  {% if "en/" in page.file.src_uri %}Flexible pricing, cost-effective{% else %}灵活计费，成本可控{% endif %}
+                  {{ translations.features.pricing }}
                 </span>
               </div>
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">🛡️</span>
                 <span class="tx-hero__meta-text">
-                  {% if "en/" in page.file.src_uri %}Secure & highly available{% else %}安全稳定，高可用性{% endif %}
+                  {{ translations.features.security }}
                 </span>
               </div>
             </div>
             <a href="getting-started/" class="md-button">
-              {% if "en/" in page.file.src_uri %}Get Started{% else %}开始使用{% endif %}
+              {{ translations.buttons.get_started }}
             </a>
             <a href="api/" class="md-button md-button--secondary">
-              {% if "en/" in page.file.src_uri %}API Docs{% else %}接口文档{% endif %}
+              {{ translations.buttons.api_docs }}
             </a>
             <a href="#" class="mdx-hero__attribution" tabindex="-1">
               <strong>© QuantumNous</strong>
