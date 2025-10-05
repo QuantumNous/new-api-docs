@@ -4,6 +4,7 @@ This file was automatically generated - do not edit
 {% extends "base.html" %}
 {#- Load translations based on current language -#}
 {% if page and page.file and "en/" in page.file.src_uri %}
+  {% set community_url = "/en/support/community-interaction/" %}
   {% set translations = {
     "announce": {
       "follow": "Follow our latest updates on",
@@ -25,6 +26,7 @@ This file was automatically generated - do not edit
     ]
   } %}
 {% elif page and page.file and "ja/" in page.file.src_uri %}
+  {% set community_url = "/ja/support/community-interaction/" %}
   {% set translations = {
     "announce": {
       "follow": "最新情報は",
@@ -46,6 +48,7 @@ This file was automatically generated - do not edit
     ]
   } %}
 {% else %}
+  {% set community_url = "/support/community-interaction/" %}
   {% set translations = {
     "announce": {
       "follow": "在",
@@ -80,7 +83,7 @@ This file was automatically generated - do not edit
   <strong>{{ translations.announce.github }}</strong>
 </a>
 {{ translations.announce.or }}
-<a href="https://qm.qq.com/q/Y79glR8raU" target="_blank">
+<a href="{{ community_url | url }}">
   <span class="twemoji qq">
     {% include ".icons/fontawesome/brands/qq.svg" %}
   </span>
