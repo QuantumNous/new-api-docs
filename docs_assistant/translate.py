@@ -214,7 +214,7 @@ def main():
     files_to_translate = []
     
     for file_arg in sys.argv[1:]:
-        file_path = Path(file_arg)
+        file_path = Path(file_arg).resolve()  # 转换为绝对路径
         
         # 跳过英文和日文目录
         if '/en/' in str(file_path) or '/ja/' in str(file_path):
