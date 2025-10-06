@@ -150,7 +150,7 @@ def translate_content(content: str, target_language: str) -> str:
                 raise last_error
 
 
-def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0):
+def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0, manual_translations: set = None):
     """翻译单个文件"""
     prefix = f"[{file_index}/{total_files}] " if total_files > 0 else ""
     logger.info(f"{prefix}处理文件: {source_file}")
@@ -170,6 +170,19 @@ def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0)
         logger.error(f"{prefix}文件不在 docs 目录中: {source_file}")
         return False
     
+    # 检查是否有手动翻译
+    if manual_translations is None:
+        manual_translations = set()
+    
+    # 检查当前文件是否有对应的手动翻译
+    has_manual_translation = False
+    for lang_code, lang_info in LANGUAGES.items():
+        target_file = DOCS_DIR / lang_info['dir'] / rel_path
+        if str(target_file) in manual_translations:
+            has_manual_translation = True
+            logger.info(f"{prefix}📝 检测到手动翻译: {target_file}")
+            break
+    
     translated_count = 0
     skipped_count = 0
     
@@ -178,6 +191,12 @@ def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0)
         try:
             # 构建目标文件路径
             target_file = DOCS_DIR / lang_info['dir'] / rel_path
+            
+            # 检查是否有手动翻译
+            if str(target_file) in manual_translations:
+                logger.info(f"{prefix}⏭️  跳过 {lang_info['native_name']}翻译（检测到手动翻译）")
+                skipped_count += 1
+                continue
             
             # 检查翻译是否已存在
             if target_file.exists() and not FORCE_TRANSLATE:
@@ -210,6 +229,33 @@ def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0)
     return translated_count > 0 or skipped_count > 0
 
 
+def detect_manual_translations():
+    """检测手动翻译的文件"""
+    manual_translations = set()
+    
+    try:
+        # 获取当前提交中修改的文件列表
+        import subprocess
+        result = subprocess.run(
+            ['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'],
+            capture_output=True,
+            text=True,
+            cwd=Path(__file__).parent.parent
+        )
+        
+        if result.returncode == 0:
+            changed_files = result.stdout.strip().split('\n')
+            for file_path in changed_files:
+                if file_path and ('/en/' in file_path or '/ja/' in file_path):
+                    manual_translations.add(file_path)
+                    logger.info(f"检测到手动翻译文件: {file_path}")
+        
+    except Exception as e:
+        logger.warning(f"检测手动翻译时出错: {str(e)}")
+    
+    return manual_translations
+
+
 def main():
     """主函数"""
     if len(sys.argv) < 2:
@@ -240,6 +286,9 @@ def main():
         logger.info("没有需要翻译的文件")
         return
     
+    # 检测手动翻译
+    manual_translations = detect_manual_translations()
+    
     logger.info(f"共有 {len(files_to_translate)} 个文件需要翻译")
     logger.info(f"使用模型: {OPENAI_MODEL}")
     logger.info(f"API 地址: {OPENAI_BASE_URL}")
@@ -247,6 +296,7 @@ def main():
     logger.info(f"重试配置: 最大 {MAX_RETRIES} 次, 初始延迟 {RETRY_DELAY}s, 退避倍数 {RETRY_BACKOFF}x")
     logger.info(f"并发配置: 最大 {MAX_WORKERS} 个并发任务")
     logger.info(f"强制翻译: {'是' if FORCE_TRANSLATE else '否'}")
+    logger.info(f"检测到 {len(manual_translations)} 个手动翻译文件")
     logger.info("-" * 60)
     
     # 使用线程池并发翻译
@@ -258,7 +308,7 @@ def main():
         # 单线程模式
         logger.info("🔄 使用单线程模式\n")
         for idx, file_path in enumerate(files_to_translate, 1):
-            result = translate_file(file_path, idx, total_files)
+            result = translate_file(file_path, idx, total_files, manual_translations)
             if result:
                 success_count += 1
             else:
@@ -271,7 +321,7 @@ def main():
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             # 提交所有任务
             future_to_file = {
-                executor.submit(translate_file, file_path, idx, total_files): file_path
+                executor.submit(translate_file, file_path, idx, total_files, manual_translations): file_path
                 for idx, file_path in enumerate(files_to_translate, 1)
             }
             

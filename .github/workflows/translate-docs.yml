@@ -55,6 +55,15 @@ jobs:
           
           echo "翻译模式: $MODE"
           
+          # 检测手动翻译文件
+          echo "🔍 检测手动翻译文件..."
+          MANUAL_TRANSLATIONS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^docs/(en|ja)/.*\.md$' | tr '\n' ' ')
+          if [ -n "$MANUAL_TRANSLATIONS" ]; then
+            echo "📝 检测到手动翻译文件: $MANUAL_TRANSLATIONS"
+          else
+            echo "📝 未检测到手动翻译文件"
+          fi
+          
           if [ "$MODE" = "force_all" ]; then
             # 强制翻译所有文档
             echo "📚 获取所有文档文件..."
@@ -78,6 +87,7 @@ jobs:
           
           echo "待翻译文件: $CHANGED_FILES"
           echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "manual_translations=$MANUAL_TRANSLATIONS" >> $GITHUB_OUTPUT
           
           if [ -z "$CHANGED_FILES" ]; then
             echo "✅ 没有需要翻译的文档文件"
@@ -100,6 +110,7 @@ jobs:
           MAX_WORKERS: ${{ secrets.MAX_WORKERS || '10' }}
           FORCE_TRANSLATE: ${{ github.event_name == 'push' && 'true' || 'false' }}
         run: |
+          echo "手动翻译文件: ${{ steps.changed-files.outputs.manual_translations }}"
           python docs_assistant/translate.py ${{ steps.changed-files.outputs.files }}
       
       - name: Create Pull Request
