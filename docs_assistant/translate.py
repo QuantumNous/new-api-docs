@@ -47,6 +47,9 @@ RETRY_BACKOFF = float(os.environ.get('RETRY_BACKOFF', '2.0'))  # 退避倍数
 # 并发配置
 MAX_WORKERS = int(os.environ.get('MAX_WORKERS', '3'))  # 最大并发数
 
+# 强制翻译配置
+FORCE_TRANSLATE = os.environ.get('FORCE_TRANSLATE', 'false').lower() == 'true'  # 是否强制重新翻译已存在的文件
+
 if not OPENAI_API_KEY:
     logger.error("错误: 未设置 OPENAI_API_KEY 环境变量")
     sys.exit(1)
@@ -177,10 +180,12 @@ def translate_file(source_file: Path, file_index: int = 0, total_files: int = 0)
             target_file = DOCS_DIR / lang_info['dir'] / rel_path
             
             # 检查翻译是否已存在
-            if target_file.exists():
+            if target_file.exists() and not FORCE_TRANSLATE:
                 logger.info(f"{prefix}⏭️  跳过 {lang_info['native_name']}翻译（已存在）")
                 skipped_count += 1
                 continue
+            elif target_file.exists() and FORCE_TRANSLATE:
+                logger.info(f"{prefix}🔄 强制重新翻译 {lang_info['native_name']}（文件已存在）")
             
             # 翻译内容
             translated_content = translate_content(content, lang_code)
@@ -241,6 +246,7 @@ def main():
     logger.info(f"目标语言: {', '.join([lang['native_name'] for lang in LANGUAGES.values()])}")
     logger.info(f"重试配置: 最大 {MAX_RETRIES} 次, 初始延迟 {RETRY_DELAY}s, 退避倍数 {RETRY_BACKOFF}x")
     logger.info(f"并发配置: 最大 {MAX_WORKERS} 个并发任务")
+    logger.info(f"强制翻译: {'是' if FORCE_TRANSLATE else '否'}")
     logger.info("-" * 60)
     
     # 使用线程池并发翻译

@@ -98,6 +98,7 @@ jobs:
           RETRY_DELAY: ${{ secrets.RETRY_DELAY || '2' }}
           RETRY_BACKOFF: ${{ secrets.RETRY_BACKOFF || '2.0' }}
           MAX_WORKERS: ${{ secrets.MAX_WORKERS || '10' }}
+          FORCE_TRANSLATE: ${{ github.event_name == 'push' && 'true' || 'false' }}
         run: |
           python docs_assistant/translate.py ${{ steps.changed-files.outputs.files }}
       

@@ -9,7 +9,7 @@
 
 </div>
 
-New API 是一个新一代大模型网关与 AI 资产管理系统，基于 [One API](https://github.com/songquanpeng/one-api) 进行二次开发。该项目旨在提供一个统一的接口来管理和使用各种 AI 模型服务，包括但不限于 OpenAI、Anthropic、Midjourney 等。
+New API 是一个新一代大模型网关与 AI 资产管理系统，基于 [One API](https://github.com/songquanpeng/one-api) 进行二次开发。该项目旨在提供一个统一的接口来管理和使用各种 AI 模型服务，包括但不限于 OpenAI、Anthropic、Gemini和Midjourney 等。
 
 ## 🤝 我们信任的合作伙伴
 
