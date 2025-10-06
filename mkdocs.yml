@@ -73,6 +73,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/QuantumNous/new-api
+    - icon: fontawesome/brands/git-alt
+      link: https://gitee.com/QuantumNous/new-api
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/r/calciumion/new-api
   analytics:
