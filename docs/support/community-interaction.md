@@ -43,7 +43,7 @@
     </div>
 
     <div style="margin-bottom: 20px; padding: 15px; background: var(--md-code-bg-color); border-radius: 4px;">
-        <p style="font-weight: 600; margin-bottom: 10px;">2. 群里可以发布账号求购信息吗？</p>
+        <p style="font-weight: 600; margin-bottom: 10px;">2. 群里可以发布账号或API产品求购信息吗？</p>
         <label style="display: block; margin: 8px 0; cursor: pointer;">
             <input type="radio" name="q2" value="true" style="margin-right: 8px;">
             <span>可以</span>
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 错误提示信息
     const errorMessages = {
         q1: '请再次阅读项目介绍，New API 是一个开源的 AI 接口管理与分发系统。',
-        q2: '根据群规则第2条：群聊禁止发布任何账号出售、求购相关信息。',
+        q2: '根据群规则第2条：群聊禁止发布任何账号或API产品出售、求购相关信息。',
         q3: '根据群规则第4条：New API 不存在收费版本，完全免费开源。',
         q4: '根据群规则第1条：本群管理和群主没有任何义务为您提供任何技术支持，如有问题请提交 issue。',
         q5: '根据群规则第3条：本群不出售任何 API 产品，请勿听信购买任何人的 API 产品（包括管理员的）。'
