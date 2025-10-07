@@ -930,10 +930,12 @@
     }
 
     .tx-architecture__features {
+        display: none;
         gap: 0.4rem;
     }
 
     .tx-architecture__providers {
+        display: none;
         gap: 0.5rem;
     }
 }
@@ -945,8 +947,12 @@
         gap: 0.5rem;
     }
 
+    .tx-hero__meta {
+        margin: 0;
+    }
+
     .tx-architecture__flow-node {
-        padding: 0.5rem 1rem;
+        padding: 0;
         max-width: 200px;
     }
 
@@ -964,11 +970,13 @@
     }
 
     .tx-architecture__features {
-        gap: 0.35rem;
+        display: none;
+        gap: 0;
         padding: 0.3rem 0;
     }
 
     .tx-architecture__feature {
+        display: none;
         padding: 0.3rem 0.6rem;
         font-size: 0.6rem;
     }
