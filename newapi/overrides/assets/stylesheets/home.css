@@ -910,6 +910,7 @@
 
 @media screen and (max-width: 768px) {
     .tx-architecture {
+        display: none;
         padding: 0.8rem;
         margin: 0.8rem auto 0.6rem;
         gap: 0.6rem;
@@ -942,6 +943,7 @@
 
 @media screen and (max-width: 480px) {
     .tx-architecture {
+        display: none;
         margin: 0.6rem auto 0.4rem;
         padding: 0.6rem;
         gap: 0.5rem;
