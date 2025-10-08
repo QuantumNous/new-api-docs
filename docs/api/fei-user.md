@@ -252,6 +252,7 @@ const response = await fetch('/api/user/logout', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -299,6 +300,7 @@ const response = await fetch('/api/user/self/groups', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -360,6 +362,7 @@ const response = await fetch('/api/user/self', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -448,6 +451,7 @@ const response = await fetch('/api/user/models', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -497,6 +501,7 @@ const response = await fetch('/api/user/self', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     display_name: "New Display Name",  
@@ -514,6 +519,7 @@ const response = await fetch('/api/user/self', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     sidebar_modules: JSON.stringify({  
@@ -566,6 +572,7 @@ const response = await fetch('/api/user/self', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -609,6 +616,7 @@ const response = await fetch('/api/user/token', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -653,6 +661,7 @@ const response = await fetch('/api/user/aff', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -697,6 +706,7 @@ const response = await fetch('/api/user/topup', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     key: "REDEEM123456"  
@@ -745,6 +755,7 @@ const response = await fetch('/api/user/pay', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     amount: 10000,  
@@ -808,6 +819,7 @@ const response = await fetch('/api/user/amount', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     amount: 10000,  
@@ -858,6 +870,7 @@ const response = await fetch('/api/user/aff_transfer', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     quota: 50000  
@@ -904,6 +917,7 @@ const response = await fetch('/api/user/setting', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     theme: "dark",  
@@ -960,6 +974,7 @@ const response = await fetch('/api/user/?p=1&page_size=20', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1027,6 +1042,7 @@ const response = await fetch('/api/user/search?keyword=test&group=default&p=1&pa
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1089,6 +1105,7 @@ const response = await fetch('/api/user/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1146,7 +1163,8 @@ const response = await fetch('/api/user/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token' 
+    'New-Api-User': 'Bearer your_user_id' 
   },  
   body: JSON.stringify({  
     username: "newuser",  
@@ -1199,6 +1217,7 @@ const response = await fetch('/api/user/manage', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -1253,6 +1272,7 @@ const response = await fetch('/api/user/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -1312,6 +1332,7 @@ const response = await fetch('/api/user/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();

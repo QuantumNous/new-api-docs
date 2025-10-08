@@ -213,6 +213,7 @@ const response = await fetch('/api/pricing', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_token' // 可选，登录用户可获得更详细信息
+    'New-Api-User': 'Bearer your_user_id' // 可选
   }  
 });  
 const data = await response.json();
@@ -311,6 +312,7 @@ const response = await fetch('/api/models', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();

@@ -19,6 +19,7 @@ const response = await fetch('/api/models', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();

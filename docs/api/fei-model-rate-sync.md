@@ -26,6 +26,7 @@ const response = await fetch('/api/ratio_sync/channels', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -93,6 +94,7 @@ const response = await fetch('/api/ratio_sync/fetch', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     channel_ids: [1, 2, -100],  
@@ -110,6 +112,7 @@ const response = await fetch('/api/ratio_sync/fetch', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token'  
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     upstreams: [  

@@ -25,6 +25,7 @@ const response = await fetch('/api/group/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token'  
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
