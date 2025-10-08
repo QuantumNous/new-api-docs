@@ -24,7 +24,7 @@ const response = await fetch('/api/data/self?start_timestamp=1640908800&end_time
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -100,7 +100,7 @@ const response = await fetch('/api/data/?start_timestamp=1640908800&end_timestam
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  

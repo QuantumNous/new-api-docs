@@ -79,7 +79,7 @@ const response = await fetch('/api/log/self/stat?type=2&start_timestamp=16409088
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -136,7 +136,7 @@ const response = await fetch('/api/log/self?p=1&page_size=20&type=2&start_timest
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -199,7 +199,7 @@ const response = await fetch('/api/log/self/search?keyword=gpt-4', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -254,7 +254,7 @@ const response = await fetch('/api/log/?p=1&page_size=20&type=2&start_timestamp=
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -335,7 +335,7 @@ const response = await fetch('/api/log/?target_timestamp=1640908800', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -381,7 +381,7 @@ const response = await fetch('/api/log/stat?type=2&start_timestamp=1640908800&en
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token' 
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id' 
   }  
 });  
@@ -433,7 +433,7 @@ const response = await fetch('/api/log/search?keyword=error', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  

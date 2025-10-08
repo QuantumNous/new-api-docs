@@ -25,7 +25,7 @@ const response = await fetch('/api/redemption/?p=1&page_size=20', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -92,7 +92,7 @@ const response = await fetch('/api/redemption/search?keyword=新年&p=1&page_siz
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -152,7 +152,7 @@ const response = await fetch('/api/redemption/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -208,7 +208,7 @@ const response = await fetch('/api/redemption/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
@@ -267,7 +267,7 @@ const response = await fetch('/api/redemption/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
@@ -287,7 +287,7 @@ const response = await fetch('/api/redemption/?status_only=true', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
@@ -347,7 +347,7 @@ const response = await fetch('/api/redemption/invalid', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
@@ -393,7 +393,7 @@ const response = await fetch('/api/redemption/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
     'New-Api-User': 'Bearer your_user_id'
   }  
 });  
