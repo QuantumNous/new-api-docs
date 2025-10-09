@@ -5,7 +5,7 @@
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    The core user management system implements a four-level permission structure (Public/User/Admin/Root) and complete user lifecycle management. It includes features such as registration/login, personal profile, Token management, top-up/payment, and an affiliate system. It supports 2FA, email verification, and various OAuth login methods.
+    The core user management system implements a four-level permission structure (Public/User/Administrator/Root) and complete user lifecycle management. It includes features like registration/login, personal profile, Token management, top-up/payment, and an affiliate system. It supports 2FA, email verification, and multiple OAuth login methods.
 
 ## Account Registration/Login
 
@@ -17,7 +17,7 @@
 - **HTTP Method**: POST
 - **Path**: `/api/user/register`
 - **Authentication Requirement**: Public
-- **Feature Summary**: Creates a new user account, supporting email verification and affiliate code functionality
+- **Function Description**: Creates a new user account, supporting email verification and referral code functionality.
 
 💡 Request Example:
 
@@ -43,7 +43,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "用户注册成功"  
+  "message": "User registration successful"  
 }
 ```
 
@@ -52,7 +52,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "管理员关闭了新用户注册"  
+  "message": "Administrator has disabled new user registration"  
 }
 ```
 
@@ -60,9 +60,9 @@ const data = await response.json();
 
 - `username` (String): Username, required
 - `password` (String): Password, required
-- `email` (String): Email address, required when email verification is enabled 
+- `email` (String): Email address, required when email verification is enabled
 - `verification_code` (String): Email verification code, required when email verification is enabled
-- `aff_code` (String): Affiliate code, optional
+- `aff_code` (String): Referral code, optional
 
 #### User Login
 
@@ -70,7 +70,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/user/login`
 - **Authentication Requirement**: Public
-- **Feature Summary**: User account login, supporting Two-Factor Authentication (2FA)
+- **Function Description**: User account login, supporting Two-Factor Authentication (2FA).
 
 💡 Request Example:
 
@@ -93,7 +93,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "登录成功",  
+  "message": "Login successful",  
   "data": {  
     "token": "user_access_token",  
     "user": {  
@@ -111,7 +111,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "请输入两步验证码",  
+  "message": "Please enter the two-factor verification code",  
   "data": {  
     "require_2fa": true  
   }  
@@ -123,7 +123,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "管理员关闭了密码登录"  
+  "message": "Administrator has disabled password login"  
 }
 ```
 
@@ -131,7 +131,7 @@ const data = await response.json();
 
 - `username` (String): Username, required
 - `password` (String): Password, required
-- `require_2fa` (Boolean): Whether Two-Factor Authentication is required 
+- `require_2fa` (Boolean): Whether two-factor authentication is required
 
 #### Epay Payment Callback
 
@@ -139,13 +139,13 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/epay/notify`
 - **Authentication Requirement**: Public
-- **Feature Summary**: Handles payment callback notifications from the Epay system
+- **Function Description**: Handles payment callback notifications from the Epay system.
 
 💡 Request Example:
 
 ```
-_// 通常由支付系统自动回调，前端无需主动调用  _
-_// 示例URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_status=TRADE_SUCCESS_
+_// Usually called automatically by the payment system, no need for front-end active invocation  _
+_// Example URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_status=TRADE_SUCCESS_
 ```
 
 ✅ Successful Response Example:
@@ -153,7 +153,7 @@ _// 示例URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_sta
 ```
 {  
   "success": true,  
-  "message": "支付成功"  
+  "message": "Payment successful"  
 }
 ```
 
@@ -162,7 +162,7 @@ _// 示例URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_sta
 ```
 {  
   "success": false,  
-  "message": "订单不存在或已处理"  
+  "message": "Order does not exist or has already been processed"  
 }
 ```
 
@@ -173,13 +173,13 @@ _// 示例URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_sta
 - `trade_status` (String): Transaction status
 - `sign` (String): Signature verification
 
-#### List All Groups (Unauthenticated Version)
+#### List All Groups (Unauthenticated)
 
 - **Interface Name**: List All Groups
 - **HTTP Method**: GET
 - **Path**: `/api/user/groups`
 - **Authentication Requirement**: Public
-- **Feature Summary**: Retrieves information about all user Groups in the system, accessible without logging in
+- **Function Description**: Retrieves information about all user Groups in the system, accessible without login.
 
 💡 Request Example:
 
@@ -202,15 +202,15 @@ const data = await response.json();
   "data": {  
     "default": {  
       "ratio": 1.0,  
-      "desc": "默认分组"  
+      "desc": "Default Group"  
     },  
     "vip": {  
       "ratio": 0.8,  
-      "desc": "VIP分组"  
+      "desc": "VIP Group"  
     },  
     "auto": {  
       "ratio": "自动",  
-      "desc": "自动选择最优分组"  
+      "desc": "Automatically select the optimal group"  
     }  
   }  
 }
@@ -221,18 +221,17 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取分组信息失败"  
+  "message": "Failed to retrieve group information"  
 }
 ```
 
 🧾 Field Description:
 
-`data` (Object): Group information mapping 
+`data` (Object): Group information mapping
 
 - Key (String): Group name
-- `ratio` (Number/String): Group Ratio, "自动" (Auto) means automatic selection
+- `ratio` (Number/String): Group Ratio, "自动" (auto) indicates automatic selection
 - `desc` (String): Group description
-
 
 ### 🔐 User Authentication
 
@@ -242,7 +241,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/logout`
 - **Authentication Requirement**: User
-- **Feature Summary**: Clears the user session and logs out
+- **Function Description**: Clears the user session and logs out.
 
 💡 Request Example:
 
@@ -251,7 +250,8 @@ const response = await fetch('/api/user/logout', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -271,7 +271,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "会话清除失败"  
+  "message": "Session cleanup failed"  
 }
 ```
 
@@ -283,13 +283,13 @@ No request parameters
 
 ### 🔐 User Authentication
 
-#### Get Own Group
+#### Get Current User's Groups
 
-- **Interface Name**: Get Own Group
+- **Interface Name**: Get Current User's Groups
 - **HTTP Method**: GET
 - **Path**: `/api/user/self/groups`
 - **Authentication Requirement**: User
-- **Feature Summary**: Retrieves the group information available to the currently logged-in user, including group Ratio and description
+- **Function Description**: Retrieves the Group information available to the currently logged-in user, including Group Ratio and description.
 
 💡 Request Example:
 
@@ -298,7 +298,8 @@ const response = await fetch('/api/user/self/groups', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -313,15 +314,15 @@ const data = await response.json();
   "data": {  
     "default": {  
       "ratio": 1.0,  
-      "desc": "默认分组"  
+      "desc": "Default Group"  
     },  
     "vip": {  
       "ratio": 0.8,  
-      "desc": "VIP分组"  
+      "desc": "VIP Group"  
     },  
     "auto": {  
       "ratio": "自动",  
-      "desc": "自动选择最优分组"  
+      "desc": "Automatically select the optimal group"  
     }  
   }  
 }
@@ -332,16 +333,16 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取分组信息失败"  
+  "message": "Failed to retrieve group information"  
 }
 ```
 
 🧾 Field Description:
 
-`data` (Object): User available group information mapping group.go：25-48
+`data` (Object): Mapping of available user Group information group.go: 25-48
 
 - Key (String): Group name
-- `ratio` (Number/String): Group Ratio, "自动" (Auto) means automatically selecting the optimal group
+- `ratio` (Number/String): Group Ratio, "自动" (auto) indicates automatic selection of the optimal Group
 - `desc` (String): Group description
 
 #### Get Personal Profile
@@ -350,7 +351,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/self`
 - **Authentication Requirement**: User
-- **Feature Summary**: Retrieves detailed information about the current user, including permissions, Quota, settings, etc.
+- **Function Description**: Retrieves detailed information about the current user, including permissions, Quota, settings, etc.
 
 💡 Request Example:
 
@@ -359,7 +360,8 @@ const response = await fetch('/api/user/self', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -404,7 +406,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取用户信息失败"  
+  "message": "Failed to retrieve user information"  
 }
 ```
 
@@ -413,24 +415,23 @@ const data = await response.json();
 - `id` (Number): User ID
 - `username` (String): Username
 - `display_name` (String): Display name
-- `role` (Number): User role, 1=Standard User, 10=Administrator, 100=Root User
+- `role` (Number): User role, 1=Normal User, 10=Administrator, 100=Root User
 - `status` (Number): User status, 1=Normal, 2=Disabled
 - `email` (String): Email address
 - `group` (String): Assigned Group
 - `quota` (Number): Total Quota
 - `used_quota` (Number): Used Quota
 - `request_count` (Number): Request count
-- `aff_code` (String): Affiliate code
-- `aff_count` (Number): Affiliate count
-- `aff_quota` (Number): Affiliate reward Quota
-- `aff_history_quota` (Number): Historical affiliate Quota
+- `aff_code` (String): Referral code
+- `aff_count` (Number): Number of referrals
+- `aff_quota` (Number): Referral reward Quota
+- `aff_history_quota` (Number): Historical referral Quota
 - `inviter_id` (Number): Inviter ID
 - `linux_do_id` (String): LinuxDo account ID
 - `setting` (String): User settings JSON string
-- `stripe_customer` (String): Stripe customer ID
-- `sidebar_modules` (String): Sidebar module configuration JSON string 
+- `stripe_customer` (String): Stripe Customer ID
+- `sidebar_modules` (String): Sidebar module configuration JSON string
 - `permissions` (Object): User permission information
-
 
 #### Get Model Visibility
 
@@ -438,7 +439,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/models`
 - **Authentication Requirement**: User
-- **Feature Summary**: Retrieves the list of AI models accessible to the current user
+- **Function Description**: Retrieves the list of AI models accessible to the current user.
 
 💡 Request Example:
 
@@ -447,7 +448,8 @@ const response = await fetch('/api/user/models', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -473,21 +475,21 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取模型列表失败"  
+  "message": "Failed to retrieve model list"  
 }
 ```
 
 🧾 Field Description:
 
-`data` (Array): List of model names accessible to the user 
+`data` (Array): List of model names accessible to the user
 
-#### Modify Personal Profile
+#### Update Personal Profile
 
-- **Interface Name**: Modify Personal Profile
+- **Interface Name**: Update Personal Profile
 - **HTTP Method**: PUT
 - **Path**: `/api/user/self`
 - **Authentication Requirement**: User
-- **Feature Summary**: Updates user personal information or sidebar settings
+- **Function Description**: Updates user personal information or sidebar settings.
 
 💡 Request Example (Update Personal Information):
 
@@ -496,7 +498,8 @@ const response = await fetch('/api/user/self', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     display_name: "New Display Name",  
@@ -513,7 +516,8 @@ const response = await fetch('/api/user/self', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     sidebar_modules: JSON.stringify({  
@@ -530,7 +534,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "更新成功"  
+  "message": "Update successful"  
 }
 ```
 
@@ -539,7 +543,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "输入不合法"  
+  "message": "Invalid input"  
 }
 ```
 
@@ -548,15 +552,15 @@ const data = await response.json();
 - `display_name` (String): Display name, optional
 - `email` (String): Email address, optional
 - `password` (String): New password, optional
-- `sidebar_modules` (String): Sidebar module configuration JSON string, optional 
+- `sidebar_modules` (String): Sidebar module configuration JSON string, optional
 
-#### Deactivate Account
+#### Delete Account
 
-- **Interface Name**: Deactivate Account
+- **Interface Name**: Delete Account
 - **HTTP Method**: DELETE
 - **Path**: `/api/user/self`
 - **Authentication Requirement**: User
-- **Feature Summary**: Deletes the current user account; Root users cannot be deleted
+- **Function Description**: Deletes the current user account. Root users cannot be deleted.
 
 💡 Request Example:
 
@@ -565,7 +569,8 @@ const response = await fetch('/api/user/self', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -585,7 +590,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "不能删除超级管理员账户"  
+  "message": "Cannot delete Super Administrator account"  
 }
 ```
 
@@ -599,7 +604,7 @@ No request parameters
 - **HTTP Method**: GET
 - **Path**: `/api/user/token`
 - **Authentication Requirement**: User
-- **Feature Summary**: Generates a new access Token for the current user, used for API calls
+- **Function Description**: Generates a new access Token for the current user, used for API calls.
 
 💡 Request Example:
 
@@ -608,7 +613,8 @@ const response = await fetch('/api/user/token', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -629,7 +635,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "生成令牌失败"  
+  "message": "Failed to generate token"  
 }
 ```
 
@@ -637,13 +643,13 @@ const data = await response.json();
 
 `data` (String): Generated access Token
 
-#### Get Affiliate Code Information
+#### Get Referral Code Information
 
-- **Interface Name**: Get Affiliate Code Information
+- **Interface Name**: Get Referral Code Information
 - **HTTP Method**: GET
 - **Path**: `/api/user/aff`
 - **Authentication Requirement**: User
-- **Feature Summary**: Retrieves or generates the user's affiliate code, used for inviting new users to register
+- **Function Description**: Retrieves or generates the user's referral code, used for inviting new users to register.
 
 💡 Request Example:
 
@@ -652,7 +658,8 @@ const response = await fetch('/api/user/aff', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -673,13 +680,13 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取推广码失败"  
+  "message": "Failed to retrieve referral code"  
 }
 ```
 
 🧾 Field Description:
 
-`data` (String): The user's affiliate code; if it doesn't exist, a 4-digit random string will be automatically generated
+`data` (String): The user's referral code. If it does not exist, a 4-digit random string will be automatically generated.
 
 #### Direct Quota Top-up
 
@@ -687,7 +694,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/user/topup`
 - **Authentication Requirement**: User
-- **Feature Summary**: Uses a redemption code to top up Quota for the account
+- **Function Description**: Uses a redemption code to top up Quota for the account.
 
 💡 Request Example:
 
@@ -696,7 +703,8 @@ const response = await fetch('/api/user/topup', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     key: "REDEEM123456"  
@@ -710,7 +718,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "兑换成功",  
+  "message": "Redemption successful",  
   "data": 100000  
 }
 ```
@@ -720,14 +728,14 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "兑换码无效或已使用"  
+  "message": "Redemption code is invalid or already used"  
 }
 ```
 
 🧾 Field Description:
 
 - `key` (String): Redemption code, required
-- `data` (Number): Returns the amount of Quota redeemed upon success
+- `data` (Number): The amount of Quota redeemed upon success
 
 #### Submit Payment Order
 
@@ -735,7 +743,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/user/pay`
 - **Authentication Requirement**: User
-- **Feature Summary**: Creates an online payment order, supporting multiple payment methods
+- **Function Description**: Creates an online payment order, supporting multiple payment methods.
 
 💡 Request Example:
 
@@ -744,7 +752,8 @@ const response = await fetch('/api/user/pay', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     amount: 10000,  
@@ -780,13 +789,13 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "充值数量不能小于 1000"  
+  "message": "Top-up amount cannot be less than 1000"  
 }
 ```
 
 🧾 Field Description:
 
-- `amount` (Number): Top-up amount, must be greater than or equal to the minimum top-up Quota topup.go：133-136
+- `amount` (Number): Top-up amount, must be greater than or equal to the minimum top-up Quota topup.go: 133-136
 - `payment_method` (String): Payment method, such as "alipay", "wxpay", etc.
 - `top_up_code` (String): Top-up code, optional
 - `data` (Object): Payment form parameters
@@ -798,7 +807,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/user/amount`
 - **Authentication Requirement**: User
-- **Feature Summary**: Calculates the actual payment amount corresponding to the specified top-up Quota
+- **Function Description**: Calculates the actual payment amount corresponding to the specified top-up Quota.
 
 💡 Request Example:
 
@@ -807,7 +816,8 @@ const response = await fetch('/api/user/amount', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     amount: 10000,  
@@ -832,23 +842,23 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "充值数量不能小于 1000"  
+  "message": "Top-up amount cannot be less than 1000"  
 }
 ```
 
 🧾 Field Description:
 
-- `amount` (Number): Top-up amount, must be greater than or equal to the minimum top-up Quota 
+- `amount` (Number): Top-up amount, must be greater than or equal to the minimum top-up Quota
 - `top_up_code` (String): Top-up code, optional
-- `data` (String): Actual amount required for payment (Yuan)
+- `data` (String): The actual amount required for payment (Yuan)
 
-#### Affiliate Quota Transfer
+#### Referral Quota Transfer
 
-- **Interface Name**: Affiliate Quota Transfer
+- **Interface Name**: Referral Quota Transfer
 - **HTTP Method**: POST
 - **Path**: `/api/user/aff_transfer`
 - **Authentication Requirement**: User
-- **Feature Summary**: Transfers affiliate reward Quota into usable Quota
+- **Function Description**: Converts referral reward Quota into usable Quota.
 
 💡 Request Example:
 
@@ -857,7 +867,8 @@ const response = await fetch('/api/user/aff_transfer', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     quota: 50000  
@@ -871,7 +882,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "划转成功"  
+  "message": "Transfer successful"  
 }
 ```
 
@@ -880,13 +891,13 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "邀请额度不足！"  
+  "message": "Insufficient referral Quota!"  
 }
 ```
 
 🧾 Field Description:
 
-`quota` (Number): The amount of Quota to transfer, must be greater than or equal to the minimum unit Quota 
+`quota` (Number): The amount of Quota to convert, must be greater than or equal to the minimum unit Quota
 
 #### Update User Settings
 
@@ -894,7 +905,7 @@ const data = await response.json();
 - **HTTP Method**: PUT
 - **Path**: `/api/user/setting`
 - **Authentication Requirement**: User
-- **Feature Summary**: Updates the user's personal settings configuration
+- **Function Description**: Updates the user's personal settings configuration.
 
 💡 Request Example:
 
@@ -903,7 +914,8 @@ const response = await fetch('/api/user/setting', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     theme: "dark",  
@@ -922,7 +934,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "设置更新成功"  
+  "message": "Settings updated successfully"  
 }
 ```
 
@@ -931,14 +943,14 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "设置格式错误"  
+  "message": "Settings format error"  
 }
 ```
 
 🧾 Field Description:
 
 - The request body can contain arbitrary user setting fields, submitted in JSON format
-- Specific fields depend on the requirements of the frontend settings page
+- Specific fields depend on the requirements of the front-end settings page
 
 ## Administrator User Management
 
@@ -950,7 +962,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Paginates and retrieves the list information of all users in the system
+- **Function Description**: Retrieves a paginated list of all users in the system.
 
 💡 Request Example:
 
@@ -959,7 +971,8 @@ const response = await fetch('/api/user/?p=1&page_size=20', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -998,18 +1011,18 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取用户列表失败"  
+  "message": "Failed to retrieve user list"  
 }
 ```
 
 🧾 Field Description:
 
-- `p` (Number): Page number, defaults to 1
-- `page_size` (Number): Items per page, defaults to 20
-- `items` (Array): User information list
+- `p` (Number): Page number, default is 1
+- `page_size` (Number): Number per page, default is 20
+- `items` (Array): List of user information
 - `total` (Number): Total number of users
 - `page` (Number): Current page number
-- `page_size` (Number): Items per page
+- `page_size` (Number): Number per page
 
 #### Search Users
 
@@ -1017,7 +1030,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/search`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Searches for users based on keywords and Groups
+- **Function Description**: Searches for users based on keywords and Group.
 
 💡 Request Example:
 
@@ -1026,7 +1039,8 @@ const response = await fetch('/api/user/search?keyword=test&group=default&p=1&pa
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1062,7 +1076,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "搜索用户失败"  
+  "message": "Failed to search users"  
 }
 ```
 
@@ -1070,8 +1084,8 @@ const data = await response.json();
 
 - `keyword` (String): Search keyword, can match username, display name, or email
 - `group` (String): User Group filtering condition
-- `p` (Number): Page number, defaults to 1
-- `page_size` (Number): Items per page, defaults to 20
+- `p` (Number): Page number, default is 1
+- `page_size` (Number): Number per page, default is 20
 
 #### Get Single User Information
 
@@ -1079,7 +1093,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/user/:id`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Retrieves detailed information for a specified user, including permission checks
+- **Function Description**: Retrieves detailed information for a specified user, including permission checks.
 
 💡 Request Example:
 
@@ -1088,7 +1102,8 @@ const response = await fetch('/api/user/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1122,14 +1137,14 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "无权获取同级或更高等级用户的信息"  
+  "message": "No permission to retrieve information for users of the same or higher level"  
 }
 ```
 
 🧾 Field Description:
 
 - `id` (Number): User ID, passed via URL path
-- Returns complete user information, but administrators cannot view information for users of the same or higher permission level 
+- Returns complete user information, but administrators cannot view information for users of the same or higher permission level
 
 #### Create User
 
@@ -1137,7 +1152,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/user/`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Creates a new user account; administrators cannot create users with permissions greater than or equal to their own
+- **Function Description**: Creates a new user account. Administrators cannot create users with permissions greater than or equal to their own.
 
 💡 Request Example:
 
@@ -1146,7 +1161,8 @@ const response = await fetch('/api/user/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id' 
   },  
   body: JSON.stringify({  
     username: "newuser",  
@@ -1172,7 +1188,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "无法创建权限大于等于自己的用户"  
+  "message": "Cannot create users with permissions greater than or equal to your own"  
 }
 ```
 
@@ -1181,15 +1197,15 @@ const data = await response.json();
 - `username` (String): Username, required
 - `password` (String): Password, required
 - `display_name` (String): Display name, optional, defaults to username
-- `role` (Number): User role, must be less than the current administrator role 
+- `role` (Number): User role, must be less than the current administrator role
 
-#### Management Operations like Freeze/Reset
+#### Management Operations (Disable/Reset, etc.)
 
-- **Interface Name**: Management Operations like Freeze/Reset
+- **Interface Name**: Management Operations (Disable/Reset, etc.)
 - **HTTP Method**: POST
 - **Path**: `/api/user/manage`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Performs management operations on users, including enabling, disabling, deleting, promoting, and demoting
+- **Function Description**: Executes management operations on users, including enabling, disabling, deleting, promoting, and demoting.
 
 💡 Request Example:
 
@@ -1198,7 +1214,8 @@ const response = await fetch('/api/user/manage', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -1222,20 +1239,19 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "无法禁用超级管理员用户"  
+  "message": "Cannot disable Super Administrator user"  
 }
 ```
 
 🧾 Field Description:
 
 - `id` (Number): Target user ID, required
-- `action` (String): Operation type, required, optional values:
-
-    - `disable`: Disable user 
-    - `enable`: Enable user 
-    - `delete`: Delete user 
-    - `promote`: Promote to Administrator (Root users only) 
-    - `demote`: Demote to Standard User 
+- `action` (String): Operation type, required. Possible values:
+    - `disable`: Disable user
+    - `enable`: Enable user
+    - `delete`: Delete user
+    - `promote`: Promote to Administrator (Root users only)
+    - `demote`: Demote to Normal User
 
 #### Update User
 
@@ -1243,7 +1259,7 @@ const data = await response.json();
 - **HTTP Method**: PUT
 - **Path**: `/api/user/`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Updates user information, including permission checks and Quota change logging
+- **Function Description**: Updates user information, including permission checks and Quota change logging.
 
 💡 Request Example:
 
@@ -1252,7 +1268,8 @@ const response = await fetch('/api/user/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -1281,7 +1298,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "无权更新同权限等级或更高权限等级的用户信息"  
+  "message": "No permission to update information for users of the same or higher permission level"  
 }
 ```
 
@@ -1291,9 +1308,9 @@ const data = await response.json();
 - `username` (String): Username, optional
 - `display_name` (String): Display name, optional
 - `email` (String): Email address, optional
-- `password` (String): New password, optional; if empty, the password is not updated
+- `password` (String): New password, optional. If empty, the password is not updated.
 - `quota` (Number): User Quota, optional
-- `role` (Number): User role, cannot be greater than or equal to the current administrator role 
+- `role` (Number): User role, cannot be greater than or equal to the current administrator role
 - `status` (Number): User status, optional
 
 #### Delete User
@@ -1302,7 +1319,7 @@ const data = await response.json();
 - **HTTP Method**: DELETE
 - **Path**: `/api/user/:id`
 - **Authentication Requirement**: Administrator
-- **Feature Summary**: Hard deletes the specified user; administrators cannot delete users of the same or higher permission level
+- **Function Description**: Hard deletes the specified user. Administrators cannot delete users of the same or higher permission level.
 
 💡 Request Example:
 
@@ -1311,7 +1328,8 @@ const response = await fetch('/api/user/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1331,7 +1349,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "无权删除同权限等级或更高权限等级的用户"  
+  "message": "No permission to delete users of the same or higher permission level"  
 }
 ```
 

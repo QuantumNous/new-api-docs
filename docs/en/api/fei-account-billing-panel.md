@@ -5,17 +5,17 @@
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    This is an OpenAI SDK compatible billing query interface. It uses Token authentication and provides subscription information and usage queries. It is primarily used for third-party applications and SDK integration, ensuring full compatibility with the OpenAI API.
+    OpenAI SDK compatible billing query interface. Uses Token authentication to provide subscription information and usage queries. Primarily intended for third-party applications and SDK integration, ensuring full compatibility with the OpenAI API.
 
 ## 🔐 User Authentication
 
-### Get Subscription Quota Information
+### Retrieve Subscription Quota Information
 
-- **Interface Name**：Get Subscription Quota Information
+- **Interface Name**：Retrieve Subscription Quota Information
 - **HTTP Method**：GET
 - **Path**：`/dashboard/billing/subscription`
 - **Authentication Required**：User Token
-- **Function Brief**：Retrieves the user's subscription quota information, including total quota, hard limit, and access validity period, compatible with the OpenAI API format.
+- **Function Summary**：Retrieves the user's subscription quota information, including total quota, hard limit, and access validity period, compatible with the OpenAI API format.
 
 💡 Request Example:
 
@@ -24,7 +24,8 @@ const response = await fetch('/dashboard/billing/subscription', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -54,7 +55,7 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Description:
+🧾 Field Descriptions:
 
 - `object` (String): Fixed value "billing_subscription"
 - `has_payment_method` (Boolean): Whether a payment method exists, fixed as true
@@ -63,13 +64,13 @@ const data = await response.json();
 - `system_hard_limit_usd` (Number): System hard limit quota (USD)
 - `access_until` (Number): Access validity timestamp, Token expiration time
 
-### OpenAI SDK Compatible Path - Get Subscription Quota Information
+### Compatible OpenAI SDK Path - Retrieve Subscription Quota Information
 
-- **Interface Name**：OpenAI SDK Compatible Path - Get Subscription Quota Information
+- **Interface Name**：Compatible OpenAI SDK Path - Retrieve Subscription Quota Information
 - **HTTP Method**：GET
 - **Path**：`/v1/dashboard/billing/subscription`
 - **Authentication Required**：User Token
-- **Function Brief**：Functionally identical to the interface above, providing an OpenAI SDK compatible path.
+- **Function Summary**：Identical functionality to the interface above, providing an OpenAI SDK compatible path
 
 💡 Request Example:
 
@@ -78,7 +79,8 @@ const response = await fetch('/v1/dashboard/billing/subscription', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -108,7 +110,7 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Description:
+🧾 Field Descriptions:
 
 - `object` (String): Fixed value "billing_subscription"
 - `has_payment_method` (Boolean): Whether a payment method exists, fixed as true
@@ -117,13 +119,13 @@ const data = await response.json();
 - `system_hard_limit_usd` (Number): System hard limit quota (USD)
 - `access_until` (Number): Access validity timestamp, Token expiration time
 
-### Get Usage Information
+### Retrieve Usage Information
 
-- **Interface Name**：Get Usage Information
+- **Interface Name**：Retrieve Usage Information
 - **HTTP Method**：GET
 - **Path**：`/dashboard/billing/usage`
 - **Authentication Required**：User Token
-- **Function Brief**：Retrieves the user's quota usage information, compatible with the OpenAI API format.
+- **Function Summary**：Retrieves the user's quota usage information, compatible with the OpenAI API format
 
 💡 Request Example:
 
@@ -132,7 +134,8 @@ const response = await fetch('/dashboard/billing/usage', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -158,18 +161,18 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Description:
+🧾 Field Descriptions:
 
 - `object` (String): Fixed value "list"
 - `total_usage` (Number): Total usage, measured in $0.01 USD
 
-### OpenAI SDK Compatible Path - Get Usage Information
+### Compatible OpenAI SDK Path - Retrieve Usage Information
 
-- **Interface Name**：OpenAI SDK Compatible Path - Get Usage Information
+- **Interface Name**：Compatible OpenAI SDK Path - Retrieve Usage Information
 - **HTTP Method**：GET
 - **Path**：`/v1/dashboard/billing/usage`
 - **Authentication Required**：User Token
-- **Function Brief**：Functionally identical to the interface above, providing an OpenAI SDK compatible path.
+- **Function Summary**：Identical functionality to the interface above, providing an OpenAI SDK compatible path
 
 💡 Request Example:
 
@@ -178,7 +181,8 @@ const response = await fetch('/v1/dashboard/billing/usage', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -204,7 +208,7 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Description:
+🧾 Field Descriptions:
 
 - `object` (String): Fixed value "list"
 - `total_usage` (Number): Total usage, measured in $0.01 USD

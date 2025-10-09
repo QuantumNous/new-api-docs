@@ -24,7 +24,8 @@ const response = await fetch('/api/data/self?start_timestamp=1640908800&end_time
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -59,12 +60,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "获取个人统计数据失败"  
+  "message": "Failed to retrieve personal statistics data"  
 }
 ```
 
@@ -84,9 +85,9 @@ const data = await response.json();
 
 ## 🔐 Administrator Authentication
 
-### Site-wide Usage Statistics by Date
+### Site-Wide Usage Statistics by Date
 
-- **API Name**: Site-wide Usage Statistics by Date
+- **API Name**: Site-Wide Usage Statistics by Date
 - **HTTP Method**: GET
 - **Path**: `/api/data/`
 - **Authentication Required**: Administrator
@@ -99,7 +100,8 @@ const response = await fetch('/api/data/?start_timestamp=1640908800&end_timestam
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -130,12 +132,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "获取统计数据失败"  
+  "message": "Failed to retrieve statistics data"  
 }
 ```
 

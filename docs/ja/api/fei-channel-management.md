@@ -1,11 +1,11 @@
 # チャネル管理モジュール
 
 !!! info "機能説明"
-    インターフェースのプレフィックスは http(s)://`<your-domain>` に統一されています
+    インターフェースのプレフィックスは http(s)://`<your-domain>` に統一されています。
 
-    本番環境では、認証トークンを保護するために HTTPS を使用する必要があります。 HTTP は開発環境でのみ推奨されます。
+    認証トークンを保護するため、本番環境では HTTPS を使用する必要があります。HTTP は開発環境でのみ推奨されます。
 
-    AIサービスプロバイダーチャネルの完全な管理システムです。チャネルの追加、削除、変更、検索、一括操作、接続性テスト、残高照会、タグ管理などの機能をサポートしています。モデル機能の同期やチャネルの複製などの高度な機能も含まれています。
+    AIサービスプロバイダーチャネルの完全な管理システムです。チャネルの追加、削除、変更、検索、一括操作、接続性テスト、残高照会、タグ管理などの機能をサポートしています。モデル機能の同期やチャネルの複製などの高度な機能も含まれます。
 
 ## 🔐 管理者認証
 
@@ -13,10 +13,10 @@
 ### チャネルリストの取得
 
 - **インターフェース名**：チャネルリストの取得
-- **HTTPメソッド**：GET
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/`
 - **認証要件**：管理者
-- **機能概要**：システム内のすべてのチャネルのリスト情報をページングして取得します。タイプ、ステータスによるフィルタリング、およびタグモードをサポートしています
+- **機能概要**：システム内のすべてのチャネルのリスト情報をページネーションで取得します。タイプ、ステータスによるフィルタリング、およびタグモードをサポートします。
 
 💡 リクエスト例：
 
@@ -25,7 +25,8 @@ const response = await fetch('/api/channel/?p=1&page_size=20&id_sort=false&tag_m
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -50,7 +51,7 @@ const data = await response.json();
         "group": "default",  
         "response_time": 1500,  
         "test_time": 1640995200  
-      }
+      }  
     ],  
     "total": 50,  
     "type_counts": {  
@@ -67,26 +68,26 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "チャネルリストの取得に失敗しました"  
+  "message": "获取渠道列表失败"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `p` （数値）: ページ番号。デフォルトは 1
-- `page_size` （数値）: 1ページあたりの数量。デフォルトは 20
-- `id_sort` （ブール型）: IDでソートするかどうか。デフォルトは優先度でソート
+- `p` （数字）: ページ番号、デフォルトは 1
+- `page_size` （数字）: 1ページあたりの数量、デフォルトは 20
+- `id_sort` （ブール型）: IDでソートするかどうか、デフォルトは優先度でソート
 - `tag_mode` （ブール型）: タグモードを有効にするかどうか
-- `type` （数値）: チャネルタイプのフィルタリング
-- `status` （文字列）: ステータスフィルタリング。オプション値："enabled"、"disabled"、"all"
+- `type` （数字）: チャネルタイプによるフィルタリング
+- `status` （文字列）: ステータスによるフィルタリング、オプション値："enabled"、"disabled"、"all"
 
 ### チャネルの検索
 
 - **インターフェース名**：チャネルの検索
-- **HTTPメソッド**：GET
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/search`
 - **認証要件**：管理者
-- **機能概要**：キーワード、グループ、モデルなどの条件に基づいてチャネルを検索します
+- **機能概要**：キーワード、グループ、モデルなどの条件に基づいてチャネルを検索
 
 💡 リクエスト例：
 
@@ -95,7 +96,8 @@ const response = await fetch('/api/channel/search?keyword=openai&group=default&m
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -130,23 +132,23 @@ const data = await response.json();
 ❗ 失敗レスポンス例：
 
 ```
-{    "success": false,    "message": "チャネルの検索に失敗しました"  }
+{    "success": false,    "message": "搜索渠道失败"  }
 ```
 
 🧾 フィールド説明：
 
-- `keyword` （文字列）: 検索キーワード。チャネル名と一致させることができます
+- `keyword` （文字列）: 検索キーワード、チャネル名と一致可能
 - `group` （文字列）: グループフィルタリング条件
 - `model` （文字列）: モデルフィルタリング条件
-- その他のパラメータはチャネルリスト取得インターフェースと同じです
+- その他のパラメータは、チャネルリスト取得インターフェースと同じ
 
-### チャネルモデル機能の照会
+### チャネルモデル能力の照会
 
-- **インターフェース名**：チャネルモデル機能の照会
-- **HTTPメソッド**：GET
+- **インターフェース名**：チャネルモデル能力の照会
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/models`
 - **認証要件**：管理者
-- **機能概要**：システム内のすべてのチャネルがサポートするモデルリストを取得します
+- **機能概要**：システム内のすべてのチャネルがサポートするモデルリストを取得
 
 💡 リクエスト例：
 
@@ -155,7 +157,8 @@ const response = await fetch('/api/channel/models', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -189,7 +192,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "モデルリストの取得に失敗しました"  
+  "message": "获取模型列表失败"  
 }
 ```
 
@@ -200,13 +203,13 @@ const data = await response.json();
 - `id` （文字列）: モデル ID
 - `name` （文字列）: モデル表示名
 
-### 有効なモデル機能の照会
+### 有効なモデル能力の照会
 
-- **インターフェース名**：有効なモデル機能の照会
-- **HTTPメソッド**：GET
+- **インターフェース名**：有効なモデル能力の照会
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/models_enabled`
 - **認証要件**：管理者
-- **機能概要**：現在有効なチャネルがサポートするモデルリストを取得します
+- **機能概要**：現在有効なチャネルがサポートするモデルリストを取得
 
 💡 リクエスト例：
 
@@ -215,7 +218,8 @@ const response = await fetch('/api/channel/models_enabled', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -240,18 +244,18 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "有効なモデルの取得に失敗しました"  
+  "message": "获取启用模型失败"  
 }
 ```
 
 🧾 フィールド説明：
 
-`data` （配列）: 有効化されたモデル ID リスト
+`data` （配列）: 有効なモデル ID リスト
 
 ### 単一チャネルの取得
 
 - **インターフェース名**：単一チャネルの取得
-- **HTTPメソッド**：GET
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/:id`
 - **認証要件**：管理者
 - **機能概要**：指定されたチャネルの詳細情報を取得します。機密性の高いキー情報は含まれません。
@@ -263,7 +267,8 @@ const response = await fetch('/api/channel/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -299,19 +304,19 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "チャネルが存在しません"  
+  "message": "渠道不存在"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `id` （数値）: チャネル ID。URLパスを通じて渡されます
-- 完全なチャネル情報が返されますが、キーフィールドは含まれません
+- `id` （数字）: チャネル ID、URL パス経由で渡されます
+- 機密キーフィールドを除く完全なチャネル情報が返されます
 
 ### チャネル接続性の一括テスト
 
 - **インターフェース名**：チャネル接続性の一括テスト
-- **HTTPメソッド**：GET
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/test`
 - **認証要件**：管理者
 - **機能概要**：すべてまたは指定されたチャネルの接続性と応答時間を一括でテストします
@@ -323,7 +328,8 @@ const response = await fetch('/api/channel/test?model=gpt-3.5-turbo', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -334,7 +340,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "一括テストが完了しました",  
+  "message": "批量测试完成",  
   "data": {  
     "total": 10,  
     "success": 8,  
@@ -352,7 +358,7 @@ const data = await response.json();
         "channel_name": "Claude渠道",  
         "success": false,  
         "time": 0,  
-        "message": "接続タイムアウト"  
+        "message": "连接超时"  
       }  
     ]  
   }  
@@ -364,24 +370,25 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "一括テストに失敗しました"  
+  "message": "批量测试失败"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `model` （文字列）: オプション。テストモデルを指定します
+- `model` （文字列）: オプション、テストモデルを指定
 - `results` （配列）: テスト結果リスト
+
     - `success` （ブール型）: テストが成功したかどうか
-    - `time` （数値）: 応答時間（秒）
+    - `time` （数字）: 応答時間（秒）
 
-### 単一チャネルのテスト
+### 単一チャネルテスト
 
-- **インターフェース名**：単一チャネルのテスト
-- **HTTPメソッド**：GET
+- **インターフェース名**：単一チャネルテスト
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/test/:id`
 - **認証要件**：管理者
-- **機能概要**：指定されたチャネルの接続性をテストします。テストモデルの指定をサポートしています。
+- **機能概要**：指定されたチャネルの接続性をテストします。テストモデルの指定をサポートします。
 
 💡 リクエスト例：
 
@@ -390,7 +397,8 @@ const response = await fetch('/api/channel/test/123?model=gpt-4', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -411,24 +419,24 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "APIキーが無効です",  
+  "message": "API密钥无效",  
   "time": 0.5  
 }
 ```
 
 🧾 フィールド説明：
 
-- `id` （数値）: チャネル ID。URLパスを通じて渡されます
-- `model` （文字列）: オプション。テストするモデル名を指定します
-- `time` （数値）: 応答時間（秒）
+- `id` （数字）: チャネル ID、URL パス経由で渡されます
+- `model` （文字列）: オプション、テストするモデル名
+- `time` （数字）: 応答時間（秒）
 
 ### 残高の一括更新
 
 - **インターフェース名**：残高の一括更新
-- **HTTPメソッド**：GET
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/update_balance`
 - **認証要件**：管理者
-- **機能概要**：すべての有効なチャネルの残高情報を一括で更新します
+- **機能概要**：有効なすべてのチャネルの残高情報を一括で更新します
 
 💡 リクエスト例：
 
@@ -437,7 +445,8 @@ const response = await fetch('/api/channel/update_balance', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -448,7 +457,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "残高の一括更新が完了しました"  
+  "message": "批量更新余额完成"  
 }
 ```
 
@@ -457,18 +466,18 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "残高の一括更新に失敗しました"  
+  "message": "批量更新余额失败"  
 }
 ```
 
 🧾 フィールド説明：
 
-リクエストパラメータなし。システムはすべての有効なチャネルの残高を自動的に更新します
+リクエストパラメータなし。システムは有効なすべてのチャネルの残高を自動的に更新します。
 
-### 単一チャネルの残高更新
+### 単一チャネル残高の更新
 
-- **インターフェース名**：指定チャネルの残高更新
-- **HTTPメソッド**：GET
+- **インターフェース名**：指定チャネル残高の更新
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/update_balance/:id`
 - **認証要件**：管理者
 - **機能概要**：指定されたチャネルの残高情報を更新します。マルチキーチャネルは残高照会をサポートしていません。
@@ -480,7 +489,8 @@ const response = await fetch('/api/channel/update_balance/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -501,22 +511,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "マルチキーチャネルは残高照会をサポートしていません"  
+  "message": "多密钥渠道不支持余额查询"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `id` （数値）: チャネル ID。URLパスを通じて渡されます
-- `balance` （数値）: 更新後のチャネル残高
+- `id` （数字）: チャネル ID、URL パス経由で渡されます
+- `balance` （数字）: 更新後のチャネル残高
 
 ### チャネルの新規追加
 
-- **インターフェース名**：新規チャネルの追加
-- **HTTPメソッド**：POST
+- **インターフェース名**：チャネルの新規追加
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/`
 - **認証要件**：管理者
-- **機能概要**：新しい AI サービスチャネルを作成します。単一、一括、およびマルチキーモードをサポートしています。
+- **機能概要**：新しい AI サービスチャネルを作成します。単一、一括、マルチキーモードをサポートします。
 
 💡 リクエスト例：
 
@@ -525,7 +535,8 @@ const response = await fetch('/api/channel/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     mode: "single",  
@@ -558,31 +569,32 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "サポートされていない追加モードです"  
+  "message": "不支持的添加模式"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `mode` （文字列）: 追加モード。オプション値："single"、"batch"、"multi_to_single" 
-- `multi_key_mode` （文字列）: マルチキーモード。"mode"が"multi_to_single"の場合に必須
-- `channel` （オブジェクト）: チャネル設定情報
+- `mode` （文字列）: 追加モード、オプション値："single"、"batch"、"multi_to_single"
+- `multi_key_mode` （文字列）: マルチキーモード。mode が "multi_to_single" の場合に必須
+- `channel` （オブジェクト）: チャネル構成情報
+
     - `name` （文字列）: チャネル名
-    - `type` （数値）: チャネルタイプ
-    - `key` （文字列）: APIキー
+    - `type` （数字）: チャネルタイプ
+    - `key` （文字列）: API キー
     - `base_url` （文字列）: ベース URL
-    - `models` （配列）: サポートされているモデルリスト
+    - `models` （配列）: サポートするモデルリスト
     - `groups` （配列）: 利用可能なグループリスト
-    - `priority` （数値）: 優先度
-    - `weight` （数値）: 重み
+    - `priority` （数字）: 優先度
+    - `weight` （数字）: 重み
 
 ### チャネルの更新
 
 - **インターフェース名**：チャネルの更新
-- **HTTPメソッド**：PUT
+- **HTTP メソッド**：PUT
 - **パス**：`/api/channel/`
 - **認証要件**：管理者
-- **機能概要**：既存のチャネルの設定情報を更新します
+- **機能概要**：既存のチャネルの構成情報を更新します
 
 💡 リクエスト例：
 
@@ -591,7 +603,8 @@ const response = await fetch('/api/channel/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -618,22 +631,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "チャネルが存在しません"  
+  "message": "渠道不存在"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `id` （数値）: チャネル ID。必須
-- その他のフィールドは新規チャネル追加インターフェースと同じで、すべてオプションです
+- `id` （数字）: チャネル ID、必須
+- その他のフィールドは、チャネル新規追加インターフェースと同じで、すべてオプションです
 
 ### 無効化されたチャネルの削除
 
 - **インターフェース名**：無効化されたチャネルの削除
-- **HTTPメソッド**：DELETE
+- **HTTP メソッド**：DELETE
 - **パス**：`/api/channel/disabled`
 - **認証要件**：管理者
-- **機能概要**：すべての無効化されたチャネルを一括で削除します
+- **機能概要**：無効化されたすべてのチャネルを一括で削除します
 
 💡 リクエスト例：
 
@@ -642,7 +655,8 @@ const response = await fetch('/api/channel/disabled', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -663,19 +677,19 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "削除に失敗しました"  
+  "message": "删除失败"  
 }
 ```
 
 🧾 フィールド説明：
 
 - リクエストパラメータなし
-- `data` （数値）: 削除されたチャネルの数
+- `data` （数字）: 削除されたチャネルの数
 
 ### タグ付きチャネルの一括無効化
 
 - **インターフェース名**：タグ付きチャネルの一括無効化
-- **HTTPメソッド**：POST
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/tag/disabled`
 - **認証要件**：管理者
 - **機能概要**：タグに基づいてチャネルを一括で無効化します
@@ -687,7 +701,8 @@ const response = await fetch('/api/channel/tag/disabled', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     tag: "test-tag"  
@@ -710,18 +725,18 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "パラメータエラー"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 フィールド説明：
 
-`tag` （文字列）: 無効化するチャネルタグ。必須
+`tag` （文字列）: 無効化するチャネルタグ、必須
 
 ### タグ付きチャネルの一括有効化
 
 - **インターフェース名**：タグ付きチャネルの一括有効化
-- **HTTPメソッド**：POST
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/tag/enabled`
 - **認証要件**：管理者
 - **機能概要**：タグに基づいてチャネルを一括で有効化します
@@ -733,7 +748,8 @@ const response = await fetch('/api/channel/tag/enabled', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     tag: "production-tag"  
@@ -756,18 +772,18 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "パラメータエラー"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 フィールド説明：
 
-`tag` （文字列）: 有効化するチャネルタグ。必須
+`tag` （文字列）: 有効化するチャネルタグ、必須
 
 ### チャネルタグの編集
 
 - **インターフェース名**：チャネルタグの編集
-- **HTTPメソッド**：PUT
+- **HTTP メソッド**：PUT
 - **パス**：`/api/channel/tag`
 - **認証要件**：管理者
 - **機能概要**：指定されたタグを持つチャネル属性を一括で編集します
@@ -779,7 +795,8 @@ const response = await fetch('/api/channel/tag', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     tag: "old-tag",  
@@ -807,27 +824,27 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "tagを空にすることはできません"  
+  "message": "tag不能为空"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `tag` （文字列）: 編集するタグ名。必須
-- `new_tag` （文字列）: 新しいタグ名。オプション
-- `priority` （数値）: 新しい優先度。オプション
-- `weight` （数値）: 新しい重み。オプション
-- `model_mapping` （文字列）: モデルマッピング設定。オプション
-- `models` （文字列）: サポートされているモデルリスト。カンマ区切り。オプション
-- `groups` （文字列）: 利用可能なグループリスト。カンマ区切り。オプション
+- `tag` （文字列）: 編集するタグ名、必須
+- `new_tag` （文字列）: 新しいタグ名、オプション
+- `priority` （数字）: 新しい優先度、オプション
+- `weight` （数字）: 新しい重み、オプション
+- `model_mapping` （文字列）: モデルマッピング設定、オプション
+- `models` （文字列）: サポートするモデルリスト、カンマ区切り、オプション
+- `groups` （文字列）: 利用可能なグループリスト、カンマ区切り、オプション
 
 ### チャネルの削除
 
 - **インターフェース名**：チャネルの削除
-- **HTTPメソッド**：DELETE
+- **HTTP メソッド**：DELETE
 - **パス**：`/api/channel/:id`
 - **認証要件**：管理者
-- **機能概要**：指定されたチャネルをハード削除します。削除後、チャネルキャッシュが更新されます。
+- **機能概要**：指定されたチャネルを物理的に削除します。削除後、チャネルキャッシュが更新されます。
 
 💡 リクエスト例：
 
@@ -836,7 +853,8 @@ const response = await fetch('/api/channel/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -856,21 +874,21 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "チャネルが存在しません"  
+  "message": "渠道不存在"  
 }
 ```
 
 🧾 フィールド説明：
 
-`id` （数値）: チャネル ID。URLパスを通じて渡されます
+`id` （数字）: チャネル ID、URL パス経由で渡されます
 
 ### チャネルの一括削除
 
 - **インターフェース名**：チャネルの一括削除
-- **HTTPメソッド**：POST
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/batch`
 - **認証要件**：管理者
-- **機能概要**：IDリストに基づいてチャネルを一括で削除します
+- **機能概要**：ID リストに基づいてチャネルを一括で削除します
 
 💡 リクエスト例：
 
@@ -879,7 +897,8 @@ const response = await fetch('/api/channel/batch', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3, 4, 5]  
@@ -903,22 +922,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "パラメータエラー"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `ids` （配列）: 削除するチャネル ID リスト。必須であり、空であってはなりません
-- `data` （数値）: 正常に削除されたチャネルの数
+- `ids` （配列）: 削除するチャネル ID リスト、必須かつ空であってはならない
+- `data` （数字）: 正常に削除されたチャネルの数
 
-### チャネル機能テーブルの修復
+### チャネル能力表の修復
 
-- **インターフェース名**：チャネル機能テーブルの修復
-- **HTTPメソッド**：POST
+- **インターフェース名**：チャネル能力表の修復
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/fix`
 - **認証要件**：管理者
-- **機能概要**：チャネル機能テーブルのデータを修復し、チャネルとモデルのマッピング関係を再構築します
+- **機能概要**：チャネル能力表データを修復し、チャネルとモデルのマッピング関係を再構築します
 
 💡 リクエスト例：
 
@@ -927,7 +946,8 @@ const response = await fetch('/api/channel/fix', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -951,20 +971,20 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "機能テーブルの修復に失敗しました"  
+  "message": "修复能力表失败"  
 }
 ```
 
 🧾 フィールド説明：
 
 - リクエストパラメータなし
-- `data.success` （数値）: 正常に修復されたチャネルの数
-- `data.fails` （数値）: 修復に失敗したチャネルの数
+- `data.success` （数字）: 正常に修復されたチャネルの数
+- `data.fails` （数字）: 修復に失敗したチャネルの数
 
 ### 単一チャネルモデルの取得
 
 - **インターフェース名**：単一チャネルモデルの取得
-- **HTTPメソッド**：GET
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/fetch_models/:id`
 - **認証要件**：管理者
 - **機能概要**：指定されたチャネルのアップストリーム API から利用可能なモデルリストを取得します
@@ -976,7 +996,8 @@ const response = await fetch('/api/channel/fetch_models/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1001,22 +1022,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "解析応答失敗: invalid character 'H' looking for beginning of value"  
+  "message": "解析响应失败: invalid character 'H' looking for beginning of value"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `id` （数値）: チャネル ID。URLパスを通じて渡されます
-- `data` （配列）: アップストリームから取得されたモデル ID リスト
+- `id` （数字）: チャネル ID、URL パス経由で渡されます
+- `data` （配列）: アップストリームから取得したモデル ID リスト
 
 ### 全チャネルモデルの取得
 
 - **インターフェース名**：全チャネルモデルの取得
-- **HTTPメソッド**：POST
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/fetch_models`
 - **認証要件**：管理者
-- **機能概要**：提供された設定情報を使用してアップストリーム API からモデルリストを取得します。これは新規チャネル作成時のプレビューに使用されます。
+- **機能概要**：提供された構成情報を使用してアップストリーム API からモデルリストを取得します。新規チャネル作成時のプレビューに使用されます。
 
 💡 リクエスト例：
 
@@ -1025,7 +1046,8 @@ const response = await fetch('/api/channel/fetch_models', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     base_url: "https://api.openai.com",  
@@ -1060,18 +1082,18 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `base_url` （文字列）: ベース URL。オプション。空の場合はデフォルト URL を使用
-- `type` （数値）: チャネルタイプ。必須
-- `key` （文字列）: APIキー。必須
+- `base_url` （文字列）: ベース URL、オプション、空の場合はデフォルト URL を使用
+- `type` （数字）: チャネルタイプ、必須
+- `key` （文字列）: API キー、必須
 - `data` （配列）: 取得されたモデルリスト
 
 ### チャネルタグの一括設定
 
 - **インターフェース名**：チャネルタグの一括設定
-- **HTTPメソッド**：POST
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/batch/tag`
 - **認証要件**：管理者
-- **機能概要**：指定されたチャネルリストにタグを一括で設定します
+- **機能概要**：指定されたチャネルリストに対してタグを一括で設定します
 
 💡 リクエスト例：
 
@@ -1080,7 +1102,8 @@ const response = await fetch('/api/channel/batch/tag', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3],  
@@ -1105,20 +1128,20 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "パラメータエラー"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `ids` （配列）: タグを設定するチャネル ID リスト。必須であり、空であってはなりません
-- `tag` （文字列）: 設定するタグ名。nullを渡すとタグをクリアできます
-- `data` （数値）: タグ設定に成功したチャネルの数
+- `ids` （配列）: タグを設定するチャネル ID リスト、必須かつ空であってはならない
+- `tag` （文字列）: 設定するタグ名、null を渡すとタグをクリアできます
+- `data` （数字）: 正常にタグが設定されたチャネルの数
 
-### タグによるモデルの取得
+### タグに基づくモデルの取得
 
-- **インターフェース名**：タグによるモデルの取得
-- **HTTPメソッド**：GET
+- **インターフェース名**：タグに基づくモデルの取得
+- **HTTP メソッド**：GET
 - **パス**：`/api/channel/tag/models`
 - **認証要件**：管理者
 - **機能概要**：指定されたタグを持つすべてのチャネルの中で、モデル数が最も多いモデルリストを取得します
@@ -1130,7 +1153,8 @@ const response = await fetch('/api/channel/tag/models?tag=production', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1151,22 +1175,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "tagを空にすることはできません"  
+  "message": "tag不能为空"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `tag` （文字列）: タグ名。必須
-- `data` （文字列）: そのタグの下で最もモデルが多いチャネルのモデルリスト。カンマ区切り
+- `tag` （文字列）: タグ名、必須
+- `data` （文字列）: そのタグを持つチャネルの中でモデルが最も多いチャネルのモデルリスト、カンマ区切り
 
 ### チャネルの複製
 
 - **インターフェース名**：チャネルの複製
-- **HTTPメソッド**：POST
+- **HTTP メソッド**：POST
 - **パス**：`/api/channel/copy/:id`
 - **認証要件**：管理者
-- **機能概要**：既存のチャネルを複製して新しいチャネルを作成します。カスタムサフィックスと残高リセットオプションをサポートしています。
+- **機能概要**：既存のチャネルを複製して新しいチャネルを作成します。カスタムサフィックスと残高リセットオプションをサポートします。
 
 💡 リクエスト例：
 
@@ -1175,7 +1199,8 @@ const response = await fetch('/api/channel/copy/123?suffix=_备份&reset_balance
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1204,7 +1229,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `id` （数値）: 複製するチャネル ID。URLパスを通じて渡されます
-- `suffix` （文字列）: オプション。元の名前に付加するサフィックス。デフォルトは"_复制" (コピー)
-- `reset_balance` （ブール型）: オプション。残高と使用済みクォータを 0 にリセットするかどうか。デフォルトは true
-- `data.id` （数値）: 新しく作成されたチャネル ID
+- `id` （数字）: 複製するチャネル ID、URL パス経由で渡されます
+- `suffix` （文字列）: オプション、元の名前に付加するサフィックス。デフォルトは「_复制」
+- `reset_balance` （ブール型）: オプション、残高と使用済みクォータを 0 にリセットするかどうか。デフォルトは true
+- `data.id` （数字）: 新しく作成されたチャネル ID

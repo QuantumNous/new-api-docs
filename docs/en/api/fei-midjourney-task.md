@@ -5,17 +5,17 @@
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    A management system for image generation tasks. Supports functions like task status tracking, progress monitoring, and result viewing. Includes image URL forwarding and a backend polling update mechanism.
+    A management system for image generation tasks. It supports task status tracking, progress monitoring, result viewing, and other functions. It includes image URL forwarding and a backend polling update mechanism.
 
 ## 🔐 User Authentication
 
-### Get Own MJ Tasks
+### Retrieve Own MJ Tasks
 
-- **Interface Name**: Get Own MJ Tasks
+- **Interface Name**: Retrieve Own MJ Tasks
 - **HTTP Method**: GET
 - **Path**: `/api/mj/self`
 - **Authentication Requirement**: User
-- **Function Summary**: Paginates the current user's Midjourney task list, supports filtering by task ID and time range
+- **Function Summary**: Paginates and retrieves the current user's Midjourney task list, supporting filtering by task ID and time range.
 
 💡 Request Example:
 
@@ -24,7 +24,8 @@ const response = await fetch('/api/mj/self?p=1&page_size=20&mj_id=task123&start_
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -63,7 +64,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -79,33 +80,33 @@ const data = await response.json();
 - `mj_id` (String): Task ID filter, optional 
 - `start_timestamp` (Number): Start timestamp, optional
 - `end_timestamp` (Number): End timestamp, optional
-- Description of returned fields:
+- Response Field Descriptions:
 
     - `id` (Number): Database record ID
     - `mj_id` (String): Midjourney task unique identifier 
     - `action` (String): Operation type, such as IMAGINE, UPSCALE, etc. 
     - `prompt` (String): Original prompt
     - `prompt_en` (String): English prompt
-    - `status` (String): Task status midjourney.go：19
+    - `status` (String): Task status midjourney.go: 19
     - `progress` (String): Completion progress percentage 
     - `image_url` (String): Generated image URL
     - `video_url` (String): Generated video URL
     - `video_urls` (String): JSON array string of multiple video URLs 
     - `submit_time` (Number): Submission timestamp
     - `start_time` (Number): Start processing timestamp
-    - `finish_time` (Number): Completion timestamp
+    - `finish_time` (Number): Finish timestamp
     - `fail_reason` (String): Failure reason
     - `quota` (Number): Consumed quota
 
 ## 🔐 Administrator Authentication
 
-### Get All MJ Tasks
+### Retrieve All MJ Tasks
 
-- **Interface Name**: Get All MJ Tasks
+- **Interface Name**: Retrieve All MJ Tasks
 - **HTTP Method**: GET
 - **Path**: `/api/mj/`
 - **Authentication Requirement**: Administrator
-- **Function Summary**: Paginates all Midjourney tasks in the system, supports filtering by channel ID, task ID, and time range
+- **Function Summary**: Paginates and retrieves all Midjourney tasks in the system, supporting filtering by Channel ID, Task ID, and time range.
 
 💡 Request Example:
 
@@ -114,7 +115,8 @@ const response = await fetch('/api/mj/?p=1&page_size=20&channel_id=1&mj_id=task1
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -150,7 +152,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -167,7 +169,7 @@ const data = await response.json();
 - `mj_id` (String): Task ID filter, optional
 - `start_timestamp` (String): Start timestamp, optional
 - `end_timestamp` (String): End timestamp, optional
-- The returned fields include all fields from the user's own tasks, plus the following additions:
+- Response fields include all fields from the user's own tasks, plus the following additions:
 
-    - `user_id` (Number): ID of the user owning the task 
-    - `channel_id` (Number): ID of the channel used
+    - `user_id` (Number): User ID associated with the task 
+    - `channel_id` (Number): Channel ID used
