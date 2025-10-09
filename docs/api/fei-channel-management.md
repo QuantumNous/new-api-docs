@@ -545,7 +545,7 @@ const response = await fetch('/api/channel/', {
       type: 1,  
       key: "<YOUR_API_KEY>",  
       base_url: "https://api.openai.com",  
-      models: ["gpt-3.5-turbo", "gpt-4"],  
+      models: "gpt-3.5-turbo,gpt-4,claude-3-sonnet",  
       groups: ["default"],  
       priority: 10,  
       weight: 100  
@@ -583,7 +583,7 @@ const data = await response.json();
     - `type` （数字）: 渠道类型
     - `key` （字符串）: API 密钥
     - `base_url` （字符串）: 基础 URL
-    - `models` （数组）: 支持的模型列表
+    - `models` （字符串）: 支持的模型列表，逗号分隔，可选
     - `groups` （数组）: 可用分组列表
     - `priority` （数字）: 优先级
     - `weight` （数字）: 权重
