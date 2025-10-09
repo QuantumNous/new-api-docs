@@ -24,7 +24,8 @@ const response = await fetch('/api/token/?p=1&size=20', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -90,7 +91,8 @@ const response = await fetch('/api/token/search?keyword=api&token=sk-123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -143,7 +145,8 @@ const response = await fetch('/api/token/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -201,7 +204,8 @@ const response = await fetch('/api/token/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     name: "My API Token",  
@@ -261,7 +265,8 @@ const response = await fetch('/api/token/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id' 
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -285,7 +290,8 @@ const response = await fetch('/api/token/?status_only=true', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -339,7 +345,8 @@ const response = await fetch('/api/token/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id' 
   }  
 });  
 const data = await response.json();
@@ -382,7 +389,8 @@ const response = await fetch('/api/token/batch', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3, 4, 5]  

@@ -24,7 +24,8 @@ const response = await fetch('/api/task/self?p=1&page_size=20&platform=suno&task
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -121,7 +122,8 @@ const response = await fetch('/api/task/?p=1&page_size=20&channel_id=1&platform=
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
