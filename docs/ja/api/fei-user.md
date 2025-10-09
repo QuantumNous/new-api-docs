@@ -1,23 +1,23 @@
 # ユーザーモジュール
 
 !!! info "機能説明"
-    インターフェースのプレフィックスは、http(s)://`<your-domain>` に統一されています。
+    インターフェースのプレフィックスは http(s)://`<your-domain>` に統一されています。
 
-    本番環境では、認証トークンを保護するために HTTPS を使用する必要があります。HTTP は開発環境でのみ推奨されます。
+    本番環境では、認証トークンを保証するために HTTPS を使用する必要があります。HTTP は開発環境でのみ推奨されます。
 
-    コアとなるユーザー管理システムであり、4段階の権限体系（公開/ユーザー/管理者/Root）と完全なユーザーライフサイクル管理を実現します。登録、ログイン、個人プロファイル、トークン管理、チャージ/支払い、プロモーションシステムなどの機能が含まれます。2FA、メール認証、および複数の OAuth ログイン方法をサポートしています。
+    登録/ログイン、個人プロファイル、Token 管理、チャージ/支払い、プロモーションシステムなどの機能を含む、4段階の権限システム（公開/ユーザー/管理者/Root）と完全なユーザーライフサイクル管理を実現するコアユーザー管理システムです。2FA、メール認証、複数の OAuth ログイン方法をサポートしています。
 
 ## アカウント登録/ログイン
 
 ### 🔐 認証不要
 
-#### 新しいアカウントの登録
+#### 新規アカウント登録
 
-- **インターフェース名**：新しいアカウントの登録
+- **インターフェース名**：新規アカウント登録
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/register`
 - **認証要件**：公開
-- **機能概要**：新しいユーザーアカウントを作成します。メール認証と紹介コード機能をサポートしています。
+- **機能概要**：新規ユーザーアカウントを作成します。メール認証と紹介コード機能をサポートしています。
 
 💡 リクエスト例：
 
@@ -60,8 +60,8 @@ const data = await response.json();
 
 - `username` （文字列）: ユーザー名、必須
 - `password` （文字列）: パスワード、必須
-- `email` （文字列）: メールアドレス、メール認証が有効な場合に必須
-- `verification_code` （文字列）: メール認証コード、メール認証が有効な場合に必須
+- `email` （文字列）: メールアドレス。メール認証が有効な場合に必須
+- `verification_code` （文字列）: メール認証コード。メール認証が有効な場合に必須
 - `aff_code` （文字列）: 紹介コード、オプション
 
 #### ユーザーログイン
@@ -70,7 +70,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/login`
 - **認証要件**：公開
-- **機能概要**：ユーザーアカウントのログイン。二要素認証（2FA）をサポートしています。
+- **機能概要**：ユーザーアカウントにログインします。二要素認証（2FA）をサポートしています。
 
 💡 リクエスト例：
 
@@ -144,7 +144,7 @@ const data = await response.json();
 💡 リクエスト例：
 
 ```
-_// 通常由支付系统自动回调，前端无需主动调用  _
+_// 通常、支払いシステムによって自動的にコールバックされます。フロントエンドから手動で呼び出す必要はありません  _
 _// 示例URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_status=TRADE_SUCCESS_
 ```
 
@@ -173,9 +173,9 @@ _// 示例URL: /api/user/epay/notify?trade_no=USR1NO123456&money=10.00&trade_sta
 - `trade_status` （文字列）: 取引ステータス
 - `sign` （文字列）: 署名検証
 
-#### すべてのグループをリスト表示（認証不要版）
+#### 全グループのリスト表示（認証不要版）
 
-- **インターフェース名**：すべてのグループをリスト表示
+- **インターフェース名**：全グループのリスト表示
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/groups`
 - **認証要件**：公開
@@ -227,11 +227,11 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`data` （オブジェクト）: グループ情報のマッピング
+`data` （オブジェクト）: グループ情報マッピング
 
 - キー （文字列）: グループ名
-- `ratio` （数値/文字列）: グループの倍率（レート）。"自動"は自動選択を意味します。
-- `desc` （文字列）: グループの説明
+- `ratio` （数値/文字列）: グループ比率 (Ratio)。"自動"は自動選択を意味します
+- `desc` （文字列）: グループ説明
 
 ### 🔐 ユーザー認証
 
@@ -241,7 +241,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/logout`
 - **認証要件**：ユーザー
-- **機能概要**：ユーザーセッションをクリアし、ログアウト状態にします。
+- **機能概要**：ユーザーセッションをクリアし、ログイン状態を終了します。
 
 💡 リクエスト例：
 
@@ -250,7 +250,8 @@ const response = await fetch('/api/user/logout', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -282,13 +283,13 @@ const data = await response.json();
 
 ### 🔐 ユーザー認証
 
-#### 自身が所属するグループの取得
+#### 自身の所属グループの取得
 
-- **インターフェース名**：自身が所属するグループの取得
+- **インターフェース名**：自身の所属グループの取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/self/groups`
 - **認証要件**：ユーザー
-- **機能概要**：現在ログインしているユーザーが使用できるグループ情報を取得します。グループの倍率（レート）と説明が含まれます。
+- **機能概要**：現在ログインしているユーザーが利用可能なグループ情報を取得します。グループ比率と説明が含まれます。
 
 💡 リクエスト例：
 
@@ -297,7 +298,8 @@ const response = await fetch('/api/user/self/groups', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -337,11 +339,11 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`data` （オブジェクト）: ユーザーが利用可能なグループ情報のマッピング group.go：25-48
+`data` （オブジェクト）: ユーザーが利用可能なグループ情報マッピング group.go：25-48
 
 - キー （文字列）: グループ名
-- `ratio` （数値/文字列）: グループの倍率（レート）。"自動"は最適なグループの自動選択を意味します。
-- `desc` （文字列）: グループの説明
+- `ratio` （数値/文字列）: グループ比率 (Ratio)。"自動"は最適なグループの自動選択を意味します
+- `desc` （文字列）: グループ説明
 
 #### 個人プロファイルの取得
 
@@ -349,7 +351,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/self`
 - **認証要件**：ユーザー
-- **機能概要**：現在のユーザーの詳細情報（権限、クォータ、設定など）を取得します。
+- **機能概要**：現在のユーザーの詳細情報を取得します。権限、クォータ、設定などが含まれます。
 
 💡 リクエスト例：
 
@@ -358,7 +360,8 @@ const response = await fetch('/api/user/self', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -412,8 +415,8 @@ const data = await response.json();
 - `id` （数値）: ユーザー ID
 - `username` （文字列）: ユーザー名
 - `display_name` （文字列）: 表示名
-- `role` （数値）: ユーザーロール、1=一般ユーザー、10=管理者、100=Rootユーザー
-- `status` （数値）: ユーザー状態、1=正常、2=無効
+- `role` （数値）: ユーザーロール。1=一般ユーザー、10=管理者、100=Root ユーザー
+- `status` （数値）: ユーザー状態。1=正常、2=無効
 - `email` （文字列）: メールアドレス
 - `group` （文字列）: 所属グループ
 - `quota` （数値）: 総クォータ
@@ -421,7 +424,7 @@ const data = await response.json();
 - `request_count` （数値）: リクエスト回数
 - `aff_code` （文字列）: 紹介コード
 - `aff_count` （数値）: 紹介人数
-- `aff_quota` （数値）: 紹介ボーナスクォータ
+- `aff_quota` （数値）: 紹介報酬クォータ
 - `aff_history_quota` （数値）: 履歴紹介クォータ
 - `inviter_id` （数値）: 招待者 ID
 - `linux_do_id` （文字列）: LinuxDo アカウント ID
@@ -430,9 +433,9 @@ const data = await response.json();
 - `sidebar_modules` （文字列）: サイドバーモジュール設定 JSON 文字列
 - `permissions` （オブジェクト）: ユーザー権限情報
 
-#### モデルの可視性の取得
+#### モデル可視性の取得
 
-- **インターフェース名**：モデルの可視性の取得
+- **インターフェース名**：モデル可視性の取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/models`
 - **認証要件**：ユーザー
@@ -445,7 +448,8 @@ const response = await fetch('/api/user/models', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -494,7 +498,8 @@ const response = await fetch('/api/user/self', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     display_name: "New Display Name",  
@@ -511,7 +516,8 @@ const response = await fetch('/api/user/self', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     sidebar_modules: JSON.stringify({  
@@ -554,7 +560,7 @@ const data = await response.json();
 - **HTTP メソッド**：DELETE
 - **パス**：`/api/user/self`
 - **認証要件**：ユーザー
-- **機能概要**：現在のユーザーアカウントを削除します。Rootユーザーは削除できません。
+- **機能概要**：現在のユーザーアカウントを削除します。Root ユーザーは削除できません。
 
 💡 リクエスト例：
 
@@ -563,7 +569,8 @@ const response = await fetch('/api/user/self', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -606,7 +613,8 @@ const response = await fetch('/api/user/token', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -633,15 +641,15 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`data` （文字列）: 生成されたアクセストークン
+`data` （文字列）: 生成されたアクセス**トークン**
 
-#### プロモーションコード情報の取得
+#### 紹介コード情報の取得
 
-- **インターフェース名**：プロモーションコード情報の取得
+- **インターフェース名**：紹介コード情報の取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/aff`
 - **認証要件**：ユーザー
-- **機能概要**：ユーザーのプロモーションコードを取得または生成します。新規ユーザーの招待に使用されます。
+- **機能概要**：ユーザーの紹介コードを取得または生成します。新規ユーザーの招待に使用されます。
 
 💡 リクエスト例：
 
@@ -650,7 +658,8 @@ const response = await fetch('/api/user/aff', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -677,7 +686,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`data` （文字列）: ユーザーのプロモーションコード。存在しない場合は4桁のランダムな文字列が自動生成されます。
+`data` （文字列）: ユーザーの紹介コード。存在しない場合は4桁のランダムな文字列が自動生成されます。
 
 #### クォータの直接チャージ
 
@@ -685,7 +694,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/topup`
 - **認証要件**：ユーザー
-- **機能概要**：交換コードを使用してアカウントにクォータをチャージします。
+- **機能概要**：交換コードを使用してアカウントに**クォータ**をチャージします。
 
 💡 リクエスト例：
 
@@ -694,7 +703,8 @@ const response = await fetch('/api/user/topup', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     key: "REDEEM123456"  
@@ -725,7 +735,7 @@ const data = await response.json();
 🧾 フィールド説明：
 
 - `key` （文字列）: 交換コード、必須
-- `data` （数値）: 成功時に返されるチャージされたクォータの数量
+- `data` （数値）: 成功時に交換された**クォータ**数が返されます
 
 #### 支払い注文の送信
 
@@ -742,7 +752,8 @@ const response = await fetch('/api/user/pay', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     amount: 10000,  
@@ -784,15 +795,15 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `amount` （数値）: チャージ数量。最小チャージ額以上である必要があります topup.go：133-136
-- `payment_method` （文字列）: 支払い方法、例："alipay"、"wxpay"など
+- `amount` （数値）: チャージ数量。最小チャージ**クォータ**以上である必要があります topup.go：133-136
+- `payment_method` （文字列）: 支払い方法。例：「alipay」、「wxpay」など
 - `top_up_code` （文字列）: チャージコード、オプション
 - `data` （オブジェクト）: 支払いフォームパラメータ
 - `url` （文字列）: 支払い送信先アドレス
 
-#### 支払い金額の計算
+#### クォータ支払い
 
-- **インターフェース名**：支払い金額の計算
+- **インターフェース名**：クォータ支払い
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/amount`
 - **認証要件**：ユーザー
@@ -805,7 +816,8 @@ const response = await fetch('/api/user/amount', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     amount: 10000,  
@@ -836,17 +848,17 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `amount` （数値）: チャージ数量。最小チャージ額以上である必要があります
+- `amount` （数値）: チャージ数量。最小チャージ**クォータ**以上である必要があります
 - `top_up_code` （文字列）: チャージコード、オプション
 - `data` （文字列）: 実際に支払う必要のある金額（元）
 
-#### プロモーションクォータの振替
+#### 紹介クォータの振替
 
-- **インターフェース名**：プロモーションクォータの振替
+- **インターフェース名**：紹介**クォータ**の振替
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/aff_transfer`
 - **認証要件**：ユーザー
-- **機能概要**：紹介ボーナスクォータを利用可能なクォータに変換します。
+- **機能概要**：紹介報酬**クォータ**を使用可能な**クォータ**に変換します。
 
 💡 リクエスト例：
 
@@ -855,7 +867,8 @@ const response = await fetch('/api/user/aff_transfer', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     quota: 50000  
@@ -884,7 +897,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`quota` （数値）: 変換するクォータの数量。最小単位クォータ以上である必要があります。
+`quota` （数値）: 変換する**クォータ**数量。最小単位**クォータ**以上である必要があります
 
 #### ユーザー設定の更新
 
@@ -901,7 +914,8 @@ const response = await fetch('/api/user/setting', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     theme: "dark",  
@@ -935,20 +949,20 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- リクエストボディには、JSON形式で任意のユーザー設定フィールドを含めることができます
+- リクエストボディには、任意のユーザー設定フィールドを JSON 形式で含めることができます
 - 具体的なフィールドは、フロントエンドの設定ページの要件によって異なります
 
 ## 管理者によるユーザー管理
 
 ### 🔐 管理者認証
 
-#### すべてのユーザーリストの取得
+#### 全ユーザーリストの取得
 
-- **インターフェース名**：すべてのユーザーリストの取得
+- **インターフェース名**：全ユーザーリストの取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/`
 - **認証要件**：管理者
-- **機能概要**：システム内のすべてのユーザーのリスト情報をページング形式で取得します。
+- **機能概要**：システム内の全ユーザーのリスト情報をページネーションで取得します。
 
 💡 リクエスト例：
 
@@ -957,7 +971,8 @@ const response = await fetch('/api/user/?p=1&page_size=20', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1002,20 +1017,20 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `p` （数値）: ページ番号、デフォルトは 1
-- `page_size` （数値）: ページあたりの数量、デフォルトは 20
+- `p` （数値）: ページ番号。デフォルトは 1
+- `page_size` （数値）: ページあたりの数量。デフォルトは 20
 - `items` （配列）: ユーザー情報リスト
 - `total` （数値）: ユーザー総数
 - `page` （数値）: 現在のページ番号
 - `page_size` （数値）: ページあたりの数量
 
-#### ユーザーの検索
+#### ユーザー検索
 
-- **インターフェース名**：ユーザーの検索
+- **インターフェース名**：ユーザー検索
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/search`
 - **認証要件**：管理者
-- **機能概要**：キーワードとグループに基づいてユーザーを検索します。
+- **機能概要**：キーワードと**グループ**に基づいてユーザーを検索します。
 
 💡 リクエスト例：
 
@@ -1024,7 +1039,8 @@ const response = await fetch('/api/user/search?keyword=test&group=default&p=1&pa
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1066,18 +1082,18 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `keyword` （文字列）: 検索キーワード。ユーザー名、表示名、メールアドレスに一致可能
-- `group` （文字列）: ユーザーグループのフィルタリング条件
-- `p` （数値）: ページ番号、デフォルトは 1
-- `page_size` （数値）: ページあたりの数量、デフォルトは 20
+- `keyword` （文字列）: 検索キーワード。ユーザー名、表示名、メールアドレスに一致します
+- `group` （文字列）: ユーザー**グループ**のフィルタリング条件
+- `p` （数値）: ページ番号。デフォルトは 1
+- `page_size` （数値）: ページあたりの数量。デフォルトは 20
 
-#### 個別ユーザー情報の取得
+#### 単一ユーザー情報の取得
 
-- **インターフェース名**：個別ユーザー情報の取得
+- **インターフェース名**：単一ユーザー情報の取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/user/:id`
 - **認証要件**：管理者
-- **機能概要**：指定されたユーザーの詳細情報（権限チェックを含む）を取得します。
+- **機能概要**：指定されたユーザーの詳細情報を取得します。権限チェックが含まれます。
 
 💡 リクエスト例：
 
@@ -1086,7 +1102,8 @@ const response = await fetch('/api/user/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1126,8 +1143,8 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `id` （数値）: ユーザー ID。URL パス経由で渡されます。
-- 完全なユーザー情報が返されますが、管理者は同等またはそれ以上の権限を持つユーザーの情報を表示できません。
+- `id` （数値）: ユーザー ID。URL パス経由で渡されます
+- 完全なユーザー情報が返されますが、管理者は同等またはそれ以上の権限を持つユーザーの情報を表示できません
 
 #### ユーザーの作成
 
@@ -1135,7 +1152,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/`
 - **認証要件**：管理者
-- **機能概要**：新しいユーザーアカウントを作成します。管理者は自分と同等以上の権限を持つユーザーを作成できません。
+- **機能概要**：新規ユーザーアカウントを作成します。管理者は自身以上の権限を持つユーザーを作成することはできません。
 
 💡 リクエスト例：
 
@@ -1144,7 +1161,8 @@ const response = await fetch('/api/user/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id' 
   },  
   body: JSON.stringify({  
     username: "newuser",  
@@ -1178,8 +1196,8 @@ const data = await response.json();
 
 - `username` （文字列）: ユーザー名、必須
 - `password` （文字列）: パスワード、必須
-- `display_name` （文字列）: 表示名、オプション、デフォルトはユーザー名
-- `role` （数値）: ユーザーロール。現在の管理者ロールよりも小さい必要があります。
+- `display_name` （文字列）: 表示名、オプション。デフォルトはユーザー名
+- `role` （数値）: ユーザーロール。現在の管理者ロールよりも低い必要があります
 
 #### 凍結/リセットなどの管理操作
 
@@ -1187,7 +1205,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/user/manage`
 - **認証要件**：管理者
-- **機能概要**：ユーザーに対して管理操作（有効化、無効化、削除、昇格、降格など）を実行します。
+- **機能概要**：ユーザーに対して、有効化、無効化、削除、昇格、降格などの管理操作を実行します。
 
 💡 リクエスト例：
 
@@ -1196,7 +1214,8 @@ const response = await fetch('/api/user/manage', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -1227,11 +1246,12 @@ const data = await response.json();
 🧾 フィールド説明：
 
 - `id` （数値）: ターゲットユーザー ID、必須
-- `action` （文字列）: 操作タイプ、必須。オプション値：
+- `action` （文字列）: 操作タイプ、必須、選択可能な値：
+
     - `disable`： ユーザーを無効化
     - `enable`： ユーザーを有効化
     - `delete`： ユーザーを削除
-    - `promote`： 管理者に昇格（Rootユーザーのみ操作可能）
+    - `promote`： 管理者に昇格（Root ユーザーのみ操作可能）
     - `demote`： 一般ユーザーに降格
 
 #### ユーザーの更新
@@ -1240,7 +1260,7 @@ const data = await response.json();
 - **HTTP メソッド**：PUT
 - **パス**：`/api/user/`
 - **認証要件**：管理者
-- **機能概要**：ユーザー情報を更新します。権限チェックとクォータ変更の記録が含まれます。
+- **機能概要**：ユーザー情報を更新します。権限チェックと**クォータ**変更履歴が含まれます。
 
 💡 リクエスト例：
 
@@ -1249,7 +1269,8 @@ const response = await fetch('/api/user/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -1288,9 +1309,9 @@ const data = await response.json();
 - `username` （文字列）: ユーザー名、オプション
 - `display_name` （文字列）: 表示名、オプション
 - `email` （文字列）: メールアドレス、オプション
-- `password` （文字列）: 新しいパスワード、オプション。空の場合はパスワードを更新しません。
-- `quota` （数値）: ユーザー**クォータ**、オプション
-- `role` （数値）: ユーザーロール。現在の管理者ロール以上であってはなりません。
+- `password` （文字列）: 新しいパスワード、オプション。空の場合はパスワードを更新しません
+- `quota` （数値）: ユーザーの**クォータ**、オプション
+- `role` （数値）: ユーザーロール。現在の管理者ロールよりも低い必要があります
 - `status` （数値）: ユーザー状態、オプション
 
 #### ユーザーの削除
@@ -1299,7 +1320,7 @@ const data = await response.json();
 - **HTTP メソッド**：DELETE
 - **パス**：`/api/user/:id`
 - **認証要件**：管理者
-- **機能概要**：指定されたユーザーをハード削除します。管理者は同等またはそれ以上の権限を持つユーザーを削除できません。
+- **機能概要**：指定されたユーザーを物理削除します。管理者は同等またはそれ以上の権限を持つユーザーを削除することはできません。
 
 💡 リクエスト例：
 
@@ -1308,7 +1329,8 @@ const response = await fetch('/api/user/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1334,5 +1356,5 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `id` （数値）: ユーザー ID。URL パス経由で渡されます。
-- ハード削除操作を実行します。回復できません。
+- `id` （数値）: ユーザー ID。URL パス経由で渡されます
+- 物理削除操作を実行します。回復できません

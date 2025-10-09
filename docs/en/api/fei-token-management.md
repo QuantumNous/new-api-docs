@@ -1,9 +1,9 @@
 # Token Management Module
 
-!!! info "Feature Description"
+!!! info "Function Description"
     The interface prefix is uniformly http(s)://`<your-domain>`
 
-    HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
+    HTTPS should be used in production environments to ensure authentication tokens. HTTP is only recommended for development environments.
 
     A complete management system for user API Tokens. Supports features such as Token creation, updating, deletion, and batch operations. Includes fine-grained controls like model restrictions, IP restrictions, quota management, and expiration time. This is the core data source for the frontend Token page.
 
@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/token/`
 - **Authentication Requirement**: User
-- **Feature Summary**: Paginates and retrieves the list of all Tokens belonging to the current user.
+- **Function Description**: Paginates and retrieves the list of all Tokens belonging to the current user.
 
 💡 Request Example:
 
@@ -24,7 +24,8 @@ const response = await fetch('/api/token/?p=1&size=20', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -57,7 +58,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -69,11 +70,11 @@ const data = await response.json();
 🧾 Field Description:
 
 - `p` (Number): Page number, defaults to 1
-- `size` (Number): Number per page, defaults to 20
-- `items` (Array): Token information list
+- `size` (Number): Items per page, defaults to 20
+- `items` (Array): List of Token information
 - `total` (Number): Total number of Tokens
 - `page` (Number): Current page number
-- `page_size` (Number): Number per page
+- `page_size` (Number): Items per page
 
 ### Search Tokens
 
@@ -81,7 +82,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/token/search`
 - **Authentication Requirement**: User
-- **Feature Summary**: Searches the user's Tokens based on keywords and Token values.
+- **Function Description**: Searches the user's Tokens based on keywords and Token values.
 
 💡 Request Example:
 
@@ -90,7 +91,8 @@ const response = await fetch('/api/token/search?keyword=api&token=sk-123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -114,7 +116,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -126,7 +128,7 @@ const data = await response.json();
 🧾 Field Description:
 
 - `keyword` (String): Search keyword, matches Token name
-- `token` (String): Token value search, supports partial matching 
+- `token` (String): Token value search, supports partial matching
 
 ### Get Single Token
 
@@ -134,7 +136,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/token/:id`
 - **Authentication Requirement**: User
-- **Feature Summary**: Retrieves the detailed information of a specified Token.
+- **Function Description**: Retrieves detailed information for the specified Token.
 
 💡 Request Example:
 
@@ -143,7 +145,8 @@ const response = await fetch('/api/token/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -173,7 +176,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -192,7 +195,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/token/`
 - **Authentication Requirement**: User
-- **Feature Summary**: Creates a new API Token, supports batch creation.
+- **Function Description**: Creates a new API Token, supports batch creation.
 
 💡 Request Example:
 
@@ -201,7 +204,8 @@ const response = await fetch('/api/token/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     name: "My API Token",  
@@ -226,7 +230,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -237,13 +241,13 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `name` (String): Token name, maximum length 30 characters 
+- `name` (String): Token name, maximum length 30 characters
 - `expired_time` (Number): Expiration timestamp, -1 means never expires
 - `remain_quota` (Number): Remaining quota
 - `unlimited_quota` (Boolean): Whether the quota is unlimited
-- `model_limits_enabled` (Boolean): Whether model limits are enabled
+- `model_limits_enabled` (Boolean): Whether model restrictions are enabled
 - `model_limits` (Array): List of allowed models
-- `allow_ips` (String): Allowed IP addresses, comma separated
+- `allow_ips` (String): Allowed IP addresses, comma-separated
 - `group` (String): Associated group
 
 ### Update Token
@@ -252,7 +256,7 @@ const data = await response.json();
 - **HTTP Method**: PUT
 - **Path**: `/api/token/`
 - **Authentication Requirement**: User
-- **Feature Summary**: Updates Token configuration, supports status toggling and full updates.
+- **Function Description**: Updates Token configuration, supports status toggling and full updates.
 
 💡 Request Example (Full Update):
 
@@ -261,7 +265,8 @@ const response = await fetch('/api/token/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id' 
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -285,7 +290,8 @@ const response = await fetch('/api/token/?status_only=true', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -309,20 +315,20 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "The Token has expired and cannot be enabled. Please modify the Token expiration time first, or set it to never expire."  
+  "message": "Token has expired and cannot be enabled. Please modify the token expiration time first, or set it to never expire"  
 }
 ```
 
 🧾 Field Description:
 
 - `id` (Number): Token ID, required
-- `status_only` (Query Parameter): Whether to update status only 
-- Other fields are the same as the Create Token interface, and are optional.
+- `status_only` (Query Parameter): Whether to update status only
+- Other fields are the same as the Create Token interface and are all optional
 
 ### Delete Token
 
@@ -330,7 +336,7 @@ const data = await response.json();
 - **HTTP Method**: DELETE
 - **Path**: `/api/token/:id`
 - **Authentication Requirement**: User
-- **Feature Summary**: Deletes the specified Token.
+- **Function Description**: Deletes the specified Token.
 
 💡 Request Example:
 
@@ -339,7 +345,8 @@ const response = await fetch('/api/token/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id' 
   }  
 });  
 const data = await response.json();
@@ -354,7 +361,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -373,7 +380,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/token/batch`
 - **Authentication Requirement**: User
-- **Feature Summary**: Deletes multiple Tokens in a batch.
+- **Function Description**: Deletes multiple Tokens in a batch.
 
 💡 Request Example:
 
@@ -382,7 +389,8 @@ const response = await fetch('/api/token/batch', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3, 4, 5]  
@@ -401,7 +409,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -412,5 +420,5 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `ids` (Array): List of Token IDs to be deleted, required and cannot be empty 
+- `ids` (Array): List of Token IDs to be deleted, required and cannot be empty
 - `data` (Number): Number of Tokens successfully deleted

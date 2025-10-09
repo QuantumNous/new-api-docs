@@ -1,13 +1,13 @@
 # System Initialization Module
 
 !!! info "Feature Description"
-    The unified prefix for feature interfaces is http(s)://`<your-domain>`
+    The prefix for all functional interfaces is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    The System Initialization Module is responsible for initial deployment configuration and operational status monitoring. It supports SQLite, MySQL, and PostgreSQL databases, including Root user creation and system parameter initialization. The status interface provides real-time system information, including OAuth configuration, feature toggles, and more.
+    The System Initialization Module is responsible for first-time deployment configuration and runtime status monitoring. It supports SQLite, MySQL, and PostgreSQL databases, including Root user creation and system parameter initialization. The status interface provides real-time system information, including OAuth configuration, feature toggles, etc.
 
-## 🔐 No Authentication Required
+## 🔐 Public Access (No Authentication Required)
 
 ### Get System Initialization Status
 
@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/setup`
 - **Authentication Requirement**: Public
-- **Function Description**: Checks if the system initialization is complete, retrieves the database type and Root user status.
+- **Description**: Checks if the system initialization is complete, retrieves the database type and Root user status.
 
 💡 Request Example:
 
@@ -42,7 +42,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -55,7 +55,7 @@ const data = await response.json();
 
 - `status` (Boolean): Whether the system initialization is complete
 - `root_init` (Boolean): Whether the Root user exists
-- `database_type` (String): Database type, optional values: "mysql", "postgres", "sqlite"
+- `database_type` (String): Database type. Possible values: "mysql", "postgres", "sqlite"
 
 ### Complete First-Time Installation Wizard
 
@@ -63,7 +63,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/setup`
 - **Authentication Requirement**: Public
-- **Function Description**: Creates the Root administrator account and completes the system initialization configuration.
+- **Description**: Creates the Root administrator account and completes the system initialization configuration.
 
 💡 Request Example:
 
@@ -93,7 +93,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -110,13 +110,13 @@ const data = await response.json();
 - `SelfUseModeEnabled` (Boolean): Whether to enable Self-Use Mode
 - `DemoSiteEnabled` (Boolean): Whether to enable Demo Site Mode
 
-### Get Operational Status Summary
+### Get Runtime Status Summary
 
-- **Interface Name**: Get Operational Status Summary
+- **Interface Name**: Get Runtime Status Summary
 - **HTTP Method**: GET
 - **Path**: `/api/status`
 - **Authentication Requirement**: Public
-- **Function Description**: Retrieves system operational status, configuration information, and feature toggle states.
+- **Description**: Retrieves system runtime status, configuration information, and feature toggle states.
 
 💡 Request Example:
 
@@ -152,7 +152,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -164,7 +164,7 @@ const data = await response.json();
 🧾 Field Description:
 
 - `version` (String): System version number
-- `start_time` (Number): System start timestamp
+- `start_time` (Number): System startup timestamp
 - `email_verification` (Boolean): Whether email verification is enabled
 - `github_oauth` (Boolean): Whether GitHub OAuth login is enabled
 - `github_client_id` (String): GitHub OAuth Client ID
@@ -173,7 +173,7 @@ const data = await response.json();
 - `display_in_currency` (Boolean): Whether to display in currency format
 - `enable_drawing` (Boolean): Whether drawing functionality is enabled
 - `enable_task` (Boolean): Whether task functionality is enabled
-- `setup` (Boolean): Whether system initialization is complete
+- `setup` (Boolean): Whether the system initialization is complete
 
 ### Uptime-Kuma Compatible Status Probe
 
@@ -181,7 +181,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/uptime/status`
 - **Authentication Requirement**: Public
-- **Function Description**: Provides a status check interface compatible with the Uptime-Kuma monitoring system.
+- **Description**: Provides a status check interface compatible with the Uptime-Kuma monitoring system.
 
 💡 Request Example:
 
@@ -216,7 +216,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  
@@ -231,7 +231,7 @@ const data = await response.json();
 - `monitors` (Array): List of monitoring items
     - `name` (String): Monitor item name
     - `group` (String): Monitor group name
-    - `status` (Number): Status code, 1=Normal, 0=Abnormal
+    - `status` (Number): Status code (1=Normal, 0=Abnormal)
     - `uptime` (Number): Availability percentage
 
 ## 🔐 Administrator Authentication
@@ -242,7 +242,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/status/test`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Tests the connection status and health of various system components.
+- **Description**: Tests the connection status and health of various system components.
 
 💡 Request Example:
 
@@ -251,7 +251,8 @@ const response = await fetch('/api/status/test', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -271,7 +272,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failed Response Example:
+❗ Failure Response Example:
 
 ```
 {  

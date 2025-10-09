@@ -1,21 +1,21 @@
 # トークン管理モジュール
 
 !!! info "機能説明"
-    APIプレフィックスは http(s)://`<your-domain>` に統一されています
+    インターフェースのプレフィックスは http(s)://`<your-domain>` に統一されています
 
-    本番環境では認証トークンを保護するためにHTTPSを使用する必要があります。HTTPは開発環境でのみ推奨されます。
+    本番環境では認証トークンを保護するために HTTPS を使用する必要があります。 HTTP は開発環境でのみ推奨されます。
 
-    ユーザーAPIトークンの完全な管理システムです。トークンの作成、更新、削除、バッチ操作などの機能をサポートしています。モデル制限、IP制限、クォータ管理、有効期限などの詳細な制御が含まれます。これは、フロントエンドのトークンページのコアデータソースです。
+    ユーザー API Token の完全な管理システム。トークンの作成、更新、削除、一括操作などの機能をサポートしています。モデル制限、IP制限、クォータ管理、有効期限などの詳細な制御が含まれます。これは、フロントエンドのトークンページのコアデータソースです。
 
 ## 🔐 ユーザー認証
 
-### 全トークンの取得
+### 全てのトークンの取得
 
-- **インターフェース名**：全トークンの取得
+- **インターフェース名**：全てのトークンの取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/token/`
 - **認証要件**：ユーザー
-- **機能概要**：現在のユーザーの全トークンリストをページネーションで取得します
+- **機能概要**：現在のユーザーの全てのトークンリストをページングして取得します
 
 💡 リクエスト例：
 
@@ -24,13 +24,14 @@ const response = await fetch('/api/token/?p=1&size=20', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -57,7 +58,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -68,12 +69,12 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `p` （数値）: ページ番号。デフォルトは 1
-- `size` （数値）: 1ページあたりの件数。デフォルトは 20
+- `p` （数字）: ページ番号、デフォルトは 1
+- `size` （数字）: 1ページあたりの数、デフォルトは 20
 - `items` （配列）: トークン情報リスト
-- `total` （数値）: トークンの総数
-- `page` （数値）: 現在のページ番号
-- `page_size` （数値）: 1ページあたりの件数
+- `total` （数字）: トークンの総数
+- `page` （数字）: 現在のページ番号
+- `page_size` （数字）: 1ページあたりの数
 
 ### トークンの検索
 
@@ -90,13 +91,14 @@ const response = await fetch('/api/token/search?keyword=api&token=sk-123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -114,7 +116,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -125,8 +127,8 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `keyword` （文字列）: 検索キーワード。トークン名に一致します
-- `token` （文字列）: トークン値検索。部分一致をサポートします
+- `keyword` （文字列）: 検索キーワード、トークン名と一致
+- `token` （文字列）: トークン値検索、部分一致をサポート
 
 ### 個別トークンの取得
 
@@ -143,13 +145,14 @@ const response = await fetch('/api/token/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -173,7 +176,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -184,7 +187,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`id` （数値）: トークンID。URLパスを通じて渡されます
+`id` （数字）: トークン ID、URL パス経由で渡されます
 
 ### トークンの作成
 
@@ -192,7 +195,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/token/`
 - **認証要件**：ユーザー
-- **機能概要**：新しいAPIトークンを作成します。バッチ作成をサポートします
+- **機能概要**：新しい API Token を作成します。一括作成をサポートしています
 
 💡 リクエスト例：
 
@@ -201,7 +204,8 @@ const response = await fetch('/api/token/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     name: "My API Token",  
@@ -217,7 +221,7 @@ const response = await fetch('/api/token/', {
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -226,7 +230,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -237,13 +241,13 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `name` （文字列）: トークン名。最大長は 30 文字です
-- `expired_time` （数値）: 有効期限のタイムスタンプ。-1 は無期限を示します
-- `remain_quota` （数値）: 残りクォータ（残高）
+- `name` （文字列）: トークン名、最大長さ 30 文字
+- `expired_time` （数字）: 有効期限タイムスタンプ、-1 は永続的を意味します
+- `remain_quota` （数字）: 残りクォータ
 - `unlimited_quota` （ブール型）: 無制限クォータであるかどうか
 - `model_limits_enabled` （ブール型）: モデル制限を有効にするかどうか
-- `model_limits` （配列）: 使用を許可するモデルのリスト
-- `allow_ips` （文字列）: 許可するIPアドレス。カンマ区切り
+- `model_limits` （配列）: 使用を許可されているモデルのリスト
+- `allow_ips` （文字列）: 許可された IP アドレス、カンマ区切り
 - `group` （文字列）: 所属グループ
 
 ### トークンの更新
@@ -252,7 +256,7 @@ const data = await response.json();
 - **HTTP メソッド**：PUT
 - **パス**：`/api/token/`
 - **認証要件**：ユーザー
-- **機能概要**：トークン設定を更新します。ステータス切り替えと完全更新をサポートします
+- **機能概要**：トークン設定を更新します。ステータスの切り替えと完全な更新をサポートしています
 
 💡 リクエスト例（完全更新）：
 
@@ -261,7 +265,8 @@ const response = await fetch('/api/token/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id' 
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -285,7 +290,8 @@ const response = await fetch('/api/token/?status_only=true', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -295,7 +301,7 @@ const response = await fetch('/api/token/?status_only=true', {
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -309,7 +315,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -320,9 +326,9 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `id` （数値）: トークンID。必須
+- `id` （数字）: トークン ID、必須
 - `status_only` （クエリパラメータ）: ステータスのみを更新するかどうか
-- その他のフィールドはトークン作成APIと同じで、すべてオプションです
+- その他のフィールドはトークン作成インターフェースと同じで、すべてオプションです
 
 ### トークンの削除
 
@@ -339,13 +345,14 @@ const response = await fetch('/api/token/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id' 
   }  
 });  
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -354,7 +361,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -365,7 +372,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`id` （数値）: トークンID。URLパスを通じて渡されます
+`id` （数字）: トークン ID、URL パス経由で渡されます
 
 ### トークンの一括削除
 
@@ -382,7 +389,8 @@ const response = await fetch('/api/token/batch', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3, 4, 5]  
@@ -391,7 +399,7 @@ const response = await fetch('/api/token/batch', {
 const data = await response.json();
 ```
 
-✅ 成功レスポンス例：
+✅ 成功応答例：
 
 ```
 {  
@@ -401,7 +409,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗レスポンス例：
+❗ 失敗応答例：
 
 ```
 {  
@@ -412,5 +420,5 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `ids` （配列）: 削除するトークンIDのリスト。必須であり、空であってはなりません
-- `data` （数値）: 正常に削除されたトークンの数
+- `ids` （配列）: 削除するトークン ID のリスト、必須かつ空であってはなりません
+- `data` （数字）: 削除に成功したトークンの数

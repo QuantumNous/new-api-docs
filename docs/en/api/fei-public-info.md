@@ -1,11 +1,11 @@
 # Public Information Module
 
 !!! info "Function Description"
-    The interface prefix is uniformly http(s)://`<your-domain>`
+    The API prefix is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    Provides system information accessible without authentication or with low privileges, including model lists, pricing information, announcement content, etc. Supports multi-language display and dynamic configuration. The frontend homepage and model marketplace primarily rely on these interfaces to fetch display data.
+    Provides system information that does not require authentication or requires low-level access, including model lists, pricing information, announcement content, etc. Supports multi-language display and dynamic configuration. The frontend homepage and model marketplace primarily rely on these interfaces to fetch display data.
 
 ## 🔐 No Authentication Required
 
@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/notice`
 - **Authentication Requirement**: Public
-- **Function Description**: Retrieves system announcement content, supports Markdown format.
+- **Function Summary**: Retrieves system announcement content, supporting Markdown format
 
 💡 Request Example:
 
@@ -50,7 +50,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-`data` (String): Announcement content, supports Markdown format
+`data` (String): Announcement content, supporting Markdown format
 
 ### About Page Information
 
@@ -58,7 +58,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/about`
 - **Authentication Requirement**: Public
-- **Function Description**: Retrieves custom content for the About page.
+- **Function Summary**: Retrieves custom content for the About page
 
 💡 Request Example:
 
@@ -93,7 +93,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-`data` (String): About page content, supports Markdown format or URL link
+`data` (String): About page content, supporting Markdown format or URL link
 
 ### Homepage Custom Content
 
@@ -101,7 +101,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/home_page_content`
 - **Authentication Requirement**: Public
-- **Function Description**: Retrieves custom content for the homepage, which can be Markdown text or an iframe URL.
+- **Function Summary**: Retrieves custom content for the homepage, which can be Markdown text or an iframe URL
 
 💡 Request Example:
 
@@ -136,7 +136,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-`data` (String): Homepage content, can be Markdown text or a URL link starting with "https://"
+`data` (String): Homepage content, which can be Markdown text or a URL link starting with "https://"
 
 ### Model Ratio Configuration
 
@@ -144,7 +144,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/ratio_config`
 - **Authentication Requirement**: Public
-- **Function Description**: Retrieves public model ratio configuration information for synchronization by upstream systems.
+- **Function Summary**: Retrieves public model ratio configuration information for synchronization by upstream systems
 
 💡 Request Example:
 
@@ -193,17 +193,17 @@ const data = await response.json();
 
 `data` (Object): Ratio configuration information
 
-- `model_ratio` (Object): Model ratio mapping, key is the model name, value is the ratio numerical value
+- `model_ratio` (Object): Model ratio mapping, where the key is the model name and the value is the ratio numerical value
 - `completion_ratio` (Object): Completion ratio mapping
-- `model_price` (Object): Model price mapping, key is the model name, value is the price (USD)
+- `model_price` (Object): Model price mapping, where the key is the model name and the value is the price (USD)
 
-### Pricing and Package Information
+### Pricing and Plan Information
 
-- **Interface Name**: Pricing and Package Information
+- **Interface Name**: Pricing and Plan Information
 - **HTTP Method**: GET
 - **Path**: `/api/pricing`
 - **Authentication Requirement**: Anonymous/User
-- **Function Description**: Retrieves model pricing information, group ratios, and available groups.
+- **Function Summary**: Retrieves model pricing information, group ratios, and available groups
 
 💡 Request Example:
 
@@ -212,7 +212,8 @@ const response = await fetch('/api/pricing', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_token' // Optional, logged-in users can get more detailed information
+    'Authorization': 'Bearer your_token', // Optional, logged-in users can obtain more detailed information
+    'New-Api-User': 'Bearer your_user_id' // Optional
   }  
 });  
 const data = await response.json();
@@ -271,27 +272,27 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `data` (Array): List of model pricing information 
+- `data` (Array): Model pricing information list
 
     - `model_name` (String): Model name
     - `enable_group` (Array): List of available groups
-    - `model_ratio` (Number): Model ratio
-    - `completion_ratio` (Number): Completion ratio
-    - `model_price` (Number): Model price (USD)
+    - `model_ratio` (Number): Model Ratio
+    - `completion_ratio` (Number): Completion Ratio
+    - `model_price` (Number): Model Price (USD)
     - `quota_type` (Number): Billing type, 0=Ratio billing, 1=Price billing
     - `description` (String): Model description
     - `vendor_id` (Number): Vendor ID
     - `supported_endpoint_types` (Array): Supported endpoint types
-- `vendors` (Array): List of vendor information 
+- `vendors` (Array): Vendor information list
 
     - `id` (Number): Vendor ID
-    - `name` (String): Vendor name
+    - `name` (String): Vendor Name
     - `description` (String): Vendor description
     - `icon` (String): Vendor icon
 - `group_ratio` (Object): Group ratio mapping
 - `usable_group` (Object): Usable group mapping
 - `supported_endpoint` (Object): Supported endpoint information
-- `auto_groups` (Array): Automatic group list
+- `auto_groups` (Array): Automatic groups list
 
 ## 🔐 User Authentication
 
@@ -301,7 +302,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/models`
 - **Authentication Requirement**: User
-- **Function Description**: Retrieves the list of AI models accessible to the current user, used for frontend Dashboard display.
+- **Function Summary**: Retrieves the list of AI models accessible to the current user, used for frontend Dashboard display
 
 💡 Request Example:
 
@@ -310,7 +311,8 @@ const response = await fetch('/api/models', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -339,7 +341,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-`data` (Object): Mapping from Channel ID to model list
+`data` (Object): Mapping of Channel ID to Model List
 
 - Key (String): Channel ID
 - Value (Array): List of model names supported by this channel

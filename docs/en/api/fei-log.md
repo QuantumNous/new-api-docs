@@ -1,21 +1,21 @@
 # Log Module
 
-!!! info "Feature Description"
-    The unified API prefix is http(s)://`<your-domain>`
+!!! info "Function Description"
+    The interface prefix is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    A layered log query system supporting administrators viewing site-wide logs and users viewing personal logs. It provides real-time statistics (RPM/TPM), multi-dimensional filtering, historical data cleanup, and other features. A CORS-enabled Token query interface facilitates third-party integration.
+    A layered log query system that supports administrators viewing site-wide logs and users viewing personal logs. It provides real-time statistics (RPM/TPM), multi-dimensional filtering, historical data cleanup, and other features. The Token query interface supports CORS for easy third-party integration.
 
 ## 🔐 No Authentication Required
 
-### Query Logs by Token
+### Query Log by Token
 
-- **Interface Name**: Query Logs by Token
+- **Interface Name**: Query Log by Token
 - **HTTP Method**: GET
 - **Path**: `/api/log/token`
 - **Authentication Requirement**: Public
-- **Function Description**: Query related log records using the Token key, supporting cross-origin access.
+- **Description**: Query related log records using the Token key, supports cross-origin access (CORS)
 
 💡 Request Example:
 
@@ -53,7 +53,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Token does not exist or unauthorized"  
+  "message": "Token不存在或无权限"  
 }
 ```
 
@@ -69,7 +69,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/self/stat`
 - **Authentication Requirement**: User
-- **Function Description**: Retrieve the current user's log statistics, including quota consumption, request frequency, and Token usage.
+- **Description**: Get the current user's log statistics, including quota consumption, request frequency, and Token usage.
 
 💡 Request Example:
 
@@ -78,7 +78,8 @@ const response = await fetch('/api/log/self/stat?type=2&start_timestamp=16409088
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -103,29 +104,29 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve statistics"  
+  "message": "获取统计信息失败"  
 }
 ```
 
 🧾 Field Description:
 
-- `type` (Number): Log type. Optional values: 1=Recharge, 2=Consumption, 3=Management, 4=Error, 5=System
+- `type` (Number): Log type, optional values: 1=Recharge, 2=Consumption, 3=Management, 4=Error, 5=System
 - `start_timestamp` (Number): Start timestamp
 - `end_timestamp` (Number): End timestamp
-- `token_name` (String): Filter by Token name
-- `model_name` (String): Filter by Model name
-- `group` (String): Filter by Group
+- `token_name` (String): Token name filter
+- `model_name` (String): Model name filter
+- `group` (String): Group filter
 - `quota` (Number): Total quota consumption within the specified time range
-- `rpm` (Number): Requests Per Minute (last 60 seconds)
-- `tpm` (Number): Tokens Per Minute (last 60 seconds)
+- `rpm` (Number): Requests per minute (last 60 seconds)
+- `tpm` (Number): Tokens per minute (last 60 seconds)
 
-### Retrieve My Logs
+### Get My Logs
 
-- **Interface Name**: Retrieve My Logs
+- **Interface Name**: Get My Logs
 - **HTTP Method**: GET
 - **Path**: `/api/log/self`
 - **Authentication Requirement**: User
-- **Function Description**: Paginate and retrieve the current user's log records, supporting various filtering conditions.
+- **Description**: Paginated retrieval of the current user's log records, supporting multiple filtering conditions.
 
 💡 Request Example:
 
@@ -134,7 +135,8 @@ const response = await fetch('/api/log/self?p=1&page_size=20&type=2&start_timest
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -173,7 +175,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve logs"  
+  "message": "获取日志失败"  
 }
 ```
 
@@ -187,7 +189,7 @@ Request parameters are the same as the Get All Logs interface, but only return t
 - **HTTP Method**: GET
 - **Path**: `/api/log/self/search`
 - **Authentication Requirement**: User
-- **Function Description**: Search the current user's log records based on keywords.
+- **Description**: Search the current user's log records based on keywords.
 
 💡 Request Example:
 
@@ -196,7 +198,8 @@ const response = await fetch('/api/log/self/search?keyword=gpt-4', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -225,13 +228,13 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to search logs"  
+  "message": "搜索日志失败"  
 }
 ```
 
 🧾 Field Description:
 
-`keyword` (String): Search keyword, matching the current user's log type.
+`keyword` (String): Search keyword, matches the current user's log type
 
 ## 🔐 Administrator Authentication
 
@@ -241,7 +244,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Paginate and retrieve all log records in the system, supporting various filtering conditions and log type selection.
+- **Description**: Paginated retrieval of all log records in the system, supporting multiple filtering conditions and log type selection.
 
 💡 Request Example:
 
@@ -250,7 +253,8 @@ const response = await fetch('/api/log/?p=1&page_size=20&type=2&start_timestamp=
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -298,22 +302,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve logs"  
+  "message": "获取日志失败"  
 }
 ```
 
 🧾 Field Description:
 
-- `p` (Number): Page number, default is 1
-- `page_size` (Number): Items per page, default is 20
-- `type` (Number): Log type. Optional values: 1=Recharge, 2=Consumption, 3=Management, 4=Error, 5=System log.go：41-48
+- `p` (Number): Page number, defaults to 1
+- `page_size` (Number): Items per page, defaults to 20
+- `type` (Number): Log type, optional values: 1=Recharge, 2=Consumption, 3=Management, 4=Error, 5=System log.go: 41-48
 - `start_timestamp` (Number): Start timestamp
 - `end_timestamp` (Number): End timestamp
-- `username` (String): Filter by username
-- `token_name` (String): Filter by Token name
-- `model_name` (String): Filter by Model name
-- `channel` (Number): Filter by Channel ID
-- `group` (String): Filter by Group
+- `username` (String): Username filter
+- `token_name` (String): Token name filter
+- `model_name` (String): Model name filter
+- `channel` (Number): Channel ID filter
+- `group` (String): Group filter
 
 ### Delete Historical Logs
 
@@ -321,7 +325,7 @@ const data = await response.json();
 - **HTTP Method**: DELETE
 - **Path**: `/api/log/`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch delete historical log records older than the specified timestamp, supporting staged deletion to avoid excessive database load.
+- **Description**: Batch deletion of historical log records older than the specified timestamp, supporting phased deletion to avoid excessive database load.
 
 💡 Request Example:
 
@@ -330,7 +334,8 @@ const response = await fetch('/api/log/?target_timestamp=1640908800', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -357,8 +362,8 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `target_timestamp` (Number): Target timestamp. All logs before this time will be deleted, required.
-- `data` (Number): Number of successfully deleted log entries.
+- `target_timestamp` (Number): Target timestamp, deletes all logs before this time, required
+- `data` (Number): Number of successfully deleted log entries
 
 ### Log Statistics
 
@@ -366,7 +371,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/stat`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieve log statistics for the specified time range and conditions, including quota consumption, request frequency, and Token usage.
+- **Description**: Get log statistics for the specified time range and conditions, including quota consumption, request frequency, and Token usage.
 
 💡 Request Example:
 
@@ -375,7 +380,8 @@ const response = await fetch('/api/log/stat?type=2&start_timestamp=1640908800&en
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id' 
   }  
 });  
 const data = await response.json();
@@ -400,16 +406,16 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve statistics"  
+  "message": "获取统计信息失败"  
 }
 ```
 
 🧾 Field Description:
 
-- Request parameters are the same as the Get All Logs interface.
-- `quota` (Number): Total quota consumption within the specified time range.
-- `rpm` (Number): Requests Per Minute (last 60 seconds) log.go：357
-- `tpm` (Number): Tokens Per Minute (sum of prompt_tokens + completion_tokens in the last 60 seconds).
+- Request parameters are the same as the Get All Logs interface
+- `quota` (Number): Total quota consumption within the specified time range
+- `rpm` (Number): Requests per minute (last 60 seconds) log.go: 357
+- `tpm` (Number): Tokens per minute (sum of prompt_tokens + completion_tokens in the last 60 seconds)
 
 ### Search All Logs
 
@@ -417,7 +423,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/search`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Search all log records in the system based on keywords.
+- **Description**: Search all log records in the system based on keywords.
 
 💡 Request Example:
 
@@ -426,7 +432,8 @@ const response = await fetch('/api/log/search?keyword=error', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -455,10 +462,10 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to search logs"  
+  "message": "搜索日志失败"  
 }
 ```
 
 🧾 Field Description:
 
-`keyword` (String): Search keyword, can match log type or content.
+`keyword` (String): Search keyword, can match log type or content

@@ -5,17 +5,17 @@
 
     本番環境では認証トークンを保護するために HTTPS を使用する必要があります。HTTP は開発環境でのみ推奨されます。
 
-    階層化されたログクエリシステムは、管理者が全サイトのログを閲覧し、ユーザーが個人のログを閲覧することをサポートします。リアルタイム統計（RPM/TPM）、多次元フィルタリング、履歴データクリーンアップなどの機能を提供します。CORSをサポートするTokenクエリインターフェースは、サードパーティとの統合を容易にします。
+    階層化されたログクエリシステムは、管理者が全サイトのログを表示し、ユーザーが個人のログを表示することをサポートします。リアルタイム統計（RPM/TPM）、多次元フィルタリング、履歴データクリーンアップなどの機能を提供します。CORSをサポートするトークンクエリインターフェースは、サードパーティ統合を容易にします。
 
 ## 🔐 認証不要
 
-### Tokenによるログクエリ
+### トークンによるログ検索
 
-- **インターフェース名**：Tokenによるログクエリ
+- **インターフェース名**：トークンによるログ検索
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/token`
 - **認証要件**：公開
-- **機能概要**：Tokenキーを介して関連するログレコードをクエリし、クロスオリジンアクセスをサポートします
+- **機能概要**：トークンキーを使用して関連するログ記録を検索し、クロスオリジンアクセスをサポートします
 
 💡 リクエスト例：
 
@@ -59,7 +59,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`key` （文字列）: Tokenキー、必須
+`key` （文字列）: トークンキー、必須
 
 ## 🔐 ユーザー認証
 
@@ -69,7 +69,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/self/stat`
 - **認証要件**：ユーザー
-- **機能概要**：現在のユーザーのログ統計情報（クォータ消費、リクエスト頻度、Token使用量を含む）を取得します
+- **機能概要**：現在のユーザーのログ統計情報（クォータ消費、リクエスト頻度、トークン使用量を含む）を取得します
 
 💡 リクエスト例：
 
@@ -78,7 +78,8 @@ const response = await fetch('/api/log/self/stat?type=2&start_timestamp=16409088
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -112,12 +113,12 @@ const data = await response.json();
 - `type` （数値）: ログタイプ、オプション値：1=チャージ、2=消費、3=管理、4=エラー、5=システム
 - `start_timestamp` （数値）: 開始タイムスタンプ
 - `end_timestamp` （数値）: 終了タイムスタンプ
-- `token_name` （文字列）: Token名によるフィルタリング
-- `model_name` （文字列）: モデル名によるフィルタリング
-- `group` （文字列）: グループによるフィルタリング
+- `token_name` （文字列）: トークン名フィルタリング
+- `model_name` （文字列）: モデル名フィルタリング
+- `group` （文字列）: グループフィルタリング
 - `quota` （数値）: 指定された時間範囲内の総クォータ消費量
-- `rpm` （数値）: 1分あたりのリクエスト数（直近60秒）
-- `tpm` （数値）: 1分あたりのToken数（直近60秒）
+- `rpm` （数値）: 1分あたりのリクエスト数（直近 60 秒）
+- `tpm` （数値）: 1分あたりのトークン数（直近 60 秒）
 
 ### マイログの取得
 
@@ -125,7 +126,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/self`
 - **認証要件**：ユーザー
-- **機能概要**：現在のユーザーのログレコードをページング形式で取得します。複数のフィルタリング条件をサポートします。
+- **機能概要**：現在のユーザーのログ記録をページ分割して取得し、複数のフィルタリング条件をサポートします
 
 💡 リクエスト例：
 
@@ -134,7 +135,8 @@ const response = await fetch('/api/log/self?p=1&page_size=20&type=2&start_timest
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -179,7 +181,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-リクエストパラメータは全ログ取得インターフェースと同じですが、現在のユーザーのログレコードのみを返します
+リクエストパラメータは全ログ取得インターフェースと同じですが、現在のユーザーのログ記録のみを返します
 
 ### マイログの検索
 
@@ -187,7 +189,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/self/search`
 - **認証要件**：ユーザー
-- **機能概要**：キーワードに基づいて現在のユーザーのログレコードを検索します
+- **機能概要**：キーワードに基づいて現在のユーザーのログ記録を検索します
 
 💡 リクエスト例：
 
@@ -196,7 +198,8 @@ const response = await fetch('/api/log/self/search?keyword=gpt-4', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -231,7 +234,7 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`keyword` （文字列）: 検索キーワード。現在のユーザーのログタイプに一致します。
+`keyword` （文字列）: 検索キーワード。現在のユーザーのログタイプに一致します
 
 ## 🔐 管理者認証
 
@@ -241,7 +244,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/`
 - **認証要件**：管理者
-- **機能概要**：システム内のすべてのログレコードをページング形式で取得します。複数のフィルタリング条件とログタイプによる絞り込みをサポートします。
+- **機能概要**：システム内のすべてのログ記録をページ分割して取得し、複数のフィルタリング条件とログタイプによる絞り込みをサポートします
 
 💡 リクエスト例：
 
@@ -250,7 +253,8 @@ const response = await fetch('/api/log/?p=1&page_size=20&type=2&start_timestamp=
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -309,11 +313,11 @@ const data = await response.json();
 - `type` （数値）: ログタイプ、オプション値：1=チャージ、2=消費、3=管理、4=エラー、5=システム log.go：41-48
 - `start_timestamp` （数値）: 開始タイムスタンプ
 - `end_timestamp` （数値）: 終了タイムスタンプ
-- `username` （文字列）: ユーザー名によるフィルタリング
-- `token_name` （文字列）: Token名によるフィルタリング
-- `model_name` （文字列）: モデル名によるフィルタリング
-- `channel` （数値）: チャネル ID によるフィルタリング
-- `group` （文字列）: グループによるフィルタリング
+- `username` （文字列）: ユーザー名フィルタリング
+- `token_name` （文字列）: トークン名フィルタリング
+- `model_name` （文字列）: モデル名フィルタリング
+- `channel` （数値）: チャネル ID フィルタリング
+- `group` （文字列）: グループフィルタリング
 
 ### 履歴ログの削除
 
@@ -321,7 +325,7 @@ const data = await response.json();
 - **HTTP メソッド**：DELETE
 - **パス**：`/api/log/`
 - **認証要件**：管理者
-- **機能概要**：指定されたタイムスタンプ以前の履歴ログレコードを一括削除します。データベースの負荷が高くなるのを避けるため、バッチ削除をサポートしています。
+- **機能概要**：指定されたタイムスタンプ以前の履歴ログ記録を一括削除します。データベースの負荷が高くなるのを避けるため、バッチ削除をサポートしています
 
 💡 リクエスト例：
 
@@ -330,7 +334,8 @@ const response = await fetch('/api/log/?target_timestamp=1640908800', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -357,8 +362,8 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `target_timestamp` （数値）: ターゲットタイムスタンプ。この時刻以前のすべてのログを削除します。必須。
-- `data` （数値）: 正常に削除されたログの件数
+- `target_timestamp` （数値）: ターゲットタイムスタンプ。この時間以前のすべてのログを削除します、必須
+- `data` （数値）: 正常に削除されたログエントリの数
 
 ### ログ統計
 
@@ -366,7 +371,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/stat`
 - **認証要件**：管理者
-- **機能概要**：指定された時間範囲と条件の下でのログ統計情報（クォータ消費、リクエスト頻度、Token使用量を含む）を取得します
+- **機能概要**：指定された時間範囲と条件の下でのログ統計情報（クォータ消費、リクエスト頻度、トークン使用量を含む）を取得します
 
 💡 リクエスト例：
 
@@ -375,7 +380,8 @@ const response = await fetch('/api/log/stat?type=2&start_timestamp=1640908800&en
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id' 
   }  
 });  
 const data = await response.json();
@@ -406,10 +412,10 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- リクエストパラメータは全ログ取得インターフェースと同じです
+- リクエストパラメータは全ログ取得インターフェースと同じ
 - `quota` （数値）: 指定された時間範囲内の総クォータ消費量
-- `rpm` （数値）: 1分あたりのリクエスト数（直近60秒） log.go：357
-- `tpm` （数値）: 1分あたりのToken数（直近60秒の prompt_tokens + completion_tokens の合計）
+- `rpm` （数値）: 1分あたりのリクエスト数（直近 60 秒） log.go：357
+- `tpm` （数値）: 1分あたりのトークン数（直近 60 秒の prompt_tokens + completion_tokens の合計）
 
 ### 全ログの検索
 
@@ -417,7 +423,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/log/search`
 - **認証要件**：管理者
-- **機能概要**：キーワードに基づいてシステム内のすべてのログレコードを検索します
+- **機能概要**：キーワードに基づいてシステム内のすべてのログ記録を検索します
 
 💡 リクエスト例：
 
@@ -426,7 +432,8 @@ const response = await fetch('/api/log/search?keyword=error', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -461,4 +468,4 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-`keyword` （文字列）: 検索キーワード。ログタイプまたは内容に一致します。
+`keyword` （文字列）: 検索キーワード。ログタイプまたは内容に一致します

@@ -1,11 +1,11 @@
 # Get Available Model List (Model)
 
 !!! info "Description"
-    The API prefix is uniformly http(s)://`<your-domain>`
+    The interface prefix is uniformly http(s)://`<your-domain>`
 
-    Production environments should use HTTPS to ensure the security of authentication tokens. HTTP is only recommended for development environments.
+    Production environments should use HTTPS to secure authentication tokens. HTTP is only recommended for development environments.
 
-- **Interface Name**: Get available model list for the frontend
+- **Interface Name**: Get the list of models available to the frontend
 - **HTTP Method**: GET
 - **Path**: `/api/models`
 - **Authentication Requirement**: User
@@ -18,7 +18,8 @@ const response = await fetch('/api/models', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -41,7 +42,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Unauthorized access"  
+  "message": "未授权访问"  
 }
 ```
 

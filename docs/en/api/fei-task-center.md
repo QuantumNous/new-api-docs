@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/task/self`
 - **Authentication Requirement**: User
-- **Function Summary**: Paginate and retrieve the current user's task list, supporting filtering by platform, Task ID, status, and other conditions.
+- **Function Summary**: Paginate and retrieve the current user's task list, supporting filtering by platform, Task ID, status, and other conditions
 
 💡 Request Example:
 
@@ -24,7 +24,8 @@ const response = await fetch('/api/task/self?p=1&page_size=20&platform=suno&task
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_user_token'  
+    'Authorization': 'Bearer your_user_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -55,7 +56,7 @@ const data = await response.json();
         "progress": "100%",  
         "properties": {},  
         "data": {}  
-      }
+      }  
     ],  
     "total": 25,  
     "page": 1,  
@@ -73,7 +74,7 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Description (Request Parameters):
+🧾 Field Descriptions (Request Parameters):
 
 - `p` (Number): Page number, defaults to 1
 - `page_size` (Number): Items per page, defaults to 20
@@ -84,13 +85,13 @@ const data = await response.json();
 - `start_timestamp` (Number): Start timestamp, optional
 - `end_timestamp` (Number): End timestamp, optional
 
-🧾 Return Field Description:
+🧾 Return Field Descriptions:
 
 - `id` (Number): Database record ID
 - `task_id` (String): Third-party Task ID
 - `platform` (String): Task platform
 - `user_id` (Number): User ID
-- `quota` (Number): Consumed quota
+- `quota` (Number): Quota consumed
 - `action` (String): Task type
 - `status` (String): Task status
 - `fail_reason` (String): Failure reason
@@ -112,7 +113,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/task/`
 - **Authentication Requirement**: Administrator
-- **Function Summary**: Paginate and retrieve all tasks in the system, supporting filtering by Channel ID, platform, User ID, and other conditions.
+- **Function Summary**: Paginate and retrieve all tasks in the system, supporting filtering by Channel ID, platform, User ID, and other conditions
 
 💡 Request Example:
 
@@ -121,7 +122,8 @@ const response = await fetch('/api/task/?p=1&page_size=20&channel_id=1&platform=
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -167,7 +169,7 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Description (Request Parameters):
+🧾 Field Descriptions (Request Parameters):
 
 - `p` (Number): Page number, defaults to 1
 - `page_size` (Number): Items per page, defaults to 20
@@ -178,5 +180,6 @@ const data = await response.json();
 - `action` (String): Task type filter, optional
 - `start_timestamp` (Number): Start timestamp, optional
 - `end_timestamp` (Number): End timestamp, optional
-- Return fields include all fields from user tasks, plus:
-    - `channel_id` (Number): Used Channel ID
+- Return fields include all fields from user tasks, plus the following addition:
+
+    - `channel_id` (Number): Channel ID used

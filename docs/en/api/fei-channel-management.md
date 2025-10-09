@@ -1,6 +1,6 @@
 # Channel Management Module
 
-!!! info "Function Description"
+!!! info "Feature Description"
     The API prefix is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
@@ -11,11 +11,11 @@
 
 ### Get Channel List
 
-- **Interface Name**: Get Channel List
+- **API Name**: Get Channel List
 - **HTTP Method**: GET
 - **Path**: `/api/channel/`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Paginates and retrieves the list information of all channels in the system, supporting filtering by type, status, and tag mode.
+- **Feature Summary**: Paginates and retrieves the list information of all channels in the system, supporting filtering by type, status, and tag mode.
 
 💡 Request Example:
 
@@ -24,7 +24,8 @@ const response = await fetch('/api/channel/?p=1&page_size=20&id_sort=false&tag_m
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -61,12 +62,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve channel list"  
+  "message": "获取渠道列表失败"  
 }
 ```
 
@@ -81,11 +82,11 @@ const data = await response.json();
 
 ### Search Channels
 
-- **Interface Name**: Search Channels
+- **API Name**: Search Channels
 - **HTTP Method**: GET
 - **Path**: `/api/channel/search`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Searches channels based on keywords, group, model, and other criteria.
+- **Feature Summary**: Search channels based on keywords, groups, models, and other criteria.
 
 💡 Request Example:
 
@@ -94,7 +95,8 @@ const response = await fetch('/api/channel/search?keyword=openai&group=default&m
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -126,26 +128,26 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
-{    "success": false,    "message": "Failed to search channels"  }
+{    "success": false,    "message": "搜索渠道失败"  }
 ```
 
 🧾 Field Description:
 
 - `keyword` (String): Search keyword, can match channel name
-- `group` (String): Group filtering condition
-- `model` (String): Model filtering condition
-- Other parameters are the same as the Get Channel List interface.
+- `group` (String): Group filter condition
+- `model` (String): Model filter condition
+- Other parameters are the same as the Get Channel List API.
 
 ### Query Channel Model Capabilities
 
-- **Interface Name**: Query Channel Model Capabilities
+- **API Name**: Query Channel Model Capabilities
 - **HTTP Method**: GET
 - **Path**: `/api/channel/models`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieves the list of models supported by all channels in the system.
+- **Feature Summary**: Retrieve the list of models supported by all channels in the system.
 
 💡 Request Example:
 
@@ -154,7 +156,8 @@ const response = await fetch('/api/channel/models', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -183,29 +186,29 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve model list"  
+  "message": "获取模型列表失败"  
 }
 ```
 
 🧾 Field Description:
 
-`data` (Array): List of model information
+`data` (Array): Model information list
 
 - `id` (String): Model ID
 - `name` (String): Model display name
 
 ### Query Enabled Model Capabilities
 
-- **Interface Name**: Query Enabled Model Capabilities
+- **API Name**: Query Enabled Model Capabilities
 - **HTTP Method**: GET
 - **Path**: `/api/channel/models_enabled`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieves the list of models supported by currently enabled channels.
+- **Feature Summary**: Retrieve the list of models supported by currently enabled channels.
 
 💡 Request Example:
 
@@ -214,7 +217,8 @@ const response = await fetch('/api/channel/models_enabled', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -234,12 +238,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve enabled models"  
+  "message": "获取启用模型失败"  
 }
 ```
 
@@ -249,11 +253,11 @@ const data = await response.json();
 
 ### Get Single Channel
 
-- **Interface Name**: Get Single Channel
+- **API Name**: Get Single Channel
 - **HTTP Method**: GET
 - **Path**: `/api/channel/:id`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieves detailed information for the specified channel, excluding sensitive key information.
+- **Feature Summary**: Retrieve detailed information for the specified channel, excluding sensitive key information.
 
 💡 Request Example:
 
@@ -262,7 +266,8 @@ const response = await fetch('/api/channel/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -293,27 +298,27 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Channel does not exist"  
+  "message": "渠道不存在"  
 }
 ```
 
 🧾 Field Description:
 
 - `id` (Number): Channel ID, passed via URL path
-- Returns complete channel information, but excludes key fields
+- Returns complete channel information, but excludes key fields.
 
 ### Batch Test Channel Connectivity
 
-- **Interface Name**: Batch Test Channel Connectivity
+- **API Name**: Batch Test Channel Connectivity
 - **HTTP Method**: GET
 - **Path**: `/api/channel/test`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch tests the connectivity and response time of all or specified channels.
+- **Feature Summary**: Batch test the connectivity and response time of all or specified channels.
 
 💡 Request Example:
 
@@ -322,7 +327,8 @@ const response = await fetch('/api/channel/test?model=gpt-3.5-turbo', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -333,7 +339,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "Batch test completed",  
+  "message": "批量测试完成",  
   "data": {  
     "total": 10,  
     "success": 8,  
@@ -351,37 +357,36 @@ const data = await response.json();
         "channel_name": "Claude渠道",  
         "success": false,  
         "time": 0,  
-        "message": "Connection timeout"  
+        "message": "连接超时"  
       }  
     ]  
   }  
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Batch test failed"  
+  "message": "批量测试失败"  
 }
 ```
 
 🧾 Field Description:
 
-- `model` (String): Optional, specifies the test model
+- `model` (String): Optional, specify the test model
 - `results` (Array): List of test results
-
     - `success` (Boolean): Whether the test was successful
     - `time` (Number): Response time (seconds)
 
 ### Single Channel Test
 
-- **Interface Name**: Single Channel Test
+- **API Name**: Single Channel Test
 - **HTTP Method**: GET
 - **Path**: `/api/channel/test/:id`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Tests the connectivity of the specified channel, supporting the designation of a test model.
+- **Feature Summary**: Test the connectivity of the specified channel, supporting a specified test model.
 
 💡 Request Example:
 
@@ -390,7 +395,8 @@ const response = await fetch('/api/channel/test/123?model=gpt-4', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -406,12 +412,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "API key invalid",  
+  "message": "API密钥无效",  
   "time": 0.5  
 }
 ```
@@ -419,16 +425,16 @@ const data = await response.json();
 🧾 Field Description:
 
 - `id` (Number): Channel ID, passed via URL path
-- `model` (String): Optional, specifies the name of the test model
+- `model` (String): Optional, specify the name of the test model
 - `time` (Number): Response time (seconds)
 
 ### Batch Refresh Balance
 
-- **Interface Name**: Batch Refresh Balance
+- **API Name**: Batch Refresh Balance
 - **HTTP Method**: GET
 - **Path**: `/api/channel/update_balance`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch updates the balance information of all enabled channels.
+- **Feature Summary**: Batch update the balance information of all enabled channels.
 
 💡 Request Example:
 
@@ -437,7 +443,8 @@ const response = await fetch('/api/channel/update_balance', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -448,16 +455,16 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "Batch balance update completed"  
+  "message": "批量更新余额完成"  
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Batch balance update failed"  
+  "message": "批量更新余额失败"  
 }
 ```
 
@@ -467,11 +474,11 @@ No request parameters. The system automatically updates the balance of all enabl
 
 ### Single Refresh Balance
 
-- **Interface Name**: Update Specified Channel Balance
+- **API Name**: Update specified channel balance
 - **HTTP Method**: GET
 - **Path**: `/api/channel/update_balance/:id`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Updates the balance information of the specified channel. Multi-key channels do not support balance inquiry.
+- **Feature Summary**: Update the balance information of the specified channel. Multi-key channels do not support balance inquiry.
 
 💡 Request Example:
 
@@ -480,7 +487,8 @@ const response = await fetch('/api/channel/update_balance/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -496,12 +504,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Multi-key channels do not support balance inquiry"  
+  "message": "多密钥渠道不支持余额查询"  
 }
 ```
 
@@ -512,11 +520,11 @@ const data = await response.json();
 
 ### Add Channel
 
-- **Interface Name**: Add Channel
+- **API Name**: Add Channel
 - **HTTP Method**: POST
 - **Path**: `/api/channel/`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Creates a new AI service channel, supporting single, batch, and multi-key modes.
+- **Feature Summary**: Create a new AI service channel, supporting single, batch, and multi-key modes.
 
 💡 Request Example:
 
@@ -525,7 +533,8 @@ const response = await fetch('/api/channel/', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     mode: "single",  
@@ -553,12 +562,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Unsupported addition mode"  
+  "message": "不支持的添加模式"  
 }
 ```
 
@@ -567,7 +576,6 @@ const data = await response.json();
 - `mode` (String): Addition mode, optional values: "single", "batch", "multi_to_single"
 - `multi_key_mode` (String): Multi-key mode, required when mode is "multi_to_single"
 - `channel` (Object): Channel configuration information
-
     - `name` (String): Channel name
     - `type` (Number): Channel type
     - `key` (String): API Key
@@ -579,11 +587,11 @@ const data = await response.json();
 
 ### Update Channel
 
-- **Interface Name**: Update Channel
+- **API Name**: Update Channel
 - **HTTP Method**: PUT
 - **Path**: `/api/channel/`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Updates the configuration information of an existing channel.
+- **Feature Summary**: Update the configuration information of an existing channel.
 
 💡 Request Example:
 
@@ -592,7 +600,8 @@ const response = await fetch('/api/channel/', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -614,27 +623,27 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Channel does not exist"  
+  "message": "渠道不存在"  
 }
 ```
 
 🧾 Field Description:
 
 - `id` (Number): Channel ID, required
-- Other fields are the same as the Add Channel interface, and are optional.
+- Other fields are the same as the Add Channel API, all are optional.
 
 ### Delete Disabled Channels
 
-- **Interface Name**: Delete Disabled Channels
+- **API Name**: Delete Disabled Channels
 - **HTTP Method**: DELETE
 - **Path**: `/api/channel/disabled`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch deletes all disabled channels.
+- **Feature Summary**: Batch delete all disabled channels.
 
 💡 Request Example:
 
@@ -643,7 +652,8 @@ const response = await fetch('/api/channel/disabled', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -659,12 +669,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Deletion failed"  
+  "message": "删除失败"  
 }
 ```
 
@@ -673,13 +683,13 @@ const data = await response.json();
 - No request parameters
 - `data` (Number): Number of channels deleted
 
-### Batch Disable Tag Channels
+### Batch Disable Tagged Channels
 
-- **Interface Name**: Batch Disable Tag Channels
+- **API Name**: Batch Disable Tagged Channels
 - **HTTP Method**: POST
 - **Path**: `/api/channel/tag/disabled`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch disables channels based on tags.
+- **Feature Summary**: Batch disable channels based on tags.
 
 💡 Request Example:
 
@@ -688,7 +698,8 @@ const response = await fetch('/api/channel/tag/disabled', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     tag: "test-tag"  
@@ -706,26 +717,26 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Parameter error"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 Field Description:
 
-`tag` (String): The channel tag to disable, required
+`tag` (String): Channel tag to be disabled, required
 
-### Batch Enable Tag Channels
+### Batch Enable Tagged Channels
 
-- **Interface Name**: Batch Enable Tag Channels
+- **API Name**: Batch Enable Tagged Channels
 - **HTTP Method**: POST
 - **Path**: `/api/channel/tag/enabled`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch enables channels based on tags.
+- **Feature Summary**: Batch enable channels based on tags.
 
 💡 Request Example:
 
@@ -734,7 +745,8 @@ const response = await fetch('/api/channel/tag/enabled', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     tag: "production-tag"  
@@ -752,26 +764,26 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Parameter error"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 Field Description:
 
-`tag` (String): The channel tag to enable, required
+`tag` (String): Channel tag to be enabled, required
 
 ### Edit Channel Tags
 
-- **Interface Name**: Edit Channel Tags
+- **API Name**: Edit Channel Tags
 - **HTTP Method**: PUT
 - **Path**: `/api/channel/tag`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch edits channel properties for specified tags.
+- **Feature Summary**: Batch edit channel attributes for specified tags.
 
 💡 Request Example:
 
@@ -780,7 +792,8 @@ const response = await fetch('/api/channel/tag', {
   method: 'PUT',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     tag: "old-tag",  
@@ -803,18 +816,18 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Tag cannot be empty"  
+  "message": "tag不能为空"  
 }
 ```
 
 🧾 Field Description:
 
-- `tag` (String): The tag name to edit, required
+- `tag` (String): Tag name to be edited, required
 - `new_tag` (String): New tag name, optional
 - `priority` (Number): New priority, optional
 - `weight` (Number): New weight, optional
@@ -824,11 +837,11 @@ const data = await response.json();
 
 ### Delete Channel
 
-- **Interface Name**: Delete Channel
+- **API Name**: Delete Channel
 - **HTTP Method**: DELETE
 - **Path**: `/api/channel/:id`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Hard deletes the specified channel. Channel cache will be refreshed after deletion.
+- **Feature Summary**: Hard delete the specified channel; channel cache will be refreshed after deletion.
 
 💡 Request Example:
 
@@ -837,7 +850,8 @@ const response = await fetch('/api/channel/123', {
   method: 'DELETE',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -852,12 +866,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Channel does not exist"  
+  "message": "渠道不存在"  
 }
 ```
 
@@ -867,11 +881,11 @@ const data = await response.json();
 
 ### Batch Delete Channels
 
-- **Interface Name**: Batch Delete Channels
+- **API Name**: Batch Delete Channels
 - **HTTP Method**: POST
 - **Path**: `/api/channel/batch`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch deletes channels based on a list of IDs.
+- **Feature Summary**: Batch delete channels based on a list of IDs.
 
 💡 Request Example:
 
@@ -880,7 +894,8 @@ const response = await fetch('/api/channel/batch', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3, 4, 5]  
@@ -899,27 +914,27 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Parameter error"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 Field Description:
 
-- `ids` (Array): List of channel IDs to delete, required and cannot be empty
+- `ids` (Array): List of channel IDs to be deleted, required and cannot be empty
 - `data` (Number): Number of channels successfully deleted
 
 ### Fix Channel Capability Table
 
-- **Interface Name**: Fix Channel Capability Table
+- **API Name**: Fix Channel Capability Table
 - **HTTP Method**: POST
 - **Path**: `/api/channel/fix`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Fixes channel capability table data, rebuilding the mapping relationship between channels and models.
+- **Feature Summary**: Fix channel capability table data, rebuilding the mapping relationship between channels and models.
 
 💡 Request Example:
 
@@ -928,7 +943,8 @@ const response = await fetch('/api/channel/fix', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -947,12 +963,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to fix capability table"  
+  "message": "修复能力表失败"  
 }
 ```
 
@@ -960,15 +976,15 @@ const data = await response.json();
 
 - No request parameters
 - `data.success` (Number): Number of channels successfully fixed
-- `data.fails` (Number): Number of channels that failed to fix
+- `data.fails` (Number): Number of channels that failed to be fixed
 
 ### Fetch Single Channel Models
 
-- **Interface Name**: Fetch Single Channel Models
+- **API Name**: Fetch Single Channel Models
 - **HTTP Method**: GET
 - **Path**: `/api/channel/fetch_models/:id`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieves the list of available models from the upstream API of the specified channel.
+- **Feature Summary**: Fetch the list of available models from the upstream API of the specified channel.
 
 💡 Request Example:
 
@@ -977,7 +993,8 @@ const response = await fetch('/api/channel/fetch_models/123', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -997,12 +1014,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to parse response: invalid character 'H' looking for beginning of value"  
+  "message": "解析响应失败: invalid character 'H' looking for beginning of value"  
 }
 ```
 
@@ -1013,11 +1030,11 @@ const data = await response.json();
 
 ### Fetch All Channel Models
 
-- **Interface Name**: Fetch All Channel Models
+- **API Name**: Fetch All Channel Models
 - **HTTP Method**: POST
 - **Path**: `/api/channel/fetch_models`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieves the model list from the upstream API using the provided configuration information, used for previewing when creating a new channel.
+- **Feature Summary**: Fetch the list of models from the upstream API using the provided configuration information, used for preview when creating a new channel.
 
 💡 Request Example:
 
@@ -1026,7 +1043,8 @@ const response = await fetch('/api/channel/fetch_models', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     base_url: "https://api.openai.com",  
@@ -1050,7 +1068,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -1061,18 +1079,18 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `base_url` (String): Base URL, optional. Uses the default URL if empty
+- `base_url` (String): Base URL, optional, uses default URL if empty
 - `type` (Number): Channel type, required
 - `key` (String): API Key, required
-- `data` (Array): List of retrieved models
+- `data` (Array): List of fetched models
 
 ### Batch Set Channel Tags
 
-- **Interface Name**: Batch Set Channel Tags
+- **API Name**: Batch Set Channel Tags
 - **HTTP Method**: POST
 - **Path**: `/api/channel/batch/tag`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Batch sets tags for the specified list of channels.
+- **Feature Summary**: Batch set tags for the specified list of channels.
 
 💡 Request Example:
 
@@ -1081,7 +1099,8 @@ const response = await fetch('/api/channel/batch/tag', {
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3],  
@@ -1101,28 +1120,28 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Parameter error"  
+  "message": "参数错误"  
 }
 ```
 
 🧾 Field Description:
 
 - `ids` (Array): List of channel IDs to set tags for, required and cannot be empty
-- `tag` (String): The tag name to set. Passing null clears the tag.
+- `tag` (String): Tag name to be set. Passing null clears the tag.
 - `data` (Number): Number of channels successfully tagged
 
 ### Get Models by Tag
 
-- **Interface Name**: Get Models by Tag
+- **API Name**: Get Models by Tag
 - **HTTP Method**: GET
 - **Path**: `/api/channel/tag/models`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Retrieves the model list with the highest number of models among all channels under the specified tag.
+- **Feature Summary**: Retrieve the list of models that are most numerous among all channels under the specified tag.
 
 💡 Request Example:
 
@@ -1131,7 +1150,8 @@ const response = await fetch('/api/channel/tag/models?tag=production', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1147,27 +1167,27 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Tag cannot be empty"  
+  "message": "tag不能为空"  
 }
 ```
 
 🧾 Field Description:
 
 - `tag` (String): Tag name, required
-- `data` (String): List of models from the channel with the most models under this tag, comma-separated
+- `data` (String): List of models from the channel with the most models under this tag, comma-separated.
 
-### Copy Channel
+### Duplicate Channel
 
-- **Interface Name**: Copy Channel
+- **API Name**: Duplicate Channel
 - **HTTP Method**: POST
 - **Path**: `/api/channel/copy/:id`
 - **Authentication Requirement**: Administrator
-- **Function Description**: Duplicates an existing channel to create a new one, supporting custom suffixes and balance reset options.
+- **Feature Summary**: Duplicate an existing channel to create a new one, supporting custom suffixes and balance reset options.
 
 💡 Request Example:
 
@@ -1176,7 +1196,8 @@ const response = await fetch('/api/channel/copy/123?suffix=_备份&reset_balance
   method: 'POST',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_admin_token'  
+    'Authorization': 'Bearer your_admin_token',
+    'New-Api-User': 'Bearer your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1194,7 +1215,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -1205,7 +1226,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `id` (Number): Channel ID to copy, passed via URL path
-- `suffix` (String): Optional, suffix appended to the original name, default is "_复制"
-- `reset_balance` (Boolean): Optional, whether to reset the balance and used quota to 0, default is true
+- `id` (Number): Channel ID to be duplicated, passed via URL path
+- `suffix` (String): Optional, suffix added after the original name, default is "_复制"
+- `reset_balance` (Boolean): Optional, whether to reset balance and used quota to 0, default is true
 - `data.id` (Number): ID of the newly created channel
