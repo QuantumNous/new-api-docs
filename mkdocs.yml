@@ -167,8 +167,8 @@ nav:
       - 🎵 音乐（Music）:
         - Suno API 格式: api/suno-music.md
       - 🎥 视频（Video）:
-        - 生成视频: api/generate-video.md
-        - 查询视频: api/query-video.md
+        - 可灵AI (Kling)和即梦 (Jimeng)格式: api/kling-jimeng.md
+        - OpenAI 视频格式: api/openai-video.md
     - 查询接口:
       - 令牌用量查询: api/token-usage.md
     - 前端接口:
@@ -213,13 +213,14 @@ plugins:
       fallback_to_default: true
       reconfigure_material: true
       reconfigure_search: true
+      default_language: zh
       languages:
-        - locale: zh
+        zh:
           name: 简体中文
           build: true
           default: true
           site_name: "New API"
-        - locale: en
+        en:
           name: English
           build: true
           site_name: "New API"
@@ -270,8 +271,8 @@ plugins:
             "🎵 音乐（Music）": Music
             Suno API 格式: "Suno Music"
             "🎥 视频（Video）": Video
-            "生成视频": "Generate Video"
-            "查询视频": "Query Video"
+            "可灵AI (Kling)和即梦 (Jimeng)格式": "Kling AI & Jimeng Format"
+            "OpenAI 视频格式": "OpenAI Video Format"
             查询接口: "Query APIs"
             令牌用量查询: "Token Usage"
             前端接口: "Frontend APIs"
@@ -317,7 +318,7 @@ plugins:
             "💰 定价": Pricing
             "📖 文档": Documentation
             "📝 关于": About
-        - locale: ja
+        ja:
           name: 日本語
           build: true
           site_name: "New API"
@@ -368,8 +369,8 @@ plugins:
             "🎵 音乐（Music）": 音楽
             Suno API 格式: "Suno Music"
             "🎥 视频（Video）": 動画
-            "生成视频": "動画生成"
-            "查询视频": "動画クエリ"
+            "可灵AI (Kling)和即梦 (Jimeng)格式": "Kling AI & Jimeng フォーマット"
+            "OpenAI 视频格式": "OpenAI 動画フォーマット"
             查询接口: "クエリAPI"
             令牌用量查询: "トークン使用量"
             前端接口: "フロントエンドAPI"
