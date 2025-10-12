@@ -215,12 +215,12 @@ plugins:
       reconfigure_search: true
       default_language: zh
       languages:
-        zh:
+        - locale: zh
           name: 简体中文
           build: true
           default: true
           site_name: "New API"
-        en:
+        - locale: en
           name: English
           build: true
           site_name: "New API"
@@ -318,7 +318,7 @@ plugins:
             "💰 定价": Pricing
             "📖 文档": Documentation
             "📝 关于": About
-        ja:
+        - locale: ja
           name: 日本語
           build: true
           site_name: "New API"
