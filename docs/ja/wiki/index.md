@@ -87,7 +87,7 @@ hide:
   }
 </style>
 
-# ウィキ
+# ウィキペディア
 
 ## 📚 基本概念
 
@@ -99,7 +99,7 @@ hide:
 
     ---
 
-    New API プロジェクトの目標やライセンスなどについて理解します：
+    New API プロジェクトの目的やライセンスなどについて理解します：
     
     [詳細を見る →](project-introduction.md)
 
@@ -109,7 +109,7 @@ hide:
 
     ---
 
-    New API が提供する主要な特性と機能：
+    New API が提供するコアな特性と機能：
     
     [詳細を見る →](features-introduction.md)
 
@@ -122,6 +122,16 @@ hide:
     システムの全体的なアーキテクチャと技術スタック：
     
     [詳細を見る →](technical-architecture.md)
+
+-   :material-chart-line:{ .twemoji }
+
+    **ウェブサイトアクセスデータ分析**
+
+    ---
+
+    Google Analytics と Umami 分析ツールの設定：
+    
+    [詳細を見る →](analytics-setup.md)
 
 </div>
 
@@ -141,7 +151,7 @@ hide:
 
 -   :material-heart-outline:{ .twemoji }
 
-    **スペシャルサンクス**
+    **特別感謝**
 
     ---
 
@@ -153,18 +163,18 @@ hide:
 
 ## 📖 概要
 
-!!! info "New API とは？"
-    New API は、AIモデルの統合と管理を簡素化し、統一されたAPIインターフェースとリソース管理機能を提供することを目的とした、新世代の大規模モデルゲートウェイおよびAI資産管理システムです。
+!!! info "New API とは何ですか？"
+    New API は、新世代の大規模モデルゲートウェイおよび AI アセット管理システムであり、AI モデルの接続と管理を簡素化し、統一された API インターフェースとリソース管理機能を提供することを目的としています。
 
-!!! tip "New API を選ぶ理由？"
-    - 統一されたAPIインターフェース、複数の主要な大規模モデルをサポート
+!!! tip "New API を選ぶ理由は何ですか？"
+    - 統一された API インターフェース、複数の主要な大規模モデルをサポート
     - 完全なリソース管理および監視機能
     - 完全なエコシステムと二次開発能力
     - 活発なコミュニティサポートと継続的な更新
 
 !!! question "ご質問がありますか？"
-    プロジェクトに関してご不明な点がある場合は、以下を実行できます：
+    プロジェクトに関してご質問がある場合は、以下を実行できます：
 
-    1. [よくある質問](../support/faq.md)を確認する
-    2. [GitHub](https://github.com/Calcium-Ion/new-api/issues)でIssueを提出する
-    3. [コミュニティ交流](../support/community-interaction.md)に参加してサポートを受ける
+    1. [よくある質問](../support/faq.md) を確認する
+    2. [GitHub](https://github.com/Calcium-Ion/new-api/issues) で issue を提出する
+    3. [コミュニティ交流](../support/community-interaction.md) に参加してサポートを受ける
