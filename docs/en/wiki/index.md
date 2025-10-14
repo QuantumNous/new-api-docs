@@ -99,13 +99,13 @@ hide:
 
     ---
 
-    Learn about the goals and license of the New API project:
+    Learn about the goals, licenses, and more for the New API project:
     
     [View Details →](project-introduction.md)
 
 -   :material-star-outline:{ .twemoji }
 
-    **Feature Overview**
+    **Feature Description**
 
     ---
 
@@ -123,6 +123,16 @@ hide:
     
     [View Details →](technical-architecture.md)
 
+-   :material-chart-line:{ .twemoji }
+
+    **Website Traffic Analysis**
+
+    ---
+
+    Configure Google Analytics and Umami analysis tools:
+    
+    [View Details →](analytics-setup.md)
+
 </div>
 
 ## 📝 Project Records
@@ -135,7 +145,7 @@ hide:
 
     ---
 
-    Project version iterations and feature updates:
+    Records of project version iterations and feature updates:
     
     [View Records →](changelog.md)
 
@@ -145,7 +155,7 @@ hide:
 
     ---
 
-    Thanks to all individuals and organizations who contributed to the project:
+    Thanks to all individuals and organizations who have contributed to the project:
     
     [View List →](special-thanks.md)
 
@@ -157,14 +167,14 @@ hide:
     New API is a next-generation large model gateway and AI asset management system, designed to simplify the integration and management of AI models, providing unified API interfaces and resource management capabilities.
 
 !!! tip "Why choose New API?"
-    - Unified API interface supporting multiple mainstream large models
+    - Unified API interface supporting various mainstream large models
     - Comprehensive resource management and monitoring capabilities
     - Complete ecosystem and secondary development capabilities
     - Active community support and continuous updates
 
-!!! question "Have questions?"
+!!! question "Have Questions?"
     If you have any questions about the project, you can:
 
-    1. View the [FAQ](../support/faq.md)
+    1. Check the [Frequently Asked Questions](../support/faq.md)
     2. Submit an issue on [GitHub](https://github.com/Calcium-Ion/new-api/issues)
-    3. Join the [community](../support/community-interaction.md) for help 
+    3. Join the [Community Interaction](../support/community-interaction.md) for help
