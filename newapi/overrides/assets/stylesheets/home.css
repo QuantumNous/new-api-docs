@@ -941,6 +941,27 @@
     }
 }
 
+@media screen and (max-height: 950px) {
+    .tx-architecture__flow {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+
+    .tx-architecture__flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .tx-architecture__flow-node {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .tx-architecture__features {
+        display: none;
+        gap: 0.4rem;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .tx-architecture {
         display: none;
