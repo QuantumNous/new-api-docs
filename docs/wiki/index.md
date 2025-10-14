@@ -123,6 +123,16 @@ hide:
     
     [查看详情 →](technical-architecture.md)
 
+-   :material-chart-line:{ .twemoji }
+
+    **网站访问数据分析**
+
+    ---
+
+    配置 Google Analytics 和 Umami 分析工具：
+    
+    [查看详情 →](analytics-setup.md)
+
 </div>
 
 ## 📝 项目记录

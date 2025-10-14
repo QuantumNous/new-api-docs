@@ -97,6 +97,7 @@ nav:
       - 项目介绍: wiki/project-introduction.md
       - 特性说明: wiki/features-introduction.md
       - 技术架构: wiki/technical-architecture.md
+      - 网站访问数据分析: wiki/analytics-setup.md
     - 📝 项目记录:
       - 更新日志: wiki/changelog.md
       - 特别鸣谢: wiki/special-thanks.md
@@ -233,6 +234,7 @@ plugins:
             项目介绍: "Project Introduction"
             特性说明: "Feature Overview"
             技术架构: "Technical Architecture"
+            网站访问数据分析: "Website Analytics Setup"
             "📝 项目记录": "Project Records"
             更新日志: Changelog
             特别鸣谢: "Special Thanks"
@@ -331,6 +333,7 @@ plugins:
             项目介绍: "プロジェクト紹介"
             特性说明: "機能概要"
             技术架构: "技術アーキテクチャ"
+            网站访问数据分析: "ウェブサイトアクセス分析設定"
             "📝 项目记录": "プロジェクト記録"
             更新日志: 変更履歴
             特别鸣谢: "スペシャルサンクス"
