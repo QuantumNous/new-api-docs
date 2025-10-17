@@ -25,7 +25,7 @@ const response = await fetch('/api/channel/?p=1&page_size=20&id_sort=false&tag_m
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -96,7 +96,7 @@ const response = await fetch('/api/channel/search?keyword=openai&group=default&m
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -157,7 +157,7 @@ const response = await fetch('/api/channel/models', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -218,7 +218,7 @@ const response = await fetch('/api/channel/models_enabled', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -267,7 +267,7 @@ const response = await fetch('/api/channel/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -328,7 +328,7 @@ const response = await fetch('/api/channel/test?model=gpt-3.5-turbo', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -397,7 +397,7 @@ const response = await fetch('/api/channel/test/123?model=gpt-4', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -445,7 +445,7 @@ const response = await fetch('/api/channel/update_balance', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -489,7 +489,7 @@ const response = await fetch('/api/channel/update_balance/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -535,7 +535,7 @@ const response = await fetch('/api/channel/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     mode: "single",  
@@ -603,7 +603,7 @@ const response = await fetch('/api/channel/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -655,7 +655,7 @@ const response = await fetch('/api/channel/disabled', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -701,7 +701,7 @@ const response = await fetch('/api/channel/tag/disabled', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     tag: "test-tag"  
@@ -748,7 +748,7 @@ const response = await fetch('/api/channel/tag/enabled', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     tag: "production-tag"  
@@ -795,7 +795,7 @@ const response = await fetch('/api/channel/tag', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     tag: "old-tag",  
@@ -853,7 +853,7 @@ const response = await fetch('/api/channel/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -897,7 +897,7 @@ const response = await fetch('/api/channel/batch', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3, 4, 5]  
@@ -946,7 +946,7 @@ const response = await fetch('/api/channel/fix', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -996,7 +996,7 @@ const response = await fetch('/api/channel/fetch_models/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1046,7 +1046,7 @@ const response = await fetch('/api/channel/fetch_models', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     base_url: "https://api.openai.com",  
@@ -1102,7 +1102,7 @@ const response = await fetch('/api/channel/batch/tag', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     ids: [1, 2, 3],  
@@ -1153,7 +1153,7 @@ const response = await fetch('/api/channel/tag/models?tag=production', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -1199,7 +1199,7 @@ const response = await fetch('/api/channel/copy/123?suffix=_备份&reset_balance
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();

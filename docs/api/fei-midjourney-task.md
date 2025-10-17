@@ -25,7 +25,7 @@ const response = await fetch('/api/mj/self?p=1&page_size=20&mj_id=task123&start_
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -116,7 +116,7 @@ const response = await fetch('/api/mj/?p=1&page_size=20&channel_id=1&mj_id=task1
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
