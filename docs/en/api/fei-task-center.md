@@ -1,11 +1,11 @@
 # Task Center Module
 
 !!! info "Feature Description"
-    The interface prefix is uniformly http(s)://`<your-domain>`
+    The API prefix is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    General asynchronous task management system. Primarily supports music generation tasks for platforms like Suno. Includes mechanisms such as automatic task status updates, failure retries, and quota refunds.
+    General asynchronous task management system. Primarily supports music generation tasks for platforms like Suno. Includes mechanisms such as automatic task status updates, failure retry, and quota refund.
 
 ## 🔐 User Authentication
 
@@ -14,8 +14,8 @@
 - **Interface Name**: Get My Tasks
 - **HTTP Method**: GET
 - **Path**: `/api/task/self`
-- **Authentication Requirement**: User
-- **Function Summary**: Paginate and retrieve the current user's task list, supporting filtering by platform, Task ID, status, and other conditions
+- **Authentication Required**: User
+- **Function Description**: Paginated retrieval of the current user's task list, supporting filtering by platform, Task ID, status, and other conditions.
 
 💡 Request Example:
 
@@ -70,22 +70,22 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取任务列表失败"  
+  "message": "Failed to retrieve task list"  
 }
 ```
 
-🧾 Field Descriptions (Request Parameters):
+🧾 Field Description (Request Parameters):
 
-- `p` (Number): Page number, defaults to 1
-- `page_size` (Number): Items per page, defaults to 20
+- `p` (Number): Page number, default is 1
+- `page_size` (Number): Items per page, default is 20
 - `platform` (String): Task platform, optional
 - `task_id` (String): Task ID filter, optional
 - `status` (String): Task status filter, optional values: "NOT_START", "SUBMITTED", "QUEUED", "IN_PROGRESS", "FAILURE", "SUCCESS", "UNKNOWN"
-- `action` (String): Task type filter, such as "song", "lyrics", etc.
+- `action` (String): Task type filter, e.g., "song", "lyrics", etc.
 - `start_timestamp` (Number): Start timestamp, optional
 - `end_timestamp` (Number): End timestamp, optional
 
-🧾 Return Field Descriptions:
+🧾 Return Field Description:
 
 - `id` (Number): Database record ID
 - `task_id` (String): Third-party Task ID
@@ -97,7 +97,7 @@ const data = await response.json();
 - `fail_reason` (String): Failure reason
 - `submit_time` (Number): Submission timestamp
 - `start_time` (Number): Start timestamp
-- `finish_time` (Number): Finish timestamp
+- `finish_time` (Number): Completion timestamp
 - `progress` (String): Progress percentage
 - `properties` (Object): Task properties
 - `data` (Object): Task result data
@@ -112,8 +112,8 @@ const data = await response.json();
 - **Interface Name**: Get All Tasks
 - **HTTP Method**: GET
 - **Path**: `/api/task/`
-- **Authentication Requirement**: Administrator
-- **Function Summary**: Paginate and retrieve all tasks in the system, supporting filtering by Channel ID, platform, User ID, and other conditions
+- **Authentication Required**: Administrator
+- **Function Description**: Paginated retrieval of all tasks in the system, supporting filtering by Channel ID, platform, User ID, and other conditions.
 
 💡 Request Example:
 
@@ -165,14 +165,14 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "获取任务列表失败"  
+  "message": "Failed to retrieve task list"  
 }
 ```
 
-🧾 Field Descriptions (Request Parameters):
+🧾 Field Description (Request Parameters):
 
-- `p` (Number): Page number, defaults to 1
-- `page_size` (Number): Items per page, defaults to 20
+- `p` (Number): Page number, default is 1
+- `page_size` (Number): Items per page, default is 20
 - `channel_id` (String): Channel ID filter, optional
 - `platform` (String): Task platform filter, optional
 - `task_id` (String): Task ID filter, optional
@@ -182,4 +182,4 @@ const data = await response.json();
 - `end_timestamp` (Number): End timestamp, optional
 - Return fields include all fields from user tasks, plus the following addition:
 
-    - `channel_id` (Number): Channel ID used
+    - `channel_id` (Number): Used Channel ID

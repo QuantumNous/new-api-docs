@@ -1,13 +1,13 @@
 # System Initialization Module
 
 !!! info "Feature Description"
-    The prefix for all functional interfaces is uniformly http(s)://`<your-domain>`
+    The prefix for all functional interfaces is unified as http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    The System Initialization Module is responsible for first-time deployment configuration and runtime status monitoring. It supports SQLite, MySQL, and PostgreSQL databases, including Root user creation and system parameter initialization. The status interface provides real-time system information, including OAuth configuration, feature toggles, etc.
+    The System Initialization Module is responsible for first-time deployment configuration and operational status monitoring. It supports SQLite, MySQL, and PostgreSQL databases, including Root user creation and system parameter initialization. The status interface provides real-time system information, including OAuth configuration, feature toggles, etc.
 
-## 🔐 Public Access (No Authentication Required)
+## 🔐 Authentication Not Required
 
 ### Get System Initialization Status
 
@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/setup`
 - **Authentication Requirement**: Public
-- **Description**: Checks if the system initialization is complete, retrieves the database type and Root user status.
+- **Feature Summary**: Checks if the system initialization is complete, retrieves the database type and Root user status
 
 💡 Request Example:
 
@@ -55,7 +55,7 @@ const data = await response.json();
 
 - `status` (Boolean): Whether the system initialization is complete
 - `root_init` (Boolean): Whether the Root user exists
-- `database_type` (String): Database type. Possible values: "mysql", "postgres", "sqlite"
+- `database_type` (String): Database type, optional values: "mysql", "postgres", "sqlite"
 
 ### Complete First-Time Installation Wizard
 
@@ -63,7 +63,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/setup`
 - **Authentication Requirement**: Public
-- **Description**: Creates the Root administrator account and completes the system initialization configuration.
+- **Feature Summary**: Creates the Root administrator account and completes system initialization configuration
 
 💡 Request Example:
 
@@ -89,7 +89,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "System initialization complete"  
+  "message": "系统初始化完成"  
 }
 ```
 
@@ -98,7 +98,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Username length cannot exceed 12 characters"  
+  "message": "用户名长度不能超过12个字符"  
 }
 ```
 
@@ -110,13 +110,13 @@ const data = await response.json();
 - `SelfUseModeEnabled` (Boolean): Whether to enable Self-Use Mode
 - `DemoSiteEnabled` (Boolean): Whether to enable Demo Site Mode
 
-### Get Runtime Status Summary
+### Get Operational Status Summary
 
-- **Interface Name**: Get Runtime Status Summary
+- **Interface Name**: Get Operational Status Summary
 - **HTTP Method**: GET
 - **Path**: `/api/status`
 - **Authentication Requirement**: Public
-- **Description**: Retrieves system runtime status, configuration information, and feature toggle states.
+- **Feature Summary**: Retrieves system operational status, configuration information, and feature toggle states
 
 💡 Request Example:
 
@@ -157,7 +157,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve status"  
+  "message": "获取状态失败"  
 }
 ```
 
@@ -173,7 +173,7 @@ const data = await response.json();
 - `display_in_currency` (Boolean): Whether to display in currency format
 - `enable_drawing` (Boolean): Whether drawing functionality is enabled
 - `enable_task` (Boolean): Whether task functionality is enabled
-- `setup` (Boolean): Whether the system initialization is complete
+- `setup` (Boolean): Whether system initialization is complete
 
 ### Uptime-Kuma Compatible Status Probe
 
@@ -181,7 +181,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/uptime/status`
 - **Authentication Requirement**: Public
-- **Description**: Provides a status check interface compatible with the Uptime-Kuma monitoring system.
+- **Feature Summary**: Provides a status check interface compatible with the Uptime-Kuma monitoring system
 
 💡 Request Example:
 
@@ -202,7 +202,7 @@ const data = await response.json();
   "success": true,  
   "data": [  
     {  
-      "categoryName": "OpenAI Service",  
+      "categoryName": "OpenAI服务",  
       "monitors": [  
         {  
           "name": "GPT-4",  
@@ -221,18 +221,18 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve monitoring data"  
+  "message": "获取监控数据失败"  
 }
 ```
 
 🧾 Field Description:
 
-- `categoryName` (String): Monitor category name
+- `categoryName` (String): Monitoring category name
 - `monitors` (Array): List of monitoring items
-    - `name` (String): Monitor item name
-    - `group` (String): Monitor group name
-    - `status` (Number): Status code (1=Normal, 0=Abnormal)
-    - `uptime` (Number): Availability percentage
+    - `name` (String): Monitoring item name
+    - `group` (String): Monitoring group name
+    - `status` (Number): Status code, 1=Normal, 0=Abnormal
+    - `uptime` (Number): Uptime percentage
 
 ## 🔐 Administrator Authentication
 
@@ -242,7 +242,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/status/test`
 - **Authentication Requirement**: Administrator
-- **Description**: Tests the connection status and health of various system components.
+- **Feature Summary**: Tests the connection status and health of various system components
 
 💡 Request Example:
 
@@ -263,7 +263,7 @@ const data = await response.json();
 ```
 {  
   "success": true,  
-  "message": "All components tested successfully",  
+  "message": "所有组件测试通过",  
   "data": {  
     "database": "connected",  
     "redis": "connected",  
@@ -277,7 +277,7 @@ const data = await response.json();
 ```
 {  
   "success": false,  
-  "message": "Database connection failed"  
+  "message": "数据库连接失败"  
 }
 ```
 

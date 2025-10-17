@@ -1,15 +1,15 @@
 # Get Available Model List (Model)
 
 !!! info "Description"
-    The interface prefix is uniformly http(s)://`<your-domain>`
+    The API prefix is uniformly http(s)://`<your-domain>`
 
     Production environments should use HTTPS to secure authentication tokens. HTTP is only recommended for development environments.
 
-- **Interface Name**: Get the list of models available to the frontend
+- **Interface Name**: Get available model list for the frontend
 - **HTTP Method**: GET
 - **Path**: `/api/models`
 - **Authentication Requirement**: User
-- **Function Summary**: Retrieves the list of AI models accessible to the current user, used for frontend Dashboard display
+- **Function Description**: Retrieves the list of AI models accessible to the current user, used for frontend Dashboard display
 
  💡 Request Example:
 
