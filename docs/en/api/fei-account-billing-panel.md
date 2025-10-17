@@ -25,7 +25,7 @@ const response = await fetch('/dashboard/billing/subscription', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -80,7 +80,7 @@ const response = await fetch('/v1/dashboard/billing/subscription', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -135,7 +135,7 @@ const response = await fetch('/dashboard/billing/usage', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -182,7 +182,7 @@ const response = await fetch('/v1/dashboard/billing/usage', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();

@@ -80,7 +80,7 @@ const response = await fetch('/api/log/self/stat?type=2&start_timestamp=16409088
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -137,7 +137,7 @@ const response = await fetch('/api/log/self?p=1&page_size=20&type=2&start_timest
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -200,7 +200,7 @@ const response = await fetch('/api/log/self/search?keyword=gpt-4', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_user_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -255,7 +255,7 @@ const response = await fetch('/api/log/?p=1&page_size=20&type=2&start_timestamp=
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -336,7 +336,7 @@ const response = await fetch('/api/log/?target_timestamp=1640908800', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -382,7 +382,7 @@ const response = await fetch('/api/log/stat?type=2&start_timestamp=1640908800&en
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id' 
+    'New-Api-User': 'your_user_id' 
   }  
 });  
 const data = await response.json();
@@ -434,7 +434,7 @@ const response = await fetch('/api/log/search?keyword=error', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();

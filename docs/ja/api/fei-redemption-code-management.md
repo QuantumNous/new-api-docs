@@ -25,7 +25,7 @@ const response = await fetch('/api/redemption/?p=1&page_size=20', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -92,7 +92,7 @@ const response = await fetch('/api/redemption/search?keyword=新年&p=1&page_siz
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -152,7 +152,7 @@ const response = await fetch('/api/redemption/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -208,7 +208,7 @@ const response = await fetch('/api/redemption/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     name: "春节活动兑换码",  
@@ -267,7 +267,7 @@ const response = await fetch('/api/redemption/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -287,7 +287,7 @@ const response = await fetch('/api/redemption/?status_only=true', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     id: 123,  
@@ -347,7 +347,7 @@ const response = await fetch('/api/redemption/invalid', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -393,7 +393,7 @@ const response = await fetch('/api/redemption/123', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_admin_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();

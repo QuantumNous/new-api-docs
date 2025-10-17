@@ -23,7 +23,7 @@ const response = await fetch('/api/option/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -85,7 +85,7 @@ const response = await fetch('/api/option/', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   },  
   body: JSON.stringify({  
     key: "SystemName",  
@@ -134,7 +134,7 @@ const response = await fetch('/api/option/rest_model_ratio', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
@@ -178,7 +178,7 @@ const response = await fetch('/api/option/migrate_console_setting', {
   headers: {  
     'Content-Type': 'application/json',  
     'Authorization': 'Bearer your_root_token',
-    'New-Api-User': 'Bearer your_user_id'
+    'New-Api-User': 'your_user_id'
   }  
 });  
 const data = await response.json();
