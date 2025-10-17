@@ -3,9 +3,9 @@
 !!! info "Feature Description"
     The API prefix is uniformly http(s)://`<your-domain>`
 
-    HTTPS should be used in production environments to secure authentication Tokens. HTTP is only recommended for development environments.
+    HTTPS should be used in production environments to ensure authentication tokens. HTTP is only recommended for development environments.
 
-    An advanced feature specifically designed for model pricing synchronization. It supports concurrently fetching ratio configurations from multiple upstream sources, automatically recognizes different interface formats, and provides data credibility assessment. It is primarily used for bulk updating model pricing information.
+    An advanced feature specifically for model pricing synchronization. It supports concurrently fetching ratio configurations from multiple upstream sources, automatically identifies different interface formats, and provides data credibility assessment. Primarily used for bulk updating model pricing information.
 
 ## 🔐 Root Authentication
 
@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/ratio_sync/channels`
 - **Authentication Requirement**: Root
-- **Feature Summary**: Retrieves the list of all Channels available for ratio synchronization in the system, including Channels with valid BaseURLs and official presets.
+- **Description**: Retrieves a list of all channels available for ratio synchronization in the system, including channels with valid BaseURLs and official presets.
 
 💡 Request Example:
 
@@ -60,18 +60,18 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to retrieve Channel list"  
+  "message": "Failed to retrieve channel list"  
 }
 ```
 
 🧾 Field Description:
 
-- `data` (Array): List of synchronizable Channels
+- `data` (Array): List of synchronizable channels
     - `id` (Number): Channel ID, -100 is the official preset
     - `name` (String): Channel Name
     - `base_url` (String): Channel Base URL
@@ -83,7 +83,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/ratio_sync/fetch`
 - **Authentication Requirement**: Root
-- **Feature Summary**: Fetches model ratio configurations from specified upstream Channels or custom URLs, supporting concurrent retrieval and differential comparison.
+- **Description**: Fetches model ratio configurations from specified upstream channels or custom URLs, supporting concurrent fetching and differential comparison.
 
 💡 Request Example (via Channel ID):
 
@@ -116,7 +116,7 @@ const response = await fetch('/api/ratio_sync/fetch', {
   body: JSON.stringify({  
     upstreams: [  
       {  
-        name: "自定义源",  
+        name: "Custom Source",  
         base_url: "https://example.com",  
         endpoint: "/api/ratio_config"  
       }  
@@ -168,32 +168,32 @@ const data = await response.json();
         "name": "Claude API(2)",  
         "status": "error",  
         "error": "Connection Timeout"  
-      }  
+      }
     ]  
   }  
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "No valid upstream Channels"  
+  "message": "No valid upstream channels"  
 }
 ```
 
 🧾 Field Description:
 
-- `channel_ids` (Array): List of Channel IDs to synchronize, optional
+- `channel_ids` (Array): List of channel IDs to synchronize, optional
 - `upstreams` (Array): List of custom upstream configurations, optional
     - `name` (String): Upstream Name
     - `base_url` (String): Base URL, must start with http
     - `endpoint` (String): Interface endpoint, defaults to "/api/ratio_config"
-- `timeout` (Number): Request timeout duration (seconds), defaults to 10 seconds
+- `timeout` (Number): Request timeout (seconds), defaults to 10 seconds
 - `differences` (Object): Differential ratio comparison results
-    - Key is the model name, value contains difference information for each ratio type
-    - `current`: Current local value
+    - Key is the model name, value contains difference information for various ratio types
+    - `current`: Local current value
     - `upstreams`: Values from each upstream, "same" indicates identical to local value
-    - `confidence`: Data confidence, false indicates potentially unreliable
+    - `confidence`: Data credibility, false indicates potentially unreliable
 - `test_results` (Array): Test results for each upstream

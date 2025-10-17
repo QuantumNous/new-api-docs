@@ -11,11 +11,11 @@
 
 ### Retrieve Subscription Quota Information
 
-- **Interface Name**：Retrieve Subscription Quota Information
-- **HTTP Method**：GET
-- **Path**：`/dashboard/billing/subscription`
-- **Authentication Required**：User Token
-- **Function Summary**：Retrieves the user's subscription quota information, including total quota, hard limit, and access validity period, compatible with the OpenAI API format.
+- **Interface Name**: Retrieve Subscription Quota Information
+- **HTTP Method**: GET
+- **Path**: `/dashboard/billing/subscription`
+- **Authentication Required**: User Token
+- **Function Description**: Retrieves the user's subscription quota information, including total quota, hard limit, and access validity period, compatible with the OpenAI API format
 
 💡 Request Example:
 
@@ -44,7 +44,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -55,22 +55,22 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Descriptions:
+🧾 Field Description:
 
 - `object` (String): Fixed value "billing_subscription"
-- `has_payment_method` (Boolean): Whether a payment method exists, fixed as true
+- `has_payment_method` (Boolean): Whether a payment method exists, fixed to true
 - `soft_limit_usd` (Number): Soft limit quota (USD)
 - `hard_limit_usd` (Number): Hard limit quota (USD)
 - `system_hard_limit_usd` (Number): System hard limit quota (USD)
 - `access_until` (Number): Access validity timestamp, Token expiration time
 
-### Compatible OpenAI SDK Path - Retrieve Subscription Quota Information
+### OpenAI SDK Compatible Path - Retrieve Subscription Quota Information
 
-- **Interface Name**：Compatible OpenAI SDK Path - Retrieve Subscription Quota Information
-- **HTTP Method**：GET
-- **Path**：`/v1/dashboard/billing/subscription`
-- **Authentication Required**：User Token
-- **Function Summary**：Identical functionality to the interface above, providing an OpenAI SDK compatible path
+- **Interface Name**: OpenAI SDK Compatible Path - Retrieve Subscription Quota Information
+- **HTTP Method**: GET
+- **Path**: `/v1/dashboard/billing/subscription`
+- **Authentication Required**: User Token
+- **Function Description**: Functionally identical to the interface above, providing an OpenAI SDK compatible path
 
 💡 Request Example:
 
@@ -99,7 +99,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -110,10 +110,10 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Descriptions:
+🧾 Field Description:
 
 - `object` (String): Fixed value "billing_subscription"
-- `has_payment_method` (Boolean): Whether a payment method exists, fixed as true
+- `has_payment_method` (Boolean): Whether a payment method exists, fixed to true
 - `soft_limit_usd` (Number): Soft limit quota (USD)
 - `hard_limit_usd` (Number): Hard limit quota (USD)
 - `system_hard_limit_usd` (Number): System hard limit quota (USD)
@@ -121,11 +121,11 @@ const data = await response.json();
 
 ### Retrieve Usage Information
 
-- **Interface Name**：Retrieve Usage Information
-- **HTTP Method**：GET
-- **Path**：`/dashboard/billing/usage`
-- **Authentication Required**：User Token
-- **Function Summary**：Retrieves the user's quota usage information, compatible with the OpenAI API format
+- **Interface Name**: Retrieve Usage Information
+- **HTTP Method**: GET
+- **Path**: `/dashboard/billing/usage`
+- **Authentication Required**: User Token
+- **Function Description**: Retrieves the user's quota usage information, compatible with the OpenAI API format
 
 💡 Request Example:
 
@@ -150,7 +150,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -161,18 +161,18 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Descriptions:
+🧾 Field Description:
 
 - `object` (String): Fixed value "list"
-- `total_usage` (Number): Total usage, measured in $0.01 USD
+- `total_usage` (Number): Total usage, measured in $0.01 USD units
 
-### Compatible OpenAI SDK Path - Retrieve Usage Information
+### OpenAI SDK Compatible Path - Retrieve Usage Information
 
-- **Interface Name**：Compatible OpenAI SDK Path - Retrieve Usage Information
-- **HTTP Method**：GET
-- **Path**：`/v1/dashboard/billing/usage`
-- **Authentication Required**：User Token
-- **Function Summary**：Identical functionality to the interface above, providing an OpenAI SDK compatible path
+- **Interface Name**: OpenAI SDK Compatible Path - Retrieve Usage Information
+- **HTTP Method**: GET
+- **Path**: `/v1/dashboard/billing/usage`
+- **Authentication Required**: User Token
+- **Function Description**: Functionally identical to the interface above, providing an OpenAI SDK compatible path
 
 💡 Request Example:
 
@@ -197,7 +197,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -208,7 +208,7 @@ const data = await response.json();
 }
 ```
 
-🧾 Field Descriptions:
+🧾 Field Description:
 
 - `object` (String): Fixed value "list"
-- `total_usage` (Number): Total usage, measured in $0.01 USD
+- `total_usage` (Number): Total usage, measured in $0.01 USD units

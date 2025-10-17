@@ -1,11 +1,11 @@
 # Token Management Module
 
-!!! info "Function Description"
-    The interface prefix is uniformly http(s)://`<your-domain>`
+!!! info "Feature Description"
+    The API prefix is uniformly http(s)://`<your-domain>`
 
-    HTTPS should be used in production environments to ensure authentication tokens. HTTP is only recommended for development environments.
+    HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    A complete management system for user API Tokens. Supports features such as Token creation, updating, deletion, and batch operations. Includes fine-grained controls like model restrictions, IP restrictions, quota management, and expiration time. This is the core data source for the frontend Token page.
+    A complete management system for user API Tokens. Supports features like Token creation, update, deletion, and batch operations. Includes fine-grained controls such as model restrictions, IP restrictions, quota management, and expiration time. This is the core data source for the frontend Token page.
 
 ## 🔐 User Authentication
 
@@ -58,7 +58,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -69,16 +69,16 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `p` (Number): Page number, defaults to 1
-- `size` (Number): Items per page, defaults to 20
-- `items` (Array): List of Token information
+- `p` (Number): Page number, default is 1
+- `size` (Number): Number of items per page, default is 20
+- `items` (Array): Token information list
 - `total` (Number): Total number of Tokens
 - `page` (Number): Current page number
-- `page_size` (Number): Items per page
+- `page_size` (Number): Number of items per page
 
-### Search Tokens
+### Search Token
 
-- **Interface Name**: Search Tokens
+- **Interface Name**: Search Token
 - **HTTP Method**: GET
 - **Path**: `/api/token/search`
 - **Authentication Requirement**: User
@@ -116,12 +116,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to search Tokens"  
+  "message": "Failed to search Token"  
 }
 ```
 
@@ -176,7 +176,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -230,7 +230,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -244,11 +244,11 @@ const data = await response.json();
 - `name` (String): Token name, maximum length 30 characters
 - `expired_time` (Number): Expiration timestamp, -1 means never expires
 - `remain_quota` (Number): Remaining quota
-- `unlimited_quota` (Boolean): Whether the quota is unlimited
-- `model_limits_enabled` (Boolean): Whether model restrictions are enabled
+- `unlimited_quota` (Boolean): Whether quota is unlimited
+- `model_limits_enabled` (Boolean): Whether to enable model limits
 - `model_limits` (Array): List of allowed models
-- `allow_ips` (String): Allowed IP addresses, comma-separated
-- `group` (String): Associated group
+- `allow_ips` (String): Allowed IP addresses, comma separated
+- `group` (String): Belonging group
 
 ### Update Token
 
@@ -315,12 +315,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Token has expired and cannot be enabled. Please modify the token expiration time first, or set it to never expire"  
+  "message": "The token has expired and cannot be enabled. Please modify the token expiration time first, or set it to never expire"  
 }
 ```
 
@@ -328,7 +328,7 @@ const data = await response.json();
 
 - `id` (Number): Token ID, required
 - `status_only` (Query Parameter): Whether to update status only
-- Other fields are the same as the Create Token interface and are all optional
+- Other fields are the same as the Create Token interface, all are optional
 
 ### Delete Token
 
@@ -361,7 +361,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -374,9 +374,9 @@ const data = await response.json();
 
 `id` (Number): Token ID, passed via URL path
 
-### Batch Delete Tokens
+### Batch Delete Token
 
-- **Interface Name**: Batch Delete Tokens
+- **Interface Name**: Batch Delete Token
 - **HTTP Method**: POST
 - **Path**: `/api/token/batch`
 - **Authentication Requirement**: User
@@ -409,7 +409,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
