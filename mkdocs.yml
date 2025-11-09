@@ -169,7 +169,7 @@ nav:
         - Suno API 格式: api/suno-music.md
       - 🎥 视频（Video）:
         - 可灵AI (Kling)和即梦 (Jimeng)格式: api/kling-jimeng.md
-        - OpenAI 视频格式: api/openai-video.md
+        - OpenAI 视频格式（Sora格式）: api/openai-video.md
     - 查询接口:
       - 令牌用量查询: api/token-usage.md
     - 前端接口:
@@ -274,7 +274,7 @@ plugins:
             Suno API 格式: "Suno Music"
             "🎥 视频（Video）": Video
             "可灵AI (Kling)和即梦 (Jimeng)格式": "Kling AI & Jimeng Format"
-            "OpenAI 视频格式": "OpenAI Video Format"
+            "OpenAI 视频格式（Sora格式）": "OpenAI Video Format (Sora Format)"
             查询接口: "Query APIs"
             令牌用量查询: "Token Usage"
             前端接口: "Frontend APIs"
@@ -373,7 +373,7 @@ plugins:
             Suno API 格式: "Suno Music"
             "🎥 视频（Video）": 動画
             "可灵AI (Kling)和即梦 (Jimeng)格式": "Kling AI & Jimeng フォーマット"
-            "OpenAI 视频格式": "OpenAI 動画フォーマット"
+            "OpenAI 视频格式（Sora格式）": "OpenAI 動画フォーマット (Soraフォーマット)"
             查询接口: "クエリAPI"
             令牌用量查询: "トークン使用量"
             前端接口: "フロントエンドAPI"
