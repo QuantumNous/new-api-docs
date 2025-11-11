@@ -136,6 +136,7 @@ nav:
     - 🔧 部署方式:
       - Docker 部署: installation/docker-installation.md
       - Docker Compose 部署: installation/docker-compose-installation.md
+      - 1Panel 面板部署: installation/1panel-installation.md
       - 宝塔面板部署: installation/bt-docker-installation.md
       - 集群部署: installation/cluster-deployment.md
       - 本地开发部署: installation/local-development.md
