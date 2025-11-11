@@ -149,7 +149,7 @@
 | `EMAIL_SERVER` | メールサーバー設定 | - | `EMAIL_SERVER=smtp.example.com:25` |
 | `EMAIL_FROM` | メール送信元アドレス | - | `EMAIL_FROM=noreply@example.com` |
 | `EMAIL_PASSWORD` | メールサーバーパスワード | - | `EMAIL_PASSWORD=yourpassword` |
-| `ERROR_LOG_ENABLE` | エラーログを記録し、フロントエンドに表示するか | false | `ERROR_LOG_ENABLED=true` |
+| `ERROR_LOG_ENABLED` | エラーログを記録し、フロントエンドに表示するか | false | `ERROR_LOG_ENABLED=true` |
 
 ## 廃止された環境変数
 

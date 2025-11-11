@@ -146,7 +146,7 @@ This document provides all environment variables supported by New API and their 
 | `EMAIL_SERVER` | Email server configuration | - | `EMAIL_SERVER=smtp.example.com:25` |
 | `EMAIL_FROM` | Email sender address | - | `EMAIL_FROM=noreply@example.com` |
 | `EMAIL_PASSWORD` | Email server password | - | `EMAIL_PASSWORD=yourpassword` |
-| `ERROR_LOG_ENABLE` | Record and display error logs on frontend | false | `ERROR_LOG_ENABLED=true` |
+| `ERROR_LOG_ENABLED` | Record and display error logs on frontend | false | `ERROR_LOG_ENABLED=true` |
 
 ## Deprecated Environment Variables
 
