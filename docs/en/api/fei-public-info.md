@@ -1,13 +1,13 @@
 # Public Information Module
 
-!!! info "Function Description"
+!!! info "Feature Description"
     The API prefix is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    Provides system information that does not require authentication or requires low-level access, including model lists, pricing information, announcement content, etc. Supports multi-language display and dynamic configuration. The frontend homepage and model marketplace primarily rely on these interfaces to fetch display data.
+    Provides system information accessible without authentication or with low privileges, including model lists, pricing details, announcement content, etc. Supports multi-language display and dynamic configuration. The frontend homepage and model marketplace primarily rely on these interfaces to fetch display data.
 
-## 🔐 No Authentication Required
+## 🔐 Authentication Not Required
 
 ### Get Announcement Content
 
@@ -212,7 +212,7 @@ const response = await fetch('/api/pricing', {
   method: 'GET',  
   headers: {  
     'Content-Type': 'application/json',  
-    'Authorization': 'Bearer your_token', // Optional, logged-in users can obtain more detailed information
+    'Authorization': 'Bearer your_token', // Optional, logged-in users get more detailed information
     'New-Api-User': 'your_user_id' // Optional
   }  
 });  
@@ -272,29 +272,29 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `data` (Array): Model pricing information list
+- `data` (Array): List of model pricing information 
 
     - `model_name` (String): Model name
-    - `enable_group` (Array): List of available groups
-    - `model_ratio` (Number): Model Ratio
-    - `completion_ratio` (Number): Completion Ratio
-    - `model_price` (Number): Model Price (USD)
+    - `enable_group` (Array): Available groups list
+    - `model_ratio` (Number): Model ratio
+    - `completion_ratio` (Number): Completion ratio
+    - `model_price` (Number): Model price (USD)
     - `quota_type` (Number): Billing type, 0=Ratio billing, 1=Price billing
     - `description` (String): Model description
     - `vendor_id` (Number): Vendor ID
     - `supported_endpoint_types` (Array): Supported endpoint types
-- `vendors` (Array): Vendor information list
+- `vendors` (Array): List of vendor information 
 
     - `id` (Number): Vendor ID
-    - `name` (String): Vendor Name
+    - `name` (String): Vendor name
     - `description` (String): Vendor description
     - `icon` (String): Vendor icon
 - `group_ratio` (Object): Group ratio mapping
 - `usable_group` (Object): Usable group mapping
 - `supported_endpoint` (Object): Supported endpoint information
-- `auto_groups` (Array): Automatic groups list
+- `auto_groups` (Array): Automatic group list
 
-## 🔐 User Authentication
+## 🔐 User Authentication Required
 
 ### Get Frontend Available Model List
 
@@ -341,7 +341,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-`data` (Object): Mapping of Channel ID to Model List
+`data` (Object): Mapping from Channel ID to model list
 
 - Key (String): Channel ID
 - Value (Array): List of model names supported by this channel

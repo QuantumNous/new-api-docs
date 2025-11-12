@@ -1,6 +1,6 @@
-# OpenAI Video Format
+# OpenAI Video Format (Sora Format)
 
-Call the OpenAI video generation interface to generate videos, supporting models like Sora, and also supporting the use of the OpenAI video format to call Keling, Jimeng, and Vidu.
+Calling the OpenAI video generation interface to generate videos, supporting models like Sora, and also supporting the use of the OpenAI video format to call Kling, Jimeng, and Vidu.
 
 ## Generate Video
 
@@ -14,10 +14,9 @@ POST /v1/videos
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
-| Authorization | string | Yes | User authentication token (Bearer: sk-xxxx) |
-| Content-Type | string | Yes | multipart/form-data |
+| Authorization | string | Yes | User Authentication Token (Bearer: sk-xxxx) |
 
-### Request Parameters
+### Request Parameters (multipart/form-data)
 
 | Parameter | Type | Required | Description |
 |------|------|------|------|
@@ -25,32 +24,80 @@ POST /v1/videos
 | model | string | No | Video generation model, defaults to sora-2 |
 | seconds | string | No | Video duration (seconds), defaults to 4 seconds |
 | size | string | No | Output resolution, format is width x height, defaults to 720x1280 |
-| input_reference | file | No | Optional image reference, used to guide generation |
+| input_reference | file | No | Input image file (used for Image-to-Video) |
+| metadata | string | No | Extended parameters (JSON string format) |
 
-### Request Example
+#### metadata Parameter Description
+
+The `metadata` parameter is used to pass parameters unique to non-Sora models, such as Alibaba Cloud Wanxiang's image URL, watermark, prompt intelligent rewriting, etc. The format of the `metadata` parameter is a JSON string, for example:
+```json
+{
+  "img_url": "https://example.com/image.jpg",
+  "watermark": false,
+  "prompt_extend": true
+}
+```
+
+### Request Examples
+
+#### Text-to-Video (Text Prompt Only)
 
 ```bash
 curl https://你的newapi服务器地址/v1/videos \
   -H "Authorization: Bearer sk-xxxx" \
+  -F "prompt=一个穿着宇航服的宇航员在月球上行走, 高品质, 电影级" \
   -F "model=sora-2" \
-  -F "prompt=A calico cat playing a piano on stage"
+  -F "seconds=5" \
+  -F "size=1920x1080"
+```
+
+#### Image-to-Video (Text Prompt + Image File)
+
+```bash
+curl https://你的newapi服务器地址/v1/videos \
+  -H "Authorization: Bearer sk-xxxx" \
+  -F "prompt=猫咪慢慢睁开眼睛，伸懒腰" \
+  -F "model=sora-2" \
+  -F "seconds=3" \
+  -F "size=1920x1080" \
+  -F "input_reference=@/path/to/cat.jpg"
+```
+
+#### Alibaba Cloud Wanxiang Video Generation Examples
+
+##### Text-to-Video (Wanxiang 2.5)
+```bash
+curl https://你的newapi服务器地址/v1/videos \
+  -H "Authorization: Bearer sk-xxxx" \
+  -F "prompt=一只可爱的小猫在花园里玩耍，阳光明媚，色彩鲜艳" \
+  -F "model=wan2.5-t2v-preview" \
+  -F "seconds=5" \
+  -F "size=1920*1080"
+```
+
+##### Image-to-Video (Wanxiang 2.5)
+```bash
+curl https://你的newapi服务器地址/v1/videos \
+  -H "Authorization: Bearer sk-xxxx" \
+  -F "prompt=让这张图片动起来，添加自然的运动效果" \
+  -F "model=wan2.5-i2v-preview" \
+  -F "seconds=5" \
+  -F "size=1280P" \
+  -F 'metadata={"img_url":"https://example.com/image.jpg"}'
 ```
 
 ### Response Format
 
-#### 200 - Successful Response
+#### 201 - Successfully Created
 
 ```json
 {
   "id": "video_123",
   "object": "video",
   "model": "sora-2",
-  "status": "queued",
-  "progress": 0,
-  "created_at": 1712697600,
-  "size": "1024x1808",
-  "seconds": "8",
-  "quality": "standard"
+  "created_at": 1640995200,
+  "status": "processing",
+  "progress": 0
 }
 ```
 
@@ -61,16 +108,13 @@ curl https://你的newapi服务器地址/v1/videos \
 | id | string | Video Task ID |
 | object | string | Object type, fixed as "video" |
 | model | string | Name of the model used |
-| status | string | Task status (queued: Queued, processing: Processing, completed: Completed, failed: Failed) |
-| progress | integer | Processing progress (0-100) |
 | created_at | integer | Creation timestamp |
-| size | string | Video resolution |
-| seconds | string | Video duration (seconds) |
-| quality | string | Video quality |
+| status | string | Task status (processing: processing) |
+| progress | integer | Generation progress percentage |
 
-## Query Video
+## Retrieve Video
 
-Query the status and results of the video generation task based on the Task ID
+Query the status and result of the video generation task based on the Task ID.
 
 ### API Endpoint
 
@@ -100,13 +144,13 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
   "id": "video_123",
   "object": "video",
   "model": "sora-2",
-  "status": "completed",
+  "created_at": 1640995200,
+  "status": "succeeded",
   "progress": 100,
-  "created_at": 1712697600,
-  "size": "1024x1808",
-  "seconds": "8",
-  "quality": "standard",
-  "url": "https://example.com/video.mp4"
+  "expires_at": 1641081600,
+  "size": "1920x1080",
+  "seconds": "5",
+  "quality": "standard"
 }
 ```
 
@@ -117,17 +161,18 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 | id | string | Video Task ID |
 | object | string | Object type, fixed as "video" |
 | model | string | Name of the model used |
-| status | string | Task status (queued: Queued, processing: Processing, completed: Completed, failed: Failed) |
-| progress | integer | Processing progress (0-100) |
 | created_at | integer | Creation timestamp |
+| status | string | Task status (processing: processing, succeeded: successful, failed: failed) |
+| progress | integer | Generation progress percentage |
+| expires_at | integer | Resource expiration timestamp |
 | size | string | Video resolution |
 | seconds | string | Video duration (seconds) |
 | quality | string | Video quality |
-| url | string | Video download link (when completed) |
+| url | string | Video download link (when complete) |
 
 ## Get Video Task Status
 
-Get detailed information about the video generation task based on the Task ID
+Retrieve detailed information about the video generation task based on the Task ID.
 
 ### API Endpoint
 
@@ -150,20 +195,17 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 
 ### Response Format
 
-#### 200 - Successful Response
-
 ```json
 {
   "id": "video_123",
   "object": "video",
   "model": "sora-2",
-  "status": "completed",
+  "created_at": 1640995200,
+  "status": "succeeded",
   "progress": 100,
-  "created_at": 1712697600,
-  "completed_at": 1712698000,
-  "expires_at": 1712784400,
-  "size": "1024x1808",
-  "seconds": "8",
+  "expires_at": 1641081600,
+  "size": "1920x1080",
+  "seconds": "5",
   "quality": "standard",
   "remixed_from_video_id": null,
   "error": null
@@ -180,9 +222,8 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 | status | string | Current lifecycle status of the video task |
 | progress | integer | Approximate completion percentage of the generation task |
 | created_at | integer | Unix timestamp (seconds) when the task was created |
-| completed_at | integer | Unix timestamp (seconds) when the task was completed, if finished |
 | expires_at | integer | Unix timestamp (seconds) when the downloadable resource expires, if set |
-| size | string | Resolution of the generated video |
+| size | string | Generated video resolution |
 | seconds | string | Duration of the generated video clip (seconds) |
 | quality | string | Video quality |
 | remixed_from_video_id | string | Identifier of the source video if this video is a remix |
@@ -190,7 +231,7 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 
 ## Get Video Content
 
-Download the completed video content
+Download the completed video content.
 
 ### API Endpoint
 
@@ -218,29 +259,26 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123/content' \
   -o "video.mp4"
 ```
 
-### Response Format
+### Response Description
 
-#### 200 - Successful Response
+Directly returns the video file stream, Content-Type is `video/mp4`.
 
-Directly returns the video file stream, Content-Type is `video/mp4`
+#### Response Headers
 
-#### Response Header Description
-
-| Field | Type | Description |
-|------|------|------|
-| Content-Type | string | Video file type, usually video/mp4 |
-| Content-Length | string | Video file size (bytes) |
-| Content-Disposition | string | File download information |
+| Field | Description |
+|------|------|
+| Content-Type | Video file type, usually video/mp4 |
+| Content-Length | Video file size (bytes) |
+| Content-Disposition | File download information |
 
 ## Error Responses
 
-### 400 - Invalid Request Parameters
+### 400 - Request Parameter Error
 ```json
 {
   "error": {
-    "message": "Invalid request parameters",
-    "type": "invalid_request_error",
-    "code": "invalid_parameter"
+    "message": "string",
+    "type": "invalid_request_error"
   }
 }
 ```
@@ -249,31 +287,28 @@ Directly returns the video file stream, Content-Type is `video/mp4`
 ```json
 {
   "error": {
-    "message": "Invalid API key",
-    "type": "authentication_error",
-    "code": "invalid_api_key"
+    "message": "string",
+    "type": "invalid_request_error"
   }
 }
 ```
 
-### 403 - Insufficient Permissions
+### 403 - Forbidden
 ```json
 {
   "error": {
-    "message": "Insufficient permissions",
-    "type": "permission_error",
-    "code": "insufficient_permissions"
+    "message": "string",
+    "type": "invalid_request_error"
   }
 }
 ```
 
-### 429 - Rate Limit Exceeded
+### 404 - Task Not Found
 ```json
 {
   "error": {
-    "message": "Rate limit exceeded",
-    "type": "rate_limit_error",
-    "code": "rate_limit_exceeded"
+    "message": "string",
+    "type": "invalid_request_error"
   }
 }
 ```
@@ -282,9 +317,187 @@ Directly returns the video file stream, Content-Type is `video/mp4`
 ```json
 {
   "error": {
-    "message": "Internal server error",
-    "type": "server_error",
-    "code": "internal_error"
+    "message": "string",
+    "type": "server_error"
   }
+}
+```
+
+## Supported Models
+
+### OpenAI Compatible
+- `sora-2`: Sora video generation model
+
+### Other Services Called via OpenAI Format
+- Alibaba Cloud Wanxiang (Ali Wan): Use `wan2.5-t2v-preview` (Text-to-Video), `wan2.5-i2v-preview` (Image-to-Video), `wan2.2-i2v-flash`, `wan2.2-i2v-plus`, `wanx2.1-i2v-plus`, `wanx2.1-i2v-turbo`
+- Kling AI: Use `kling-v1`, `kling-v2-master`
+- Jimeng: Use `jimeng_vgfm_t2v_l20`, `jimeng_vgfm_i2v_l20`
+- Vidu: Use `viduq1`
+
+## Alibaba Cloud Wanxiang Special Instructions
+
+### Supported Features
+- **Text-to-Video (t2v)**: Generates video using only a text prompt
+- **Image-to-Video (i2v)**: Generates video using a text prompt + image
+- **Keyframe-to-Video (kf2v)**: Generates video by specifying the start and end frame images
+- **Audio Generation (s2v)**: Supports combining audio with video
+
+### Resolution Support
+- **480P**: 832×480, 480×832, 624×624
+- **720P**: 1280×720, 720×1280, 960×960, 1088×832, 832×1088
+- **1080P**: 1920×1080, 1080×1920, 1440×1440, 1632×1248, 1248×1632
+
+### Special Parameters
+- `watermark`: Whether to add a watermark (default false)
+- `prompt_extend`: Whether to enable prompt intelligent rewriting (default true)
+- `audio`: Whether to add audio (only supported by wan2.5)
+- `seed`: Random seed
+
+### Model Characteristics
+- **wan2.5-i2v-preview**: Wanxiang 2.5 preview version, supports video with sound, recommended
+- **wan2.2-i2v-flash**: Wanxiang 2.2 Express version, fast generation speed, silent video
+- **wan2.2-i2v-plus**: Wanxiang 2.2 Professional version, higher image quality, silent video
+- **wanx2.1-i2v-plus**: Wanxiang 2.1 Professional version, stable version
+- **wanx2.1-i2v-turbo**: Wanxiang 2.1 Express version
+
+## Best Practices
+
+1. **Request Format**: Use `multipart/form-data` format, which is the official OpenAI recommended method
+2. **`input_reference` Parameter**: Used for the Image-to-Video function, use the `@filename` syntax when uploading image files
+3. **Prompt Optimization**: Use detailed and specific descriptive words, including style and quality requirements
+4. **Parameter Settings**: Reasonably set duration and resolution according to requirements
+5. **Alibaba Cloud Wanxiang Special Instructions**:
+   - **Direct file upload is not supported**; all resources are passed via URL
+   - Use the `metadata` parameter to pass all extended parameters (JSON string format)
+   - Image-to-Video uses `metadata.img_url` to pass the image URL
+   - Keyframe-to-Video uses `metadata.first_frame_url` and `metadata.last_frame_url`
+6. **Error Handling**: Implement appropriate retry mechanisms and error handling
+7. **Asynchronous Processing**: Video generation is an asynchronous task and requires polling for status checks
+8. **Resource Management**: Download and clean up unnecessary video files promptly
+
+## JavaScript Examples
+
+### Using FormData (Recommended)
+
+```javascript
+async function generateVideoWithFormData() {
+  const formData = new FormData();
+  formData.append('prompt', '一个穿着宇航服的宇航员在月球上行走, 高品质, 电影级');
+  formData.append('model', 'sora-2');
+  formData.append('seconds', '5');
+  formData.append('size', '1920x1080');
+
+  const response = await fetch('https://你的newapi服务器地址/v1/videos', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer sk-xxxx'
+    },
+    body: formData
+  });
+
+  const result = await response.json();
+  return result.id;
+}
+
+// Image-to-Video Example
+async function generateVideoWithImage() {
+  const formData = new FormData();
+  formData.append('prompt', '猫咪慢慢睁开眼睛，伸懒腰');
+  formData.append('model', 'sora-2');
+  formData.append('seconds', '3');
+  formData.append('size', '1920x1080');
+  
+  // 添加图片文件
+  const imageFile = document.getElementById('imageInput').files[0];
+  formData.append('input_reference', imageFile);
+
+  const response = await fetch('https://你的newapi服务器地址/v1/videos', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer sk-xxxx'
+    },
+    body: formData
+  });
+
+  const result = await response.json();
+  return result.id;
+}
+```
+
+### Alibaba Cloud Wanxiang Calling Example
+
+```javascript
+// 阿里云万相文生视频
+async function generateAliVideo() {
+  const formData = new FormData();
+  formData.append('prompt', '一只可爱的小猫在花园里玩耍，阳光明媚，色彩鲜艳');
+  formData.append('model', 'wan2.5-t2v-preview');
+  formData.append('seconds', '5');
+  formData.append('size', '1920*1080');
+  formData.append('metadata', JSON.stringify({
+    watermark: false,
+    prompt_extend: true
+  }));
+
+  const response = await fetch('https://你的newapi服务器地址/v1/videos', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer sk-xxxx'
+    },
+    body: formData
+  });
+
+  const result = await response.json();
+  return result.id;
+}
+
+// 阿里云万相图生视频
+async function generateAliImageToVideo() {
+  const formData = new FormData();
+  formData.append('prompt', '让这张图片动起来，添加自然的运动效果');
+  formData.append('model', 'wan2.5-i2v-preview');
+  formData.append('seconds', '3');
+  formData.append('resolution', '720P');
+  formData.append('input_reference', imageFile);
+  formData.append('metadata', JSON.stringify({
+    watermark: false,
+    prompt_extend: true
+  }));
+
+  const response = await fetch('https://你的newapi服务器地址/v1/videos', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer sk-xxxx'
+    },
+    body: formData
+  });
+
+  const result = await response.json();
+  return result.id;
+}
+
+// 阿里云万相首尾帧生视频
+async function generateAliKeyframeVideo() {
+  const formData = new FormData();
+  formData.append('prompt', '从开始到结束的平滑过渡动画');
+  formData.append('model', 'wan2.2-kf2v-flash');
+  formData.append('seconds', '4');
+  formData.append('metadata', JSON.stringify({
+    first_frame_url: 'https://example.com/start.jpg',
+    last_frame_url: 'https://example.com/end.jpg',
+    resolution: '720P',
+    watermark: false
+  }));
+
+  const response = await fetch('https://你的newapi服务器地址/v1/videos', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer sk-xxxx'
+    },
+    body: formData
+  });
+
+  const result = await response.json();
+  return result.id;
 }
 ```

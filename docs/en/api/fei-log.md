@@ -1,21 +1,21 @@
 # Log Module
 
-!!! info "Function Description"
-    The interface prefix is uniformly http(s)://`<your-domain>`
+!!! info "Feature Description"
+    The API prefix is uniformly http(s)://`<your-domain>`
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    A layered log query system that supports administrators viewing site-wide logs and users viewing personal logs. It provides real-time statistics (RPM/TPM), multi-dimensional filtering, historical data cleanup, and other features. The Token query interface supports CORS for easy third-party integration.
+    A layered log query system that supports administrators viewing site-wide logs and users viewing personal logs. It provides real-time statistics (RPM/TPM), multi-dimensional filtering, historical data cleanup, and other features. A CORS-enabled Token query interface facilitates third-party integration.
 
 ## 🔐 No Authentication Required
 
-### Query Log by Token
+### Query Logs by Token
 
-- **Interface Name**: Query Log by Token
+- **Interface Name**: Query Logs by Token
 - **HTTP Method**: GET
 - **Path**: `/api/log/token`
 - **Authentication Requirement**: Public
-- **Description**: Query related log records using the Token key, supports cross-origin access (CORS)
+- **Function Description**: Query relevant log records using the Token key, supporting cross-origin access
 
 💡 Request Example:
 
@@ -69,7 +69,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/self/stat`
 - **Authentication Requirement**: User
-- **Description**: Get the current user's log statistics, including quota consumption, request frequency, and Token usage.
+- **Function Description**: Retrieve the current user's log statistics, including quota consumption, request frequency, and Token usage
 
 💡 Request Example:
 
@@ -126,7 +126,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/self`
 - **Authentication Requirement**: User
-- **Description**: Paginated retrieval of the current user's log records, supporting multiple filtering conditions.
+- **Function Description**: Paginated retrieval of the current user's log records, supporting multiple filtering conditions
 
 💡 Request Example:
 
@@ -181,7 +181,7 @@ const data = await response.json();
 
 🧾 Field Description:
 
-Request parameters are the same as the Get All Logs interface, but only return the current user's log records.
+Request parameters are the same as the Get All Logs interface, but only the current user's log records are returned
 
 ### Search My Logs
 
@@ -189,7 +189,7 @@ Request parameters are the same as the Get All Logs interface, but only return t
 - **HTTP Method**: GET
 - **Path**: `/api/log/self/search`
 - **Authentication Requirement**: User
-- **Description**: Search the current user's log records based on keywords.
+- **Function Description**: Search the current user's log records based on keywords
 
 💡 Request Example:
 
@@ -236,7 +236,7 @@ const data = await response.json();
 
 `keyword` (String): Search keyword, matches the current user's log type
 
-## 🔐 Administrator Authentication
+## 🔐 Admin Authentication
 
 ### Get All Logs
 
@@ -244,7 +244,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/`
 - **Authentication Requirement**: Administrator
-- **Description**: Paginated retrieval of all log records in the system, supporting multiple filtering conditions and log type selection.
+- **Function Description**: Paginated retrieval of all log records in the system, supporting multiple filtering conditions and log type screening
 
 💡 Request Example:
 
@@ -308,9 +308,9 @@ const data = await response.json();
 
 🧾 Field Description:
 
-- `p` (Number): Page number, defaults to 1
-- `page_size` (Number): Items per page, defaults to 20
-- `type` (Number): Log type, optional values: 1=Recharge, 2=Consumption, 3=Management, 4=Error, 5=System log.go: 41-48
+- `p` (Number): Page number, default is 1
+- `page_size` (Number): Items per page, default is 20
+- `type` (Number): Log type, optional values: 1=Recharge, 2=Consumption, 3=Management, 4=Error, 5=System log.go：41-48
 - `start_timestamp` (Number): Start timestamp
 - `end_timestamp` (Number): End timestamp
 - `username` (String): Username filter
@@ -325,7 +325,7 @@ const data = await response.json();
 - **HTTP Method**: DELETE
 - **Path**: `/api/log/`
 - **Authentication Requirement**: Administrator
-- **Description**: Batch deletion of historical log records older than the specified timestamp, supporting phased deletion to avoid excessive database load.
+- **Function Description**: Batch delete historical log records older than the specified timestamp, supporting staged deletion to avoid excessive database load
 
 💡 Request Example:
 
@@ -363,7 +363,7 @@ const data = await response.json();
 🧾 Field Description:
 
 - `target_timestamp` (Number): Target timestamp, deletes all logs before this time, required
-- `data` (Number): Number of successfully deleted log entries
+- `data` (Number): Number of logs successfully deleted
 
 ### Log Statistics
 
@@ -371,7 +371,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/stat`
 - **Authentication Requirement**: Administrator
-- **Description**: Get log statistics for the specified time range and conditions, including quota consumption, request frequency, and Token usage.
+- **Function Description**: Retrieve log statistics for the specified time range and conditions, including quota consumption, request frequency, and Token usage
 
 💡 Request Example:
 
@@ -414,7 +414,7 @@ const data = await response.json();
 
 - Request parameters are the same as the Get All Logs interface
 - `quota` (Number): Total quota consumption within the specified time range
-- `rpm` (Number): Requests per minute (last 60 seconds) log.go: 357
+- `rpm` (Number): Requests per minute (last 60 seconds) log.go：357
 - `tpm` (Number): Tokens per minute (sum of prompt_tokens + completion_tokens in the last 60 seconds)
 
 ### Search All Logs
@@ -423,7 +423,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/log/search`
 - **Authentication Requirement**: Administrator
-- **Description**: Search all log records in the system based on keywords.
+- **Function Description**: Search all log records in the system based on keywords
 
 💡 Request Example:
 

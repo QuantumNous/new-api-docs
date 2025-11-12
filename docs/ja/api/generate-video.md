@@ -1,24 +1,28 @@
-# 動画の生成
+# 動画生成 API
 
-動画生成APIを呼び出して動画を生成します。複数の動画生成サービスをサポートしています：
+動画生成インターフェースを呼び出して動画を生成します。以下の複数の動画生成サービスをサポートしています：
 
-- **可灵AI (Kling)**: [APIドキュメント](https://app.klingai.com/cn/dev/document-api/apiReference/commonInfo)
-- **即梦 (Jimeng)**: [APIドキュメント](https://www.volcengine.com/docs/85621/1538636)
+- **可霊AI (Kling)**: [APIドキュメント](https://app.klingai.com/cn/dev/document-api/apiReference/commonInfo)
+- **即夢 (Jimeng)**: [APIドキュメント](https://www.volcengine.com/docs/85621/1538636)
+- **Gemini**: Googleの動画生成サービス
+- **Vidu**: 高品質動画生成サービス
 
-## APIエンドポイント
+## NewAPI 動画生成フォーマット
+
+### API エンドポイント
 
 ```
 POST /v1/video/generations
 ```
 
-## リクエストヘッダー
+### リクエストヘッダー
 
 | パラメータ | 型 | 必須 | 説明 |
 |------|------|------|------|
 | Authorization | string | はい | ユーザー認証トークン (Bearer: sk-xxxx) |
 | Content-Type | string | はい | application/json |
 
-## リクエストパラメータ
+### リクエストパラメータ
 
 | パラメータ | 型 | 必須 | 説明 |
 |------|------|------|------|
@@ -29,20 +33,20 @@ POST /v1/video/generations
 | height | integer | いいえ | 動画の高さ |
 | width | integer | いいえ | 動画の幅 |
 | image | string | いいえ | 画像入力（URL/Base64） |
-| metadata | object | いいえ | プロバイダー固有/カスタムパラメータ（例： negative_prompt, style, quality_level など） |
+| metadata | object | いいえ | ベンダー固有/カスタムパラメータ（例：negative_prompt, style, quality_level など） |
 | n | integer | いいえ | 生成する動画の数 |
-| response_format | string | いいえ | 応答フォーマット |
+| response_format | string | いいえ | レスポンスフォーマット |
 | seed | integer | いいえ | ランダムシード |
 | user | string | いいえ | ユーザー識別子 |
 
-## リクエスト例
+### リクエスト例
 
-### 可灵AIの例
+#### 可霊AI の例
 
 ```bash
 curl https://你的newapi服务器地址/v1/video/generations \
   --request POST \
-  --header 'Authorization: ' \
+  --header 'Authorization: Bearer sk-xxxx' \
   --header 'Content-Type: application/json' \
   --data '{
   "model": "kling-v1",
@@ -58,12 +62,12 @@ curl https://你的newapi服务器地址/v1/video/generations \
 }'
 ```
 
-### 即梦AIの例
+#### 即夢AI の例
 
 ```bash
 curl https://你的newapi服务器地址/v1/video/generations \
   --request POST \
-  --header 'Authorization: ' \
+  --header 'Authorization: Bearer sk-xxxx' \
   --header 'Content-Type: application/json' \
   --data '{
   "model": "jimeng_vgfm_t2v_l20",
@@ -79,12 +83,12 @@ curl https://你的newapi服务器地址/v1/video/generations \
 }'
 ```
 
-### Vidu チャネルの例
+#### Vidu チャネルの例
 
 ```bash
 curl https://你的newapi服务器地址/v1/video/generations \
   --request POST \
-  --header 'Authorization: ' \
+  --header 'Authorization: Bearer sk-xxxx' \
   --header 'Content-Type: application/json' \
   --data '{
   "model": "viduq1",
@@ -104,11 +108,36 @@ curl https://你的newapi服务器地址/v1/video/generations \
 }'
 ```
 
-## 応答フォーマット
+### レスポンスフォーマット
 
-### エラー応答
+#### 201 - 作成成功
 
-#### 400 - リクエストパラメータエラー
+```json
+{
+  "id": "video_123",
+  "object": "video",
+  "model": "kling-v1",
+  "created_at": 1640995200,
+  "task_id": "abcd1234efgh",
+  "status": "processing"
+}
+```
+
+#### レスポンスフィールドの説明
+
+| フィールド | 型 | 説明 |
+|------|------|------|
+| id | string | 動画タスクID |
+| object | string | オブジェクトタイプ。「video」で固定 |
+| model | string | 使用されたモデル名 |
+| created_at | integer | 作成タイムスタンプ |
+| task_id | string | タスクID。ステータス照会に使用 |
+| status | string | タスクステータス（processing: 処理中） |
+
+## エラーレスポンス
+
+### 400 - リクエストパラメータエラー
+
 ```json
 {
   "code": null,
@@ -118,7 +147,8 @@ curl https://你的newapi服务器地址/v1/video/generations \
 }
 ```
 
-#### 401 - 未承認
+### 401 - 未認証 (Unauthorized)
+
 ```json
 {
   "code": null,
@@ -128,7 +158,8 @@ curl https://你的newapi服务器地址/v1/video/generations \
 }
 ```
 
-#### 403 - 権限なし
+### 403 - 権限なし (Forbidden)
+
 ```json
 {
   "code": null,
@@ -138,7 +169,8 @@ curl https://你的newapi服务器地址/v1/video/generations \
 }
 ```
 
-#### 500 - サーバー内部エラー
+### 500 - サーバー内部エラー
+
 ```json
 {
   "code": null,
@@ -147,3 +179,24 @@ curl https://你的newapi服务器地址/v1/video/generations \
   "type": "string"
 }
 ```
+
+## サポートされているモデル
+
+### 可霊AI (Kling)
+- `kling-v1`: テキスト to ビデオ モデル
+- `kling-v2-master`: 画像 to ビデオ モデル
+
+### 即夢 (Jimeng)
+- `jimeng_vgfm_t2v_l20`: テキスト to ビデオ モデル
+- `jimeng_vgfm_i2v_l20`: 画像 to ビデオ モデル
+
+### Vidu
+- `viduq1`: Vidu 高品質動画生成モデル
+
+## ベストプラクティス
+
+1. **プロンプトの最適化**: スタイルや品質要件を含む、詳細で具体的な記述を使用します
+2. **画像品質**: 画像から動画を生成する際は、高解像度で鮮明な画像を使用します
+3. **パラメータ調整**: 要件に応じて、長さ、解像度などのパラメータを調整します
+4. **エラー処理**: 適切なリトライメカニズムとエラー処理を実装します
+5. **非同期処理**: 動画生成は非同期タスクであるため、ステータスをポーリングして確認する必要があります

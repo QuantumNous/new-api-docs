@@ -7,7 +7,7 @@
 
 OpenAI 最先进的模型响应接口。支持文本和图像输入，以及文本输出。创建与模型的有状态交互，将先前响应的输出用作输入。通过文件搜索、网络搜索、计算机使用等内置工具扩展模型的能力。使用函数调用允许模型访问外部系统和数据。
 
-相关指南可参阅OpenAI官网：[Responses](https://platform.openai.com/docs/guides/responses)
+相关指南可参阅OpenAI官网：[Responses](https://platform.openai.com/docs/guides/migrate-to-responses)
 
 ## 💡 请求示例
 

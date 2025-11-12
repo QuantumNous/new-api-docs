@@ -3,19 +3,19 @@
 !!! info "機能説明"
     インターフェースのプレフィックスは http(s)://`<your-domain>` に統一されています
 
-    本番環境では認証トークンを保護するために HTTPS を使用する必要があります。 HTTP は開発環境でのみ推奨されます。
+    認証トークンを保護するため、本番環境では HTTPS を使用する必要があります。HTTP は開発環境でのみ推奨されます。
 
-    ユーザー API Token の完全な管理システム。トークンの作成、更新、削除、一括操作などの機能をサポートしています。モデル制限、IP制限、クォータ管理、有効期限などの詳細な制御が含まれます。これは、フロントエンドのトークンページのコアデータソースです。
+    ユーザー API Token の完全な管理システム。トークンの作成、更新、削除、一括操作などの機能をサポートしています。モデル制限、IP制限、クォータ管理、有効期限などのきめ細かな制御が含まれます。これはフロントエンドのトークンページのコアデータソースです。
 
 ## 🔐 ユーザー認証
 
-### 全てのトークンの取得
+### 全トークンの取得
 
-- **インターフェース名**：全てのトークンの取得
+- **インターフェース名**：全トークンの取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/token/`
 - **認証要件**：ユーザー
-- **機能概要**：現在のユーザーの全てのトークンリストをページングして取得します
+- **機能概要**：現在のユーザーの全トークンリストをページネーションで取得します
 
 💡 リクエスト例：
 
@@ -31,7 +31,7 @@ const response = await fetch('/api/token/?p=1&size=20', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -58,23 +58,23 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "获取Token列表失败"  
+  "message": "トークンリストの取得に失敗しました"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `p` （数字）: ページ番号、デフォルトは 1
-- `size` （数字）: 1ページあたりの数、デフォルトは 20
+- `p` （数値）: ページ番号、デフォルトは 1
+- `size` （数値）: ページあたりの数量、デフォルトは 20
 - `items` （配列）: トークン情報リスト
-- `total` （数字）: トークンの総数
-- `page` （数字）: 現在のページ番号
-- `page_size` （数字）: 1ページあたりの数
+- `total` （数値）: トークンの総数
+- `page` （数値）: 現在のページ番号
+- `page_size` （数値）: ページあたりの数量
 
 ### トークンの検索
 
@@ -98,7 +98,7 @@ const response = await fetch('/api/token/search?keyword=api&token=sk-123', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -116,23 +116,23 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "搜索Token失败"  
+  "message": "トークンの検索に失敗しました"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `keyword` （文字列）: 検索キーワード、トークン名と一致
+- `keyword` （文字列）: 検索キーワード、トークン名に一致
 - `token` （文字列）: トークン値検索、部分一致をサポート
 
-### 個別トークンの取得
+### 単一トークンの取得
 
-- **インターフェース名**：個別トークンの取得
+- **インターフェース名**：単一トークンの取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/token/:id`
 - **認証要件**：ユーザー
@@ -152,7 +152,7 @@ const response = await fetch('/api/token/123', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -176,18 +176,18 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "Token不存在"  
+  "message": "Tokenが存在しません"  
 }
 ```
 
 🧾 フィールド説明：
 
-`id` （数字）: トークン ID、URL パス経由で渡されます
+`id` （数値）: トークン ID、URL パスを通じて渡されます
 
 ### トークンの作成
 
@@ -195,7 +195,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/token/`
 - **認証要件**：ユーザー
-- **機能概要**：新しい API Token を作成します。一括作成をサポートしています
+- **機能概要**：新しい API Token を作成します。一括作成もサポートしています。
 
 💡 リクエスト例：
 
@@ -221,7 +221,7 @@ const response = await fetch('/api/token/', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -230,23 +230,23 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "令牌名称过长"  
+  "message": "トークン名が長すぎます"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `name` （文字列）: トークン名、最大長さ 30 文字
-- `expired_time` （数字）: 有効期限タイムスタンプ、-1 は永続的を意味します
-- `remain_quota` （数字）: 残りクォータ
+- `name` （文字列）: トークン名、最大長 30 文字
+- `expired_time` （数値）: 有効期限のタイムスタンプ、-1 は無期限を示します
+- `remain_quota` （数値）: 残りクォータ
 - `unlimited_quota` （ブール型）: 無制限クォータであるかどうか
 - `model_limits_enabled` （ブール型）: モデル制限を有効にするかどうか
-- `model_limits` （配列）: 使用を許可されているモデルのリスト
+- `model_limits` （配列）: 使用を許可するモデルのリスト
 - `allow_ips` （文字列）: 許可された IP アドレス、カンマ区切り
 - `group` （文字列）: 所属グループ
 
@@ -256,9 +256,9 @@ const data = await response.json();
 - **HTTP メソッド**：PUT
 - **パス**：`/api/token/`
 - **認証要件**：ユーザー
-- **機能概要**：トークン設定を更新します。ステータスの切り替えと完全な更新をサポートしています
+- **機能概要**：トークン設定を更新します。ステータスの切り替えと完全な更新をサポートします。
 
-💡 リクエスト例（完全更新）：
+💡 リクエスト例（完全な更新）：
 
 ```
 const response = await fetch('/api/token/', {  
@@ -283,7 +283,7 @@ const response = await fetch('/api/token/', {
 const data = await response.json();
 ```
 
-💡 リクエスト例（ステータスのみ更新）：
+💡 リクエスト例（ステータスのみの更新）：
 
 ```
 const response = await fetch('/api/token/?status_only=true', {  
@@ -301,7 +301,7 @@ const response = await fetch('/api/token/?status_only=true', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -315,20 +315,20 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "令牌已过期，无法启用，请先修改令牌过期时间，或者设置为永不过期"  
+  "message": "トークンは期限切れのため有効化できません。先にトークンの有効期限を変更するか、無期限に設定してください"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `id` （数字）: トークン ID、必須
+- `id` （数値）: トークン ID、必須
 - `status_only` （クエリパラメータ）: ステータスのみを更新するかどうか
-- その他のフィールドはトークン作成インターフェースと同じで、すべてオプションです
+- 他のフィールドはトークン作成インターフェースと同じで、すべてオプションです
 
 ### トークンの削除
 
@@ -352,7 +352,7 @@ const response = await fetch('/api/token/123', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -361,18 +361,18 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "Token不存在"  
+  "message": "Tokenが存在しません"  
 }
 ```
 
 🧾 フィールド説明：
 
-`id` （数字）: トークン ID、URL パス経由で渡されます
+`id` （数値）: トークン ID、URL パスを通じて渡されます
 
 ### トークンの一括削除
 
@@ -399,7 +399,7 @@ const response = await fetch('/api/token/batch', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -409,16 +409,16 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "参数错误"  
+  "message": "パラメータエラー"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `ids` （配列）: 削除するトークン ID のリスト、必須かつ空であってはなりません
-- `data` （数字）: 削除に成功したトークンの数
+- `ids` （配列）: 削除するトークン ID のリスト、必須かつ空であってはならない
+- `data` （数値）: 正常に削除されたトークンの数
