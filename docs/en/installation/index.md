@@ -99,7 +99,7 @@ hide:
 
     ---
 
-    Recommended deployment method with complete configuration:
+    The recommended method for single-machine deployment, providing complete configuration:
     
     [View Tutorial →](docker-compose-installation.md)
 
@@ -109,17 +109,27 @@ hide:
 
     ---
 
-    Simple and quick single-node deployment method:
+    A simple and fast method for single-machine deployment:
     
     [View Tutorial →](docker-installation.md)
 
 -   :material-server:{ .twemoji }
 
-    **BT Panel Deployment**
+    **1Panel Panel Deployment**
 
     ---
 
-    Visual deployment using BT Panel:
+    Use the 1Panel panel for visual deployment:
+
+    [View Tutorial →](1panel-installation.md)
+
+-   :material-server:{ .twemoji }
+
+    **BaoTa Panel Deployment**
+
+    ---
+
+    Use the BaoTa panel for visual deployment:
     
     [View Tutorial →](bt-docker-installation.md)
 
@@ -145,7 +155,7 @@ hide:
 
 </div>
 
-## Configuration & Maintenance
+## Configuration and Maintenance
 
 <div class="grid cards" markdown>
 
@@ -157,7 +167,7 @@ hide:
 
     Learn how to update to the latest version:
     
-    [View Guide →](system-update.md)
+    [View Instructions →](system-update.md)
 
 -   :material-variable:{ .twemoji }
 
@@ -165,7 +175,7 @@ hide:
 
     ---
 
-    All configurable environment variables explained:
+    Descriptions of all configurable environment variables:
     
     [View Documentation →](environment-variables.md)
 
@@ -175,31 +185,31 @@ hide:
 
     ---
 
-    Detailed explanation of Docker Compose configuration file:
+    Detailed explanation of the Docker Compose configuration file:
     
-    [View Guide →](docker-compose-yml.md)
+    [View Instructions →](docker-compose-yml.md)
 
 </div>
 
 ## Deployment Notes
 
-!!! tip "Recommended Choices"
-    - **Docker Compose deployment is strongly recommended** for better configuration management and service orchestration
-    - Docker deployment can be used for quick testing, but not recommended for production environments
-    - Users familiar with BT Panel can choose BT Panel deployment
-    - For enterprise users, cluster deployment is recommended for better scalability
+!!! tip "Selection Advice"
+    - **Docker Compose deployment is recommended**, offering better configuration management and service orchestration
+    - Docker deployment can be used for quick testing, but is not recommended for production environments
+    - Users familiar with the BaoTa Panel can choose BaoTa Panel deployment
+    - Enterprise users are advised to use cluster deployment for better scalability
 
-!!! warning "Notes"
+!!! warning "Precautions"
     Before deployment, please ensure:
 
-    1. All required base software is installed
-    2. You are familiar with basic Linux and Docker commands
-    3. The server meets the minimum requirements
-    4. All required API keys are ready
+    1. Required basic software has been installed
+    2. Basic Linux and Docker commands are understood
+    3. Server configuration meets minimum requirements
+    4. Necessary API keys have been prepared
 
-!!! info "Get Help"
-    If you encounter problems during deployment:
+!!! info "Getting Help"
+    If you encounter issues during the deployment process:
 
-    1. Check the [FAQ](../support/faq.md)
+    1. Check the [Frequently Asked Questions](../support/faq.md)
     2. Submit an issue on [GitHub](https://github.com/Calcium-Ion/new-api/issues)
-    3. Join the [community group](../support/community-interaction.md) for help 
+    3. Join the [QQ Communication Group](../support/community-interaction.md) for assistance
