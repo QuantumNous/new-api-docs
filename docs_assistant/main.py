@@ -1,9 +1,14 @@
+"""
+文档自动更新服务主程序
+定时更新 changelog 和 special-thanks 文档
+"""
+
 import os
 import time
 import logging
 from datetime import datetime
-from contributors import update_special_thanks_file, update_special_thanks_file_en
-from changelog import update_changelog_file, update_changelog_file_en
+from contributors import update_special_thanks_file
+from changelog import update_changelog_file
 
 # 环境变量配置
 UPDATE_INTERVAL = int(os.environ.get('UPDATE_INTERVAL', 1800))  # 默认30分钟
@@ -15,88 +20,122 @@ logging.basicConfig(
 )
 logger = logging.getLogger('docs-updater')
 
+# 更新任务配置
+UPDATE_TASKS = {
+    'contributors_zh': {
+        'name': '贡献者和赞助商列表（中文版）',
+        'func': lambda: update_special_thanks_file('zh'),
+        'interval': 3600,  # 每小时更新一次
+        'last_update': 0
+    },
+    'contributors_en': {
+        'name': '贡献者和赞助商列表（英文版）',
+        'func': lambda: update_special_thanks_file('en'),
+        'interval': 3600,
+        'last_update': 0
+    },
+    'contributors_ja': {
+        'name': '贡献者和赞助商列表（日文版）',
+        'func': lambda: update_special_thanks_file('ja'),
+        'interval': 3600,
+        'last_update': 0
+    },
+    'changelog_zh': {
+        'name': '发布日志（中文版）',
+        'func': lambda: update_changelog_file('zh'),
+        'interval': 1800,  # 每30分钟更新一次
+        'last_update': 0
+    },
+    'changelog_en': {
+        'name': '发布日志（英文版）',
+        'func': lambda: update_changelog_file('en'),
+        'interval': 1800,
+        'last_update': 0
+    },
+    'changelog_ja': {
+        'name': '发布日志（日文版）',
+        'func': lambda: update_changelog_file('ja'),
+        'interval': 1800,
+        'last_update': 0
+    }
+}
+
+
+def execute_task(task_id, task_config):
+    """
+    执行单个更新任务
+    
+    Args:
+        task_id: 任务ID
+        task_config: 任务配置
+    
+    Returns:
+        bool: 任务是否成功
+    """
+    logger.info(f"开始更新{task_config['name']}")
+    try:
+        success = task_config['func']()
+        if success:
+            logger.info(f"{task_config['name']}更新成功")
+            return True
+        else:
+            logger.warning(f"{task_config['name']}更新失败，将在下次更新周期重试")
+            return False
+    except Exception as e:
+        logger.error(f"{task_config['name']}更新异常: {str(e)}")
+        return False
+
+
+def get_next_check_time(tasks):
+    """
+    计算下次检查时间
+    
+    Args:
+        tasks: 任务配置字典
+    
+    Returns:
+        float: 下次检查前需要等待的秒数
+    """
+    current_time = time.time()
+    next_times = [
+        task['last_update'] + task['interval']
+        for task in tasks.values()
+    ]
+    next_check = min(next_times) - current_time
+    
+    # 如果时间已过，立即检查；否则限制等待时间在30-600秒之间
+    if next_check <= 0:
+        return 10
+    return max(min(next_check, 600), 30)
+
+
 def main():
     """主函数 - 智能更新文档"""
     logger.info("启动文档更新服务")
-    
-    # 初始化变量
-    last_update = {
-        'contributors': 0,
-        'contributors_en': 0,
-        'releases': 0,
-        'releases_en': 0
-    }
-    
-    # 设置更新间隔 (单位：秒)
-    update_intervals = {
-        'contributors': 3600,     # 贡献者列表每小时更新一次
-        'contributors_en': 3600,  # 英文贡献者列表每小时更新一次
-        'releases': 1800,         # 发布日志每30分钟更新一次
-        'releases_en': 1800       # 英文发布日志每30分钟更新一次
-    }
+    logger.info(f"更新间隔配置: 贡献者列表={UPDATE_TASKS['contributors_zh']['interval']}秒, "
+                f"发布日志={UPDATE_TASKS['changelog_zh']['interval']}秒")
     
     # 主循环
     while True:
         try:
             current_time = time.time()
             
-            # 检查是否需要更新贡献者和赞助商列表（中文版）
-            if current_time - last_update['contributors'] >= update_intervals['contributors']:
-                logger.info("开始更新贡献者和赞助商列表（中文版）")
-                if update_special_thanks_file():
-                    last_update['contributors'] = current_time
-                    logger.info("贡献者和赞助商列表（中文版）更新成功")
-                else:
-                    logger.warning("贡献者和赞助商列表（中文版）更新失败，将在下次更新周期重试")
-            
-            # 检查是否需要更新贡献者和赞助商列表（英文版）
-            if current_time - last_update['contributors_en'] >= update_intervals['contributors_en']:
-                logger.info("开始更新贡献者和赞助商列表（英文版）")
-                if update_special_thanks_file_en():
-                    last_update['contributors_en'] = current_time
-                    logger.info("贡献者和赞助商列表（英文版）更新成功")
-                else:
-                    logger.warning("贡献者和赞助商列表（英文版）更新失败，将在下次更新周期重试")
-            
-            # 检查是否需要更新发布日志（中文版）
-            if current_time - last_update['releases'] >= update_intervals['releases']:
-                logger.info("开始更新发布日志（中文版）")
-                if update_changelog_file():
-                    last_update['releases'] = current_time
-                    logger.info("发布日志（中文版）更新成功")
-                else:
-                    logger.warning("发布日志（中文版）更新失败，将在下次更新周期重试")
-            
-            # 检查是否需要更新发布日志（英文版）
-            if current_time - last_update['releases_en'] >= update_intervals['releases_en']:
-                logger.info("开始更新发布日志（英文版）")
-                if update_changelog_file_en():
-                    last_update['releases_en'] = current_time
-                    logger.info("发布日志（英文版）更新成功")
-                else:
-                    logger.warning("发布日志（英文版）更新失败，将在下次更新周期重试")
+            # 检查并执行需要更新的任务
+            for task_id, task_config in UPDATE_TASKS.items():
+                if current_time - task_config['last_update'] >= task_config['interval']:
+                    if execute_task(task_id, task_config):
+                        task_config['last_update'] = current_time
             
             # 计算下一次检查前的等待时间
-            next_check = min(
-                last_update['contributors'] + update_intervals['contributors'],
-                last_update['contributors_en'] + update_intervals['contributors_en'],
-                last_update['releases'] + update_intervals['releases'],
-                last_update['releases_en'] + update_intervals['releases_en']
-            ) - current_time
-            
-            # 如果时间已经过了，立即再次检查
-            if next_check <= 0:
-                next_check = 10
-            
-            # 限制最小和最大等待时间
-            next_check = max(min(next_check, 600), 30)
-            
+            next_check = get_next_check_time(UPDATE_TASKS)
             logger.info(f"下次检查将在 {next_check:.0f} 秒后进行")
+            
             time.sleep(next_check)
             
         except Exception as e:
             logger.error(f"更新循环出错: {str(e)}")
             time.sleep(300)  # 出错后等待5分钟再重试
+
 
 if __name__ == "__main__":
     main()
