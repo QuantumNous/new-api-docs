@@ -24,12 +24,6 @@ echo_error() {
     echo -e "${RED}错误: ${1}${NC}"
 }
 
-# 确保交互式终端
-if [ ! -t 0 ]; then
-    echo_error "请在交互式终端中运行此脚本"
-    exit 1
-fi
-
 # 读取用户输入
 read_input() {
     local prompt="$1"
