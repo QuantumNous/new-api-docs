@@ -5,7 +5,7 @@
 
     HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
 
-    A dedicated redemption code system for administrators. Supports batch generation, status management, search filtering, and other functions. Includes maintenance features for automatically cleaning up invalid redemption codes. Primarily used for promotional activities and user incentives.
+    An administrator-exclusive redemption code system. Supports features like batch generation, status management, and search filtering. Includes maintenance functionality for automatically cleaning up invalid redemption codes. Primarily used for promotional activities and user incentives.
 
 ## 🔐 Administrator Authentication
 
@@ -15,7 +15,7 @@
 - **HTTP Method**: GET
 - **Path**: `/api/redemption/`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Paginated retrieval of the list information for all redemption codes in the system.
+- **Function Description**: Paginated retrieval of list information for all redemption codes in the system
 
 💡 Request Example:
 
@@ -58,7 +58,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -82,7 +82,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/redemption/search`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Search redemption codes based on keywords, supports searching by ID and name.
+- **Function Description**: Search for redemption codes based on keywords, supports searching by ID and name
 
 💡 Request Example:
 
@@ -121,12 +121,12 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
   "success": false,  
-  "message": "Failed to search redemption codes"  
+  "message": "Failed to search for redemption codes"  
 }
 ```
 
@@ -142,7 +142,7 @@ const data = await response.json();
 - **HTTP Method**: GET
 - **Path**: `/api/redemption/:id`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Retrieve detailed information for the specified redemption code.
+- **Function Description**: Retrieves detailed information for a specified redemption code
 
 💡 Request Example:
 
@@ -179,7 +179,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -198,7 +198,7 @@ const data = await response.json();
 - **HTTP Method**: POST
 - **Path**: `/api/redemption/`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Batch creation of redemption codes, supports creating multiple at once.
+- **Function Description**: Batch creation of redemption codes, supports creating multiple codes at once
 
 💡 Request Example:
 
@@ -234,7 +234,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -246,7 +246,7 @@ const data = await response.json();
 🧾 Field Description:
 
 - `name` (String): Redemption code name, length must be between 1 and 20 characters
-- `count` (Number): Number of redemption codes to create, must be greater than 0 and no more than 100
+- `count` (Number): Number of redemption codes to create, must be greater than 0 and not exceed 100
 - `quota` (Number): Quota amount for each redemption code
 - `expired_time` (Number): Expiration timestamp, 0 means never expires
 - `data` (Array): List of successfully created redemption codes
@@ -257,7 +257,7 @@ const data = await response.json();
 - **HTTP Method**: PUT
 - **Path**: `/api/redemption/`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Update redemption code information, supports updating status only or full update.
+- **Function Description**: Updates redemption code information, supports updating status only or a full update
 
 💡 Request Example (Full Update):
 
@@ -279,7 +279,7 @@ const response = await fetch('/api/redemption/', {
 const data = await response.json();
 ```
 
-💡 Request Example (Status Update Only):
+💡 Request Example (Status Only Update):
 
 ```
 const response = await fetch('/api/redemption/?status_only=true', {  
@@ -313,7 +313,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -337,7 +337,7 @@ const data = await response.json();
 - **HTTP Method**: DELETE
 - **Path**: `/api/redemption/invalid`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Batch delete redemption codes that are used, disabled, or expired.
+- **Function Description**: Batch deletion of redemption codes that are used, disabled, or expired
 
 💡 Request Example:
 
@@ -363,7 +363,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  
@@ -383,7 +383,7 @@ const data = await response.json();
 - **HTTP Method**: DELETE
 - **Path**: `/api/redemption/:id`
 - **Authentication Requirement**: Administrator
-- **Feature Description**: Delete the specified redemption code.
+- **Function Description**: Deletes the specified redemption code
 
 💡 Request Example:
 
@@ -408,7 +408,7 @@ const data = await response.json();
 }
 ```
 
-❗ Failure Response Example:
+❗ Failed Response Example:
 
 ```
 {  

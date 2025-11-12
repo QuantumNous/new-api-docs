@@ -3,9 +3,9 @@
 !!! info "機能説明"
     機能インターフェースのプレフィックスは http(s)://`<your-domain>` に統一されています。
 
-    本番環境では認証トークンを保護するために HTTPS を使用する必要があります。HTTP は開発環境でのみ推奨されます。
+    認証トークンを保護するため、本番環境ではHTTPSを使用する必要があります。HTTPは開発環境でのみ推奨されます。
 
-    システム初期化モジュールは、初回デプロイ設定と稼働状況の監視を担当します。SQLite、MySQL、PostgreSQL データベースをサポートし、Rootユーザーの作成とシステムパラメータの初期化を含みます。ステータスインターフェースは、OAuth設定、機能スイッチなどを含むリアルタイムのシステム情報を提供します。
+    システム初期化モジュールは、初回デプロイ設定と稼働ステータス監視を担当します。SQLite、MySQL、PostgreSQLデータベースをサポートし、Rootユーザーの作成とシステムパラメータの初期化を含みます。ステータスインターフェースは、OAuth設定、機能スイッチなどを含むリアルタイムのシステム情報を提供します。
 
 ## 🔐 認証不要
 
@@ -15,7 +15,7 @@
 - **HTTP メソッド**：GET
 - **パス**：`/api/setup`
 - **認証要件**：公開
-- **機能概要**：システムが初期化を完了しているかを確認し、データベースタイプと Root ユーザーのステータスを取得します。
+- **機能概要**：システムが初期化を完了しているかを確認し、データベースタイプとRootユーザーのステータスを取得します
 
 💡 リクエスト例：
 
@@ -29,7 +29,7 @@ const response = await fetch('/api/setup', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -42,7 +42,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
@@ -63,7 +63,7 @@ const data = await response.json();
 - **HTTP メソッド**：POST
 - **パス**：`/api/setup`
 - **認証要件**：公開
-- **機能概要**：Root管理者アカウントを作成し、システム初期化設定を完了します。
+- **機能概要**：Root管理者アカウントを作成し、システム初期化設定を完了します
 
 💡 リクエスト例：
 
@@ -84,7 +84,7 @@ const response = await fetch('/api/setup', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -93,7 +93,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
@@ -104,19 +104,19 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `username` （文字列）: 管理者ユーザー名、最大長 12 文字
-- `password` （文字列）: 管理者パスワード、最低 8 文字
-- `confirmPassword` （文字列）: 確認パスワード、password と一致する必要があります
-- `SelfUseModeEnabled` （ブール型）: 自家利用モードを有効にするかどうか
+- `username` （文字列）: 管理者ユーザー名。最大長 12 文字
+- `password` （文字列）: 管理者パスワード。最低 8 文字
+- `confirmPassword` （文字列）: 確認パスワード。passwordと一致する必要があります
+- `SelfUseModeEnabled` （ブール型）: 自己利用モードを有効にするかどうか
 - `DemoSiteEnabled` （ブール型）: デモサイトモードを有効にするかどうか
 
-### 稼働状況の概要を取得
+### 稼働ステータスの概要取得
 
-- **インターフェース名**：稼働状況の概要を取得
+- **インターフェース名**：稼働ステータスの概要取得
 - **HTTP メソッド**：GET
 - **パス**：`/api/status`
 - **認証要件**：公開
-- **機能概要**：システム稼働状況、設定情報、および機能スイッチの状態を取得します。
+- **機能概要**：システム稼働ステータス、設定情報、および機能スイッチの状態を取得します
 
 💡 リクエスト例：
 
@@ -130,7 +130,7 @@ const response = await fetch('/api/status', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -152,7 +152,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
@@ -166,22 +166,22 @@ const data = await response.json();
 - `version` （文字列）: システムバージョン番号
 - `start_time` （数字）: システム起動タイムスタンプ
 - `email_verification` （ブール型）: メール認証を有効にするかどうか
-- `github_oauth` （ブール型）: GitHub OAuth ログインを有効にするかどうか
+- `github_oauth` （ブール型）: GitHub OAuthログインを有効にするかどうか
 - `github_client_id` （文字列）: GitHub OAuth クライアント ID
 - `system_name` （文字列）: システム名
-- `quota_per_unit` （数字）: 単位あたりのクォータ数
+- `quota_per_unit` （数字）: 単位あたりのクォータ数量
 - `display_in_currency` （ブール型）: 通貨形式で表示するかどうか
 - `enable_drawing` （ブール型）: 描画機能を有効にするかどうか
 - `enable_task` （ブール型）: タスク機能を有効にするかどうか
 - `setup` （ブール型）: システムが初期化を完了しているかどうか
 
-### Uptime-Kuma 互換ステータスプローブ
+### Uptime-Kuma互換ステータスプローブ
 
-- **インターフェース名**：Uptime-Kuma 互換ステータスプローブ
+- **インターフェース名**：Uptime-Kuma互換ステータスプローブ
 - **HTTP メソッド**：GET
 - **パス**：`/api/uptime/status`
 - **認証要件**：公開
-- **機能概要**：Uptime-Kuma 監視システムと互換性のあるステータスチェックインターフェースを提供します。
+- **機能概要**：Uptime-Kuma監視システムと互換性のあるステータスチェックインターフェースを提供します
 
 💡 リクエスト例：
 
@@ -195,7 +195,7 @@ const response = await fetch('/api/uptime/status', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
@@ -216,7 +216,7 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
@@ -227,12 +227,13 @@ const data = await response.json();
 
 🧾 フィールド説明：
 
-- `categoryName` （文字列）: 監視分類名
+- `categoryName` （文字列）: 監視カテゴリ名
 - `monitors` （配列）: 監視項目リスト
+
     - `name` （文字列）: 監視項目名
     - `group` （文字列）: 監視グループ名
     - `status` （数字）: ステータスコード。1=正常、0=異常
-    - `uptime` （数字）: 可用率パーセンテージ
+    - `uptime` （数字）: 稼働率パーセンテージ
 
 ## 🔐 管理者認証
 
@@ -242,7 +243,7 @@ const data = await response.json();
 - **HTTP メソッド**：GET
 - **パス**：`/api/status/test`
 - **認証要件**：管理者
-- **機能概要**：システムコンポーネントの接続状態とヘルスチェックを実行します。
+- **機能概要**：システム内の各コンポーネントの接続状態とヘルスステータスをテストします
 
 💡 リクエスト例：
 
@@ -258,12 +259,12 @@ const response = await fetch('/api/status/test', {
 const data = await response.json();
 ```
 
-✅ 成功応答例：
+✅ 成功レスポンス例：
 
 ```
 {  
   "success": true,  
-  "message": "すべてのコンポーネントテストに合格しました",  
+  "message": "すべてのコンポーネントのテストに合格しました",  
   "data": {  
     "database": "connected",  
     "redis": "connected",  
@@ -272,17 +273,17 @@ const data = await response.json();
 }
 ```
 
-❗ 失敗応答例：
+❗ 失敗レスポンス例：
 
 ```
 {  
   "success": false,  
-  "message": "データベース接続に失敗しました"  
+  "message": "データベース接続失敗"  
 }
 ```
 
 🧾 フィールド説明：
 
-- `database` （文字列）: データベース接続状態
-- `redis` （文字列）: Redis 接続状態
-- `external_apis` （文字列）: 外部 API ヘルス状態
+- `database` （文字列）: データベース接続ステータス
+- `redis` （文字列）: Redis 接続ステータス
+- `external_apis` （文字列）: 外部 API のヘルスステータス
