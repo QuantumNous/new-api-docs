@@ -2,6 +2,55 @@
 
 这个目录包含用于维护和自动化文档的各种辅助脚本。
 
+## 🤖 自动更新服务
+
+### 配置说明
+
+文档更新服务通过 Docker Compose 运行，需要配置以下环境变量：
+
+#### GitHub 配置（必需）
+
+```bash
+GITHUB_REPO=QuantumNous/new-api  # 仓库名称
+GITHUB_TOKEN=ghp_xxxxxxxxxxxx    # 强烈推荐！提升API限制至5000次/小时
+```
+
+**如何获取 GitHub Token：**
+
+1. 访问 GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. 点击 "Generate new token (classic)"
+3. 设置 Token 名称（如：`docs-updater`）
+4. 选择权限：只需勾选 `public_repo`（用于访问公开仓库）
+5. 点击 "Generate token" 并复制 Token
+6. 在 `docker-compose.yml` 中设置：`GITHUB_TOKEN=你的Token`
+
+**速率限制对比：**
+- ❌ 不使用 Token：60 次/小时（容易触发限制）
+- ✅ 使用 Token：5000 次/小时（充足使用）
+
+#### 其他配置
+
+```bash
+UPDATE_INTERVAL=1800     # 更新间隔（秒），默认30分钟
+USE_PROXY=true          # 是否使用代理访问 GitHub
+GITHUB_PROXY=           # 代理地址（可选）
+AFDIAN_USER_ID=         # 爱发电用户ID（可选）
+AFDIAN_TOKEN=           # 爱发电API Token（可选）
+```
+
+### 启动服务
+
+```bash
+# 编辑 docker-compose.yml 配置环境变量
+vim docker-compose.yml
+
+# 启动服务
+docker-compose up -d
+
+# 查看日志
+docker-compose logs -f docs-updater
+```
+
 ## 🌐 translate.py - 文档自动翻译工具
 
 自动将中文文档翻译为英文和日文的工具。
