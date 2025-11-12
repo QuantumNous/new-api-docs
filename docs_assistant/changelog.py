@@ -129,11 +129,21 @@ def format_releases_markdown(releases_data, is_english=False):
     markdown += f"    {config['warning_desc']}\n\n"
     
     for index, release in enumerate(releases_data):
-        tag_name = release.get('tag_name', config['unknown_version'])
+        tag_name = release.get('tag_name') or config['unknown_version']
         name = release.get('name') or tag_name
-        published_at = release.get('published_at', '')
-        body = release.get('body', config['no_release_notes'])
+        published_at = release.get('published_at') or ''
+        body = release.get('body') or config['no_release_notes']
         prerelease = release.get('prerelease', False)
+        
+        # 确保所有字段都是字符串类型
+        if not isinstance(tag_name, str):
+            tag_name = config['unknown_version']
+        if not isinstance(name, str):
+            name = tag_name
+        if not isinstance(published_at, str):
+            published_at = ''
+        if not isinstance(body, str):
+            body = config['no_release_notes']
         
         # 格式化时间
         formatted_date = _format_time_to_china_time(published_at, is_english)
