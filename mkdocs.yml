@@ -195,8 +195,11 @@ nav:
   - AI应用:
     - 🍒 Cherry Studio - 桌面 AI 客户端: apps/cherry-studio.md
     - 📦 LangBot - 即时通信机器人开发平台: apps/langbot.md
+    - 📱 Factory Droid CLI - AI 命令行开发工具: apps/factory-droid-cli.md
     - 📖 FluentRead - 开源翻译插件: apps/fluent-read.md
     - 💍 LunaTranslator - 开源GalGame翻译器: apps/luna-translator.md
+    - 🚀 OpenAI Codex CLI - AI 命令行编码助手: apps/codex-cli.md
+    - 💻 Claude Code - AI 终端编程助手: apps/claude-code.md
   - 帮助支持:
     - 🏠 帮助支持: support/index.md
     - 🌐 社区交流: support/community-interaction.md
@@ -282,8 +285,11 @@ plugins:
             AI应用: "AI Applications"
             "🍒 Cherry Studio - 桌面 AI 客户端": "🍒 Cherry Studio - Desktop AI Client"
             "📦 LangBot - 即时通信机器人开发平台": "📦 LangBot - IM Bot Development Platform"
+            "📱 Factory Droid CLI - AI 命令行开发工具": "📱 Factory Droid CLI - AI Command Line Tool"
             "📖 FluentRead - 开源翻译插件": "📖 FluentRead - Open Source Translation Plugin"
             "💍 LunaTranslator - 开源GalGame翻译器": "💍 LunaTranslator - Open Source GalGame Translator"
+            "🚀 OpenAI Codex CLI - AI 命令行编码助手": "🚀 OpenAI Codex CLI - AI Command Line Coding Assistant"
+            "💻 Claude Code - AI 终端编程助手": "💻 Claude Code - AI Terminal Coding Assistant"
             帮助支持: Support
             "🏠 帮助支持": "Support Home"
             "🌐 社区交流": Community
@@ -381,8 +387,11 @@ plugins:
             AI应用: "AIアプリケーション"
             "🍒 Cherry Studio - 桌面 AI 客户端": "🍒 Cherry Studio - デスクトップAIクライアント"
             "📦 LangBot - 即时通信机器人开发平台": "📦 LangBot - IMボット開発プラットフォーム"
+            "📱 Factory Droid CLI - AI 命令行开发工具": "📱 Factory Droid CLI - AIコマンドラインツール"
             "📖 FluentRead - 开源翻译插件": "📖 FluentRead - オープンソース翻訳プラグイン"
             "💍 LunaTranslator - 开源GalGame翻译器": "💍 LunaTranslator - オープンソースGalGame翻訳機"
+            "🚀 OpenAI Codex CLI - AI 命令行编码助手": "🚀 OpenAI Codex CLI - AIコマンドラインコーディングアシスタント"
+            "💻 Claude Code - AI 终端编程助手": "💻 Claude Code - AIターミナルコーディングアシスタント"
             帮助支持: サポート
             "🏠 帮助支持": "サポートホーム"
             "🌐 社区交流": コミュニティ
