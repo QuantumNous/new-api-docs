@@ -30,7 +30,7 @@ services:
       - GITHUB_REPO=QuantumNous/new-api
       - GITHUB_TOKEN=  # 推荐设置，提升API限制至5000次/小时
       - DOCS_DIR=/app/docs
-      - USE_PROXY=true
+      - USE_PROXY=false
       - GITHUB_PROXY=
       - AFDIAN_USER_ID=
       - AFDIAN_TOKEN=

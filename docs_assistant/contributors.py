@@ -362,6 +362,73 @@ def format_sponsors_markdown(sponsors_data, lang='zh'):
     return markdown
 
 
+def _generate_special_thanks_content(contributors_data, contributors_success, 
+                                     sponsors_data, sponsors_success, lang):
+    """生成特别感谢页面内容"""
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    i18n = SPECIAL_THANKS_I18N[lang]
+    content_parts = [f"{i18n['title']}\n\n{i18n['intro']}\n\n"]
+    
+    if sponsors_success and sponsors_data:
+        content_parts.append(f"""{i18n['sponsors_title']}
+
+{i18n['sponsors_intro']}
+
+!!! info "{i18n['sponsors_info_title']} {current_time} (UTC+8)"
+    {i18n['sponsors_info_desc']}
+
+{format_sponsors_markdown(sponsors_data, lang)}
+""")
+    
+    if contributors_success and contributors_data:
+        content_parts.append(f"""{i18n['contributors_title']}
+
+{i18n['contributors_intro']}
+
+!!! info "{i18n['contributors_info_title']} {current_time} (UTC+8)"
+    {i18n['contributors_info_desc']}
+
+{format_contributors_markdown(contributors_data, lang)}
+""")
+    
+    return ''.join(content_parts)
+
+
+def update_special_thanks_all_langs():
+    """更新所有语言版本的特别感谢文件"""
+    try:
+        contributors_data, contributors_success = fetch_github_data(GITHUB_REPO, "contributors", 50)
+        sponsors_data, sponsors_success = fetch_afdian_sponsors()
+        
+        if not contributors_success and not sponsors_success:
+            logger.error("贡献者和赞助商数据获取均失败")
+            return False
+        
+        all_success = True
+        for lang in ['zh', 'en', 'ja']:
+            try:
+                full_content = _generate_special_thanks_content(
+                    contributors_data, contributors_success,
+                    sponsors_data, sponsors_success, lang
+                )
+                
+                file_path = LANGUAGE_PATHS[lang]['special_thanks']
+                thanks_file = os.path.join(DOCS_DIR, file_path)
+                
+                if not update_markdown_file(thanks_file, full_content):
+                    all_success = False
+                    
+            except Exception as e:
+                logger.error(f"特别感谢文件（{lang}）更新异常: {str(e)}")
+                all_success = False
+        
+        return all_success
+    
+    except Exception as e:
+        logger.error(f"批量更新特别感谢文件失败: {str(e)}")
+        return False
+
+
 def update_special_thanks_file(lang='zh'):
     """
     更新特别感谢文件
@@ -373,7 +440,6 @@ def update_special_thanks_file(lang='zh'):
         bool: 更新是否成功
     """
     try:
-        # 获取数据
         contributors_data, contributors_success = fetch_github_data(GITHUB_REPO, "contributors", 50)
         sponsors_data, sponsors_success = fetch_afdian_sponsors()
         
@@ -381,40 +447,11 @@ def update_special_thanks_file(lang='zh'):
             logger.error(get_text('special_thanks', 'data_fetch_error', lang))
             return False
         
-        # 获取当前时间
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        i18n = SPECIAL_THANKS_I18N[lang]
-        time_suffix = i18n.get('time_suffix', i18n.get('sponsors_info_title', '').split('·')[0].strip())
+        full_content = _generate_special_thanks_content(
+            contributors_data, contributors_success,
+            sponsors_data, sponsors_success, lang
+        )
         
-        # 构建基础内容
-        content_parts = [f"{i18n['title']}\n\n{i18n['intro']}\n\n"]
-        
-        # 添加赞助商部分
-        if sponsors_success and sponsors_data:
-            content_parts.append(f"""{i18n['sponsors_title']}
-
-{i18n['sponsors_intro']}
-
-!!! info "{i18n['sponsors_info_title']} {current_time} (UTC+8)"
-    {i18n['sponsors_info_desc']}
-
-{format_sponsors_markdown(sponsors_data, lang)}
-""")
-        
-        # 添加开发者部分
-        if contributors_success and contributors_data:
-            content_parts.append(f"""{i18n['contributors_title']}
-
-{i18n['contributors_intro']}
-
-!!! info "{i18n['contributors_info_title']} {current_time} (UTC+8)"
-    {i18n['contributors_info_desc']}
-
-{format_contributors_markdown(contributors_data, lang)}
-""")
-        
-        # 更新文件
-        full_content = ''.join(content_parts)
         file_path = LANGUAGE_PATHS[lang]['special_thanks']
         thanks_file = os.path.join(DOCS_DIR, file_path)
         return update_markdown_file(thanks_file, full_content)
@@ -422,14 +459,3 @@ def update_special_thanks_file(lang='zh'):
     except Exception as e:
         logger.error(f"{get_text('special_thanks', 'update_failed', lang)}: {str(e)}")
         return False
-
-
-# 便捷函数
-def update_special_thanks_file_en():
-    """更新特别感谢文件（英文版）"""
-    return update_special_thanks_file('en')
-
-
-def update_special_thanks_file_ja():
-    """更新特别感谢文件（日文版）"""
-    return update_special_thanks_file('ja')

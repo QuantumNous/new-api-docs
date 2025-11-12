@@ -165,27 +165,45 @@ def format_releases_markdown(releases_data, lang='zh'):
     return markdown
 
 
-def update_changelog_file(lang='zh'):
-    """
-    更新更新日志文件
-    
-    Args:
-        lang: 语言代码 ('zh', 'en', 'ja')
-    
-    Returns:
-        bool: 更新是否成功
-    """
+def update_changelog_all_langs():
+    """更新所有语言版本的更新日志文件"""
     try:
-        # 获取发布数据
+        releases_data, success = fetch_github_data(GITHUB_REPO, "releases", 30)
+        
+        if not success or not releases_data:
+            logger.error("发布日志数据获取失败")
+            return False
+        
+        all_success = True
+        for lang in ['zh', 'en', 'ja']:
+            try:
+                releases_markdown = format_releases_markdown(releases_data, lang)
+                file_path = LANGUAGE_PATHS[lang]['changelog']
+                changelog_file = os.path.join(DOCS_DIR, file_path)
+                
+                if not update_markdown_file(changelog_file, releases_markdown):
+                    all_success = False
+                    
+            except Exception as e:
+                logger.error(f"发布日志（{lang}）更新异常: {str(e)}")
+                all_success = False
+        
+        return all_success
+    
+    except Exception as e:
+        logger.error(f"批量更新发布日志失败: {str(e)}")
+        return False
+
+
+def update_changelog_file(lang='zh'):
+    """更新更新日志文件"""
+    try:
         releases_data, success = fetch_github_data(GITHUB_REPO, "releases", 30)
         if not success or not releases_data:
             logger.error(get_text('changelog', 'data_fetch_error', lang))
             return False
         
-        # 格式化为Markdown
         releases_markdown = format_releases_markdown(releases_data, lang)
-        
-        # 更新文件
         file_path = LANGUAGE_PATHS[lang]['changelog']
         changelog_file = os.path.join(DOCS_DIR, file_path)
         return update_markdown_file(changelog_file, releases_markdown)
@@ -194,14 +212,3 @@ def update_changelog_file(lang='zh'):
         error_msg = f"{get_text('changelog', 'update_failed', lang)}: {str(e)}"
         logger.error(error_msg)
         return False
-
-
-# 便捷函数
-def update_changelog_file_en():
-    """更新更新日志文件（英文版）"""
-    return update_changelog_file('en')
-
-
-def update_changelog_file_ja():
-    """更新更新日志文件（日文版）"""
-    return update_changelog_file('ja')

@@ -7,8 +7,8 @@ from datetime import datetime
 # 环境变量配置
 GITHUB_REPO = os.environ.get('GITHUB_REPO', 'QuantumNous/new-api')
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')  # GitHub Personal Access Token
-GITHUB_PROXY = os.environ.get('GITHUB_PROXY', 'https://p.aass.cc/proxy')
-USE_PROXY = os.environ.get('USE_PROXY', 'true').lower() == 'true'
+GITHUB_PROXY = os.environ.get('GITHUB_PROXY', '')
+USE_PROXY = os.environ.get('USE_PROXY', 'false').lower() == 'false'
 
 # GitHub API限制相关参数
 MAX_RETRY_ATTEMPTS = 3
