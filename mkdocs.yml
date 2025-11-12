@@ -460,5 +460,6 @@ markdown_extensions:
 
 watch:
   - newapi/overrides
+  - docs
 
 copyright: Copyright &copy; 2025 Quantum Nous. All Rights Reserved.
