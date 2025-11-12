@@ -79,28 +79,33 @@ hide:
   }
   
   /* 部署方式卡片颜色设置 */
-  /* Docker Compose card */
+  /* Docker Compose卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(1) {
     background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
   }
   
-  /* Docker card */
+  /* Docker卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(2) {
     background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
   }
   
-  /* 宝塔面板卡片 */
+  /* 1Panel 面板卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(3) {
+    background: linear-gradient(135deg, #7303c0 0%, #ec38bc 100%);
+  }
+
+  /* 宝塔面板卡片 */
+  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(4) {
     background: linear-gradient(135deg, #f27121 0%, #e94057 100%);
   }
   
   /* 集群部署卡片 */
-  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(4) {
+  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(5) {
     background: linear-gradient(135deg, #654ea3 0%, #8862cf 100%);
   }
   
   /* 本地开发部署卡片 */
-  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(5) {
+  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(6) {
     background: linear-gradient(135deg, #1e6e42 0%, #28a745 100%);
   }
   
@@ -130,12 +135,12 @@ hide:
     background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
   }
 
-  /* AI Applications card */
+  /* AI应用卡片 */
   .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(6) {
     background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
   }
 
-  /* Business Cooperation card */
+  /* 商务合作卡片 */
   .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(7) {
     background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
   }
@@ -260,7 +265,7 @@ hide:
   }
 </style>
 
-## 🎯 **Choose Your Deployment Method**
+## 🎯 **Deployment Method Selection**
 
 <div class="grid cards" markdown>
 
@@ -270,29 +275,39 @@ hide:
     
     ---
     
-    Orchestrate multiple services with Docker Compose – ideal for production or setups requiring MySQL, Redis, etc.
+    Uses Docker Compose to orchestrate multiple services, suitable for production environments or scenarios requiring dependencies like MySQL and Redis.
     
-    [Learn more →](installation/docker-compose-installation.md){ .more-link }
+    [Learn More →](installation/docker-compose-installation.md){ .more-link }
 
 -   :fontawesome-brands-docker:{ .twemoji } 
     
-    **Docker Single-Container Deployment**
+    **Docker Single Container Deployment**
     
     ---
     
-    Deploy New API quickly with a single Docker image – perfect for personal or small-scale scenarios.
+    Uses a Docker image to quickly deploy New API, suitable for personal use or small-scale application scenarios.
     
-    [Learn more →](installation/docker-installation.md){ .more-link }
+    [Learn More →](installation/docker-installation.md){ .more-link }
+
+-   :material-server:{ .twemoji }
+
+    **1Panel Control Panel Deployment**
+
+    ---
+
+    Quick deployment via the 1Panel control panel graphical interface, suitable for users unfamiliar with the command line.
+
+    [Learn More →](installation/1panel-installation.md){ .more-link }
 
 -   :material-server:{ .twemoji } 
     
-    **BT Panel Deployment**
+    **Baota Control Panel Deployment**
     
     ---
     
-    Deploy via the BT Panel GUI – great for users who prefer not to use the command line.
+    Quick deployment via the Baota control panel graphical interface, suitable for users unfamiliar with the command line.
     
-    [Learn more →](installation/bt-docker-installation.md){ .more-link }
+    [Learn More →](installation/bt-docker-installation.md){ .more-link }
 
 -   :material-server-network:{ .twemoji } 
     
@@ -300,23 +315,23 @@ hide:
     
     ---
     
-    Multi-node distributed deployment for high availability, load balancing and horizontal scaling – designed for large-scale or enterprise scenarios.
+    Multi-node distributed deployment for high availability, load balancing, and horizontal scaling, suitable for large-scale applications and enterprise scenarios.
     
-    [Learn more →](installation/cluster-deployment.md){ .more-link }
+    [Learn More →](installation/cluster-deployment.md){ .more-link }
 
 -   :material-code-braces:{ .twemoji } 
     
-    **Local Development Environment**
+    **Local Development Deployment**
     
     ---
     
-    Intended for contributors and secondary development, offering a full local setup guide.
+    Suitable for developers contributing code and performing secondary development, providing a complete local development environment setup guide.
     
-    [Learn more →](installation/local-development.md){ .more-link }
+    [Learn More →](installation/local-development.md){ .more-link }
 
 </div>
 
-## 📚 **Explore Our Documentation**
+## 📚 **Browse Our Documentation**
 
 <div class="grid cards" markdown>
 
@@ -326,9 +341,9 @@ hide:
     
     ---
     
-    Explore the project introduction, feature overview, technical architecture and roadmap.
+    Learn about the project introduction, feature descriptions, technical architecture, and roadmap.
     
-    [Learn more →](wiki/index.md){ .more-link }
+    [Learn More →](wiki/index.md){ .more-link }
 
 -   :fontawesome-solid-user:{ .twemoji } 
     
@@ -338,17 +353,18 @@ hide:
     
     Detailed usage instructions and best practices.
     
+    <!-- [了解更多 →](user-guide/i18n.md){ .more-link } -->
     [Coming Soon](){ .more-link }
 
 -   :fontawesome-solid-code:{ .twemoji } 
     
-    **API Reference**
+    **API Documentation**
     
     ---
     
-    Comprehensive API descriptions and usage examples.
+    Comprehensive API interface descriptions and calling examples.
     
-    [Learn more →](api/index.md){ .more-link }
+    [Learn More →](api/index.md){ .more-link }
 
 -   :fontawesome-solid-headset:{ .twemoji } 
     
@@ -356,38 +372,38 @@ hide:
     
     ---
     
-    FAQs and community discussion.
+    Frequently Asked Questions and community communication.
     
-    [Learn more →](support/index.md){ .more-link }
+    [Learn More →](support/index.md){ .more-link }
 
--   :fontawesome-solid-list:{ .twemoji } 
+-   :fontawesome-solid-list:{ .twemoji }
     
-    **Quick Start Guide**
+    **Usage Guide**
     
     ---
     
-    Quick start instructions and step-by-step walkthrough.
+    Quick start guide and detailed step-by-step instructions.
     
-    [Learn more →](guide/index.md){ .more-link }
+    [Learn More →](guide/index.md){ .more-link }
 
--   :fontawesome-solid-robot:{ .twemoji } 
+-   :fontawesome-solid-robot:{ .twemoji }
     
     **AI Applications**
     
     ---
     
-    Explore various AI application examples built with New API.
+    Explore various AI application examples developed based on New API.
     
-    [Learn more →](apps/cherry-studio.md){ .more-link }
+    [Learn More →](apps/cherry-studio.md){ .more-link }
 
--   :fontawesome-solid-handshake:{ .twemoji } 
+-   :fontawesome-solid-handshake:{ .twemoji }
     
     **Business Cooperation**
     
     ---
     
-    Partner with us to expand the AI ecosystem and business opportunities.
+    Partner with us to jointly expand the AI ecosystem and business opportunities.
     
-    [Learn more →](business-cooperation.md){ .more-link }
+    [Learn More →](business-cooperation.md){ .more-link }
 
 </div>
