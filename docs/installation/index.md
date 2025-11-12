@@ -115,6 +115,16 @@ hide:
 
 -   :material-server:{ .twemoji }
 
+    **1Panel 面板部署**
+
+    ---
+
+    使用 1Panel 面板进行可视化部署：
+
+    [查看教程 →](1panel-installation.md)
+
+-   :material-server:{ .twemoji }
+
     **宝塔面板部署**
 
     ---

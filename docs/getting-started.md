@@ -89,18 +89,23 @@ hide:
     background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
   }
   
-  /* 宝塔面板卡片 */
+  /* 1Panel 面板卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(3) {
+    background: linear-gradient(135deg, #7303c0 0%, #ec38bc 100%);
+  }
+
+  /* 宝塔面板卡片 */
+  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(4) {
     background: linear-gradient(135deg, #f27121 0%, #e94057 100%);
   }
   
   /* 集群部署卡片 */
-  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(4) {
+  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(5) {
     background: linear-gradient(135deg, #654ea3 0%, #8862cf 100%);
   }
   
   /* 本地开发部署卡片 */
-  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(5) {
+  .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(6) {
     background: linear-gradient(135deg, #1e6e42 0%, #28a745 100%);
   }
   
@@ -283,6 +288,16 @@ hide:
     使用Docker镜像快速部署New API，适合个人使用或小规模应用场景
     
     [了解更多 →](installation/docker-installation.md){ .more-link }
+
+-   :material-server:{ .twemoji }
+
+    **1Panel 面板部署**
+
+    ---
+
+    通过 1Panel 面板图形化界面快速部署，适合不熟悉命令行的用户
+
+    [了解更多 →](installation/1panel-installation.md){ .more-link }
 
 -   :material-server:{ .twemoji } 
     
