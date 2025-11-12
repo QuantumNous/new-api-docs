@@ -53,16 +53,6 @@
 |                | - 处理复杂多步骤任务表现优异，扩展开发可能性                                                                                               |
 
 ## AI 模型配置方法
--------------------------------------
-### 参数修改
-
-Api Key：前往 Anthropic 官网，或者<a href="https://api.zetatechs.com/console/token" target="_blank">ZetaTechs API</a>获取。
-
-请求地址格式：
-
-```title="第三方（示例）"
-https://api.zetatechs.com
-```
 
 ### Windows 端图文指引
 
@@ -283,11 +273,6 @@ Claude Code 需要 Node.js 环境才能运行。
 > 注意：设置环境变量修改`ANTHROPIC_BASE_URL`后，使用所有模型（包括官方预设模型）均调用自定义接入点，而不使用官方账号额度。
 
 #### 6.macOS 常见问题解决
-
-??? example "安装时提示权限错误"
-    尝试以下解决方法：
-
-    - 使用`sudo`安装：`sudo curl -fsSL https://raw.githubusercontent.com/Zeta-Techs/coding-cli-setup/main/coding-cli-setup.sh | bash`
 
 ??? example "macOS 安全设置阻止运行"
     如果系统阻止运行 Claude Code：
