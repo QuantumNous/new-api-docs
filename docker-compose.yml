@@ -8,7 +8,9 @@ services:
       - "2004:8000"
     volumes:
       - .:/docs
-    command: serve --dev-addr=0.0.0.0:8000  # 添加启动命令
+    working_dir: /docs
+    entrypoint: ["/bin/sh", "-c"]
+    command: ./dev-server.sh
     environment:
       - TZ=Asia/Shanghai
     networks:
@@ -28,7 +30,7 @@ services:
       - GITHUB_REPO=Calcium-Ion/new-api
       - DOCS_DIR=/app/docs
       - USE_PROXY=true
-      - GITHUB_PROXY=https://p.aass.cc/proxy
+      - GITHUB_PROXY=
       - AFDIAN_USER_ID=
       - AFDIAN_TOKEN=
       - TZ=Asia/Shanghai

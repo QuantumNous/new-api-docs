@@ -1,12 +1,182 @@
 {#-
   This file was automatically generated - do not edit
 -#}
+{#- Load translations based on current language -#}
+{% if page and page.file and "en/" in page.file.src_uri %}
+  {% set translations = {
+    "header": {
+      "badge": "Features",
+      "title": "Powerful and Simple AI Gateway",
+      "subtitle": "Unified management of multiple AI models, simplified development process, enhanced user experience"
+    },
+    "features": {
+      "gateway": {
+        "title": "Unified Gateway",
+        "desc": "Support for multiple LLM APIs, unified management and invocation, simplified integration process"
+      },
+      "balance": {
+        "title": "Load Balancing",
+        "desc": "Intelligent request distribution, automatic failover, ensuring system stability"
+      },
+      "billing": {
+        "title": "Billing System",
+        "desc": "Flexible billing strategies, support for multiple billing modes, cost controllable"
+      },
+      "security": {
+        "title": "Secure & Controlled",
+        "desc": "Comprehensive permission control and security mechanisms, protecting data security"
+      },
+      "analytics": {
+        "title": "Data Analytics",
+        "desc": "Detailed usage statistics and analysis functions, empowering decision optimization"
+      },
+      "deploy": {
+        "title": "Quick Deployment",
+        "desc": "Support for Docker one-click deployment, simple and easy to use, quick to go live"
+      }
+    },
+    "cta": {
+      "title": "Get Started",
+      "subtitle": "Quickly deploy and start using New API in just a few simple steps",
+      "links": {
+        "deploy": {
+          "title": "View Deployment Guide",
+          "desc": "Quick one-click deployment"
+        },
+        "api": {
+          "title": "API Call Examples",
+          "desc": "Detailed interface documentation"
+        },
+        "models": {
+          "title": "Supported Models",
+          "desc": "Rich model support"
+        },
+        "community": {
+          "title": "Join Community",
+          "desc": "Friendly communication atmosphere"
+        }
+      }
+    }
+  } %}
+{% elif page and page.file and "ja/" in page.file.src_uri %}
+  {% set translations = {
+    "header": {
+      "badge": "機能特性",
+      "title": "強力でシンプルなAIゲートウェイ",
+      "subtitle": "複数のAIモデルを統合管理、開発プロセスを簡素化、ユーザーエクスペリエンスを向上"
+    },
+    "features": {
+      "gateway": {
+        "title": "統合ゲートウェイ",
+        "desc": "複数のLLM APIをサポート、統合管理と呼び出し、統合プロセスを簡素化"
+      },
+      "balance": {
+        "title": "負荷分散",
+        "desc": "インテリジェントなリクエスト配分、自動フェイルオーバー、システムの安定性を確保"
+      },
+      "billing": {
+        "title": "課金システム",
+        "desc": "柔軟な課金戦略、複数の課金モードをサポート、コスト管理可能"
+      },
+      "security": {
+        "title": "安全で管理可能",
+        "desc": "完全な権限制御とセキュリティメカニズム、データセキュリティを保護"
+      },
+      "analytics": {
+        "title": "データ分析",
+        "desc": "詳細な使用統計と分析機能、意思決定の最適化を支援"
+      },
+      "deploy": {
+        "title": "迅速なデプロイ",
+        "desc": "Dockerワンクリックデプロイをサポート、シンプルで使いやすく、迅速に稼働"
+      }
+    },
+    "cta": {
+      "title": "利用を開始",
+      "subtitle": "いくつかの簡単な手順で、New APIを迅速にデプロイして使用開始",
+      "links": {
+        "deploy": {
+          "title": "デプロイガイドを表示",
+          "desc": "迅速なワンクリックデプロイ"
+        },
+        "api": {
+          "title": "API呼び出し例",
+          "desc": "詳細なインターフェースドキュメント"
+        },
+        "models": {
+          "title": "サポートされているモデル",
+          "desc": "豊富なモデルサポート"
+        },
+        "community": {
+          "title": "コミュニティに参加",
+          "desc": "友好的な交流雰囲気"
+        }
+      }
+    }
+  } %}
+{% else %}
+  {% set translations = {
+    "header": {
+      "badge": "功能特性",
+      "title": "强大而简单的 AI 网关",
+      "subtitle": "统一管理多种AI模型，简化开发流程，提升使用体验"
+    },
+    "features": {
+      "gateway": {
+        "title": "统一网关",
+        "desc": "支持多种大模型API，统一管理和调用，简化接入流程"
+      },
+      "balance": {
+        "title": "负载均衡",
+        "desc": "智能分配请求，自动故障转移，确保系统稳定性"
+      },
+      "billing": {
+        "title": "计费系统",
+        "desc": "灵活的计费策略，支持多种计费模式，成本可控"
+      },
+      "security": {
+        "title": "安全可控",
+        "desc": "完善的权限控制和安全机制，保护数据安全"
+      },
+      "analytics": {
+        "title": "数据分析",
+        "desc": "详细的使用统计和分析功能，助力决策优化"
+      },
+      "deploy": {
+        "title": "快速部署",
+        "desc": "支持Docker一键部署，简单易用，快速上线"
+      }
+    },
+    "cta": {
+      "title": "开始使用",
+      "subtitle": "快速部署并开始使用New API，只需几个简单步骤",
+      "links": {
+        "deploy": {
+          "title": "查看部署指南",
+          "desc": "快速一键部署"
+        },
+        "api": {
+          "title": "API调用示例",
+          "desc": "详细的接口文档"
+        },
+        "models": {
+          "title": "支持的模型",
+          "desc": "丰富的模型支持"
+        },
+        "community": {
+          "title": "加入社区",
+          "desc": "友善的交流氛围"
+        }
+      }
+    }
+  } %}
+{% endif %}
 <section class="mdx-parallax__group mdx-features">
   <div class="md-content__inner">
     <div class="mdx-features__header">
-      <span class="mdx-features__badge">功能特性</span>
-      <h2>强大而简单的 AI 网关</h2>
-      <p class="mdx-features__subtitle">统一管理多种AI模型，简化开发流程，提升使用体验</p>
+      <span class="mdx-features__badge">{{ translations.header.badge }}</span>
+      <h2>{{ translations.header.title }}</h2>
+      <p class="mdx-features__subtitle">{{ translations.header.subtitle }}</p>
     </div>
     
     <div class="mdx-content__inner mdx-features__content">
@@ -18,8 +188,8 @@
                 {% include ".icons/material/api.svg" %}
               </div>
               <div class="mdx-expect__description">
-                <h3>统一网关</h3>
-                <p>支持多种大模型API，统一管理和调用，简化接入流程</p>
+                <h3>{{ translations.features.gateway.title }}</h3>
+                <p>{{ translations.features.gateway.desc }}</p>
               </div>
             </li>
             <li class="mdx-expect__item" data-mdx-component="expect">
@@ -27,8 +197,8 @@
                 {% include ".icons/material/scale-balance.svg" %}
               </div>
               <div class="mdx-expect__description">
-                <h3>负载均衡</h3>
-                <p>智能分配请求，自动故障转移，确保系统稳定性</p>
+                <h3>{{ translations.features.balance.title }}</h3>
+                <p>{{ translations.features.balance.desc }}</p>
               </div>
             </li>
             <li class="mdx-expect__item" data-mdx-component="expect">
@@ -36,8 +206,8 @@
                 {% include ".icons/material/currency-usd.svg" %}
               </div>
               <div class="mdx-expect__description">
-                <h3>计费系统</h3>
-                <p>灵活的计费策略，支持多种计费模式，成本可控</p>
+                <h3>{{ translations.features.billing.title }}</h3>
+                <p>{{ translations.features.billing.desc }}</p>
               </div>
             </li>
             <li class="mdx-expect__item" data-mdx-component="expect">
@@ -45,8 +215,8 @@
                 {% include ".icons/material/shield-check.svg" %}
               </div>
               <div class="mdx-expect__description">
-                <h3>安全可控</h3>
-                <p>完善的权限控制和安全机制，保护数据安全</p>
+                <h3>{{ translations.features.security.title }}</h3>
+                <p>{{ translations.features.security.desc }}</p>
               </div>
             </li>
             <li class="mdx-expect__item" data-mdx-component="expect">
@@ -54,8 +224,8 @@
                 {% include ".icons/material/chart-line.svg" %}
               </div>
               <div class="mdx-expect__description">
-                <h3>数据分析</h3>
-                <p>详细的使用统计和分析功能，助力决策优化</p>
+                <h3>{{ translations.features.analytics.title }}</h3>
+                <p>{{ translations.features.analytics.desc }}</p>
               </div>
             </li>
             <li class="mdx-expect__item" data-mdx-component="expect">
@@ -63,8 +233,8 @@
                 {% include ".icons/material/rocket-launch.svg" %}
               </div>
               <div class="mdx-expect__description">
-                <h3>快速部署</h3>
-                <p>支持Docker一键部署，简单易用，快速上线</p>
+                <h3>{{ translations.features.deploy.title }}</h3>
+                <p>{{ translations.features.deploy.desc }}</p>
               </div>
             </li>
           </ul>
@@ -73,8 +243,8 @@
       <div class="mdx-content__column mdx-features__cta">
         <div class="mdx-connect" data-mdx-component="connect">
           <div class="mdx-connect__header">
-            <h2>开始使用</h2>
-            <p>快速部署并开始使用New API，只需几个简单步骤</p>
+            <h2>{{ translations.cta.title }}</h2>
+            <p>{{ translations.cta.subtitle }}</p>
           </div>
           <div class="mdx-connect__links">
             <a href="installation/quick-local-installation/" class="mdx-connect__link">
@@ -84,8 +254,8 @@
                     {% include ".icons/material/rocket-launch.svg" %}
                   </div>
                   <div class="mdx-connect__link-text">
-                    <span class="mdx-connect__link-title">查看部署指南</span>
-                    <span class="mdx-connect__link-desc">快速一键部署</span>
+                    <span class="mdx-connect__link-title">{{ translations.cta.links.deploy.title }}</span>
+                    <span class="mdx-connect__link-desc">{{ translations.cta.links.deploy.desc }}</span>
                   </div>
                 </div>
                 <div class="mdx-connect__link-arrow">
@@ -100,8 +270,8 @@
                     {% include ".icons/material/code-tags.svg" %}
                   </div>
                   <div class="mdx-connect__link-text">
-                    <span class="mdx-connect__link-title">API调用示例</span>
-                    <span class="mdx-connect__link-desc">详细的接口文档</span>
+                    <span class="mdx-connect__link-title">{{ translations.cta.links.api.title }}</span>
+                    <span class="mdx-connect__link-desc">{{ translations.cta.links.api.desc }}</span>
                   </div>
                 </div>
                 <div class="mdx-connect__link-arrow">
@@ -116,8 +286,8 @@
                     {% include ".icons/material/cube-outline.svg" %}
                   </div>
                   <div class="mdx-connect__link-text">
-                    <span class="mdx-connect__link-title">支持的模型</span>
-                    <span class="mdx-connect__link-desc">丰富的模型支持</span>
+                    <span class="mdx-connect__link-title">{{ translations.cta.links.models.title }}</span>
+                    <span class="mdx-connect__link-desc">{{ translations.cta.links.models.desc }}</span>
                   </div>
                 </div>
                 <div class="mdx-connect__link-arrow">
@@ -132,8 +302,8 @@
                     {% include ".icons/material/account-group.svg" %}
                   </div>
                   <div class="mdx-connect__link-text">
-                    <span class="mdx-connect__link-title">加入社区</span>
-                    <span class="mdx-connect__link-desc">友善的交流氛围</span>
+                    <span class="mdx-connect__link-title">{{ translations.cta.links.community.title }}</span>
+                    <span class="mdx-connect__link-desc">{{ translations.cta.links.community.desc }}</span>
                   </div>
                 </div>
                 <div class="mdx-connect__link-arrow">

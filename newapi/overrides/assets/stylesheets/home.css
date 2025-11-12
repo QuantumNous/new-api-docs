@@ -326,6 +326,126 @@
     width: 100%
 }
 
+/* 响应式调整：页面宽度较小时内容轻微上移 */
+@media screen and (max-width: 76.1875em) {
+    .mdx-hero__inner {
+        top: 53%;
+    }
+}
+
+@media screen and (max-width: 60em) {
+    .mdx-hero__inner {
+        top: 51%;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .mdx-hero__inner {
+        top: 48%;
+    }
+}
+
+/* 较小宽屏优化：根据视口高度调整字体大小 */
+@media screen and (max-height: 700px) and (min-width: 960px) {
+    .tx-hero__title {
+        font-size: 2rem !important;
+        height: 4rem !important;
+        line-height: 2rem !important;
+    }
+    
+    .tx-hero__stats {
+        margin: 0.8rem 0;
+    }
+    
+    .tx-stat__number {
+        font-size: 1.5rem;
+    }
+    
+    .tx-hero__meta {
+        margin: 0.8rem 0;
+        gap: 0.6rem;
+    }
+    
+    .tx-hero__meta-item {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .tx-hero__buttons {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-height: 600px) and (min-width: 960px) {
+    .tx-hero__title {
+        font-size: 1.8rem !important;
+        height: 3.6rem !important;
+        line-height: 1.8rem !important;
+    }
+    
+    .tx-hero__stats {
+        margin: 0.6rem 0;
+        gap: 1.5rem;
+    }
+    
+    .tx-stat__number {
+        font-size: 1.3rem;
+    }
+    
+    .tx-stat__label {
+        font-size: 0.7rem;
+    }
+    
+    .tx-hero__meta {
+        margin: 0.6rem 0;
+        gap: 0.5rem;
+    }
+    
+    .tx-hero__meta-item {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .tx-hero__buttons {
+        margin-top: 0.8rem;
+    }
+}
+
+@media screen and (max-height: 500px) and (min-width: 960px) {
+    .tx-hero__title {
+        font-size: 1.5rem !important;
+        height: 3rem !important;
+        line-height: 1.5rem !important;
+    }
+    
+    .tx-hero__stats {
+        margin: 0.4rem 0;
+        gap: 1rem;
+    }
+    
+    .tx-stat__number {
+        font-size: 1.1rem;
+    }
+    
+    .tx-stat__label {
+        font-size: 0.65rem;
+    }
+    
+    .tx-hero__meta {
+        margin: 0.4rem 0;
+        gap: 0.4rem;
+    }
+    
+    .tx-hero__meta-item {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .tx-hero__buttons {
+        margin-top: 0.6rem;
+    }
+}
+
 .mdx-hero__teaser {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -572,21 +692,42 @@
     justify-content: center;
 }
 
+/* 响应式调整：小屏幕时减少边距 */
+@media screen and (max-width: 60em) {
+    .tx-hero {
+        margin: 24px 1.5rem;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .tx-hero {
+        margin: 16px 1rem;
+    }
+}
+
 .tx-hero__title {
     margin-bottom: 1rem !important;
     font-weight: 700 !important;
     font-size: 2.5rem !important;
+    height: 5rem !important; /* 2倍字体大小 */
+    position: relative !important;
+    overflow: hidden !important;
+    line-height: 2.5rem !important; /* 等于字体大小 */
 }
 
 @media screen and (max-width: 76.1875em) {
     .tx-hero__title {
         font-size: 2rem !important;
+        height: 4rem !important; /* 2倍字体大小 */
+        line-height: 2rem !important; /* 等于字体大小 */
     }
 }
 
 @media screen and (max-width: 40em) {
     .tx-hero__title {
         font-size: 1.5rem !important;
+        height: 3rem !important; /* 2倍字体大小 */
+        line-height: 1.5rem !important; /* 等于字体大小 */
     }
 }
 
@@ -689,6 +830,399 @@
 
 .tx-hero__cta {
     margin-top: 2rem;
+}
+
+.tx-hero__buttons {
+    margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .tx-hero__buttons {
+        margin-top: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tx-hero__buttons {
+        margin-top: 1rem;
+    }
+}
+
+/* Architecture Diagram */
+.tx-architecture {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0.8rem auto 0.6rem;
+    padding: 0.8rem;
+    max-width: 840px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1.2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Top Flow: 3 Main Nodes */
+.tx-architecture__flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.tx-architecture__flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.tx-architecture__flow-node--primary {
+    background: rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.tx-architecture__flow-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.tx-architecture__flow-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--md-primary-bg-color);
+    white-space: nowrap;
+}
+
+.tx-architecture__flow-arrow {
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.tx-architecture__flow-arrow svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: var(--md-primary-bg-color);
+}
+
+/* Middle: Feature Tags */
+.tx-architecture__features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0;
+}
+
+.tx-architecture__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--md-primary-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.tx-architecture__feature-icon {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.tx-architecture__feature:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Bottom: AI Providers */
+.tx-architecture__providers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+    padding-top: 0.3rem;
+}
+
+.tx-architecture__provider {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--md-primary-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Provider conversion arrows */
+.tx-architecture__provider-arrow {
+    width: 3.5rem;
+    height: 0.9rem;
+    opacity: 0.75;
+    align-self: center;
+    color: var(--md-primary-bg-color);
+}
+
+.tx-architecture__provider-arrow .dash { animation: tx-arch-dash 1.6s linear infinite; stroke-linecap: round; }
+
+@keyframes tx-arch-dash { to { stroke-dashoffset: -16; } }
+
+.tx-architecture__provider:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Compact format mappings */
+.tx-architecture__mappings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.tx-map {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    color: var(--md-primary-bg-color);
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
+}
+
+.tx-architecture__format-links {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+.tx-format-link {
+    color: var(--md-primary-bg-color);
+    text-decoration: none;
+    font-size: 0.7rem;
+    opacity: 0.9;
+}
+
+.tx-format-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design for Architecture */
+
+/* 较小宽屏优化：根据视口高度调整架构图 */
+@media screen and (max-height: 700px) and (min-width: 960px) {
+    .tx-architecture {
+        max-width: 720px;
+        padding: 0.6rem;
+        gap: 0.4rem;
+        margin: 0.6rem auto 0.4rem;
+    }
+    
+    .tx-architecture__flow-node {
+        padding: 0.4rem 0.8rem;
+        min-width: 100px;
+    }
+    
+    .tx-architecture__flow-icon {
+        font-size: 1.1rem;
+    }
+    
+    .tx-architecture__flow-label {
+        font-size: 0.65rem;
+    }
+    
+    .tx-architecture__features {
+        gap: 0.25rem;
+        padding: 0.2rem 0;
+    }
+    
+    .tx-architecture__feature {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.6rem;
+    }
+    
+    .tx-architecture__feature-icon {
+        font-size: 0.8rem;
+    }
+    
+    .tx-architecture__providers {
+        gap: 0.3rem;
+        padding-top: 0.2rem;
+    }
+    
+    .tx-architecture__provider {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.6rem;
+    }
+    
+    .tx-architecture__provider-arrow {
+        width: 2.5rem;
+        height: 0.7rem;
+    }
+}
+
+@media screen and (max-height: 600px) and (min-width: 960px) {
+    .tx-architecture {
+        display: none; /* 在较小高度下隐藏架构图以节省空间 */
+    }
+}
+
+@media screen and (max-height: 650px) and (min-width: 960px) {
+    .tx-architecture {
+        display: none; /* 在较小高度下隐藏架构图以节省空间 */
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .tx-architecture {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .tx-architecture__flow-node {
+        padding: 0.6rem 1.2rem;
+    }
+
+    .tx-architecture__flow-icon {
+        font-size: 1.3rem;
+    }
+
+    .tx-architecture__flow-label {
+        font-size: 0.7rem;
+    }
+
+    .tx-architecture__feature {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.65rem;
+    }
+
+    .tx-architecture__provider {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.65rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .tx-architecture {
+        display: none;
+        padding: 0.8rem;
+        margin: 0.8rem auto 0.6rem;
+        gap: 0.6rem;
+    }
+
+    .tx-architecture__flow {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .tx-architecture__flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .tx-architecture__flow-node {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .tx-architecture__features {
+        display: none;
+        gap: 0.4rem;
+    }
+
+    .tx-architecture__providers {
+        display: none;
+        gap: 0.5rem;
+    }
+}
+
+@media screen and (max-height: 950px) {
+    .tx-architecture__flow {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+
+    .tx-architecture__flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .tx-architecture__flow-node {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .tx-architecture__features {
+        display: none;
+        gap: 0.4rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tx-architecture {
+        display: none;
+        margin: 0.6rem auto 0.4rem;
+        padding: 0.6rem;
+        gap: 0.5rem;
+    }
+
+    .tx-hero__meta {
+        margin: 0;
+    }
+
+    .tx-architecture__flow-node {
+        padding: 0;
+        max-width: 200px;
+    }
+
+    .tx-architecture__flow-icon {
+        font-size: 1.2rem;
+    }
+
+    .tx-architecture__flow-label {
+        font-size: 0.65rem;
+    }
+
+    .tx-architecture__flow-arrow svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .tx-architecture__features {
+        display: none;
+        gap: 0;
+        padding: 0.3rem 0;
+    }
+
+    .tx-architecture__feature {
+        display: none;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.6rem;
+    }
+
+    .tx-architecture__feature-icon {
+        font-size: 0.8rem;
+    }
+
+    .tx-architecture__providers {
+        gap: 0.4rem;
+        padding-top: 0.3rem;
+    }
+
+    .tx-architecture__provider {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.6rem;
+    }
 }
 
 .tx-button__icon {

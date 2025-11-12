@@ -1,29 +1,29 @@
-# 🔧 环境变量配置指南
+# 环境变量配置指南
 
 本文档提供了New API支持的所有环境变量及其配置说明。您可以通过设置这些环境变量来自定义系统的行为。
 
 !!! tip "提示"
     New API 支持从 `.env` 文件中读取环境变量，请参照 `.env.example` 文件，使用时请将其重命名为 `.env`。
 
-## 🔄 基本配置
+## 基本配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
 | `PORT` | 服务监听端口 | `3000` | `PORT=8080` |
 | `TZ` | 时区设置 | `Asia/Shanghai` | `TZ=America/New_York` |
 
-## 💾 数据库配置
+## 数据库配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
-| `SQL_DSN` | 数据库连接字符串 | SQLite (data/one-api.db) | `SQL_DSN=root:123456@tcp(localhost:3306)/oneapi` |
+| `SQL_DSN` | 数据库连接字符串 | SQLite (data/one-api.db) | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
 | `SQL_MAX_IDLE_CONNS` | 空闲连接池最大连接数 | `100` | `SQL_MAX_IDLE_CONNS=50` |
 | `SQL_MAX_OPEN_CONNS` | 连接池最大打开连接数 | `1000` | `SQL_MAX_OPEN_CONNS=500` |
 | `SQL_CONN_MAX_LIFETIME` | 连接最大生命周期(分钟) | `60` | `SQL_CONN_MAX_LIFETIME=120` |
 | `LOG_SQL_DSN` | 日志表独立数据库连接字符串 | - | `LOG_SQL_DSN=root:123456@tcp(localhost:3306)/oneapi_logs` |
 | `SQLITE_BUSY_TIMEOUT` | SQLite锁等待超时(毫秒) | `3000` | `SQLITE_BUSY_TIMEOUT=5000` |
 
-## 📦 缓存配置
+## 缓存配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -35,7 +35,7 @@
 | `BATCH_UPDATE_ENABLED` | 启用数据库批量更新聚合 | `false` | `BATCH_UPDATE_ENABLED=true` |
 | `BATCH_UPDATE_INTERVAL` | 批量更新聚合时间间隔(秒) | `5` | `BATCH_UPDATE_INTERVAL=10` |
 
-## 🌐 多节点与安全配置
+## 多节点与安全配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -50,7 +50,7 @@
 !!! info "集群部署"
     关于如何使用这些环境变量构建完整的集群部署，请参考[集群部署指南](cluster-deployment.md)。
 
-## 👤 用户及令牌配置
+## 用户及令牌配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -60,7 +60,7 @@
 | `NOTIFICATION_LIMIT_DURATION_MINUTE` | 通知限制的持续时间(分钟) | `10` | `NOTIFICATION_LIMIT_DURATION_MINUTE=15` |
 | `NOTIFY_LIMIT_COUNT` | 指定持续时间内的最大通知数量 | `2` | `NOTIFY_LIMIT_COUNT=3` |
 
-## 🚦 请求限制配置
+## 请求限制配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -80,7 +80,7 @@
     
     - 建议不设置，除非您知道自己在做什么
 
-## 📡 渠道管理配置
+## 渠道管理配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -99,7 +99,7 @@
 | `RELAY_PROXY` | 中继请求使用的代理 | - | `RELAY_PROXY=http://127.0.0.1:7890` |
 | `USER_CONTENT_REQUEST_PROXY` | 用户内容请求使用的代理 | - | `USER_CONTENT_REQUEST_PROXY=http://127.0.0.1:7890` | -->
 
-## 🤖 模型和请求处理配置
+## 模型和请求处理配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -132,7 +132,7 @@
     
     Tiktoken是OpenAI使用的分词器，用于计算文本的token数量。通过本地缓存这些文件，可以避免系统每次启动时从网络下载，提高稳定性和性能，特别是在网络受限环境中。
 
-## 🔎 特定模型配置
+## 特定模型配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -142,7 +142,7 @@
 | `GEMINI_VERSION` | Gemini版本 | `v1` | `GEMINI_VERSION=v1beta` |
 | `DIFY_DEBUG` | Dify渠道输出工作流和节点信息 | `true` | `DIFY_DEBUG=false` |
 
-## 📨 其他配置
+## 其他配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
@@ -151,7 +151,7 @@
 | `EMAIL_PASSWORD` | 邮件服务器密码 | - | `EMAIL_PASSWORD=yourpassword` |
 | `ERROR_LOG_ENABLE` | 是否记录并在前端显示错误日志 | false | `ERROR_LOG_ENABLED=true` |
 
-## ⚠️ 已废弃的环境变量
+## 已废弃的环境变量
 
 以下环境变量已被废弃，请使用系统设置界面中的相应选项：
 
@@ -160,11 +160,11 @@
 | `GEMINI_MODEL_MAP` | 请在系统设置-模型相关设置中设置 |
 | `GEMINI_SAFETY_SETTING` | 请在系统设置-模型相关设置中设置 |
 
-## 🌍 多机部署示例
+## 多机部署示例
 
 在多机部署场景中，必须设置以下环境变量：
 
-### 👑 主节点配置
+### 主节点配置
 
 ```env
 # 数据库配置 - 使用远程数据库
@@ -178,7 +178,7 @@ CRYPTO_SECRET=your_unique_crypto_secret
 REDIS_CONN_STRING=redis://default:password@redis-server:6379
 ```
 
-### 👥 从节点配置
+### 从节点配置
 
 ```env
 # 数据库配置 - 使用相同的远程数据库
@@ -204,7 +204,7 @@ SYNC_FREQUENCY=60
 !!! tip "完整集群配置"
     这只是基本的多节点配置示例。完整的集群部署配置、架构说明和最佳实践，请参考[集群部署指南](cluster-deployment.md)。
 
-## 🐳 Docker Compose中的环境变量示例
+## Docker Compose中的环境变量示例
 
 下面是一个在Docker Compose配置文件中设置环境变量的简要示例:
 

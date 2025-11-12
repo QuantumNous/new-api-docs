@@ -1,11 +1,135 @@
 {#-
 This file was automatically generated - do not edit
 -#}
+{#- Load translations based on current language -#}
+{% if page and page.file and "en/" in page.file.src_uri %}
+  {% set translations = {
+    "subtitle": "Next-Gen LLM Gateway & AI Asset Platform",
+    "stats": {
+      "providers": "AI Providers",
+      "compatible": "OpenAI Compatible",
+      "format": "海量モデル対応"
+    },
+    "features": {
+      "deployment": "One-click deployment, rapid integration",
+      "pricing": "Flexible pricing, cost-effective",
+      "security": "Secure & highly available"
+    },
+    "architecture": {
+      "user": "Client Application",
+      "gateway": "New API Gateway",
+      "providers": "AI Models",
+      "map_openai_to_claude": "OpenAI Chat Completions → Claude Messages",
+      "map_claude_to_openai": "Claude Messages → OpenAI Chat Completions",
+      "map_openai_to_gemini": "OpenAI Chat Completions → Gemini Chat",
+      "note_openai_to_claude": "Call Claude with OpenAI format",
+      "note_claude_to_openai": "Use Claude Code format to call 3rd-party models",
+      "note_openai_to_gemini": "Call Gemini with OpenAI format",
+      "support_claude": "Supports Claude Messages format",
+      "support_gemini": "Supports Google Gemini format",
+      "auth": "User Management",
+      "recharge": "Online Recharge",
+      "load_balance": "Load Balance",
+      "smart_routing": "Format Conversion",
+      "recharge": "Online Recharge",
+      "cost_tracking": "Cost Tracking",
+      "rate_limiting": "Rate Limiting",
+      "logging": "Logging",
+      "quota": "Quota Management",
+      "failover": "Failover Retry"
+    },
+    "buttons": {
+      "get_started": "Get Started",
+      "api_docs": "API Docs"
+    }
+  } %}
+{% elif page and page.file and "ja/" in page.file.src_uri %}
+  {% set translations = {
+    "subtitle": "次世代LLMゲートウェイ & AI資産管理プラットフォーム",
+    "stats": {
+      "providers": "AIプロバイダー",
+      "compatible": "OpenAI互換",
+      "format": "海量モデル対応"
+    },
+    "features": {
+      "deployment": "ワンクリックデプロイ、迅速な統合",
+      "pricing": "柔軟な価格設定、コスト効率",
+      "security": "安全で高可用性"
+    },
+    "architecture": {
+      "user": "クライアントアプリ",
+      "gateway": "New API ゲートウェイ",
+      "providers": "AI モデル",
+      "map_openai_to_claude": "OpenAI Chat Completions → Claude Messages",
+      "map_claude_to_openai": "Claude Messages → OpenAI Chat Completions",
+      "map_openai_to_gemini": "OpenAI Chat Completions → Gemini Chat",
+      "note_openai_to_claude": "OpenAIフォーマットでClaudeを呼び出し",
+      "note_claude_to_openai": "Claude Code形式でサードパーティモデルを呼び出し",
+      "note_openai_to_gemini": "OpenAIフォーマットでGeminiを呼び出し",
+      "support_claude": "Claude Messagesフォーマット対応",
+      "support_gemini": "Google Geminiフォーマット対応",
+      "auth": "ユーザー管理",
+      "recharge": "オンライン充電",
+      "load_balance": "負荷分散",
+      "smart_routing": "フォーマット変換",
+      "cost_tracking": "コスト追跡",
+      "rate_limiting": "レート制限",
+      "logging": "ログ記録",
+      "quota": "クォータ管理",
+      "failover": "フェイルオーバー再試行"
+    },
+    "buttons": {
+      "get_started": "はじめに",
+      "api_docs": "APIドキュメント"
+    }
+  } %}
+{% else %}
+  {% set translations = {
+    "subtitle": "新一代大模型网关与 AI 资产管理系统",
+    "stats": {
+      "providers": "AI 服务商",
+      "compatible": "OpenAI 兼容",
+      "format": "海量模型支持"
+    },
+    "features": {
+      "deployment": "一键部署，快速接入",
+      "pricing": "灵活计费，成本可控",
+      "security": "安全稳定，高可用性"
+    },
+    "architecture": {
+      "user": "客户端应用",
+      "gateway": "New API 网关",
+      "providers": "AI 模型",
+      "map_openai_to_claude": "OpenAI Chat Completions → Claude Messages",
+      "map_claude_to_openai": "Claude Messages → OpenAI Chat Completions",
+      "map_openai_to_gemini": "OpenAI Chat Completions → Gemini Chat",
+      "note_openai_to_claude": "OpenAI格式调用Claude模型",
+      "note_claude_to_openai": "用于Claude Code调用第三方模型",
+      "note_openai_to_gemini": "OpenAI格式调用Gemini模型",
+      "support_claude": "支持 Claude Messages 格式",
+      "support_gemini": "支持 Google Gemini 格式",
+      "auth": "用户管理",
+      "recharge": "在线充值",
+      "load_balance": "负载均衡",
+      "smart_routing": "格式转换",
+      "cost_tracking": "成本追踪",
+      "rate_limiting": "速率限制",
+      "logging": "日志记录",
+      "quota": "配额管理",
+      "failover": "故障重试"
+    },
+    "buttons": {
+      "get_started": "开始使用",
+      "api_docs": "接口文档"
+    }
+  } %}
+{% endif %}
+
 <section class="mdx-parallax__group" data-md-color-scheme="slate">
   {% for layer in [
   { "depth": 8, "position": "70%", "image": "1-quantumnous" },
   ] %}
-  {% set image = "assets/images/layers/" ~ layer["image"] %}
+  {% set image = "/assets/images/layers/" ~ layer["image"] %}
   {% set style = "style=\"" ~ [
   "--md-parallax-depth: " ~ layer["depth"],
   "--md-image-position: " ~ layer["position"]
@@ -30,41 +154,163 @@ This file was automatically generated - do not edit
             <h1 class="tx-hero__title">
               <span id="typewriter"></span><span class="cursor"></span>
             </h1>
-            <span class="tx-badge">新一代大模型网关与 AI 资产管理系统</span>
+            <span class="tx-badge">
+              {{ translations.subtitle }}
+            </span>
             <div class="tx-hero__stats">
               <div class="tx-stat">
                 <span class="tx-stat__number">30+</span>
-                <span class="tx-stat__label">AI 服务商</span>
+                <span class="tx-stat__label">
+                  {{ translations.stats.providers }}
+                </span>
               </div>
               <div class="tx-stat">
                 <span class="tx-stat__number">100%</span>
-                <span class="tx-stat__label">OpenAI 兼容</span>
+                <span class="tx-stat__label">
+                  {{ translations.stats.compatible }}
+                </span>
               </div>
               <div class="tx-stat">
-                <span class="tx-stat__number">99.9%</span>
-                <span class="tx-stat__label">服务可用性</span>
+                <span class="tx-stat__number">100+</span>
+                <span class="tx-stat__label">
+                  {{ translations.stats.format }}
+                </span>
               </div>
             </div>
             <div class="tx-hero__meta">
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">🚀</span>
-                <span class="tx-hero__meta-text">一键部署，快速接入</span>
+                <span class="tx-hero__meta-text">
+                  {{ translations.features.deployment }}
+                </span>
               </div>
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">💰</span>
-                <span class="tx-hero__meta-text">灵活计费，成本可控</span>
+                <span class="tx-hero__meta-text">
+                  {{ translations.features.pricing }}
+                </span>
               </div>
               <div class="tx-hero__meta-item">
                 <span class="tx-hero__meta-icon">🛡️</span>
-                <span class="tx-hero__meta-text">安全稳定，高可用性</span>
+                <span class="tx-hero__meta-text">
+                  {{ translations.features.security }}
+                </span>
               </div>
             </div>
-            <a href="getting-started/" class="md-button">
-              开始使用
-            </a>
-            <a href="api/" class="md-button md-button--secondary">
-              接口文档
-            </a>
+            
+            {#- Architecture Diagram -#}
+            <div class="tx-architecture">
+              {#- Top Flow: 3 Main Nodes -#}
+              <div class="tx-architecture__flow">
+                <div class="tx-architecture__flow-node">
+                  <div class="tx-architecture__flow-icon">🧑‍💻</div>
+                  <div class="tx-architecture__flow-label">{{ translations.architecture.user }}</div>
+                </div>
+                
+                <div class="tx-architecture__flow-arrow">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                  </svg>
+                </div>
+                
+                <div class="tx-architecture__flow-node tx-architecture__flow-node--primary">
+                  <div class="tx-architecture__flow-icon">⚡</div>
+                  <div class="tx-architecture__flow-label">{{ translations.architecture.gateway }}</div>
+                  
+                  {#- Feature chips inside gateway card -#}
+                  <div class="tx-architecture__features">
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">🔒</span>
+                      {{ translations.architecture.auth }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">⚖️</span>
+                      {{ translations.architecture.load_balance }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">🧭</span>
+                      {{ translations.architecture.smart_routing }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">📊</span>
+                      {{ translations.architecture.cost_tracking }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">🚦</span>
+                      {{ translations.architecture.rate_limiting }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">📝</span>
+                      {{ translations.architecture.logging }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">💰</span>
+                      {{ translations.architecture.quota }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">🔄</span>
+                      {{ translations.architecture.failover }}
+                    </div>
+                    <div class="tx-architecture__feature">
+                      <span class="tx-architecture__feature-icon">💳</span>
+                      {{ translations.architecture.recharge }}
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="tx-architecture__flow-arrow">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                  </svg>
+                </div>
+                
+                <div class="tx-architecture__flow-node">
+                  <div class="tx-architecture__flow-icon">🤖</div>
+                  <div class="tx-architecture__flow-label">{{ translations.architecture.providers }}</div>
+                </div>
+              </div>
+              
+              
+              
+              {#- Bottom: AI Providers -#}
+              <div class="tx-architecture__providers">
+                <div class="tx-architecture__provider">Gemini</div>
+                <svg class="tx-architecture__provider-arrow" viewBox="0 0 100 12" aria-hidden="true" focusable="false">
+                  <path class="dash" d="M10 6 H90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" />
+                  <path d="M10,6 L16,3 L16,9 Z" fill="currentColor" />
+                  <path d="M90,6 L84,3 L84,9 Z" fill="currentColor" />
+                </svg>
+                <div class="tx-architecture__provider">OpenAI</div>
+                <svg class="tx-architecture__provider-arrow" viewBox="0 0 100 12" aria-hidden="true" focusable="false">
+                  <path class="dash" d="M10 6 H90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" />
+                  <path d="M10,6 L16,3 L16,9 Z" fill="currentColor" />
+                  <path d="M90,6 L84,3 L84,9 Z" fill="currentColor" />
+                </svg>
+                <div class="tx-architecture__provider">Claude</div>
+              </div>
+
+              <!-- {#- Compact format conversions -#}
+              <div class="tx-architecture__mappings">
+                <span class="tx-map">{{ translations.architecture.map_openai_to_claude }}</span>
+                <span class="tx-map">{{ translations.architecture.map_claude_to_openai }}</span>
+                <span class="tx-map">{{ translations.architecture.map_openai_to_gemini }}</span>
+              </div> -->
+
+              <!-- {#- Minimal format support links -#}
+              <div class="tx-architecture__format-links">
+                <a class="tx-format-link" href="api/anthropic-chat/">⚡ {{ translations.architecture.support_claude }}</a>
+                <a class="tx-format-link" href="api/google-gemini-chat/">⚡ {{ translations.architecture.support_gemini }}</a>
+              </div> -->
+            </div>
+            
+            <div class="tx-hero__buttons">
+              <a href="getting-started/" class="md-button">
+                {{ translations.buttons.get_started }}
+              </a>
+              <a href="api/" class="md-button md-button--secondary">
+                {{ translations.buttons.api_docs }}
+              </a>
+            </div>
             <a href="#" class="mdx-hero__attribution" tabindex="-1">
               <strong>© QuantumNous</strong>
             </a>
@@ -76,4 +322,5 @@ This file was automatically generated - do not edit
       </div>
     </div>
   </div>
+</section>
 </section>

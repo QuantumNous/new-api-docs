@@ -79,14 +79,14 @@ hide:
   }
   
   /* 部署方式卡片颜色设置 */
-  /* Docker卡片 */
+  /* Docker Compose卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(1) {
-    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
+    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
   }
   
-  /* Docker Compose卡片 */
+  /* Docker卡片 */
   .md-typeset .grid.cards:nth-of-type(1) > ul > li:nth-child(2) {
-    background: linear-gradient(135deg, #0bb8cc 0%, #0bd1b6 100%);
+    background: linear-gradient(135deg, #2457c5 0%, #2b88d9 100%);
   }
   
   /* 宝塔面板卡片 */
@@ -128,6 +128,16 @@ hide:
   /* 帮助支持卡片 */
   .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(5) {
     background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+  }
+
+  /* AI应用卡片 */
+  .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(6) {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  }
+
+  /* 商务合作卡片 */
+  .md-typeset .grid.cards:nth-of-type(2) > ul > li:nth-child(7) {
+    background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
   }
   
   /* 卡片纹理背景优化 */
@@ -256,6 +266,16 @@ hide:
 
 -   :fontawesome-brands-docker:{ .twemoji } 
     
+    **Docker Compose部署** ⭐推荐
+    
+    ---
+    
+    使用Docker Compose编排多个服务，适合生产环境或需要MySQL、Redis等依赖的场景
+    
+    [了解更多 →](installation/docker-compose-installation.md){ .more-link }
+
+-   :fontawesome-brands-docker:{ .twemoji } 
+    
     **Docker 单容器部署**
     
     ---
@@ -263,16 +283,6 @@ hide:
     使用Docker镜像快速部署New API，适合个人使用或小规模应用场景
     
     [了解更多 →](installation/docker-installation.md){ .more-link }
-
--   :fontawesome-brands-docker:{ .twemoji } 
-    
-    **Docker Compose部署**
-    
-    ---
-    
-    使用Docker Compose编排多个服务，适合生产环境或需要MySQL、Redis等依赖的场景
-    
-    [了解更多 →](installation/docker-compose-installation.md){ .more-link }
 
 -   :material-server:{ .twemoji } 
     
@@ -350,5 +360,35 @@ hide:
     常见问题解答和社区交流
     
     [了解更多 →](support/index.md){ .more-link }
+
+-   :fontawesome-solid-list:{ .twemoji }
+    
+    **使用指南**
+    
+    ---
+    
+    快速上手指南和详细步骤说明
+    
+    [了解更多 →](guide/index.md){ .more-link }
+
+-   :fontawesome-solid-robot:{ .twemoji }
+    
+    **AI应用**
+    
+    ---
+    
+    探索基于New API开发的各类AI应用示例
+    
+    [了解更多 →](apps/cherry-studio.md){ .more-link }
+
+-   :fontawesome-solid-handshake:{ .twemoji }
+    
+    **商务合作**
+    
+    ---
+    
+    与我们合作，共同开拓AI生态与商业机会
+    
+    [了解更多 →](business-cooperation.md){ .more-link }
 
 </div>

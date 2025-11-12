@@ -1,16 +1,32 @@
-# 📄 Docker Compose 配置说明
+# Docker Compose 配置说明
 
 本文档详细介绍了New API的Docker Compose配置选项，可用于多种部署场景。
 
-## 🧱 基本配置结构
+## 基本配置结构
 
 Docker Compose配置文件 `docker-compose.yml` 定义了New API服务及其依赖服务（如MySQL、Redis）的部署方式。
 
-## 🏭 标准配置（推荐生产环境）
+## 标准配置（推荐生产环境）
 
 下面是标准的Docker Compose配置，适合大多数生产环境：
 
 ```yaml
+# New-API Docker Compose Configuration
+# 
+# Quick Start:
+#   1. docker-compose up -d
+#   2. Access at http://localhost:3000
+#
+# Using MySQL instead of PostgreSQL:
+#   1. Comment out the postgres service and SQL_DSN line 15
+#   2. Uncomment the mysql service and SQL_DSN line 16
+#   3. Uncomment mysql in depends_on (line 28)
+#   4. Uncomment mysql_data in volumes section (line 64)
+#
+# ⚠️  IMPORTANT: Change all default passwords before deploying to production!
+
+version: '3.4' # For compatibility with older Docker versions
+
 services:
   new-api:
     image: calciumion/new-api:latest
@@ -23,19 +39,22 @@ services:
       - ./data:/data
       - ./logs:/app/logs
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # 指向mysql服务
+      - SQL_DSN=postgresql://root:123456@postgres:5432/new-api # ⚠️ IMPORTANT: Change the password in production!
+#      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api  # Point to the mysql service, uncomment if using MySQL
       - REDIS_CONN_STRING=redis://redis
       - TZ=Asia/Shanghai
-    #      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！！！！！！
-    #      - NODE_TYPE=slave  # 多机部署的从节点取消注释
-    #      - SYNC_FREQUENCY=60  # 如需定期同步数据库，取消注释
-    #      - FRONTEND_BASE_URL=https://your-domain.com  # 多机部署带前端URL时取消注释
+      - ERROR_LOG_ENABLED=true # 是否启用错误日志记录
+      - BATCH_UPDATE_ENABLED=true  # 是否启用批量更新 batch update enabled
+#      - STREAMING_TIMEOUT=300  # 流模式无响应超时时间，单位秒，默认120秒，如果出现空补全可以尝试改为更大值 Streaming timeout in seconds, default is 120s. Increase if experiencing empty completions
+#      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！ multi-node deployment, set this to a random string!!!!!!!
+#      - SYNC_FREQUENCY=60  # Uncomment if regular database syncing is needed
 
     depends_on:
       - redis
-      - mysql
+      - postgres
+#      - mysql  # Uncomment if using MySQL
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' | awk -F: '{print $$2}'"]
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -45,23 +64,38 @@ services:
     container_name: redis
     restart: always
 
-  mysql:
-    image: mysql:8.2
-    container_name: mysql
+  postgres:
+    image: postgres:15
+    container_name: postgres
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456  # 确保与SQL_DSN中的密码一致
-      MYSQL_DATABASE: new-api
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
+      POSTGRES_DB: new-api
     volumes:
-      - mysql_data:/var/lib/mysql
-    # ports:
-    #   - "3306:3306"  # 如需从Docker外部访问MySQL，取消注释
+      - pg_data:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"  # Uncomment if you need to access PostgreSQL from outside Docker
+
+#  mysql:
+#    image: mysql:8.2
+#    container_name: mysql
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 123456  # ⚠️ IMPORTANT: Change this password in production!
+#      MYSQL_DATABASE: new-api
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#    ports:
+#      - "3306:3306"  # Uncomment if you need to access MySQL from outside Docker
 
 volumes:
-  mysql_data:
+  pg_data:
+#  mysql_data:
+
 ```
 
-## 🧪 简化配置（适合测试环境）
+## 简化配置（适合测试环境）
 
 如果只是测试使用，可以采用以下简化版本，仅包含New API服务本身：
 
@@ -79,9 +113,9 @@ services:
       - ./data:/data
 ```
 
-## ⚙️ 配置说明
+## 配置说明
 
-### 🔧 New API服务配置
+### New API服务配置
 
 | 参数 | 说明 |
 |------|------|
@@ -95,7 +129,7 @@ services:
 | `depends_on` | 依赖服务，确保按正确顺序启动 |
 | `healthcheck` | 健康检查配置，用于监控服务状态 |
 
-### 🔍 环境变量说明
+### 环境变量说明
 
 New API支持多种环境变量配置，以下是常用的几个：
 
@@ -110,11 +144,11 @@ New API支持多种环境变量配置，以下是常用的几个：
 
 更完整的环境变量列表请参考[环境变量配置指南](environment-variables.md)。
 
-## 🌐 多节点部署配置
+## 多节点部署配置
 
 对于多节点部署场景，主节点和从节点的配置略有不同：
 
-### 👑 主节点配置
+### 主节点配置
 
 ```yaml
 services:
@@ -134,7 +168,7 @@ services:
       - ./data:/data
 ```
 
-### 👥 从节点配置
+### 从节点配置
 
 ```yaml
 services:
@@ -156,9 +190,9 @@ services:
       - ./data-slave:/data
 ```
 
-## 📝 使用方法
+## 使用方法
 
-### ⬇️ 安装
+### 安装
 
 将配置保存为`docker-compose.yml`文件，然后在同一目录下运行：
 
@@ -166,13 +200,13 @@ services:
 docker compose up -d
 ```
 
-### 📋 查看日志
+### 查看日志
 
 ```bash
 docker compose logs -f
 ```
 
-### 🛑 停止服务
+### 停止服务
 
 ```bash
 docker compose down
