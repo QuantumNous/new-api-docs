@@ -3,19 +3,19 @@
 !!! info "Feature Description"
     The API prefix is uniformly http(s)://`<your-domain>`
 
-    HTTPS should be used in production environments to secure authentication tokens. HTTP is only recommended for development environments.
+    HTTPS should be used in production environments to secure authentication Tokens. HTTP is only recommended for development environments.
 
-    A simple group name query interface. Primarily used for dropdown selection components in the administrator interface. Unlike the user-facing group interface, this only returns a list of names and does not include detailed information such as ratios.
+    A simple interface for querying group names. Primarily used for dropdown selection components in the administrator interface. Unlike the user-side group interface, it only returns a list of names and does not include detailed information such as Ratios.
 
 ## 🔐 Administrator Authentication
 
-### Get All Groups List
+### Get All Group List
 
-- **Interface Name**: Get All Groups List
+- **Interface Name**: Get All Group List
 - **HTTP Method**: GET
 - **Path**: `/api/group/`
 - **Authentication Required**: Administrator
-- **Function Description**: Retrieves a list of names for all user groups in the system, used for administrator configuration and frontend component selection.
+- **Function Description**: Retrieves a list of names for all user Groups in the system, used for administrator configuration and frontend component selection.
 
 💡 Request Example:
 
@@ -57,4 +57,4 @@ const data = await response.json();
 
 🧾 Field Description:
 
-`data` (Array): A list of group names, containing the names of all configured user groups in the system.
+`data` (Array): A list of group names, containing the names of all configured user Groups in the system.

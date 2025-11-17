@@ -149,7 +149,7 @@
 | `EMAIL_SERVER` | 邮件服务器配置 | - | `EMAIL_SERVER=smtp.example.com:25` |
 | `EMAIL_FROM` | 邮件发送者地址 | - | `EMAIL_FROM=noreply@example.com` |
 | `EMAIL_PASSWORD` | 邮件服务器密码 | - | `EMAIL_PASSWORD=yourpassword` |
-| `ERROR_LOG_ENABLE` | 是否记录并在前端显示错误日志 | false | `ERROR_LOG_ENABLED=true` |
+| `ERROR_LOG_ENABLED` | 是否记录并在前端显示错误日志 | false | `ERROR_LOG_ENABLED=true` |
 
 ## 已废弃的环境变量
 

@@ -12,7 +12,11 @@ echo "🚀 Starting development server with i18n (hot-reload)..."
 
 echo "📱 Chinese version: http://0.0.0.0:8000"
 echo "📱 English version: http://0.0.0.0:8000/en/"
+echo "📱 Japanese version: http://0.0.0.0:8000/ja/"
+echo "🔥 Hot-reload enabled for docs & custom theme"
 echo "🛑 Press Ctrl+C to stop the server"
 
-# Start mkdocs with hot reload on single port
-mkdocs serve --dev-addr 0.0.0.0:8000 
+# Start mkdocs with enhanced hot reload
+# --watch-theme: Monitor theme directory for changes
+# --dirtyreload: Faster incremental reload (only rebuild changed pages)
+mkdocs serve --dev-addr 0.0.0.0:8000 --watch-theme --dirtyreload 
