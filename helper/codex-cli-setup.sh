@@ -91,9 +91,9 @@ json_escape() {
     # 替换特殊字符
     str="${str//\\/\\\\}"
     str="${str//"/\\"}"
-    str="${str//\n/\\n}"
-    str="${str//\r/\\r}"
-    str="${str//\t/\\t}"
+    str="${str//$'\n'/\\n}"
+    str="${str//$'\r'/\\r}"
+    str="${str//$'\t'/\\t}"
     echo "$str"
 }
 

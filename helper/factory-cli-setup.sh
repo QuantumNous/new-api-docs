@@ -22,8 +22,14 @@ read_secret_tty() { local __p="${1:-}"; local input; read -r -s -p "$__p" input 
 timestamp() { date +"%Y%m%d-%H%M%S"; }
 
 json_escape() {
-  # 最小化的JSON字符串转义器
-  printf "%s" "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e 's/\t/\\t/g' -e 's/\r/\\r/g' -e 's/\n/\\n/g'
+  local str="$1"
+  # 替换特殊字符
+  str="${str//\\/\\\\}"
+  str="${str//"/\\"}"
+  str="${str//$'\n'/\\n}"
+  str="${str//$'\r'/\\r}"
+  str="${str//$'\t'/\\t}"
+  echo "$str"
 }
 
 ensure_scheme() {
