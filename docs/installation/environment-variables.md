@@ -10,7 +10,8 @@
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
 | `PORT` | 服务监听端口 | `3000` | `PORT=8080` |
-| `TZ` | 时区设置 | `Asia/Shanghai` | `TZ=America/New_York` |
+| `TZ` | 时区设置 | - | `TZ=America/New_York` |
+| `VERSION` | 覆盖运行版本号 | - | `VERSION=1.2.3` |
 
 ## 数据库配置
 
@@ -19,19 +20,17 @@
 | `SQL_DSN` | 数据库连接字符串 | SQLite (data/one-api.db) | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
 | `SQL_MAX_IDLE_CONNS` | 空闲连接池最大连接数 | `100` | `SQL_MAX_IDLE_CONNS=50` |
 | `SQL_MAX_OPEN_CONNS` | 连接池最大打开连接数 | `1000` | `SQL_MAX_OPEN_CONNS=500` |
-| `SQL_CONN_MAX_LIFETIME` | 连接最大生命周期(分钟) | `60` | `SQL_CONN_MAX_LIFETIME=120` |
+| `SQL_MAX_LIFETIME` | 连接最大生命周期(分钟) | `60` | `SQL_MAX_LIFETIME=120` |
 | `LOG_SQL_DSN` | 日志表独立数据库连接字符串 | - | `LOG_SQL_DSN=root:123456@tcp(localhost:3306)/oneapi_logs` |
-| `SQLITE_BUSY_TIMEOUT` | SQLite锁等待超时(毫秒) | `3000` | `SQLITE_BUSY_TIMEOUT=5000` |
+| `SQLITE_PATH` | SQLite数据库路径 | `/path/to/sqlite.db` | `SQLITE_PATH=/var/lib/new-api/new-api.db` |
 
 ## 缓存配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
 | `REDIS_CONN_STRING` | Redis连接字符串 | - | `REDIS_CONN_STRING=redis://default:redispw@localhost:6379` |
+| `REDIS_POOL_SIZE` | Redis连接池大小 | `10` | `REDIS_POOL_SIZE=20` |
 | `MEMORY_CACHE_ENABLED` | 是否启用内存缓存 | `false` | `MEMORY_CACHE_ENABLED=true` |
-| `REDIS_CONN_POOL_SIZE` | Redis连接池大小 | - | `REDIS_CONN_POOL_SIZE=10` |
-| `REDIS_PASSWORD` | Redis集群或哨兵模式密码 | - | `REDIS_PASSWORD=your_password` |
-| `REDIS_MASTER_NAME` | Redis哨兵模式主节点名称 | - | `REDIS_MASTER_NAME=mymaster` |
 | `BATCH_UPDATE_ENABLED` | 启用数据库批量更新聚合 | `false` | `BATCH_UPDATE_ENABLED=true` |
 | `BATCH_UPDATE_INTERVAL` | 批量更新聚合时间间隔(秒) | `5` | `BATCH_UPDATE_INTERVAL=10` |
 
@@ -42,10 +41,8 @@
 | `SESSION_SECRET` | 会话密钥(多机部署必须) | - | `SESSION_SECRET=random_string` |
 | `CRYPTO_SECRET` | 加密密钥(加密数据库内容) | - | `CRYPTO_SECRET=your_crypto_secret` |
 | `FRONTEND_BASE_URL` | 前端基础URL | - | `FRONTEND_BASE_URL=https://your-domain.com` |
-| `SYNC_FREQUENCY` | 缓存与数据库同步频率(秒) | `600` | `SYNC_FREQUENCY=60` |
+| `SYNC_FREQUENCY` | 缓存与数据库同步频率(秒) | `60` | `SYNC_FREQUENCY=60` |
 | `NODE_TYPE` | 节点类型 | `master` | `NODE_TYPE=slave` |
-| `INITIAL_ROOT_TOKEN` | 首次启动时创建的root用户令牌 | - | `INITIAL_ROOT_TOKEN=your_token` |
-| `INITIAL_ROOT_ACCESS_TOKEN` | 首次启动时创建的系统管理令牌 | - | `INITIAL_ROOT_ACCESS_TOKEN=your_token` |
 
 !!! info "集群部署"
     关于如何使用这些环境变量构建完整的集群部署，请参考[集群部署指南](cluster-deployment.md)。
@@ -54,8 +51,6 @@
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
-| `DEFAULT_QUOTA` | 新用户默认配额 | `0` | `DEFAULT_QUOTA=10` |
-| `GLOBAL_USER_QUOTA` | 全局用户配额限制 | - | `GLOBAL_USER_QUOTA=100` |
 | `GENERATE_DEFAULT_TOKEN` | 为新注册用户生成初始令牌 | `false` | `GENERATE_DEFAULT_TOKEN=true` |
 | `NOTIFICATION_LIMIT_DURATION_MINUTE` | 通知限制的持续时间(分钟) | `10` | `NOTIFICATION_LIMIT_DURATION_MINUTE=15` |
 | `NOTIFY_LIMIT_COUNT` | 指定持续时间内的最大通知数量 | `2` | `NOTIFY_LIMIT_COUNT=3` |
@@ -66,10 +61,16 @@
 |---------|------|-------|------|
 | `GLOBAL_API_RATE_LIMIT` | 全局API速率限制(单IP三分钟) | `180` | `GLOBAL_API_RATE_LIMIT=100` |
 | `GLOBAL_WEB_RATE_LIMIT` | 全局Web速率限制(单IP三分钟) | `60` | `GLOBAL_WEB_RATE_LIMIT=30` |
-| `RELAY_TIMEOUT` | 中继请求超时时间(秒) | - | `RELAY_TIMEOUT=60` |
-| `USER_CONTENT_REQUEST_TIMEOUT` | 用户内容下载超时时间(秒) | - | `USER_CONTENT_REQUEST_TIMEOUT=30` |
-| `STREAMING_TIMEOUT` | 流式一次回复的超时时间(秒) | `60` | `STREAMING_TIMEOUT=120` |
+| `RELAY_TIMEOUT` | 中继请求超时时间(秒) | `0` | `RELAY_TIMEOUT=60` |
+| `STREAMING_TIMEOUT` | 流式一次回复的超时时间(秒) | `300` | `STREAMING_TIMEOUT=120` |
 | `MAX_FILE_DOWNLOAD_MB` | 最大文件下载大小(MB) | `20` | `MAX_FILE_DOWNLOAD_MB=50` |
+| `GLOBAL_API_RATE_LIMIT_ENABLE` | 全局API速率限制开关 | `true` | `GLOBAL_API_RATE_LIMIT_ENABLE=false` |
+| `GLOBAL_API_RATE_LIMIT_DURATION` | 全局API速率限制窗口(秒) | `180` | `GLOBAL_API_RATE_LIMIT_DURATION=120` |
+| `GLOBAL_WEB_RATE_LIMIT_ENABLE` | 全局Web速率限制开关 | `true` | `GLOBAL_WEB_RATE_LIMIT_ENABLE=false` |
+| `GLOBAL_WEB_RATE_LIMIT_DURATION` | 全局Web速率限制窗口(秒) | `180` | `GLOBAL_WEB_RATE_LIMIT_DURATION=120` |
+| `CRITICAL_RATE_LIMIT_ENABLE` | 关键操作速率限制开关 | `true` | `CRITICAL_RATE_LIMIT_ENABLE=false` |
+| `CRITICAL_RATE_LIMIT` | 关键操作速率限制次数 | `20` | `CRITICAL_RATE_LIMIT=10` |
+| `CRITICAL_RATE_LIMIT_DURATION` | 关键操作速率限制窗口(秒) | `1200` | `CRITICAL_RATE_LIMIT_DURATION=600` |
 
 !!! warning "RELAY_TIMEOUT 设置警告"
     设置 `RELAY_TIMEOUT` 环境变量时请谨慎，如果设置过短可能导致以下问题：
@@ -87,17 +88,6 @@
 | `CHANNEL_UPDATE_FREQUENCY` | 定期更新渠道余额(分钟) | - | `CHANNEL_UPDATE_FREQUENCY=1440` |
 | `CHANNEL_TEST_FREQUENCY` | 定期检查渠道(分钟) | - | `CHANNEL_TEST_FREQUENCY=1440` |
 | `POLLING_INTERVAL` | 批量更新渠道时请求间隔(秒) | `0` | `POLLING_INTERVAL=5` |
-| `ENABLE_METRIC` | 是否根据请求成功率禁用渠道 | `false` | `ENABLE_METRIC=true` |
-| `METRIC_QUEUE_SIZE` | 请求成功率统计队列大小 | `10` | `METRIC_QUEUE_SIZE=20` |
-| `METRIC_SUCCESS_RATE_THRESHOLD` | 请求成功率阈值 | `0.8` | `METRIC_SUCCESS_RATE_THRESHOLD=0.7` |
-| `TEST_PROMPT` | 测试模型时的用户prompt | `Print your model name exactly...` | `TEST_PROMPT=Hello` |
-
-<!-- ## 🔄 代理配置
-
-| 环境变量 | 说明 | 默认值 | 示例 |
-|---------|------|-------|------|
-| `RELAY_PROXY` | 中继请求使用的代理 | - | `RELAY_PROXY=http://127.0.0.1:7890` |
-| `USER_CONTENT_REQUEST_PROXY` | 用户内容请求使用的代理 | - | `USER_CONTENT_REQUEST_PROXY=http://127.0.0.1:7890` | -->
 
 ## 模型和请求处理配置
 
@@ -105,51 +95,49 @@
 |---------|------|-------|------|
 | `FORCE_STREAM_OPTION` | 覆盖客户端stream_options参数 | `true` | `FORCE_STREAM_OPTION=false` |
 | `GET_MEDIA_TOKEN` | 是否统计图片token | `true` | `GET_MEDIA_TOKEN=false` |
-| `GET_MEDIA_TOKEN_NOT_STREAM` | 非流模式下是否统计图片token | `true` | `GET_MEDIA_TOKEN_NOT_STREAM=false` |
+| `GET_MEDIA_TOKEN_NOT_STREAM` | 非流模式下是否统计图片token | `false` | `GET_MEDIA_TOKEN_NOT_STREAM=false` |
 | `UPDATE_TASK` | 是否更新异步任务(MJ、Suno) | `true` | `UPDATE_TASK=false` |
-| `ENFORCE_INCLUDE_USAGE` | 强制stream模式下返回usage | `false` | `ENFORCE_INCLUDE_USAGE=true` |
-| `TIKTOKEN_CACHE_DIR` | Tiktoken编码器缓存目录，用于存放分词文件避免网络下载 | - | `TIKTOKEN_CACHE_DIR=/cache/tiktoken` |
-| `DATA_GYM_CACHE_DIR` | DataGym缓存目录 | - | `DATA_GYM_CACHE_DIR=/cache/data_gym` |
+| `CountToken` | 是否统计文本token | `true` | `CountToken=false` |
+| `TASK_PRICE_PATCH` | 任务价格补丁(逗号分隔) | `""` | `TASK_PRICE_PATCH=suno=0.8,mj=1.2` |
 
-!!! tip "Tiktoken文件配置"
-    下载tiktoken文件后，请按照以下方式重命名：
-
-    - `cl100k_base.tiktoken` 重命名为 `9b5ad71b2ce5302211f9c61530b329a4922fc6a4`
-    
-    - `o200k_base.tiktoken` 重命名为 `fb374d419588a4632f3f557e76b4b70aebbca790`
-    
-    这些文件应放置在`TIKTOKEN_CACHE_DIR`指定的目录中，以提高token计算性能并减少网络依赖。
-
-!!! example "Tiktoken配置示例"
-    ```bash
-    # Docker环境示例
-    TIKTOKEN_CACHE_DIR=/app/data/tiktoken
-    
-    # 然后将tiktoken文件下载并重命名后放入该目录：
-    /app/data/tiktoken/9b5ad71b2ce5302211f9c61530b329a4922fc6a4
-    /app/data/tiktoken/fb374d419588a4632f3f557e76b4b70aebbca790
-    ```
-    
-    Tiktoken是OpenAI使用的分词器，用于计算文本的token数量。通过本地缓存这些文件，可以避免系统每次启动时从网络下载，提高稳定性和性能，特别是在网络受限环境中。
 
 ## 特定模型配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
-| `AZURE_DEFAULT_API_VERSION` | Azure渠道默认API版本 | `2024-12-01-preview` | `AZURE_DEFAULT_API_VERSION=2023-05-15` |
+| `AZURE_DEFAULT_API_VERSION` | Azure渠道默认API版本 | `2025-04-01-preview` | `AZURE_DEFAULT_API_VERSION=2023-05-15` |
 | `COHERE_SAFETY_SETTING` | Cohere模型安全设置 | `NONE` | `COHERE_SAFETY_SETTING=CONTEXTUAL` |
 | `GEMINI_VISION_MAX_IMAGE_NUM` | Gemini模型最大图片数量 | `16` | `GEMINI_VISION_MAX_IMAGE_NUM=8` |
-| `GEMINI_VERSION` | Gemini版本 | `v1` | `GEMINI_VERSION=v1beta` |
 | `DIFY_DEBUG` | Dify渠道输出工作流和节点信息 | `true` | `DIFY_DEBUG=false` |
 
 ## 其他配置
 
 | 环境变量 | 说明 | 默认值 | 示例 |
 |---------|------|-------|------|
-| `EMAIL_SERVER` | 邮件服务器配置 | - | `EMAIL_SERVER=smtp.example.com:25` |
-| `EMAIL_FROM` | 邮件发送者地址 | - | `EMAIL_FROM=noreply@example.com` |
-| `EMAIL_PASSWORD` | 邮件服务器密码 | - | `EMAIL_PASSWORD=yourpassword` |
 | `ERROR_LOG_ENABLED` | 是否记录并在前端显示错误日志 | false | `ERROR_LOG_ENABLED=true` |
+
+## 分析统计
+
+| 环境变量 | 说明 | 默认值 | 示例 |
+|---------|------|-------|------|
+| `UMAMI_WEBSITE_ID` | Umami站点ID | - | `UMAMI_WEBSITE_ID=xxxx-xxxx` |
+| `UMAMI_SCRIPT_URL` | Umami脚本地址 | `https://analytics.umami.is/script.js` | `UMAMI_SCRIPT_URL=https://umami.example.com/script.js` |
+| `GOOGLE_ANALYTICS_ID` | Google Analytics站点ID | - | `GOOGLE_ANALYTICS_ID=G-XXXXXXX` |
+
+## 元数据同步
+
+| 环境变量 | 说明 | 默认值 | 示例 |
+|---------|------|-------|------|
+| `SYNC_UPSTREAM_BASE` | 模型/厂商元数据上游地址 | `https://basellm.github.io/llm-metadata` | `SYNC_UPSTREAM_BASE=https://mirror.example.com/llm-metadata` |
+| `SYNC_HTTP_TIMEOUT_SECONDS` | 同步HTTP超时(秒) | `10` | `SYNC_HTTP_TIMEOUT_SECONDS=15` |
+| `SYNC_HTTP_RETRY` | 同步重试次数 | `3` | `SYNC_HTTP_RETRY=5` |
+| `SYNC_HTTP_MAX_MB` | 响应体最大大小(MB) | `10` | `SYNC_HTTP_MAX_MB=20` |
+
+## 前端配置
+
+| 环境变量 | 说明 | 默认值 | 示例 |
+|---------|------|-------|------|
+| `VITE_REACT_APP_SERVER_URL` | 前端请求后端的基础地址 | - | `VITE_REACT_APP_SERVER_URL=https://api.example.com` |
 
 ## 已废弃的环境变量
 
@@ -225,3 +213,20 @@ services:
 ```
 
 有关完整的Docker Compose配置，包括更多环境变量设置选项，请参考[Docker Compose配置说明](docker-compose-yml.md)文档。
+
+## LinuxDo 相关
+
+正常情况下无需修改
+
+| 环境变量 | 说明 | 默认值 | 示例 |
+|---------|------|-------|------|
+| `LINUX_DO_TOKEN_ENDPOINT` | LinuxDo 令牌端点 | `https://connect.linux.do/oauth2/token` | `LINUX_DO_TOKEN_ENDPOINT=https://connect.linux.do/oauth2/token` |
+| `LINUX_DO_USER_ENDPOINT` | LinuxDo 用户端点 | `https://connect.linux.do/api/user` | `LINUX_DO_USER_ENDPOINT=https://connect.linux.do/api/user` |   
+
+## 调试相关
+
+| 环境变量 | 说明 | 默认值 | 示例 |
+|---------|------|-------|------|
+| `ENABLE_PPROF` | 启用pprof性能分析 | `false` | `ENABLE_PPROF=true` |
+| `DEBUG` | 启用调试模式 | `false` | `DEBUG=true` | 
+| `GIN_MODE` | Gin运行模式 | - | `GIN_MODE=release` |
