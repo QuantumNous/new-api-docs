@@ -24,7 +24,7 @@ POST /v1/videos
 | model | string | 否 | 视频生成模型，默认为 sora-2 |
 | seconds | string | 否 | 视频时长（秒），默认为 4 秒 |
 | size | string | 否 | 输出分辨率，格式为宽度x高度，默认为 720x1280 |
-| input_reference | file | 否 | 输入图片文件（图生视频时使用） |
+| input_reference | file | 否 | 输入图片文件（图生视频时使用），输入图像必须符合对应的宽度和高度(size) |
 | metadata | string | 否 | 扩展参数（JSON字符串格式） |
 
 #### metadata 参数说明

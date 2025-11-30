@@ -245,6 +245,12 @@ Authorization: Bearer $NEWAPI_API_KEY
 - 必需：否
 - 说明：代表最终用户的唯一标识符，可帮助 OpenAI 监控和检测滥用行为。
 
+#### `moderation`
+- 类型：字符串
+- 必需：否
+- 默认值：auto
+- 说明：auto：标准审核，旨在限制生成某些可能不适合年龄的内容类别。low：限制较少的审核。
+
 #### 编辑图片
 
 ##### `image`
