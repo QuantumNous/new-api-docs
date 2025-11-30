@@ -1,6 +1,6 @@
-# 📚 New API Docs
+> 注意：该仓库为v0版本，已被存档，请访问v1新文档：https://github.com/QuantumNous/new-api-docs-v1
 
-> v0版本文档已被存档，请访问v1新文档：https://github.com/QuantumNous/new-api-docs-v1
+# 📚 New API Docs
 
 ## 🚀 本地开发步骤
 
