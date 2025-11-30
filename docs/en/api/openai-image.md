@@ -5,48 +5,48 @@
 
 ## 📝 Introduction
 
-Given a text prompt and/or input image, the model will generate new images. OpenAI provides multiple powerful image generation models that can create, edit, and modify images based on natural language descriptions. Currently supported models include:
+Given a text prompt and/or input image, the model will generate new images. OpenAI offers several powerful image generation models that can create, edit, and modify images based on natural language descriptions. Currently supported models include:
 
 | Model | Description |
 | --- | --- |
-| **DALL·E Series** | Includes DALL·E 2 and DALL·E 3 versions, which have significant differences in image quality, creative expression, and precision |
-| **GPT-Image-1** | OpenAI's latest image model, supporting multi-image editing capabilities, able to create new composite images based on multiple input images |
+| **DALL·E Series** | Includes two versions, DALL·E 2 and DALL·E 3, which differ significantly in image quality, creative expression, and accuracy |
+| **GPT-Image-1** | OpenAI's latest image model, supporting multi-image editing features, capable of creating new composite images based on multiple input images |
 
 ## 💡 Request Examples
 
 ### Create Image ✅
 
 ```bash
-# Basic image generation
-curl https://your-newapi-server-address/v1/images/generations \
+# 基础图片生成
+curl https://你的newapi服务器地址/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $NEWAPI_API_KEY" \
   -d '{
     "model": "dall-e-3",
-    "prompt": "A cute little sea otter",
+    "prompt": "一只可爱的小海獭",
     "n": 1,
     "size": "1024x1024"
   }'
 
-# High-quality image generation
-curl https://your-newapi-server-address/v1/images/generations \
+# 高质量图片生成
+curl https://你的newapi服务器地址/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $NEWAPI_API_KEY" \
   -d '{
     "model": "dall-e-3",
-    "prompt": "A cute little sea otter",
+    "prompt": "一只可爱的小海獭",
     "quality": "hd",
     "style": "vivid",
     "size": "1024x1024"
   }'
 
-# Using base64 response format
-curl https://your-newapi-server-address/v1/images/generations \
+# 使用 base64 返回格式
+curl https://你的newapi服务器地址/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $NEWAPI_API_KEY" \
   -d '{
     "model": "dall-e-3",
-    "prompt": "A cute little sea otter",
+    "prompt": "一只可爱的小海獭",
     "response_format": "b64_json"
   }'
 ```
@@ -59,7 +59,7 @@ curl https://your-newapi-server-address/v1/images/generations \
   "data": [
     {
       "url": "https://...",
-      "revised_prompt": "A cute little sea otter playing in the water, with round eyes and fluffy fur"
+      "revised_prompt": "一只可爱的小海獭在水中嬉戏,它有着圆圆的眼睛和毛茸茸的皮毛"
     }
   ]
 }
@@ -68,24 +68,24 @@ curl https://your-newapi-server-address/v1/images/generations \
 ### Edit Image ✅
 
 ```bash
-# dall-e-2 image editing
-curl https://your-newapi-server-address/v1/images/edits \
+# dall-e-2 图片编辑
+curl https://你的newapi服务器地址/v1/images/edits \
   -H "Authorization: Bearer $NEWAPI_API_KEY" \
   -F image="@otter.png" \
   -F mask="@mask.png" \
-  -F prompt="A cute little sea otter wearing a beret" \
+  -F prompt="一只戴着贝雷帽的可爱小海獭" \
   -F n=2 \
   -F size="1024x1024"
 
-# gpt-image-1 multi-image editing example
-curl https://your-newapi-server-address/v1/images/edits \
+# gpt-image-1 多图片编辑示例
+curl https://你的newapi服务器地址/v1/images/edits \
   -H "Authorization: Bearer $NEWAPI_API_KEY" \
   -F "model=gpt-image-1" \
   -F "image[]=@body-lotion.png" \
   -F "image[]=@bath-bomb.png" \
   -F "image[]=@incense-kit.png" \
   -F "image[]=@soap.png" \
-  -F "prompt=Create an elegant gift basket containing these four items" \
+  -F "prompt=创建一个包含这四个物品的精美礼品篮" \
   -F "quality=high"
 ```
 
@@ -130,7 +130,7 @@ curl https://your-newapi-server-address/v1/images/edits \
 ### Generate Image Variations ✅
 
 ```bash
-curl https://your-newapi-server-address/v1/images/variations \
+curl https://你的newapi服务器地址/v1/images/variations \
   -H "Authorization: Bearer $NEWAPI_API_KEY" \
   -F image="@otter.png" \
   -F n=2 \
@@ -162,21 +162,21 @@ curl https://your-newapi-server-address/v1/images/variations \
 POST /v1/images/generations
 ```
 
-Create images based on text prompts.
+Creates an image given a text prompt.
 
 #### Edit Image
 ```
 POST /v1/images/edits
 ```
 
-Create edited or extended images based on one or more original images and prompts. This endpoint supports both dall-e-2 and gpt-image-1 models.
+Creates an edited or extended image based on one or more original images and a prompt. This endpoint supports the dall-e-2 and gpt-image-1 models.
 
-#### Generate Variations
+#### Generate Variation
 ```
 POST /v1/images/variations
 ```
 
-Create variations of a given image.
+Creates a variation of a given image.
 
 ### Authentication Method
 
@@ -186,107 +186,113 @@ Include the following in the request header for API key authentication:
 Authorization: Bearer $NEWAPI_API_KEY
 ```
 
-Where `$NEWAPI_API_KEY` is your API key.
+Where `$OPENAI_API_KEY` is your API key.
 
 ### Request Body Parameters
 
 #### Create Image
 
 ##### `prompt`
-- Type: String
+- Type: string
 - Required: Yes
-- Description: Text description of the desired image to generate.
+- Description: A text description of the desired image(s).
   - dall-e-2 maximum length is 1000 characters
   - dall-e-3 maximum length is 4000 characters
 - Tips:
   - Use specific and detailed descriptions
   - Include key visual elements
-  - Specify expected artistic style
+  - Specify the desired artistic style
   - Describe composition and perspective
 
 ##### `model`
-- Type: String
+- Type: string
 - Required: No
 - Default: dall-e-2
-- Description: Model used for image generation.
+- Description: The model to use for image generation.
 
 ##### `n`
-- Type: Integer or null
+- Type: integer or null
 - Required: No
 - Default: 1
-- Description: Number of images to generate. Must be between 1-10. dall-e-3 only supports n=1.
+- Description: The number of images to generate. Must be between 1 and 10. dall-e-3 only supports n=1.
 
 ##### `quality`
-- Type: String
+- Type: string
 - Required: No
 - Default: standard
-- Description: Quality of the generated image. hd option will generate more detailed and consistent images. Only dall-e-3 supports this parameter.
+- Description: The quality of the generated image. The hd option generates more detailed and consistent images. This parameter is only supported by dall-e-3.
 
 ##### `response_format`
-- Type: String or null
+- Type: string or null
 - Required: No
 - Default: url
-- Description: Format of the generated image to return. Must be url or b64_json. URL is valid for 60 minutes after generation.
+- Description: The format in which the generated images are returned. Must be one of url or b64_json. URLs are valid for 60 minutes after generation.
 
 ##### `size`
-- Type: String or null
+- Type: string or null
 - Required: No
 - Default: 1024x1024
-- Description: Size of the generated image. dall-e-2 must be one of 256x256, 512x512, or 1024x1024. dall-e-3 must be one of 1024x1024, 1792x1024, or 1024x1792.
+- Description: The size of the generated images. dall-e-2 must be one of 256x256, 512x512, or 1024x1024. dall-e-3 must be one of 1024x1024, 1792x1024, or 1024x1792.
 
 ##### `style`
-- Type: String or null
+- Type: string or null
 - Required: No
 - Default: vivid
-- Description: Style of the generated image. Must be vivid or natural. Vivid tends to generate surreal and dramatic images, while natural tends to generate more natural, less surreal images. Only dall-e-3 supports this parameter.
+- Description: The style of the generated images. Must be one of vivid or natural. vivid tends to generate hyper-real and dramatic images, while natural tends to generate more natural, less hyper-real images. This parameter is only supported by dall-e-3.
 
 ##### `user`
-- Type: String
+- Type: string
 - Required: No
-- Description: Unique identifier for the end user, which can help OpenAI monitor and detect abuse.
+- Description: A unique identifier representing your end-user, which can help OpenAI monitor and detect abuse.
+
+#### `moderation`
+- Type: string
+- Required: No
+- Default: auto
+- Description: auto: Standard moderation, designed to limit the generation of certain content categories that may not be age-appropriate. low: Less restrictive moderation.
 
 #### Edit Image
 
 ##### `image`
-- Type: File or file array
+- Type: file or file array
 - Required: Yes
-- Description: Image to edit.
-  - For dall-e-2: Must be a valid PNG file, less than 4MB, and square. If no mask is provided, the image must have transparency, which will be used as a mask.
-  - For gpt-image-1: Multiple images can be provided as an array, each image should be a PNG, WEBP, or JPG file, less than 25MB.
+- Description: The image to be edited.
+  - For dall-e-2: Must be a valid PNG file, less than 4MB, and square. If no mask is provided, the image must have transparency, which will be used as the mask.
+  - For gpt-image-1: Multiple images can be provided as an array. Each image should be a PNG, WEBP, or JPG file, less than 25MB.
 
 ##### `prompt`
-- Type: String
+- Type: string
 - Required: Yes
-- Description: Text description of the desired image to generate.
+- Description: A text description of the desired image(s).
   - dall-e-2 maximum length is 1000 characters
   - gpt-image-1 maximum length is 32000 characters
 
 ##### `mask`
-- Type: File
+- Type: file
 - Required: No
-- Description: Additional image, whose fully transparent areas (e.g., areas with alpha zero) indicate the positions to be edited. If multiple images are provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and the same size as the image.
+- Description: An additional image whose fully transparent areas (e.g., alpha zero areas) indicate where the image should be edited. If multiple images are provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image.
 
 ##### `model`
-- Type: String
+- Type: string
 - Required: No
 - Default: dall-e-2
-- Description: Model used for image generation. Supports dall-e-2 and gpt-image-1. If gpt-image-1 specific parameters are not used, it defaults to dall-e-2.
+- Description: The model to use for image generation. Supports dall-e-2 and gpt-image-1. Defaults to dall-e-2 unless gpt-image-1 specific parameters are used.
 
 ##### `quality`
-- Type: String or null
+- Type: string or null
 - Required: No
 - Default: auto
-- Description: Quality of the generated image.
+- Description: The quality of the generated image.
   - gpt-image-1 supports high, medium, and low
   - dall-e-2 only supports standard
   - Defaults to auto
 
 ##### `size`
-- Type: String or null
+- Type: string or null
 - Required: No
 - Default: 1024x1024
-- Description: Size of the generated image.
-  - gpt-image-1 must be one of 1024x1024, 1536x1024 (horizontal), 1024x1536 (vertical), or auto (default)
+- Description: The size of the generated images.
+  - gpt-image-1 must be one of 1024x1024, 1536x1024 (landscape), 1024x1536 (portrait), or auto (default)
   - dall-e-2 must be one of 256x256, 512x512, or 1024x1024
 
 Other parameters are the same as the Create Image interface.
@@ -294,9 +300,9 @@ Other parameters are the same as the Create Image interface.
 #### Generate Variations
 
 ##### `image`
-- Type: File
+- Type: file
 - Required: Yes
-- Description: Image to be used as the basis for variations. Must be a valid PNG file, less than 4MB, and square.
+- Description: The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
 
 Other parameters are the same as the Create Image interface.
 
@@ -307,76 +313,76 @@ Other parameters are the same as the Create Image interface.
 All three endpoints return a response containing a list of image objects.
 
 #### `created`
-- Type: Integer
-- Description: Timestamp of the response creation
+- Type: integer
+- Description: The timestamp when the response was created
 
 #### `data`
-- Type: Array
-- Description: List of generated image objects
+- Type: array
+- Description: A list of generated image objects
 
-#### `usage` (only for gpt-image-1)
-- Type: Object
+#### `usage` (Only applicable to gpt-image-1)
+- Type: object
 - Description: Token usage for the API call
   - `total_tokens`: Total tokens used
   - `input_tokens`: Tokens used for input
   - `output_tokens`: Tokens used for output
-  - `input_tokens_details`: Detailed information about input tokens (text tokens and image tokens)
+  - `input_tokens_details`: Detailed information on input tokens (text tokens and image tokens)
 
 ### Image Object
 
 #### `b64_json`
-- Type: String
-- Description: If response_format is b64_json, it contains the base64 encoded JSON of the generated image
+- Type: string
+- Description: If `response_format` is `b64_json`, this contains the base64 encoded JSON of the generated image
 
 #### `url`
-- Type: String
-- Description: If response_format is url (default), it contains the URL of the generated image
+- Type: string
+- Description: If `response_format` is `url` (default), this contains the URL of the generated image
 
 #### `revised_prompt`
-- Type: String
-- Description: If the prompt was modified, it contains the modified prompt used for image generation
+- Type: string
+- Description: If the prompt was modified, this contains the revised prompt used to generate the image
 
-Example image object:
+Example Image Object:
 ```json
 {
   "url": "https://...",
-  "revised_prompt": "A cute little sea otter playing in the water, with round eyes and fluffy fur"
+  "revised_prompt": "一只可爱的小海獭在水中嬉戏,它有着圆圆的眼睛和毛茸茸的皮毛"
 }
 ```
 
 ## 🌟 Best Practices
 
-### Prompt Writing Tips
+### Prompt Writing Suggestions
 
 1. Use clear and specific descriptions
 2. Specify important visual details
-3. Describe expected artistic style and atmosphere
-4. Pay attention to composition and perspective instructions
+3. Describe the desired artistic style and atmosphere
+4. Include instructions for composition and perspective
 
-### Parameter Selection Tips
+### Parameter Selection Suggestions
 
 1. Model Selection
-   - dall-e-3: Suitable for scenes requiring high quality and precise details
-   - dall-e-2: Suitable for quick prototypes or simple image generation
+   - dall-e-3: Suitable for scenarios requiring high quality and precise details
+   - dall-e-2: Suitable for rapid prototyping or simple image generation
 
 2. Size Selection
-   - 1024x1024: General scene best choice
-   - 1792x1024/1024x1792: Suitable for horizontal/vertical scenes
+   - 1024x1024: Best choice for general scenarios
+   - 1792x1024/1024x1792: Suitable for landscape/portrait scenarios
    - Smaller sizes: Suitable for thumbnails or quick previews
 
 3. Quality and Style
-   - quality=hd: For images requiring fine details
+   - quality=hd: Used for images requiring fine detail
    - style=vivid: Suitable for creative and artistic effects
    - style=natural: Suitable for realistic scene reproduction
 
-### Common Questions
+### Common Issues
 
-1. Image generation failed
+1. Image generation failure
    - Check if the prompt complies with content policies
    - Confirm file format and size limits
    - Verify API key permissions
 
 2. Results do not match expectations
-   - Optimize prompt description
+   - Optimize the prompt description
    - Adjust quality and style parameters
-   - Consider using image editing or variation features 
+   - Consider using image editing or variation features

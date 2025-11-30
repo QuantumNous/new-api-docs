@@ -1,10 +1,10 @@
 # OpenAI ビデオフォーマット（Soraフォーマット）
 
-OpenAIビデオ生成インターフェースを呼び出してビデオを生成します。Soraなどのモデルをサポートし、OpenAIビデオフォーマットを使用してKling（可霊）、Jimeng（即夢）、Viduを呼び出すこともサポートしています。
+OpenAI動画生成インターフェースを呼び出して動画を生成します。Soraなどのモデルをサポートしており、OpenAIビデオフォーマットを使用してKling、Jimeng、Viduを呼び出すこともサポートしています。
 
-## ビデオ生成
+## 動画の生成
 
-### APIエンドポイント
+### API エンドポイント
 
 ```
 POST /v1/videos
@@ -20,16 +20,16 @@ POST /v1/videos
 
 | パラメータ | タイプ | 必須 | 説明 |
 |------|------|------|------|
-| prompt | string | はい | 生成したいビデオを記述するテキストプロンプト |
-| model | string | いいえ | ビデオ生成モデル。デフォルトは sora-2 |
-| seconds | string | いいえ | ビデオの長さ（秒）。デフォルトは 4 秒 |
+| prompt | string | はい | 生成する動画を記述するテキストプロンプト |
+| model | string | いいえ | 動画生成モデル。デフォルトは sora-2 |
+| seconds | string | いいえ | 動画の長さ（秒）。デフォルトは 4 秒 |
 | size | string | いいえ | 出力解像度。幅x高さの形式。デフォルトは 720x1280 |
-| input_reference | file | いいえ | 入力画像ファイル（画像からビデオ生成時に使用） |
+| input_reference | file | いいえ | 入力画像ファイル（画像から動画を生成する場合に使用）。入力画像は対応する幅と高さ(size)に準拠する必要があります |
 | metadata | string | いいえ | 拡張パラメータ（JSON文字列形式） |
 
 #### metadata パラメータの説明
 
-metadata パラメータの役割は、Soraモデル固有ではないパラメータ（例：阿里云万相の画像URL、透かし、プロンプトのスマートリライトなど）を渡すことです。metadata パラメータの形式は JSON 文字列です。例：
+metadata パラメータの役割は、非Soraモデル固有のパラメータ（例：Alibaba Cloud Wanxiangの画像URL、透かし、プロンプトのスマートな書き換えなど）を渡すことです。metadata パラメータの形式は JSON 文字列です。例：
 ```json
 {
   "img_url": "https://example.com/image.jpg",
@@ -40,7 +40,7 @@ metadata パラメータの役割は、Soraモデル固有ではないパラメ�
 
 ### リクエスト例
 
-#### テキストからビデオ生成 (T2V) (テキストプロンプトのみ)
+#### テキストから動画を生成 (プロンプトのみ)
 
 ```bash
 curl https://你的newapi服务器地址/v1/videos \
@@ -51,7 +51,7 @@ curl https://你的newapi服务器地址/v1/videos \
   -F "size=1920x1080"
 ```
 
-#### 画像からビデオ生成 (I2V) (テキストプロンプト + 画像ファイル)
+#### 画像から動画を生成 (テキストプロンプト + 画像ファイル)
 
 ```bash
 curl https://你的newapi服务器地址/v1/videos \
@@ -63,9 +63,9 @@ curl https://你的newapi服务器地址/v1/videos \
   -F "input_reference=@/path/to/cat.jpg"
 ```
 
-#### 阿里云万相 ビデオ生成例
+#### Alibaba Cloud Wanxiang 動画生成例
 
-##### テキストからビデオ生成 (Wanxiang 2.5)
+##### テキストから動画を生成 (Wanxiang 2.5)
 ```bash
 curl https://你的newapi服务器地址/v1/videos \
   -H "Authorization: Bearer sk-xxxx" \
@@ -75,7 +75,7 @@ curl https://你的newapi服务器地址/v1/videos \
   -F "size=1920*1080"
 ```
 
-##### 画像からビデオ生成 (Wanxiang 2.5)
+##### 画像から動画を生成 (Wanxiang 2.5)
 ```bash
 curl https://你的newapi服务器地址/v1/videos \
   -H "Authorization: Bearer sk-xxxx" \
@@ -105,18 +105,18 @@ curl https://你的newapi服务器地址/v1/videos \
 
 | フィールド | タイプ | 説明 |
 |------|------|------|
-| id | string | ビデオタスクID |
+| id | string | 動画タスクID |
 | object | string | オブジェクトタイプ。固定で "video" |
 | model | string | 使用されたモデル名 |
 | created_at | integer | 作成タイムスタンプ |
 | status | string | タスクステータス（processing: 処理中） |
 | progress | integer | 生成進捗率（パーセンテージ） |
 
-## ビデオの照会
+## 動画の照会
 
-タスクIDに基づいてビデオ生成タスクのステータスと結果を照会します。
+タスクIDに基づいて動画生成タスクのステータスと結果を照会します。
 
-### APIエンドポイント
+### API エンドポイント
 
 ```
 GET /v1/videos/{video_id}
@@ -126,7 +126,7 @@ GET /v1/videos/{video_id}
 
 | パラメータ | タイプ | 必須 | 説明 |
 |------|------|------|------|
-| video_id | string | はい | ビデオタスクID |
+| video_id | string | はい | 動画タスクID |
 
 ### リクエスト例
 
@@ -158,23 +158,23 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 
 | フィールド | タイプ | 説明 |
 |------|------|------|
-| id | string | ビデオタスクID |
+| id | string | 動画タスクID |
 | object | string | オブジェクトタイプ。固定で "video" |
 | model | string | 使用されたモデル名 |
 | created_at | integer | 作成タイムスタンプ |
 | status | string | タスクステータス（processing: 処理中, succeeded: 成功, failed: 失敗） |
 | progress | integer | 生成進捗率（パーセンテージ） |
-| expires_at | integer | リソース有効期限のタイムスタンプ |
-| size | string | ビデオ解像度 |
-| seconds | string | ビデオの長さ（秒） |
-| quality | string | ビデオ品質 |
-| url | string | ビデオダウンロードリンク（完了時） |
+| expires_at | integer | リソースの有効期限タイムスタンプ |
+| size | string | 動画の解像度 |
+| seconds | string | 動画の長さ（秒） |
+| quality | string | 動画の品質 |
+| url | string | 動画ダウンロードリンク（完了時） |
 
-## ビデオタスクステータスの取得
+## 動画タスクステータスの取得
 
-タスクIDに基づいてビデオ生成タスクの詳細情報を取得します。
+タスクIDに基づいて動画生成タスクの詳細情報を取得します。
 
-### APIエンドポイント
+### API エンドポイント
 
 ```
 GET /v1/videos/{video_id}
@@ -184,7 +184,7 @@ GET /v1/videos/{video_id}
 
 | パラメータ | タイプ | 必須 | 説明 |
 |------|------|------|------|
-| video_id | string | はい | 取得するビデオタスク識別子 |
+| video_id | string | はい | 取得する動画タスク識別子 |
 
 ### リクエスト例
 
@@ -216,24 +216,24 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 
 | フィールド | タイプ | 説明 |
 |------|------|------|
-| id | string | ビデオタスクの一意の識別子 |
+| id | string | 動画タスクの一意な識別子 |
 | object | string | オブジェクトタイプ。固定で "video" |
-| model | string | ビデオを生成したモデル名 |
-| status | string | ビデオタスクの現在のライフサイクルステータス |
+| model | string | 生成動画のモデル名 |
+| status | string | 動画タスクの現在のライフサイクルステータス |
 | progress | integer | 生成タスクのおおよその完了パーセンテージ |
 | created_at | integer | タスク作成時のUnixタイムスタンプ（秒） |
 | expires_at | integer | ダウンロード可能なリソースの有効期限が切れるUnixタイムスタンプ（秒）。設定されている場合 |
-| size | string | 生成されたビデオの解像度 |
-| seconds | string | 生成されたビデオクリップの長さ（秒） |
-| quality | string | ビデオ品質 |
-| remixed_from_video_id | string | このビデオがリミックスである場合、ソースビデオの識別子 |
+| size | string | 生成動画の解像度 |
+| seconds | string | 生成動画クリップの長さ（秒） |
+| quality | string | 動画の品質 |
+| remixed_from_video_id | string | この動画がリミックスされたものである場合、ソース動画の識別子 |
 | error | object | 生成に失敗した場合、エラー情報を含むオブジェクト |
 
-## ビデオコンテンツの取得
+## 動画コンテンツの取得
 
-完了したビデオコンテンツをダウンロードします。
+完了した動画コンテンツをダウンロードします。
 
-### APIエンドポイント
+### API エンドポイント
 
 ```
 GET /v1/videos/{video_id}/content
@@ -243,13 +243,13 @@ GET /v1/videos/{video_id}/content
 
 | パラメータ | タイプ | 必須 | 説明 |
 |------|------|------|------|
-| video_id | string | はい | ダウンロードするビデオの識別子 |
+| video_id | string | はい | ダウンロードする動画識別子 |
 
 ### クエリパラメータ
 
 | パラメータ | タイプ | 必須 | 説明 |
 |------|------|------|------|
-| variant | string | いいえ | 返されるダウンロード可能なリソースのタイプ。デフォルトはMP4ビデオ |
+| variant | string | いいえ | 返されるダウンロード可能なリソースのタイプ。デフォルトはMP4動画 |
 
 ### リクエスト例
 
@@ -261,14 +261,14 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123/content' \
 
 ### レスポンスの説明
 
-ビデオファイルストリームを直接返却します。Content-Typeは `video/mp4` です。
+動画ファイルストリームを直接返します。Content-Typeは `video/mp4` です。
 
 #### レスポンスヘッダー
 
 | フィールド | 説明 |
 |------|------|
-| Content-Type | ビデオファイルタイプ。通常は video/mp4 |
-| Content-Length | ビデオファイルサイズ（バイト） |
+| Content-Type | 動画ファイルタイプ。通常 video/mp4 |
+| Content-Length | 動画ファイルサイズ（バイト） |
 | Content-Disposition | ファイルダウンロード情報 |
 
 ## エラーレスポンス
@@ -283,7 +283,7 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123/content' \
 }
 ```
 
-### 401 - 未承認
+### 401 - 未認証
 ```json
 {
   "error": {
@@ -326,21 +326,21 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123/content' \
 ## サポートされているモデル
 
 ### OpenAI互換
-- `sora-2`: Soraビデオ生成モデル
+- `sora-2`: Sora動画生成モデル
 
-### OpenAIフォーマット経由で呼び出されるその他のサービス
-- 阿里云万相 (Ali Wan): `wan2.5-t2v-preview` (テキストからビデオ生成), `wan2.5-i2v-preview` (画像からビデオ生成), `wan2.2-i2v-flash`, `wan2.2-i2v-plus`, `wanx2.1-i2v-plus`, `wanx2.1-i2v-turbo` を使用
-- 可霊AI (Kling): `kling-v1`, `kling-v2-master` を使用
-- 即夢 (Jimeng): `jimeng_vgfm_t2v_l20`, `jimeng_vgfm_i2v_l20` を使用
+### OpenAIフォーマットを介して呼び出されるその他のサービス
+- Alibaba Cloud Wanxiang (Ali Wan): `wan2.5-t2v-preview` (テキストから動画), `wan2.5-i2v-preview` (画像から動画), `wan2.2-i2v-flash`, `wan2.2-i2v-plus`, `wanx2.1-i2v-plus`, `wanx2.1-i2v-turbo` を使用
+- Kling AI (Kling): `kling-v1`, `kling-v2-master` を使用
+- Jimeng: `jimeng_vgfm_t2v_l20`, `jimeng_vgfm_i2v_l20` を使用
 - Vidu: `viduq1` を使用
 
-## 阿里云万相の特記事項
+## Alibaba Cloud Wanxiang 特殊事項
 
 ### サポートされている機能
-- **テキストからビデオ生成 (t2v)**: テキストプロンプトのみを使用してビデオを生成
-- **画像からビデオ生成 (i2v)**: テキストプロンプト + 画像を使用してビデオを生成
-- **最初と最後のフレームからのビデオ生成 (kf2v)**: 最初と最後のフレーム画像を指定してビデオを生成
-- **音声生成 (s2v)**: 音声とビデオの結合をサポート
+- **テキストから動画を生成 (t2v)**: テキストプロンプトのみを使用して動画を生成
+- **画像から動画を生成 (i2v)**: テキストプロンプト+画像を使用して動画を生成
+- **首尾フレームから動画を生成 (kf2v)**: 開始フレームと終了フレームの画像を特定して動画を生成
+- **音声生成 (s2v)**: 音声と動画の結合をサポート
 
 ### 解像度のサポート
 - **480P**: 832×480, 480×832, 624×624
@@ -348,34 +348,34 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123/content' \
 - **1080P**: 1920×1080, 1080×1920, 1440×1440, 1632×1248, 1248×1632
 
 ### 特殊パラメータ
-- `watermark`: 透かしを追加するかどうか（デフォルトはfalse）
-- `prompt_extend`: プロンプトのスマートリライトを有効にするかどうか（デフォルトはtrue）
+- `watermark`: 透かしを追加するかどうか（デフォルト false）
+- `prompt_extend`: プロンプトのスマートな書き換えを有効にするか（デフォルト true）
 - `audio`: 音声を追加するかどうか（wan2.5のみサポート）
-- `seed`: 乱数シード
+- `seed`: シード値（乱数シード）
 
 ### モデルの特徴
-- **wan2.5-i2v-preview**: Wanxiang 2.5 プレビューバージョン。音声付きビデオをサポート。推奨
-- **wan2.2-i2v-flash**: Wanxiang 2.2 高速版。生成速度が速い。音声なしビデオ
-- **wan2.2-i2v-plus**: Wanxiang 2.2 プロフェッショナル版。画質が高い。音声なしビデオ
+- **wan2.5-i2v-preview**: Wanxiang 2.5 プレビューバージョン。音声付き動画をサポート。推奨
+- **wan2.2-i2v-flash**: Wanxiang 2.2 高速版。生成速度が速い。音声なし動画
+- **wan2.2-i2v-plus**: Wanxiang 2.2 プロフェッショナル版。画質が高い。音声なし動画
 - **wanx2.1-i2v-plus**: Wanxiang 2.1 プロフェッショナル版。安定バージョン
 - **wanx2.1-i2v-turbo**: Wanxiang 2.1 高速版
 
 ## ベストプラクティス
 
-1. **リクエスト形式**: `multipart/form-data` 形式を使用します。これはOpenAI公式が推奨する方法です。
-2. **input_referenceパラメータ**: 画像からビデオ生成機能に使用されます。画像ファイルをアップロードする際は `@filename` 構文を使用します。
-3. **プロンプトの最適化**: スタイルや品質要件を含む、詳細で具体的な記述を使用します。
-4. **パラメータ設定**: 要件に応じて、長さと解像度を適切に設定します。
-5. **阿里云万相の特記事項**:
-   - **ファイルの直接アップロードはサポートされていません**。すべてのリソースはURL経由で渡されます。
-   - すべての拡張パラメータは `metadata` パラメータ（JSON文字列形式）を使用して渡します。
-   - 画像からビデオ生成では `metadata.img_url` を使用して画像URLを渡します。
-   - 最初と最後のフレームからのビデオ生成では `metadata.first_frame_url` と `metadata.last_frame_url` を使用します。
-6. **エラー処理**: 適切なリトライメカニズムとエラー処理を実装します。
-7. **非同期処理**: ビデオ生成は非同期タスクであるため、ステータスをポーリングして照会する必要があります。
-8. **リソース管理**: 不要になったビデオファイルは速やかにダウンロードし、クリーンアップします。
+1. **リクエスト形式**: `multipart/form-data` 形式を使用します。これはOpenAI公式が推奨する方法です
+2. **input_referenceパラメータ**: 画像から動画を生成する機能に使用されます。画像ファイルをアップロードする際は `@filename` 構文を使用します
+3. **プロンプトの最適化**: スタイルや品質要件を含む、詳細で具体的な記述語を使用します
+4. **パラメータ設定**: 要件に応じて、長さと解像度を適切に設定します
+5. **Alibaba Cloud Wanxiang 特殊事項**:
+   - ファイルの直接アップロードは**サポートされていません**。すべてのリソースはURLを介して渡されます
+   - `metadata` パラメータを使用して、すべての拡張パラメータを渡します（JSON文字列形式）
+   - 画像から動画を生成する場合、`metadata.img_url` を使用して画像URLを渡します
+   - 首尾フレームから動画を生成する場合、`metadata.first_frame_url` と `metadata.last_frame_url` を使用します
+6. **エラー処理**: 適切な再試行メカニズムとエラー処理を実装します
+7. **非同期処理**: 動画生成は非同期タスクであるため、ステータスをポーリングして照会する必要があります
+8. **リソース管理**: 不要になった動画ファイルは速やかにダウンロードし、クリーンアップします
 
-## JavaScriptの例
+## JavaScript サンプル
 
 ### FormDataの使用 (推奨)
 
@@ -399,7 +399,7 @@ async function generateVideoWithFormData() {
   return result.id;
 }
 
-// 图生视频示例
+// 画像から動画を生成する例
 async function generateVideoWithImage() {
   const formData = new FormData();
   formData.append('prompt', '猫咪慢慢睁开眼睛，伸懒腰');
@@ -407,7 +407,7 @@ async function generateVideoWithImage() {
   formData.append('seconds', '3');
   formData.append('size', '1920x1080');
   
-  // 添加图片文件
+  // 画像ファイルを追加
   const imageFile = document.getElementById('imageInput').files[0];
   formData.append('input_reference', imageFile);
 
@@ -424,10 +424,10 @@ async function generateVideoWithImage() {
 }
 ```
 
-### 阿里云万相呼び出し例
+### Alibaba Cloud Wanxiang 呼び出し例
 
 ```javascript
-// 阿里云万相文生视频
+// Alibaba Cloud Wanxiang テキストから動画を生成
 async function generateAliVideo() {
   const formData = new FormData();
   formData.append('prompt', '一只可爱的小猫在花园里玩耍，阳光明媚，色彩鲜艳');
@@ -451,7 +451,7 @@ async function generateAliVideo() {
   return result.id;
 }
 
-// 阿里云万相图生视频
+// Alibaba Cloud Wanxiang 画像から動画を生成
 async function generateAliImageToVideo() {
   const formData = new FormData();
   formData.append('prompt', '让这张图片动起来，添加自然的运动效果');
@@ -476,7 +476,7 @@ async function generateAliImageToVideo() {
   return result.id;
 }
 
-// 阿里云万相首尾帧生视频
+// Alibaba Cloud Wanxiang 首尾フレームから動画を生成
 async function generateAliKeyframeVideo() {
   const formData = new FormData();
   formData.append('prompt', '从开始到结束的平滑过渡动画');

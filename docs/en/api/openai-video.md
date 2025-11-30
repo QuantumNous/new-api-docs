@@ -1,6 +1,6 @@
 # OpenAI Video Format (Sora Format)
 
-Calling the OpenAI video generation interface to generate videos, supporting models like Sora, and also supporting the use of the OpenAI video format to call Kling, Jimeng, and Vidu.
+Generate videos by calling the OpenAI video generation interface, supporting models like Sora, and also supporting the use of the OpenAI video format to call Kling, Jimeng, and Vidu.
 
 ## Generate Video
 
@@ -24,12 +24,12 @@ POST /v1/videos
 | model | string | No | Video generation model, defaults to sora-2 |
 | seconds | string | No | Video duration (seconds), defaults to 4 seconds |
 | size | string | No | Output resolution, format is width x height, defaults to 720x1280 |
-| input_reference | file | No | Input image file (used for Image-to-Video) |
+| input_reference | file | No | Input image file (used for Image-to-Video), the input image must match the corresponding width and height (size) |
 | metadata | string | No | Extended parameters (JSON string format) |
 
 #### metadata Parameter Description
 
-The `metadata` parameter is used to pass parameters unique to non-Sora models, such as Alibaba Cloud Wanxiang's image URL, watermark, prompt intelligent rewriting, etc. The format of the `metadata` parameter is a JSON string, for example:
+The purpose of the metadata parameter is to pass parameters specific to non-Sora models, such as Aliyun Wanxiang's image URL, watermark, and prompt intelligent rewriting. The format of the metadata parameter is a JSON string, for example:
 ```json
 {
   "img_url": "https://example.com/image.jpg",
@@ -63,7 +63,7 @@ curl https://你的newapi服务器地址/v1/videos \
   -F "input_reference=@/path/to/cat.jpg"
 ```
 
-#### Alibaba Cloud Wanxiang Video Generation Examples
+#### Aliyun Wanxiang Video Generation Example
 
 ##### Text-to-Video (Wanxiang 2.5)
 ```bash
@@ -88,7 +88,7 @@ curl https://你的newapi服务器地址/v1/videos \
 
 ### Response Format
 
-#### 201 - Successfully Created
+#### 201 - Created Successfully
 
 ```json
 {
@@ -109,12 +109,12 @@ curl https://你的newapi服务器地址/v1/videos \
 | object | string | Object type, fixed as "video" |
 | model | string | Name of the model used |
 | created_at | integer | Creation timestamp |
-| status | string | Task status (processing: processing) |
+| status | string | Task status (processing: in progress) |
 | progress | integer | Generation progress percentage |
 
-## Retrieve Video
+## Query Video
 
-Query the status and result of the video generation task based on the Task ID.
+Query the status and result of the video generation task based on the Task ID
 
 ### API Endpoint
 
@@ -162,17 +162,17 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 | object | string | Object type, fixed as "video" |
 | model | string | Name of the model used |
 | created_at | integer | Creation timestamp |
-| status | string | Task status (processing: processing, succeeded: successful, failed: failed) |
+| status | string | Task status (processing: in progress, succeeded: successful, failed: failed) |
 | progress | integer | Generation progress percentage |
 | expires_at | integer | Resource expiration timestamp |
 | size | string | Video resolution |
 | seconds | string | Video duration (seconds) |
 | quality | string | Video quality |
-| url | string | Video download link (when complete) |
+| url | string | Video download link (upon completion) |
 
 ## Get Video Task Status
 
-Retrieve detailed information about the video generation task based on the Task ID.
+Retrieve detailed information about the video generation task based on the Task ID
 
 ### API Endpoint
 
@@ -218,20 +218,20 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123' \
 |------|------|------|
 | id | string | Unique identifier for the video task |
 | object | string | Object type, fixed as "video" |
-| model | string | Name of the model that generated the video |
+| model | string | Name of the model generating the video |
 | status | string | Current lifecycle status of the video task |
 | progress | integer | Approximate completion percentage of the generation task |
 | created_at | integer | Unix timestamp (seconds) when the task was created |
 | expires_at | integer | Unix timestamp (seconds) when the downloadable resource expires, if set |
-| size | string | Generated video resolution |
-| seconds | string | Duration of the generated video clip (seconds) |
+| size | string | Resolution of the generated video |
+| seconds | string | Duration (seconds) of the generated video clip |
 | quality | string | Video quality |
 | remixed_from_video_id | string | Identifier of the source video if this video is a remix |
 | error | object | Object containing error information if generation failed |
 
 ## Get Video Content
 
-Download the completed video content.
+Download the completed video content
 
 ### API Endpoint
 
@@ -261,7 +261,7 @@ curl 'https://你的newapi服务器地址/v1/videos/video_123/content' \
 
 ### Response Description
 
-Directly returns the video file stream, Content-Type is `video/mp4`.
+Directly returns the video file stream, Content-Type is `video/mp4`
 
 #### Response Headers
 
@@ -293,7 +293,7 @@ Directly returns the video file stream, Content-Type is `video/mp4`.
 }
 ```
 
-### 403 - Forbidden
+### 403 - No Permission
 ```json
 {
   "error": {
@@ -303,7 +303,7 @@ Directly returns the video file stream, Content-Type is `video/mp4`.
 }
 ```
 
-### 404 - Task Not Found
+### 404 - Task Does Not Exist
 ```json
 {
   "error": {
@@ -329,17 +329,17 @@ Directly returns the video file stream, Content-Type is `video/mp4`.
 - `sora-2`: Sora video generation model
 
 ### Other Services Called via OpenAI Format
-- Alibaba Cloud Wanxiang (Ali Wan): Use `wan2.5-t2v-preview` (Text-to-Video), `wan2.5-i2v-preview` (Image-to-Video), `wan2.2-i2v-flash`, `wan2.2-i2v-plus`, `wanx2.1-i2v-plus`, `wanx2.1-i2v-turbo`
-- Kling AI: Use `kling-v1`, `kling-v2-master`
-- Jimeng: Use `jimeng_vgfm_t2v_l20`, `jimeng_vgfm_i2v_l20`
-- Vidu: Use `viduq1`
+- Aliyun Wanxiang (Ali Wan): Uses `wan2.5-t2v-preview` (Text-to-Video), `wan2.5-i2v-preview` (Image-to-Video), `wan2.2-i2v-flash`, `wan2.2-i2v-plus`, `wanx2.1-i2v-plus`, `wanx2.1-i2v-turbo`
+- Kling AI (Kling): Uses `kling-v1`, `kling-v2-master`
+- Jimeng: Uses `jimeng_vgfm_t2v_l20`, `jimeng_vgfm_i2v_l20`
+- Vidu: Uses `viduq1`
 
-## Alibaba Cloud Wanxiang Special Instructions
+## Aliyun Wanxiang Special Instructions
 
 ### Supported Features
 - **Text-to-Video (t2v)**: Generates video using only a text prompt
 - **Image-to-Video (i2v)**: Generates video using a text prompt + image
-- **Keyframe-to-Video (kf2v)**: Generates video by specifying the start and end frame images
+- **Keyframe-to-Video (kf2v)**: Generates video by specifying the first and last frame images
 - **Audio Generation (s2v)**: Supports combining audio with video
 
 ### Resolution Support
@@ -355,27 +355,27 @@ Directly returns the video file stream, Content-Type is `video/mp4`.
 
 ### Model Characteristics
 - **wan2.5-i2v-preview**: Wanxiang 2.5 preview version, supports video with sound, recommended
-- **wan2.2-i2v-flash**: Wanxiang 2.2 Express version, fast generation speed, silent video
-- **wan2.2-i2v-plus**: Wanxiang 2.2 Professional version, higher image quality, silent video
-- **wanx2.1-i2v-plus**: Wanxiang 2.1 Professional version, stable version
-- **wanx2.1-i2v-turbo**: Wanxiang 2.1 Express version
+- **wan2.2-i2v-flash**: Wanxiang 2.2 Flash version, fast generation speed, silent video
+- **wan2.2-i2v-plus**: Wanxiang 2.2 Pro version, higher image quality, silent video
+- **wanx2.1-i2v-plus**: Wanxiang 2.1 Pro version, stable version
+- **wanx2.1-i2v-turbo**: Wanxiang 2.1 Turbo version
 
 ## Best Practices
 
 1. **Request Format**: Use `multipart/form-data` format, which is the official OpenAI recommended method
-2. **`input_reference` Parameter**: Used for the Image-to-Video function, use the `@filename` syntax when uploading image files
+2. **input_reference Parameter**: Used for Image-to-Video functionality, use the `@filename` syntax when uploading an image file
 3. **Prompt Optimization**: Use detailed and specific descriptive words, including style and quality requirements
-4. **Parameter Settings**: Reasonably set duration and resolution according to requirements
-5. **Alibaba Cloud Wanxiang Special Instructions**:
-   - **Direct file upload is not supported**; all resources are passed via URL
+4. **Parameter Settings**: Set duration and resolution reasonably according to requirements
+5. **Aliyun Wanxiang Special Instructions**:
+   - **Direct file upload is not supported**, all resources are passed via URL
    - Use the `metadata` parameter to pass all extended parameters (JSON string format)
    - Image-to-Video uses `metadata.img_url` to pass the image URL
    - Keyframe-to-Video uses `metadata.first_frame_url` and `metadata.last_frame_url`
 6. **Error Handling**: Implement appropriate retry mechanisms and error handling
-7. **Asynchronous Processing**: Video generation is an asynchronous task and requires polling for status checks
+7. **Asynchronous Processing**: Video generation is an asynchronous task, requiring polling for status checks
 8. **Resource Management**: Download and clean up unnecessary video files promptly
 
-## JavaScript Examples
+## JavaScript Example
 
 ### Using FormData (Recommended)
 
@@ -424,10 +424,10 @@ async function generateVideoWithImage() {
 }
 ```
 
-### Alibaba Cloud Wanxiang Calling Example
+### Aliyun Wanxiang Calling Example
 
 ```javascript
-// 阿里云万相文生视频
+// Aliyun Wanxiang Text-to-Video
 async function generateAliVideo() {
   const formData = new FormData();
   formData.append('prompt', '一只可爱的小猫在花园里玩耍，阳光明媚，色彩鲜艳');
@@ -451,7 +451,7 @@ async function generateAliVideo() {
   return result.id;
 }
 
-// 阿里云万相图生视频
+// Aliyun Wanxiang Image-to-Video
 async function generateAliImageToVideo() {
   const formData = new FormData();
   formData.append('prompt', '让这张图片动起来，添加自然的运动效果');
@@ -476,7 +476,7 @@ async function generateAliImageToVideo() {
   return result.id;
 }
 
-// 阿里云万相首尾帧生视频
+// Aliyun Wanxiang Keyframe-to-Video
 async function generateAliKeyframeVideo() {
   const formData = new FormData();
   formData.append('prompt', '从开始到结束的平滑过渡动画');
